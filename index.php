@@ -1,5 +1,5 @@
 <?php
-    require_once('twig/Autoloader.php');
+    require_once('Twig/Autoloader.php');
     Twig_Autoloader::register();
     
     $nb_u = (isset($_GET['user']) && !empty($_GET['user']) ? intval($_GET['user']) : '1');
