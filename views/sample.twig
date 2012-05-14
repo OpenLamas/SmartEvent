@@ -48,7 +48,7 @@
               <li class="nav-header">Evenements</li>
               {% endif %}
               {% if rights.add_event or rights.edit_event or rights.delete_event %}
-              <li><a href="#"><i class="icon-plus-sign"></i>Gérer les évenements</a></li>
+              <li><a href="#"><i class="icon-tags"></i>Gérer les évenements</a></li>
               {% endif %}
               {% if rights.print_listing %}
               <li><a href="#"><i class="icon-print"></i>Feuilles d'émargement & absences</a></li>              
@@ -58,10 +58,10 @@
             <ul class="nav nav-list">
               <li class="nav-header">Utilisateurs</li>
               {% if rights.add_user or rights.edit_user or rights.delete_user %}
-              <li><a href="#"><i class="icon-home"></i>Gérer les utilisateurs</a></li>
+              <li><a href="#"><i class="icon-user"></i>Gérer les utilisateurs</a></li>
               {% endif %}
               {% if rights.manage_rights %}
-              <li><a href="#"><i class="icon-plus-sign"></i>Gérer les droits</a></li>  
+              <li><a href="#"><i class="icon-lock"></i>Gérer les droits</a></li>  
               {% endif %}            
             </ul>
             {% endif %}
