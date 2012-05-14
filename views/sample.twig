@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <!-- CSS -->
-    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -36,7 +36,7 @@
           <a class="brand" href="#">ADE Anmieu</a>
           <div class="btn-group pull-right">
             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-              <i class="icon-user"></i> {{ user.name }}
+              <i class="icon-user"></i> {{ user.login }}
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
@@ -66,21 +66,21 @@
               <li><a href="#"><i class="icon-plus-sign"></i>Ajouter un évenement</a></li>
               {% endif %}
             </ul>
-            {% if rights.add_event | rights.edit_event | rights.delete_event | rights.print_listing %}
+            {% if rights.add_event or rights.edit_event or rights.delete_event or rights.print_listing %}
             <ul class="nav nav-list">              
               <li class="nav-header">Evenements</li>
               {% endif %}
-              {% if rights.add_event | rights.edit_event | rights.delete_event %}
+              {% if rights.add_event or rights.edit_event or rights.delete_event %}
               <li><a href="#"><i class="icon-plus-sign"></i>Gérer les évenements</a></li>
               {% endif %}
               {% if rights.print_listing %}
               <li><a href="#"><i class="icon-print"></i>Feuilles d'émargement & absences</a></li>              
             </ul>
             {% endif %}
-            {% if rights.add_user | rights.edit_user | rights.delete_user | rights.manage_rights %}
+            {% if rights.add_user or rights.edit_user or rights.delete_user or rights.manage_rights %}
             <ul class="nav nav-list">
               <li class="nav-header">Utilisateurs</li>
-              {% if rights.add_user | rights.edit_user | rights.delete_user %}
+              {% if rights.add_user or rights.edit_user or rights.delete_user %}
               <li><a href="#"><i class="icon-home"></i>Gérer les utilisateurs</a></li>
               {% endif %}
               {% if rights.manage_rights %}
@@ -94,7 +94,7 @@
         <div class="span9">
           <!-- hero-unit -->
           <div class="hero-unit">
-            <h1>Bienvenue {{ user.name }} !</h1>
+            <h1>Bienvenue {{ [user.firstname, user.lastname]|join(' ')}} !</h1>
             <p>Actuellement vous êtes inscrit à {{ events.registered_count }} évenements.</p>
           </div>
           <!-- row-fluid -->
@@ -108,7 +108,7 @@
                   <div class="accordion-inner"> 
                     <div class="span4">
                       <h2>{{ event.name }}</h2>
-                      <h4><span class="badge badge-inverse">8 places libres</span></h4>
+                      <h4><span class="badge badge-inverse">{{ event.placeLibre }} places libres</span></h4>
                       <dl>
                         <dt>Description</dt>
                         <dd>{{ event.description }}</dd>
