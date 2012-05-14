@@ -3,5 +3,5 @@ Projet-IC4
 
 Contributor :
 Maxime Mouchet,
-Florent Gontaret,
+Florent G,
 Julien Brun
