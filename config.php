@@ -4,9 +4,9 @@
 			array('firstname' => 'Mathieu', 'lastname'=> 'De chateau', 'login' => 'mathDechate')
 		);
 
-	$rights = array(	array('add_event' => true, 'edit_event'=>true, 'delete_event'=>true, 'print_listing'=>true),
-			array('add_event' => true, 'edit_event'=>true, 'delete_event'=>true, 'print_listing'=>true),
-			array('add_event' => true, 'edit_event'=>true, 'delete_event'=>true, 'print_listing'=>true)
+	$rights = array(	array('add_event' => true, 'edit_event'=>true, 'delete_event'=>true, 'print_listing'=>true, 'add_user'=>true, 'edit_user'=>true, 'delete_user'=>true, 'manage_rights'=>true),
+			array('add_event' => true, 'edit_event'=>true, 'delete_event'=>true, 'print_listing'=>true, 'add_user'=>true, 'edit_user'=>true, 'delete_user'=>true, 'manage_rights'=>true),
+			array('add_event' => true, 'edit_event'=>true, 'delete_event'=>true, 'print_listing'=>true, 'add_user'=>true, 'edit_user'=>true, 'delete_user'=>true, 'manage_rights'=>true)
 		);
 		
 	$events = array( array('name' => 'La fête de la patate', 'description' => 'C\'est le jour où toute des patates de retrouve et dansent jusqu\'au bout de la nuit !', 'placeLibre' => '12', 'creator' => array('firstname' => 'Yvan', 'lastname' => 'Deschapeau'), 'admin' =>  array(array('firstname' => 'Juan', 'lastname' => 'Conchos'), array('firstname' => 'Marie', 'lastname' => 'Blanc'))),
