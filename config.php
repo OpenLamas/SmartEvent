@@ -4,8 +4,10 @@
 			array('prenom' => 'Mathieu', 'nom'=> 'De chateau', 'login' => 'mathDechate')
 		);
 
-	$right = array(	array('add_event' => true, 'edit_event'=>true, 'delete_event'=>true, 'print_listing'=>true),
+	$rights = array(	array('add_event' => true, 'edit_event'=>true, 'delete_event'=>true, 'print_listing'=>true),
 			array('add_event' => true, 'edit_event'=>true, 'delete_event'=>true, 'print_listing'=>true),
 			array('add_event' => true, 'edit_event'=>true, 'delete_event'=>true, 'print_listing'=>true)
 		);
+	
+	$event = array( array('nom' => 'La fête de la patate', 'description' => 'C\'est le jour où toute des patates de retrouve et dansent jusqu\'au bout de la nuit !'));
  ?>
