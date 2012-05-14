@@ -91,9 +91,10 @@
 						  <dt>Description</dt>
 						  <dd>{{ event.description }}</dd>
 						  <dt>Organisateurs</dt>
-						  <dd><span class="label label-info">Créateur</span> Jean Jacques</dd>
-						  <dd>Ja Nie</dd>
-						  <dd>Thom As</dd>
+						  <dd><span class="label label-info">Créateur</span> {{ [event.creator.firstname, event.creator.lastname]|join(' ') }}</dd>
+						  {% for admin in event.admin %}
+						    <dd>{{ [admin.firstname, admin.lastname]|join(' ') }}</dd>
+						  {% endfor %}
 						</dl>
 						<p><a class="btn" href="#">Détails &raquo;</a></p>
 					  </div><!--/span4-->
