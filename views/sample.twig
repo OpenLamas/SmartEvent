@@ -83,22 +83,38 @@
                 </div>
                 <div id="collapseOne" class="accordion-body collapse in"> 
                   <div class="accordion-inner"> 
-					{% for event in events %} 
-					  <div class="span4">
-						<h2>{{ event.name }}</h2>
-						<h4><span class="badge badge-inverse">{{ event.placeLibre }} places libres</span></h4>
-						<dl>
-						  <dt>Description</dt>
-						  <dd>{{ event.description }}</dd>
-						  <dt>Organisateurs</dt>
-						  <dd><span class="label label-info">Créateur</span> {{ [event.creator.firstname, event.creator.lastname]|join(' ') }}</dd>
-						  {% for admin in event.admin %}
-						    <dd>{{ [admin.firstname, admin.lastname]|join(' ') }}</dd>
-						  {% endfor %}
-						</dl>
-						<p><a class="btn" href="#">Détails &raquo;</a></p>
-					  </div><!--/span4-->
-					{% endfor %}
+										{% for event in events %} 
+										<div class="span4">
+										<h2>{{ event.name }}</h2>
+										<h4><span class="badge badge-inverse">{{ event.placeLibre }} places libres</span></h4>
+										<dl>
+											<dt>Description</dt>
+											<dd>{{ event.description }}</dd>
+											<dt>Organisateurs</dt>
+											<dd><span class="label label-info">Créateur</span> {{ [event.creator.firstname, event.creator.lastname]|join(' ') }}</dd>
+											{% for admin in event.admin %}
+												<dd>{{ [admin.firstname, admin.lastname]|join(' ') }}</dd>
+											{% endfor %}
+										</dl>
+											<p><a class="btn" data-toggle="modal" href="#myModal{{ event.id }}">Détails &raquo;</a></p>
+											<div class="modal fade" id="myModal{{ event.id }}">
+												<div class="modal-header">
+													<button class="close" data-dismiss="modal">×</button>
+													<h3>{{ event.name }}</h3>
+												</div>
+												<div class="modal-body">
+													<p>{{ event.description }}<br />
+													Il ne reste plus que {{ event.placeLibre }} pour cette evenment</p>
+												</div>
+												<div class="modal-footer">
+													<a href="#" class="btn" data-dismiss="modal">Close</a>
+													<a href="#" class="btn btn-primary inscrire">S'inscrire</a>
+												</div>
+											</div>
+										</div><!--/span4-->
+										{% endfor %}
+					
+					
                     
                 </div> 
               </div> 
