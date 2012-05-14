@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>ADE Anmieu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <!-- CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+    </style>
+    <!-- HTML5 shim -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="img/favicon.ico">
+  </head>
+  <body>
+    <!-- Navbar -->
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">ADE Anmieu</a>
+          <div class="btn-group pull-right">
+            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+              <i class="icon-user"></i> {{ user.name }}
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Préférences</a></li>
+              <li class="divider"></li>
+              <li><a href="#">Déconnexion</a></li>
+            </ul>
+          </div>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li><a href="#">Aide</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+    <!-- Container -->
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <!-- Sidebar -->
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Accès Rapide</li>
+              <li class="active"><a href="#"><i class="icon-home"></i>Vue globale</a></li>
+              {% if rights.add_event %}
+              <li><a href="#"><i class="icon-plus-sign"></i>Ajouter un évenement</a></li>
+              {% endif %}
+            </ul>
+            {% if rights.add_event | rights.edit_event | rights.delete_event | rights.print_listing %}
+            <ul class="nav nav-list">              
+              <li class="nav-header">Evenements</li>
+              {% endif %}
+              {% if rights.add_event | rights.edit_event | rights.delete_event %}
+              <li><a href="#"><i class="icon-plus-sign"></i>Gérer les évenements</a></li>
+              {% endif %}
+              {% if rights.print_listing %}
+              <li><a href="#"><i class="icon-print"></i>Feuilles d'émargement & absences</a></li>              
+            </ul>
+            {% endif %}
+            {% if rights.add_user | rights.edit_user | rights.delete_user | rights.manage_rights %}
+            <ul class="nav nav-list">
+              <li class="nav-header">Utilisateurs</li>
+              {% if rights.add_user | rights.edit_user | rights.delete_user %}
+              <li><a href="#"><i class="icon-home"></i>Gérer les utilisateurs</a></li>
+              {% endif %}
+              {% if rights.manage_rights %}
+              <li><a href="#"><i class="icon-plus-sign"></i>Gérer les droits</a></li>  
+              {% endif %}            
+            </ul>
+            {% endif %}
+          </div><!--/.well -->
+        </div><!--/span-->
+        <div class="span9">
+          <div class="hero-unit">
+            <h1>Bienvenue {{ user.name }} !</h1>
+            <p>Actuellement vous êtes inscrit à {{ events.registered_count }} évenements.</p>
+          </div>
+          <div class="row-fluid">
+            {% for event in events %}
+            <div class="span4">
+              <h2>{{ event.name }}</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn" href="#">S'inscrire &raquo;</a></p>
+            </div><!--/span-->
+            {% endfor %}
+          </div><!--/row-->
+        </div><!--/span-->
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <p>&copy; 2012</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+  </body>
+</html>
+
