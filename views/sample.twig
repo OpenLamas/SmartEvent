@@ -1,29 +1,4 @@
-<!doctype html>
-<html lang="fr">
-  <head>
-    <meta charset="utf-8">
-    <title>ADE Anmieu</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <!-- CSS -->
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-      .sidebar-nav {
-        padding: 9px 0;
-      }
-    </style>
-    <!-- HTML5 shim -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!-- Favicons -->
-    <link rel="shortcut icon" href="img/favicon.ico">
-  </head>
-  <body>
+    {% block body %}
     <!-- Navbar -->
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
@@ -147,17 +122,5 @@
           </div><!--/row-->
         </div><!--/span-->
       </div><!--/row-->
-
-      <hr>
-
-      <footer>
-        <p>&copy; 2012</p>
-      </footer>
-
     </div><!--/.fluid-container-->
-    <!-- JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script src="js/bootstrap.js"></script>
-  </body>
-</html>
-
+    {% endblock %}
