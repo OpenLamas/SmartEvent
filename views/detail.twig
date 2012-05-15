@@ -1,0 +1,20 @@
+{% extends 'body.twig' %}
+    
+    {% block content %}
+	<div class="span9">
+		<div class="{{ addClass }}" id="myModal{{ event.id }}">
+			<div class="modal-header">
+				<button class="close" data-dismiss="modal">×</button>
+				<h3>{{ event.name }}</h3>
+			</div>
+			<div class="modal-body">
+				<p>{{ event.description }}<br />
+				Il ne reste plus que {{ event.placeLibre }} place(s) pour cette evenment</p>
+			</div>
+			<div class="modal-footer">
+				<a href="#" class="btn" data-dismiss="modal">Close</a>
+				<a href="#" class="btn btn-primary inscrire">S'inscrire</a>
+			</div>
+		</div>
+    </div><!--/.fluid-container-->
+    {% endblock %}

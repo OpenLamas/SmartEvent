@@ -13,4 +13,15 @@
     $template = $twig->loadTemplate('home.twig');
     echo $template->render(array('user' => $user[$nb_u], 'rights' => $rights[$nb_u], 'events' => $events, 'registered_count' => $registered_count));
     
+    /*$template = $twig->loadTemplate('detail.twig');
+    if(isset($_GET['ajax'])){
+	$addClass = 'modal fade';
+    }
+
+    else{
+        $addClass = '';
+    }
+    echo $template->render(array('user' => $user[$nb_u], 'rights' => $rights[$nb_u], 'event' => $events[0], 'get' => $addClass));*/
+
+    
 ?>
