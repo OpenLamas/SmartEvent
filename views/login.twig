@@ -1,0 +1,30 @@
+{% extends 'layout.twig' %}
+    
+    {% block body %}
+    <!-- Navbar -->
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">ADE Anmieu</a>
+        </div>
+      </div>
+    </div>
+    <!-- Container -->
+    <div class="container">
+      <div class="row">
+        <div class="offset4 span4">
+          <form class="well form-inline">
+            <input type="text" class="input-small" placeholder="Email">
+            <input type="password" class="input-small" placeholder="Mot de Passe">
+            <button type="submit" class="btn">Connexion</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    {% endblock %}
