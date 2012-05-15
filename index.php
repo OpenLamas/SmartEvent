@@ -10,7 +10,7 @@
       'cache' => false
     ));
     
-    $template = $twig->loadTemplate('sample.twig');
+    $template = $twig->loadTemplate('home.twig');
     echo $template->render(array('user' => $user[$nb_u], 'rights' => $rights[$nb_u], 'events' => $events, 'registered_count' => $registered_count));
     
 ?>
