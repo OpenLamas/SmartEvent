@@ -2,70 +2,71 @@
 
 {% block body %}
 <!-- Navbar -->
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="#">ADE Anmieu</a>
-          <div class="btn-group pull-right">
-            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-              <i class="icon-user"></i> {{ user.login }}
-              <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Préférences</a></li>
-              <li class="divider"></li>
-              <li><a href="#">Déconnexion</a></li>
-            </ul>
-          </div>
-          <div class="nav-collapse">
-            <ul class="nav">
-              <li><a href="#">Aide</a></li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
-    <!-- Container -->
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
     <div class="container-fluid">
-      <div class="row-fluid">
-        <!-- Sidebar -->
-        <div class="span3">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Accès Rapide</li>
-              <li class="active"><a href="#"><i class="icon-home"></i>Vue globale</a></li>
-              {% if rights.add_event %}
-              <li><a href="#"><i class="icon-plus-sign"></i>Ajouter un évenement</a></li>
-              {% endif %}
-            </ul>
-            {% if rights.add_event or rights.edit_event or rights.delete_event or rights.print_listing %}
-            <ul class="nav nav-list">              
-              <li class="nav-header">Evenements</li>
-              {% endif %}
-              {% if rights.add_event or rights.edit_event or rights.delete_event %}
-              <li><a href="#"><i class="icon-tags"></i>Gérer les évenements</a></li>
-              {% endif %}
-              {% if rights.print_listing %}
-              <li><a href="#"><i class="icon-print"></i>Feuilles d'émargement & absences</a></li>              
-            </ul>
-            {% endif %}
-            {% if rights.add_user or rights.edit_user or rights.delete_user or rights.manage_rights %}
-            <ul class="nav nav-list">
-              <li class="nav-header">Utilisateurs</li>
-              {% if rights.add_user or rights.edit_user or rights.delete_user %}
-              <li><a href="#"><i class="icon-user"></i>Gérer les utilisateurs</a></li>
-              {% endif %}
-              {% if rights.manage_rights %}
-              <li><a href="#"><i class="icon-lock"></i>Gérer les droits</a></li>  
-              {% endif %}            
-            </ul>
-            {% endif %}
-          </div><!--/.well -->
-        </div><!--/span-->
+      <!-- collapse pour la vue mobile -->
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="#">ADE Anmieu</a>
+      <div class="btn-group pull-right">
+        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+          <i class="icon-user"></i> {{ user.login }}
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Préférences</a></li>
+          <li class="divider"></li>
+          <li><a href="#">Déconnexion</a></li>
+        </ul>
+      </div>
+      <div class="nav-collapse">
+        <ul class="nav">
+          <li><a href="#">Aide</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>
+<!-- Container -->
+<div class="container-fluid">
+  <div class="row-fluid">
+    <!-- Sidebar -->
+    <div class="span3">
+      <div class="well sidebar-nav">
+        <ul class="nav nav-list">
+          <li class="nav-header">Accès Rapide</li>
+          <li class="active"><a href="#"><i class="icon-home"></i>Vue globale</a></li>
+          {% if rights.add_event %}
+          <li><a href="#"><i class="icon-plus-sign"></i>Ajouter un évenement</a></li>
+          {% endif %}
+        </ul>
+        {% if rights.add_event or rights.edit_event or rights.delete_event or rights.print_listing %}
+        <ul class="nav nav-list">              
+          <li class="nav-header">Evenements</li>
+          {% endif %}
+          {% if rights.add_event or rights.edit_event or rights.delete_event %}
+          <li><a href="#"><i class="icon-tags"></i>Gérer les évenements</a></li>
+          {% endif %}
+          {% if rights.print_listing %}
+          <li><a href="#"><i class="icon-print"></i>Feuilles d'émargement & absences</a></li>              
+        </ul>
+        {% endif %}
+        {% if rights.add_user or rights.edit_user or rights.delete_user or rights.manage_rights %}
+        <ul class="nav nav-list">
+          <li class="nav-header">Utilisateurs</li>
+          {% if rights.add_user or rights.edit_user or rights.delete_user %}
+          <li><a href="#"><i class="icon-user"></i>Gérer les utilisateurs</a></li>
+          {% endif %}
+          {% if rights.manage_rights %}
+          <li><a href="#"><i class="icon-lock"></i>Gérer les droits</a></li>  
+          {% endif %}            
+        </ul>
+        {% endif %}
+      </div><!--/.well -->
+    </div><!--/span3-->
 {% block content %}{% endblock %}
 {% endblock %}

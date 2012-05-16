@@ -1,82 +1,74 @@
 {% extends 'body.twig' %}
-    
-    {% block content %}
-        <div class="span9">
-          <!-- hero-unit -->
-          <div class="hero-unit">
-            <h1>Bienvenue {{ [user.firstname, user.lastname]|join(' ')}} !</h1>
-            <p>Actuellement vous êtes inscrit à {{ registered_count }} évenements.</p>
-          </div>
-          <!-- row-fluid -->
-          <div class="row-fluid">            
-	    <div class="accordion" id="accordion2"> 
-              <div class="accordion-group"> 
-                <div class="accordion-heading"> 
-                  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">Soutenances RT1</a> 
-                </div>
-                <div id="collapseOne" class="accordion-body collapse in"> 
-                  <div class="accordion-inner"> 
-										{% for event in events %} 
-										<div class="span4">
-										<h2>{{ event.name }}</h2>
-										<h4><span class="badge badge-inverse">{{ event.placeLibre }} places libres</span></h4>
-										<dl>
-											<dt>Description</dt>
-											<dd>{{ event.description }}</dd>
-											<dt>Organisateurs</dt>
-											<dd><span class="label label-info">Créateur</span> {{ [event.creator.firstname, event.creator.lastname]|join(' ') }}</dd>
-											{% for admin in event.admin %}
-												<dd>{{ [admin.firstname, admin.lastname]|join(' ') }}</dd>
-											{% endfor %}
-										</dl>
-											<p><a class="btn" data-toggle="modal" href="#myModal{{ event.id }}">Détails &raquo;</a></p>
-											<div class="modal fade" id="myModal{{ event.id }}">
-												<div class="modal-header">
-													<button class="close" data-dismiss="modal">×</button>
-													<h3>{{ event.name }}</h3>
-												</div>
-												<div class="modal-body">
-													<p>{{ event.description }}<br />
-													Il ne reste plus que {{ event.placeLibre }} place(s) pour cette evenment</p>
-												</div>
-												<div class="modal-footer">
-													<a href="#" class="btn" data-dismiss="modal">Close</a>
-													<a href="#" class="btn btn-primary inscrire">S'inscrire</a>
-												</div>
-											</div>
-										</div><!--/span4-->
-										{% endfor %}
-					
-					
-                    
-                </div> 
-              </div> 
-            </div> 
-              <div class="accordion-group"> 
-                <div class="accordion-heading"> 
-                  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">Soutenances RT2</a> 
-                </div> 
-                <div id="collapseTwo" class="accordion-body collapse"> 
-                  <div class="accordion-inner"> 
-                    Nothin' to see here.
-                  </div> 
-                </div> 
-              </div> 
-              <div class="accordion-group"> 
-                <div class="accordion-heading"> 
-                  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">Sortie classe verte</a> 
-                </div> 
-                <div id="collapseThree" class="accordion-body collapse"> 
-                  <div class="accordion-inner"> 
-                    Pedobear &lt;3 u
-                  </div> 
-                </div> 
-              </div> 
-            </div> 
-            </div>
-          </div><!--/row-->
-        </div><!--/span-->
-      </div><!--/row-->
+{% block content %}
+<div class="span9">
 
-    </div><!--/.fluid-container-->
-    {% endblock %}
+  <!-- hero-unit -->
+  <div class="hero-unit">
+    <h1>Bienvenue {{ [user.firstname, user.lastname]|join(' ')}} !</h1>
+    <p>Actuellement vous êtes inscrit à {{ registered_count }} évenements.</p>
+  </div><!--/hero-unit-->
+
+  <!-- row-fluid -->
+  <div class="row-fluid">
+    <!-- Accordéon -->
+    <div class="accordion" id="accordion2"> 
+      <!-- Groupe 1 -->
+      <div class="accordion-group">
+        <!-- Titre Accordéon -->
+        <div class="accordion-heading"> 
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">Soutenances RT1</a> 
+        </div>
+        <!-- Contenu Accordéon -->
+        <div id="collapseOne" class="accordion-body collapse in"> 
+          <div class="accordion-inner"> 
+          {% for event in events %} 
+          <div class="span4">
+            <div class="event-header">
+              <h2>{{ event.name }}</h2>
+              <h4><span class="badge badge-inverse">{{ event.placeLibre }} places libres</span></h4>
+            </div>
+            <dl>
+              <dt>Description</dt>
+              <dd>{{ event.description }}</dd>
+              <dt>Organisateurs</dt>
+              <dd><span class="label label-info">Créateur</span> {{ [event.creator.firstname, event.creator.lastname]|join(' ') }}</dd>
+              {% for admin in event.admin %}
+              <dd>{{ [admin.firstname, admin.lastname]|join(' ') }}</dd>
+              {% endfor %}
+            </dl>
+            <p><a class="btn" data-toggle="modal" href="#myModal{{ event.id }}">Détails &raquo;</a></p>
+            <!-- Boîte de dialogue (modal) d'inscription -->
+            <div class="modal fade" id="myModal{{ event.id }}">
+              <div class="modal-header">
+                <button class="close" data-dismiss="modal">×</button>
+                <h3>{{ event.name }}</h3>
+              </div>
+              <div class="modal-body">
+                <p>{{ event.description }}<br />Il ne reste plus que {{ event.placeLibre }} place(s) pour cette evenment</p>
+              </div>
+              <div class="modal-footer">
+                <a href="#" class="btn" data-dismiss="modal">Fermer</a>
+                <a href="#" class="btn btn-primary inscrire">S'inscrire</a>
+              </div>
+            </div>
+          </div><!--/span4-->
+          {% endfor %}                    
+          </div><!--/accordion-inner-->
+        </div><!--/collapseOne-->
+      </div><!--accordion-group-->
+      
+      <!-- Groupe 2 de sample -->
+      <div class="accordion-group"> 
+      <div class="accordion-heading"> 
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">Soutenances RT2</a> 
+      </div> 
+      <div id="collapseTwo" class="accordion-body collapse"> 
+        <div class="accordion-inner"> 
+          Nothin' to see here.
+        </div> 
+      </div> 
+    </div>
+  </div><!--/row-fluid-->
+  
+</div><!--/span9-->
+{% endblock %}
