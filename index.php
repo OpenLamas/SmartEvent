@@ -12,23 +12,31 @@
     'cache' => false
   ));
   
-  // Essai de routeur
+  // Essai de routeur (toujours tester la valeur d'un GET) 
+	// en fonction de la valeur du page on charge le bon template
+	// Puis on crée un array qui contient les données pout Twig
   if(isset($_GET['page'])){
-    $template = $twig->loadTemplate($_GET['page'].'.twig');
+			if($_GET['page'] == 'login'){
+				$template = $twig->loadTemplate('login.twig');
+				$variableTwig =  array();
+			}
+			
+			else if($_GET['page'] == 'detail'){
+				$template = $twig->loadTemplate('detail.twig');
+				if(isset($_GET['ajax'])){
+					$addClass = 'modal fade';
+				}
+				else{
+					$addClass = 'nojavascript';
+				}
+				$variableTwig = array('user' => $user[$nb_u], 'rights' => $rights[$nb_u], 'event' => $events[0], 'get' => $addClass);
+			}
   }
   else{
     $template = $twig->loadTemplate('home.twig');
+		$variableTwig = array('user' => $user[$nb_u], 'rights' => $rights[$nb_u], 'events' => $events, 'registered_count' => $registered_count);
   }
 
   // Rendu Twig
-  echo $template->render(array('user' => $user[$nb_u], 'rights' => $rights[$nb_u], 'events' => $events, 'registered_count' => $registered_count));
-  
-  /*$template = $twig->loadTemplate('detail.twig');
-  if(isset($_GET['ajax'])){
-    $addClass = 'modal fade';
-  }
-  else{
-    $addClass = '';
-  }
-  echo $template->render(array('user' => $user[$nb_u], 'rights' => $rights[$nb_u], 'event' => $events[0], 'get' => $addClass));*/
+  echo $template->render($variableTwig);
 ?>
