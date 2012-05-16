@@ -31,6 +31,11 @@
 				}
 				$variableTwig = array('user' => $user[$nb_u], 'rights' => $rights[$nb_u], 'event' => $events[0], 'get' => $addClass);
 			}
+			
+			else{
+			$template = $twig->loadTemplate('home.twig');
+			$variableTwig = array('user' => $user[$nb_u], 'rights' => $rights[$nb_u], 'events' => $events, 'registered_count' => $registered_count);
+			}
   }
   else{
     $template = $twig->loadTemplate('home.twig');
