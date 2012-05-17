@@ -57,4 +57,15 @@
 			$event3 = array('id'=>3, 'name' => 'Exploration d\'espace hostils par robots autonome', 'description' => 'Programation de robots permettant de cartographier en toute autonomie des milieux hostils. Récuperation des données sur grande distance (~100 km) via une technologie sans-fil', 'placeLibre' => '5', 'creator' => $user, 'admin' =>  array($user));
 			return array($event0, $event1, $event2, $event3);
 		}
+    
+    /* Renvoie tout les groupes de droit */
+    public function getAllRightGrps(){
+      
+      /* code SQL */
+      
+      $rightgrp1 = array('id' => 0, 'name' => 'eleves1', 'rights' => array('add_event' => true));
+      $rightgrp2 = array('id' => 1, 'name' => 'profIUT', 'rights' => array('add_event' => true, 'delete_event'=>true, 'print_listing'=>true, 'add_user'=>true, 'edit_user'=>true, 'delete_user'=>true));
+      
+      return $rightgrps = array ($rightgrp1, $rightgrp2);
+    }
 	}
