@@ -1,39 +1,6 @@
 {% extends 'layout.twig' %}
 
 {% block body %}
-    <!-- Navbar -->
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <!-- collapse pour la vue mobile -->
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="#">ADE Anmieu</a>
-          <div class="btn-group pull-right">
-            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-              <i class="icon-user"></i> {{ user.login }}
-              <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Préférences</a></li>
-              <li class="divider"></li>
-              <li><a href="#">Déconnexion</a></li>
-            </ul>
-          </div>
-          <div class="nav-collapse">
-            <ul class="nav">
-              <li><a href="#">Aide</a></li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
-    <!-- Container -->
-    <div class="container-fluid">
-      <div class="row-fluid">
         <!-- Sidebar -->
         <div class="span3">
           <div class="well sidebar-nav">
