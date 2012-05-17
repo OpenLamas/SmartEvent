@@ -31,6 +31,17 @@
 				}
 				$variableTwig = array('user' => $user[$nb_u], 'rights' => $rights[$nb_u], 'event' => $events[0], 'get' => $addClass);
 			}
+      
+      else if($_GET['page'] == 'users_mgmt'){
+        $template = $twig->loadTemplate('users.twig');
+        if(isset($_GET['ajax'])){
+					$addClass = 'modal fade';
+				}
+				else{
+					$addClass = 'nojavascript';
+				}
+        $variableTwig = array('user' => $user[$nb_u], 'rights' => $rights[$nb_u], 'event' => $events[0], 'get' => $addClass);
+      }
 			
 			else{
 			$template = $twig->loadTemplate('home.twig');
