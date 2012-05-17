@@ -22,7 +22,7 @@
 			
 			$donnees = new db_request();
 			$template = $this->twig->loadTemplate('detail.twig');
-			echo $template->render('user' => $user[$nb_u], 'rights' => $donnees->getRights(), 'event' => $donnees->getEvent($id), 'get' => $addClass));
+			echo $template->render(array('user' => $donnees->getUser(1), 'rights' => $donnees->getRights(), 'event' => $donnees->getEvent($id), 'get' => $addClass));
 		}
 	}
 ?>
