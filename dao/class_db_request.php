@@ -12,7 +12,13 @@
 		public function getUser($id){
 			
 			/* code SQL*/
-			return array('firstname' => 'Pierre', 'lastname'=> 'Quiroule', 'login' => 'pierreQuir', 'mail' => 'pierreQuir@chut.com', 'grp_irl' => 'A2', 'grp_right' => 1);
+			return array('firstname' => 'Pierre',
+                   'lastname'=> 'Quiroule',
+                   'login' => 'pierreQuir',
+                   'mail' => 'pierreQuir@chut.com',
+                   'grp_irl' => 'A2',
+                   'grp_right' => 1,
+                   'rights' => getRights($id));
 		}
 		
 		public function getAllUsers(){
@@ -45,7 +51,7 @@
 			return array($event0, $event1, $event2, $event3);
 		}
 		
-		public function getRegisteredCount(){
+		public function getRegisteredCount($id){
 		
 			/* code SQL */ 
 			return 69;

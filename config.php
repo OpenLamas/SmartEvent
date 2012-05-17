@@ -1,5 +1,4 @@
 <?php
-	
 	$user1 = array('firstname' => 'Jean', 'lastname'=> 'Moulin', 'login' => 'jeanMoul', 'mail' => 'jmoulin@etu.univ-savoie.fr');
 	$user2 = array('firstname' => 'Pierre', 'lastname'=> 'Quiroule', 'login' => 'pierreQuir', 'mail' => 'pierre.quiroule@hotmail.fr');
 	$user3 = array('firstname' => 'Mathieu', 'lastname'=> 'De chateau', 'login' => 'mathDechate', 'mail' => 'matchateau@gmail.com');
