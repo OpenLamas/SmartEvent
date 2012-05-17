@@ -28,10 +28,10 @@
 		public function getAllUsers(){
 			
 			/* code SQL */
-			$user1 = array('id' => 0, 'firstname' => 'Jean', 'lastname'=> 'Moulin', 'login' => 'jeanMoul', 'mail' => 'jeanMoul@chut.com', 'grp_irl' => 'A1', 'grp_right' => 5);
-			$user2 = array('id' => 1, 'firstname' => 'Pierre', 'lastname'=> 'Quiroule', 'login' => 'pierreQuir', 'mail' => 'pierreQuir@chut.com', 'grp_irl' => 'A2', 'grp_right' => 1);
-			$user3 = array('id' => 2, 'firstname' => 'Mathieu', 'lastname'=> 'De chateau', 'login' => 'mathDechate', 'mail' => 'mathDechate@chut.com', 'grp_irl' => 'A1', 'grp_right' => 12);
-			$user4 = array('id' => 3, 'firstname' => 'Yvan', 'lastname' => 'Deschapeau', 'login' => 'yvanDeschap', 'mail' => 'yvanDeschap@chut.com', 'grp_irl' => 'C1', 'grp_right' => 0);
+			$user1 = array('id' => 0, 'firstname' => 'Jean', 'lastname'=> 'Moulin', 'login' => 'jeanMoul', 'mail' => 'jeanMoul@chut.com', 'grp_irl' => 'A1', 'grp_right' => 5,'registered_count' => 69, 'rights' => $this->getRights(1));
+			$user2 = array('id' => 1, 'firstname' => 'Pierre', 'lastname'=> 'Quiroule', 'login' => 'pierreQuir', 'mail' => 'pierreQuir@chut.com', 'grp_irl' => 'A2', 'grp_right' => 1,'registered_count' => 69, 'rights' => $this->getRights(2));
+			$user3 = array('id' => 2, 'firstname' => 'Mathieu', 'lastname'=> 'De chateau', 'login' => 'mathDechate', 'mail' => 'mathDechate@chut.com', 'grp_irl' => 'A1', 'grp_right' => 12,'registered_count' => 69, 'rights' => $this->getRights(3));
+			$user4 = array('id' => 3, 'firstname' => 'Yvan', 'lastname' => 'Deschapeau', 'login' => 'yvanDeschap', 'mail' => 'yvanDeschap@chut.com', 'grp_irl' => 'C1', 'grp_right' => 0,'registered_count' => 69, 'rights' => $this->getRights(4));
 
 			return $users = array( $user1, $user2, $user3, $user4);
 		}
