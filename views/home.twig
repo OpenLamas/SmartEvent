@@ -3,8 +3,8 @@
         <div class="span9">  
           <!-- hero-unit -->
           <div class="hero-unit">
-            <h1>Bienvenue {{ [user.firstname, user.lastname]|join(' ')}} !</h1>
-            <p>Actuellement vous êtes inscrit à {{ registered_count }} évenements.</p>
+            <h1>Bienvenue {{ [cur_user.firstname, cur_user.lastname]|join(' ')}} !</h1>
+            <p>Actuellement vous êtes inscrit à {{ cur_user.registered_count }} évenements.</p>
           </div><!--/hero-unit--> 
           <!-- Accordéon -->
           <div class="accordion" id="accordion2"> 

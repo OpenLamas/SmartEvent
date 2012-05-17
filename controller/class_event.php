@@ -1,6 +1,6 @@
 <?php
-  require('/../dao/class_db_request.php');
-	require('/../basicClass/twigStart.php');
+  require('dao/class_db_request.php');
+	require('basicClass/twigStart.php');
 	
 	class Home extends Controller{
 		
@@ -8,7 +8,7 @@
 			$donnees = new db_request();
 			
 			$template = $this->twig->loadTemplate('home.twig');
-			echo $template->render(array('user' => $donnees->getUser(1), 'rights' => $donnees->getRights(1), 'events' => $donnees->getAllEvents(), 'registered_count' => $donnees->getRegisteredCount()));
+			echo $template->render(array('cur_user' => $donnees->getUser(1), 'events' => $donnees->getAllEvents()));
 		}
 		
 		public function detail($id){
@@ -22,7 +22,7 @@
 			
 			$donnees = new db_request();
 			$template = $this->twig->loadTemplate('detail.twig');
-			echo $template->render(array('user' => $donnees->getUser(1), 'rights' => $donnees->getRights(), 'event' => $donnees->getEvent($id), 'get' => $addClass));
+			echo $template->render(array('cur_user' => $donnees->getUser(1), 'event' => $donnees->getEvent($id), 'get' => $addClass));
 		}
 	}
 ?>
