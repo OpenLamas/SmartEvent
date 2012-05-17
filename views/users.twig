@@ -1,6 +1,6 @@
 {% extends 'body.twig' %}
 {% block content %}
-{% if rights.add_user or rights.edit_user or rights.delete_user %}
+{% if cur_user.rights.add_user or cur_user.rights.edit_user or cur_user.rights.delete_user %}
 <div class="span9">
   <ul class="nav nav-tabs" id="myTab">
     <li class="active"><a href="#utilisateurs">Utilisateurs</a></li>
@@ -9,9 +9,9 @@
  
   <div class="tab-content">
     <div class="tab-pane active" id="utilisateurs">
-      {% if rights.add_user %}<a class="btn btn-primary" href="">Ajouter</a>{% endif %}
-      {% if rights.edit_user %}<a class="btn btn-warning" href="">Modifier</a>{% endif %}
-      {% if rights.delete_user %}<a class="btn btn-danger" href="">Supprimer</a>{% endif %}
+      {% if cur_user.rights.add_user %}<a class="btn btn-primary" href="">Ajouter</a>{% endif %}
+      {% if cur_user.rights.edit_user %}<a class="btn btn-warning" href="">Modifier</a>{% endif %}
+      {% if cur_user.rights.delete_user %}<a class="btn btn-danger" href="">Supprimer</a>{% endif %}
       <table class="table table-condensed">
         <thead>
           <tr>
@@ -25,24 +25,24 @@
           </tr>
         </thead>
         <tbody>
-          {% for a_user in users %}
+          {% for user in users %}
           <tr>
-            <td><label class="checkbox inline"><input type="checkbox" id="checkbox{{ a_user.id }}" value="option1"></label></td>
-            <td>{{ a_user.firstname }}</td>
-            <td>{{ a_user.lastname }}</td>
-            <td>{{ a_user.login }}</td>
-            <td>{{ a_user.mail }}</td>
-            <td>{{ a_user.grp_irl }}</td>
-            <td>{{ a_user.grp_right }}</td>
+            <td><label class="checkbox inline"><input type="checkbox" id="checkbox{{ user.id }}" value="option1"></label></td>
+            <td>{{ user.firstname }}</td>
+            <td>{{ user.lastname }}</td>
+            <td>{{ user.login }}</td>
+            <td>{{ user.mail }}</td>
+            <td>{{ user.grp_irl }}</td>
+            <td>{{ user.grp_right }}</td>
           </tr>
           {% endfor %}
         </tbody>
       </table>
     </div>
     <div class="tab-pane" id="groupes">
-      {% if rights.add_grp %}<a class="btn btn-primary" href="">Ajouter</a>{% endif %}
-      {% if rights.edit_grp %}<a class="btn btn-warning" href="">Modifier</a>{% endif %}
-      {% if rights.delete_grp %}<a class="btn btn-danger" href="">Supprimer</a>{% endif %}
+      {% if cur_user.rights.add_grp %}<a class="btn btn-primary" href="">Ajouter</a>{% endif %}
+      {% if cur_user.rights.edit_grp %}<a class="btn btn-warning" href="">Modifier</a>{% endif %}
+      {% if cur_user.rights.delete_grp %}<a class="btn btn-danger" href="">Supprimer</a>{% endif %}
     </div>
   </div>
 </div>

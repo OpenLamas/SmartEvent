@@ -1,0 +1,30 @@
+{% extends 'body.twig' %}
+{% block content %}
+{% if cur_user.rights.manage_rights %}
+<div class="span9">
+  <h2>Groupes de droit</h2>
+  <a class="btn btn-primary" href="">Ajouter</a>&nbsp;
+  <a class="btn btn-warning" href="">Modifier</a>&nbsp;
+  <a class="btn btn-danger" href="">Supprimer</a>
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th><label class="checkbox inline"><input type="checkbox" id="checkboxAll" value="option1"></label></th>
+        <th>Nom</th>
+        <th>Droits contenus</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for rightgrp in rightgrps %}
+      <tr>
+        <td><label class="checkbox inline"><input type="checkbox" id="checkbox{{ rightgrp.id }}" value="option1"></label></td>
+        <td>{{ rightgrp.name }}</td>
+        /* Je sais pas trop comment faire, le but c'est d'afficher le nom de la variable du droit */
+        <td>{% for right in rightgrp.rights %}right{% endfor %}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
+{% endblock %}

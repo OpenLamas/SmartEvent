@@ -1,5 +1,5 @@
 <?php 
-	require_once('/../Twig/Autoloader.php');
+	require_once('Twig/Autoloader.php');
 
 	class Controller{
 		protected $twig;
