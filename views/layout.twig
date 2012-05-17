@@ -52,7 +52,9 @@
           <a class="brand" href="index.php">ADE Anmieu</a>
           <div class="btn-group pull-right">
             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-              <i class="icon-user"></i> {{ user.login }}
+              {% if user|length > 0 %}
+							<i class="icon-user"></i> {{ user.login }}
+							{% endif %}
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">

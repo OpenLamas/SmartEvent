@@ -7,7 +7,7 @@
 		public function action(){
 			
 			$template = $this->twig->loadTemplate('login.twig');
-			echo $template->render(array());
+			echo $template->render(array('user' => ''));
 		}
 	}
 ?>
