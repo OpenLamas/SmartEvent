@@ -6,7 +6,7 @@
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">Accès Rapide</li>
-              <li class="active"><a href="#"><i class="icon-home"></i>Vue globale</a></li>
+              <li class="active"><a href="index.php"><i class="icon-home"></i>Vue globale</a></li>
               {% if rights.add_event %}
               <li><a href="#"><i class="icon-plus-sign"></i>Ajouter un évenement</a></li>
               {% endif %}
@@ -26,7 +26,7 @@
             <ul class="nav nav-list">
               <li class="nav-header">Utilisateurs</li>
               {% if rights.add_user or rights.edit_user or rights.delete_user %}
-              <li><a href="#"><i class="icon-user"></i>Gérer les utilisateurs</a></li>
+              <li><a href="index.php?page=users_mgmt"><i class="icon-user"></i>Gérer les utilisateurs</a></li>
               {% endif %}
               {% if rights.manage_rights %}
               <li><a href="#"><i class="icon-lock"></i>Gérer les droits</a></li>  

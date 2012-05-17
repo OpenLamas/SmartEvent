@@ -1,10 +1,15 @@
 {% extends 'body.twig' %}
 {% block content %}
+{% if rights.add_user or rights.edit_user or rights.delete_user %}
+{% set i = 1 %}
 <div class="span9">
+  {% if rights.add_user %}<a class="btn btn-primary" href="">Ajouter</a>{% endif %}
+  {% if rights.edit_user %}<a class="btn btn-warning" href="">Modifier</a>{% endif %}
+  {% if rights.delete_user %}<a class="btn btn-danger" href="">Supprimer</a>{% endif %}
   <table class="table table-condensed">
     <thead>
       <tr>
-        <th><label class="control-label" for="inlineCheckboxes"></label></th>
+        <th><label class="checkbox inline"><input type="checkbox" id="checkboxAll" value="option1"></label></th>
         <th>#</th>
         <th>Nom</th>
         <th>Prenom</th>
@@ -15,16 +20,21 @@
       </tr>
     </thead>
     <tbody>
+      {% for a_user in users %}
       <tr>
-        <td>1</td>
-        <td>Pierre</td>
-        <td>Quiroule</td>
-        <td>pierreQuir</td>
-        <td>pierre.quiroule@hotmail.fr</td>
-        <td>RT1_A1</td>
-        <td>eleves</td>
+        <td><label class="checkbox inline"><input type="checkbox" id="checkbox{{ i }}" value="option1"></label></td>
+        <td>{{ i }}</td>
+        <td>{{ a_user.firstname }}</td>
+        <td>{{ a_user.lastname }}</td>
+        <td>{{ a_user.login }}</td>
+        <td>{{ a_user.mail }}</td>
+        <td>{{ a_user.grp_irl }}</td>
+        <td>{{ a_user.grp_right }}</td>
       </tr>
+      {% set i = i+1 %}
+      {% endfor %}
     </tbody>
   </table>
 </div>
+{% endif %}
 {% endblock %}

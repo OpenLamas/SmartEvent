@@ -40,7 +40,7 @@
 				else{
 					$addClass = 'nojavascript';
 				}
-        $variableTwig = array('user' => $user[$nb_u], 'rights' => $rights[$nb_u], 'event' => $events[0], 'get' => $addClass);
+        $variableTwig = array('users' => $user,'user' => $user[$nb_u], 'rights' => $rights[$nb_u], 'event' => $events[0], 'get' => $addClass);
       }
 			
 			else{

@@ -1,9 +1,9 @@
 <?php
 	
-	$user1 = array('firstname' => 'Jean', 'lastname'=> 'Moulin', 'login' => 'jeanMoul');
-	$user2 = array('firstname' => 'Pierre', 'lastname'=> 'Quiroule', 'login' => 'pierreQuir');
-	$user3 = array('firstname' => 'Mathieu', 'lastname'=> 'De chateau', 'login' => 'mathDechate');
-	$user4 = array('firstname' => 'Yvan', 'lastname' => 'Deschapeau', 'login' => 'yvanDeschap');
+	$user1 = array('firstname' => 'Jean', 'lastname'=> 'Moulin', 'login' => 'jeanMoul', 'mail' => 'jmoulin@etu.univ-savoie.fr');
+	$user2 = array('firstname' => 'Pierre', 'lastname'=> 'Quiroule', 'login' => 'pierreQuir', 'mail' => 'pierre.quiroule@hotmail.fr');
+	$user3 = array('firstname' => 'Mathieu', 'lastname'=> 'De chateau', 'login' => 'mathDechate', 'mail' => 'matchateau@gmail.com');
+	$user4 = array('firstname' => 'Yvan', 'lastname' => 'Deschapeau', 'login' => 'yvanDeschap', 'mail' => 'ydechap@mit.edu');
 	
 	$user = array( $user1, $user2, $user3, $user4);
 
