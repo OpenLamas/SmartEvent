@@ -25,15 +25,15 @@
           </tr>
         </thead>
         <tbody>
-          {% for a_user in users %}
+          {% for user in users %}
           <tr>
-            <td><label class="checkbox inline"><input type="checkbox" id="checkbox{{ a_user.id }}" value="option1"></label></td>
-            <td>{{ a_user.firstname }}</td>
-            <td>{{ a_user.lastname }}</td>
-            <td>{{ a_user.login }}</td>
-            <td>{{ a_user.mail }}</td>
-            <td>{{ a_user.grp_irl }}</td>
-            <td>{{ a_user.grp_right }}</td>
+            <td><label class="checkbox inline"><input type="checkbox" id="checkbox{{ user.id }}" value="option1"></label></td>
+            <td>{{ user.firstname }}</td>
+            <td>{{ user.lastname }}</td>
+            <td>{{ user.login }}</td>
+            <td>{{ user.mail }}</td>
+            <td>{{ user.grp_irl }}</td>
+            <td>{{ user.grp_right }}</td>
           </tr>
           {% endfor %}
         </tbody>
