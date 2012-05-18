@@ -1,5 +1,4 @@
 <?php
-	require('config/config.php');
   $dom = new DOMDocument;
 	if(!$dom->load('./config/routes.xml')){
 		throw new RuntimeException ("Routes introuvable");
