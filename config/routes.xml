@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <routes>
-	<route url="/login/" module="user" action="Login" />
-	<route url="/users/manage/" module="user" action="ListUsers" />
+	<route url="/login" module="user" action="Login" />
+	<route url="/users-manage" module="user" action="ListUsers" />
 	<route url="/" module="event" action="ListEvents" />
 </routes>

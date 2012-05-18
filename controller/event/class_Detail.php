@@ -4,7 +4,7 @@
 	
 	class Detail extends Controller{
 	{
-		public function Detail($id){
+		public function action($id){
 			
 			if(isset($_GET['ajax'])){
 				$addClass = 'modal fade';

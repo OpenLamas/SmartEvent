@@ -3,7 +3,7 @@
 	require('basicClass/twigStart.php');
 	
 	class ListEvents extends Controller{
-		public function listEvents(){
+		public function action(){
 			$donnees = new db_request();
 			
 			$template = $this->twig->loadTemplate('home.twig');

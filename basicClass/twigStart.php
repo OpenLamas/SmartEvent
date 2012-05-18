@@ -15,7 +15,7 @@
 			$this->view_folder = 'views'; // Dossier contenant les templates
 			$this->loader = new Twig_Loader_Filesystem($this->view_folder); 
 			$this->twig = new Twig_Environment($this->loader, array(
-				'cache' => false, 'debug' => true, 'strict_variables' => true
+				'cache' => false/*, 'debug' => true, 'strict_variables' => true*/
 			));
 		}
 	}
