@@ -1,5 +1,5 @@
 <?php	
-	require('/basicClass/CodeError.php');
+	require('./basicClass/CodeError.php');
 	
 	class Error404 extends CodeError{
 		public function action(){
