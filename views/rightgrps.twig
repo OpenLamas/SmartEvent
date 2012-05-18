@@ -19,7 +19,19 @@
       <tr>
         <td><label class="checkbox inline"><input type="checkbox" id="checkbox{{ rightgroup.id }}" value="option1"></label></td>
         <td>{{ rightgroup.name }}</td>
-        <td>{% for right in rightgroup.rights %}{{ dump(right) }}{% endfor %}</td>
+        <td>
+        {% if rightgroup.rights.add_event %}Ajouter un évenement,{% endif %}
+        {% if rightgroup.rights.edit_event %}Modifier un évenement,{% endif %}
+        {% if rightgroup.rights.delete_event %}Supprimer un évenement,{% endif %}
+        {% if rightgroup.rights.add_user %}Ajouter un utilisateur,{% endif %}
+        {% if rightgroup.rights.edit_user %}Modifier un utilisateur,{% endif %}
+        {% if rightgroup.rights.delete_user %}Supprimer un utilisateur,{% endif %}
+        {% if rightgroup.rights.manage_rights %}Gérer les droits,{% endif %}
+        {% if rightgroup.rights.add_grp %}Ajouter un groupe,{% endif %}
+        {% if rightgroup.rights.edit_grp %}Modifier un groupe,{% endif %}
+        {% if rightgroup.rights.delete_grp %}Supprimer un groupe,{% endif %}
+        {% if rightgroup.rights.print_listing %}Imprimer les listings{% endif %}
+        </td>
       </tr>
       {% endfor %}
     </tbody>
