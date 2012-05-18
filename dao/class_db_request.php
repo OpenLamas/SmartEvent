@@ -71,8 +71,8 @@
       
       /* code SQL */
       
-      $rightgroup1 = array('id' => 0, 'name' => 'eleves1', 'rights' => array('add_event' => true));
-      $rightgroup2 = array('id' => 1, 'name' => 'profIUT', 'rights' => array('add_event' => true, 'delete_event'=>true, 'print_listing'=>true, 'add_user'=>true, 'edit_user'=>true, 'delete_user'=>true));
+      $rightgroup1 = array('id' => 0, 'name' => 'eleves1', 'rights' => array('add_event' => true, 'edit_event'=>true, 'delete_event'=>false, 'print_listing'=>false, 'add_user'=>true, 'edit_user'=>true, 'delete_user'=>true, 'manage_rights'=>false, 'add_grp' => true, 'edit_grp' => false, 'delete_grp' => false));
+      $rightgroup2 = array('id' => 1, 'name' => 'profIUT', 'rights' => array('add_event' => true, 'edit_event'=>true, 'delete_event'=>true, 'print_listing'=>true, 'add_user'=>true, 'edit_user'=>true, 'delete_user'=>true, 'manage_rights'=>true, 'add_grp' => true, 'edit_grp' => true, 'delete_grp' => true));
       
       return $rightgroups = array ($rightgroup1, $rightgroup2);
     }
