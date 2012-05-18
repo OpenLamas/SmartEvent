@@ -13,4 +13,14 @@ $(document).ready(function() {
 		}
 		e.preventDefault();
 	});
-});
+  
+  /*$('.detailBtn').click(function (e) {
+    var href = $(this).attr("href");
+    alert(href);
+    $('.ajaxCont').load( href + '.detail', function() {
+      
+      });
+    
+    e.preventDefault();
+  });
+});*/

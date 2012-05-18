@@ -32,22 +32,10 @@
                     <dd>{{ [admin.firstname, admin.lastname]|join(' ') }}</dd>
                     {% endfor %}
                   </dl>
-                  <p><a class="btn" data-toggle="modal" href="#myModal{{ event.id }}">Détails &raquo;</a></p>
-                  <!-- Boîte de dialogue (modal) d'inscription -->
-                  <div class="modal fade" id="myModal{{ event.id }}">
-                    <div class="modal-header">
-                      <button class="close" data-dismiss="modal">×</button>
-                      <h3>{{ event.name }}</h3>
-                    </div>
-                    <div class="modal-body">
-                      <p>{{ event.description }}<br />Il ne reste plus que {{ event.placeLibre }} place(s) pour cette evenment</p>
-                    </div>
-                    <div class="modal-footer">
-                      <a href="#" class="btn" data-dismiss="modal">Fermer</a>
-                      <a href="#" class="btn btn-primary inscrire">S'inscrire</a>
-                    </div>
+                  <p><a class="btn detailBtn" href="event-{{ event.id }}-detail">Détails &raquo;</a></p>
+                  <div class="ajaxCont">
                   </div>
-                </div><!--/span4-->
+                </div><!--/span4 data-toggle="modal"-->
                 {% endfor %}                    
                 </div><!--/accordion-inner-->
               </div><!--/collapseOne-->
