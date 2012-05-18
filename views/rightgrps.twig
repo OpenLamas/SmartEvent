@@ -15,12 +15,11 @@
       </tr>
     </thead>
     <tbody>
-      {% for rightgrp in rightgrps %}
+      {% for rightgroup in rightgroups %}
       <tr>
         <td><label class="checkbox inline"><input type="checkbox" id="checkbox{{ rightgrp.id }}" value="option1"></label></td>
-        <td>{{ rightgrp.name }}</td>
-        /* Je sais pas trop comment faire, le but c'est d'afficher le nom de la variable du droit */
-        <td>{% for right in rightgrp.rights %}right{% endfor %}</td>
+        <td>{{ rightgroup.name }}</td>
+        <td>{% for right in rightgroup.rights %}{{ dump(right) }}{% endfor %}</td>
       </tr>
       {% endfor %}
     </tbody>

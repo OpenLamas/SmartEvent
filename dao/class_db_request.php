@@ -59,13 +59,13 @@
 		}
     
     /* Renvoie tout les groupes de droit */
-    public function getAllRightGrps(){
+    public function getAllRightGroups(){
       
       /* code SQL */
       
-      $rightgrp1 = array('id' => 0, 'name' => 'eleves1', 'rights' => array('add_event' => true));
-      $rightgrp2 = array('id' => 1, 'name' => 'profIUT', 'rights' => array('add_event' => true, 'delete_event'=>true, 'print_listing'=>true, 'add_user'=>true, 'edit_user'=>true, 'delete_user'=>true));
+      $rightgroup1 = array('id' => 0, 'name' => 'eleves1', 'rights' => array('add_event' => true));
+      $rightgroup2 = array('id' => 1, 'name' => 'profIUT', 'rights' => array('add_event' => true, 'delete_event'=>true, 'print_listing'=>true, 'add_user'=>true, 'edit_user'=>true, 'delete_user'=>true));
       
-      return $rightgrps = array ($rightgrp1, $rightgrp2);
+      return $rightgroups = array ($rightgroup1, $rightgroup2);
     }
 	}
