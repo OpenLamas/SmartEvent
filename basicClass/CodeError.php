@@ -1,5 +1,5 @@
 <?php
-	require('/twigStart.php');
+	require('twigStart.php');
 	
 	abstract class CodeError extends Controller{
 		private $content;
@@ -13,7 +13,7 @@
 			$this->content = $content;
 		}
 		public function run(){
-			$template = $this->twig->loadTemplate('Error.twig');
+			$template = $this->twig->loadTemplate('error.twig');
 			echo $template->render(array('content' => $this->content, 'user' => array('login'=>'')));
 		}
 	}
