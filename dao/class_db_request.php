@@ -24,12 +24,12 @@
                    'rights' => $this->getRights($id));
 		}
 		
-		/* Renvoie le hash du password et l'id du login passé en argument */
-		public function getPassword($login){
+		/* Renvoie le hash du password et l'id de l'email passé en argument */
+		public function getPassword($email){
       
       /* code SQL */
       return array('id' => 1,
-                   'password' => '81dc9bdb52d04dc20036dbd8313ed055');
+                   'password' => '81dc9bdb52d04dc20036dbd8313ed055'); /* le password est 1234 */
 		}
 		
     /* Renvoie tout les utilisateurs */

@@ -37,6 +37,8 @@
     <![endif]-->
     <!-- Favicons -->
     <link rel="shortcut icon" href="img/favicon.ico">
+    {% block redirection %}
+    {% endblock %}
   </head>
   <body>
   <!-- Navbar -->
@@ -60,7 +62,7 @@
             <ul class="dropdown-menu">
               <li><a href="#">Préférences</a></li>
               <li class="divider"></li>
-              <li><a href="#">Déconnexion</a></li>
+              <li><a href="./disconnect">Déconnexion</a></li>
             </ul>
           </div>
           <div class="nav-collapse">

@@ -1,0 +1,10 @@
+{% extends 'layout.twig' %}
+    {% block redirection %}
+      <meta http-equiv="refresh" content="5; url=./" />
+    {% endblock %}
+    {% block body %}
+      <div class="alert alert-info span5" id="redirection">
+        Vous avez été déconnecté avec succés. Vous allez être redirigé dans 5 secondes. <br />
+        <a href="./">Cliquez ici pour ne pas attendre</a>
+      </div>
+    {% endblock %}
