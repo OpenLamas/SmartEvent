@@ -26,7 +26,7 @@
             <ul class="nav nav-list">
               <li class="nav-header">Utilisateurs</li>
               {% if cur_user.rights.add_user or cur_user.rights.edit_user or cur_user.rights.delete_user %}
-              <li><a href="index.php?page=users_mgmt"><i class="icon-user"></i>Gérer les utilisateurs</a></li>
+              <li><a href="users-manage"><i class="icon-user"></i>Gérer les utilisateurs</a></li>
               {% endif %}
               {% if cur_user.rights.manage_rights %}
               <li><a href="#"><i class="icon-lock"></i>Gérer les droits</a></li>  
