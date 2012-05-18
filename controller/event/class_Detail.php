@@ -3,8 +3,9 @@
 	require('basicClass/twigStart.php');
 	
 	class Detail extends Controller{
-	{
-		public function action($id){
+    private $vars;
+    
+		public function action(){
 			
 			if(isset($_GET['ajax'])){
 				$addClass = 'modal fade';
@@ -15,7 +16,11 @@
 			
 			$donnees = new db_request();
 			$template = $this->twig->loadTemplate('detail.twig');
-			echo $template->render(array('cur_user' => $donnees->getUser(1), 'event' => $donnees->getEvent($id), 'get' => $addClass));
+			echo $template->render(array('cur_user' => $donnees->getUser(1), 'event' => $donnees->getEvent($this->vars['idEvent']), 'get' => $addClass));
 		}
+    
+    public function setVars(array $vars){
+      $this->vars = $vars;
+    }
 	}
 ?>
