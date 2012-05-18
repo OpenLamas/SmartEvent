@@ -1,4 +1,6 @@
 <?php
+	session_start();
+	
   $dom = new DOMDocument;
 	if(!$dom->load('./config/routes.xml')){
 		throw new RuntimeException ("Routes introuvable");
