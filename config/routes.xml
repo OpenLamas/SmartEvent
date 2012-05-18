@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <routes>
 	<route url="/login" module="user" action="Login" />
+  <route url="/disconnect" module="user" action="Disconnect" />
 	<route url="/users-manage" module="user" action="ListUsers" />
   <route url="/rgroups-manage" module="rgroups" action="ListRGroups" />
 	<route url="/" module="event" action="ListEvents" />

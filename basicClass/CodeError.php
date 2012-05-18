@@ -14,7 +14,7 @@
 		}
 		public function run(){
 			$template = $this->twig->loadTemplate('error.twig');
-			echo $template->render(array('content' => $this->content, 'user' => array('login'=>'')));
+			echo $template->render(array('content' => $this->content, 'cur_user' => array('login'=>'')));
 		}
 	}
 
