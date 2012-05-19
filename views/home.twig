@@ -32,7 +32,9 @@
                     <dd>{{ [admin.firstname, admin.lastname]|join(' ') }}</dd>
                     {% endfor %}
                   </dl>
-                  <p><a class="btn detailBtn" href="event-{{ event.id }}-detail">Détails &raquo;</a></p>
+                  <p>
+                  <a class="btn detailBtn" href="event-{{ event.id }}-detail">Détails &raquo;</a>
+                  </p>
                   <div class="ajaxCont">
                   </div>
                 </div><!--/span4 data-toggle="modal"-->
