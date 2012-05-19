@@ -4,6 +4,6 @@
   <route url="/disconnect" module="user" action="Disconnect" />
 	<route url="/users-manage" module="user" action="ListUsers" />
   <route url="/rgroups-manage" module="rgroups" action="ListRGroups" />
-  <route url="/event-(\d+)-detail" module="event" action="Detail" vars="idEvent"/>
+  <route url="/event-(\d+)-detail((-ajax)?)" module="event" action="Detail" vars="idEvent,ajax" />
 	<route url="/" module="event" action="ListEvents" />
 </routes>

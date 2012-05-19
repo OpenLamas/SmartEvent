@@ -7,8 +7,8 @@
     
 		public function action(){
 			
-			if(isset($_GET['ajax'])){
-				$addClass = 'modal fade';
+			if(isset($this->vars['ajax']) && $this->vars['ajax'] == 'ajax'){
+        $addClass = 'modal fade';
 			}
 			else{
 				$addClass = 'nojavascript';
