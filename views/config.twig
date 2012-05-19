@@ -1,0 +1,8 @@
+{% extends 'body.twig' %}
+{% block content %}
+{% if cur_user.rights.superadmin %}
+<div class="span9">
+  <h2>Config...</h2>
+</div>
+{% endif %}
+{% endblock %}
