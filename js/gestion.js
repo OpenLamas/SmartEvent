@@ -24,7 +24,9 @@ $(document).ready(function () {
       $.post('users-delete', {'tabUsers' : idUsers}, function(data){
         if(data == 'ok'){
           for(var i=0;i<idUsers.length;i++){
-            $('#utilisateurs tbody #user-'+idUsers[i]).hide();
+            $('#utilisateurs tbody #user-'+idUsers[i]).hide(function() {
+              idUsers = '';
+            });
           }
         }
       
