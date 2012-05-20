@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <routes>
-	<route url="/login" module="user" action="Login" />
+  <!-- Session -->
+  <route url="/login" module="user" action="Login" />
   <route url="/disconnect" module="user" action="Disconnect" />
-	<route url="/users-manage" module="user" action="ListUsers" />
+  <!-- Utilisateurs -->
+  <route url="/users-manage" module="user" action="ListUsers" />
+  <!-- Droits -->
   <route url="/rgroups-manage" module="rgroups" action="ListRGroups" />
+  <!-- Admin -->
   <route url="/admin-config" module="admin" action="ShowConfig" />
+  <!-- Evenements -->
   <route url="/event-(\d+)-detail((-ajax)?)" module="event" action="Detail" vars="idEvent,ajax" />
-	<route url="/" module="event" action="ListEvents" />
+  <route url="/events-manage" module="event" action="ManageEvents" />
+  <!-- Index -->
+  <route url="/" module="event" action="ListEvents" />
 </routes>

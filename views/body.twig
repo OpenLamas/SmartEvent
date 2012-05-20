@@ -16,7 +16,7 @@
               <li class="nav-header">Evènement</li>
               {% endif %}
               {% if cur_user.rights.add_event or cur_user.rights.edit_event or cur_user.rights.delete_event %}
-              <li><a href="#"><i class="icon-tags"></i>Gérer les évènements</a></li>
+              <li><a href="events-manage"><i class="icon-tags"></i>Gérer les évènements</a></li>
               {% endif %}
               {% if cur_user.rights.print_listing %}
               <li><a href="#"><i class="icon-print"></i>Feuilles d'émargement & absences</a></li>              

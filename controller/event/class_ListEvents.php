@@ -2,7 +2,7 @@
   require('dao/class_db_request.php');
 	require('basicClass/twigStart.php');
 	
-	class ListEvents extends Controller{
+	class ManageEvents extends Controller{
 		public function action(){
 			$donnees = new db_request();
 			
