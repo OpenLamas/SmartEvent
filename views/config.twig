@@ -2,7 +2,30 @@
 {% block content %}
 {% if cur_user.rights.superadmin %}
 <div class="span9">
-  <h2>Config...</h2>
+  <ul class="nav nav-tabs" id="myTab">
+    <li class="active"><a data-toggle="tab" href="#config"><i class="icon-wrench"></i> Configuration</a></li>
+    <li><a data-toogle="tab" href="#sauvegardes"><i class="icon-hdd"></i> Sauvegardes</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane active" id="config">
+      <form class="form-horizontal" method="POST" action="#">
+        <fieldset>
+          <legend>Serveur</legend>
+          <div class="control-group">
+            <label class="control-label" for="input_siteRoot">Racine du site</label>
+            <div class="controls">
+              <input type=text" class="input-xlarge" id="input_siteRoot">
+              <p class="help-block">monsite.com/events/ par ex.</p>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+    <div class="tab-pane" id="sauvegardes">
+      <a href="#" class="btn btn-success btn-large">Sauvegarder</a>
+    </div>
+  </div>
 </div>
 {% endif %}
 {% endblock %}

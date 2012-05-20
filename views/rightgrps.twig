@@ -2,40 +2,47 @@
 {% block content %}
 {% if cur_user.rights.manage_rights %}
 <div class="span9">
-  <h2>Groupes de droit</h2>
-  <a class="btn btn-primary" href="">Ajouter</a>&nbsp;
-  <a class="btn btn-warning" href="">Modifier</a>&nbsp;
-  <a class="btn btn-danger" href="">Supprimer</a>
-  <table class="table table-condensed">
-    <thead>
-      <tr>
-        <th><label class="checkbox inline"><input type="checkbox" id="checkboxAll" value="option1"></label></th>
-        <th>Nom</th>
-        <th>Droits contenus</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for rightgroup in rightgroups %}
-      <tr>
-        <td><label class="checkbox inline"><input type="checkbox" id="checkbox{{ rightgroup.id }}" value="option1"></label></td>
-        <td>{{ rightgroup.name }}</td>
-        <td>
-        {% if rightgroup.rights.add_event %}Ajouter un évenement,{% endif %}
-        {% if rightgroup.rights.edit_event %}Modifier un évenement,{% endif %}
-        {% if rightgroup.rights.delete_event %}Supprimer un évenement,{% endif %}
-        {% if rightgroup.rights.add_user %}Ajouter un utilisateur,{% endif %}
-        {% if rightgroup.rights.edit_user %}Modifier un utilisateur,{% endif %}
-        {% if rightgroup.rights.delete_user %}Supprimer un utilisateur,{% endif %}
-        {% if rightgroup.rights.manage_rights %}Gérer les droits,{% endif %}
-        {% if rightgroup.rights.add_grp %}Ajouter un groupe,{% endif %}
-        {% if rightgroup.rights.edit_grp %}Modifier un groupe,{% endif %}
-        {% if rightgroup.rights.delete_grp %}Supprimer un groupe,{% endif %}
-        {% if rightgroup.rights.print_listing %}Imprimer les listings{% endif %}
-        </td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+  <ul class="nav nav-tabs" id="myTab">
+    <li class="active"><a data-toggle="tab" href="#rgroups">Groupes de droit</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane active" id="rgroups">
+      <a class="btn btn-primary" href="">Ajouter</a>
+      <a class="btn btn-warning" href="">Modifier</a>
+      <a class="btn btn-danger" href="">Supprimer</a>
+      <table class="table table-condensed">
+        <thead>
+          <tr>
+            <th><label class="checkbox inline"><input type="checkbox" id="checkboxAll" value="option1"></label></th>
+            <th>Nom</th>
+            <th>Droits contenus</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for rightgroup in rightgroups %}
+          <tr>
+            <td><label class="checkbox inline"><input type="checkbox" id="checkbox{{ rightgroup.id }}" value="option1"></label></td>
+            <td>{{ rightgroup.name }}</td>
+            <td>
+            {% if rightgroup.rights.add_event %}Ajouter un évenement,{% endif %}
+            {% if rightgroup.rights.edit_event %}Modifier un évenement,{% endif %}
+            {% if rightgroup.rights.delete_event %}Supprimer un évenement,{% endif %}
+            {% if rightgroup.rights.add_user %}Ajouter un utilisateur,{% endif %}
+            {% if rightgroup.rights.edit_user %}Modifier un utilisateur,{% endif %}
+            {% if rightgroup.rights.delete_user %}Supprimer un utilisateur,{% endif %}
+            {% if rightgroup.rights.manage_rights %}Gérer les droits,{% endif %}
+            {% if rightgroup.rights.add_grp %}Ajouter un groupe,{% endif %}
+            {% if rightgroup.rights.edit_grp %}Modifier un groupe,{% endif %}
+            {% if rightgroup.rights.delete_grp %}Supprimer un groupe,{% endif %}
+            {% if rightgroup.rights.print_listing %}Imprimer les listings{% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
 {% endif %}
 {% endblock %}

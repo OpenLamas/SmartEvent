@@ -12,6 +12,7 @@ We are 3 students in Networking & Telecommunications and as a first year project
 ### Third-party code that we use
 * Twig (See Twig/LICENSE) => twig.sensiolabs.org
 * Bootstrap (Apache License v2.0) => twitter.github.com/bootstrap/
+* JQuery (See jquery.org/license) => http://jquery.com/
 
 ### Contributors
 Maxime Mouchet, Florent G, Julien Brun

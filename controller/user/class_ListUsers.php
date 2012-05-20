@@ -8,8 +8,8 @@
       $donnees = new db_request();
       /*if($_SERVER['REQUEST_METHOD'] == 'POST'){
         if(isset($_POST['user'])){       
-          for($i=0; $i < count($_POST['user']); $i++){
-            $donnees->deleteUser($_POST['user'][$i]);
+          foreach ($_POST['user'] as $user_id){
+            $donnees->deleteUser($user_id);
           }
         }
       }*/
