@@ -3,6 +3,7 @@
 	<route url="/login" module="user" action="Login" />
   <route url="/disconnect" module="user" action="Disconnect" />
 	<route url="/users-manage" module="user" action="ListUsers" />
+  <route url="/users-delete" module="user" action="DeleteUsers" />
   <route url="/rgroups-manage" module="rgroups" action="ListRGroups" />
   <route url="/admin-config" module="admin" action="ShowConfig" />
   <route url="/admin-backup" module="admin" action="Backup" />

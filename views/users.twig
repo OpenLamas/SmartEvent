@@ -10,9 +10,9 @@
   <div class="tab-content">
     <div class="tab-pane active" id="utilisateurs">
       <form method="POST" action="#">
-        {% if cur_user.rights.add_user %}<a class="btn btn-primary" href="">Ajouter</a>{% endif %}
-        {% if cur_user.rights.edit_user %}<a class="btn btn-warning" href="">Modifier</a>{% endif %}
-        {% if cur_user.rights.delete_user %}<button type="submit" class="btn btn-danger">Supprimer</button>{% endif %}
+        {% if cur_user.rights.add_user %}<a class="btn btn-primary" href="#">Ajouter</a>{% endif %}
+        {% if cur_user.rights.edit_user %}<a class="btn btn-warning" href="#">Modifier</a>{% endif %}
+        {% if cur_user.rights.delete_user %}<a class="btn btn-danger" href="#">Supprimer</a>{% endif %}
         <table class="table table-condensed">
           <thead>
             <tr>
@@ -27,8 +27,8 @@
           </thead>
           <tbody>          
             {% for user in users %}
-            <tr>
-              <td><label class="checkbox inline"><input type="checkbox" name="user[]" value="{{ user.id }}"></label></td>
+            <tr id="user-{{ user.id }}">
+              <td><label class="checkbox inline"><input type="checkbox"/></label></td>
               <td>{{ user.firstname }}</td>
               <td>{{ user.lastname }}</td>
               <td>{{ user.login }}</td>
