@@ -6,7 +6,8 @@ $(document).ready(function() {
     var eventIdArray = href.split('-');
     eventId = eventIdArray[1];
     var indexA = $('.detailBtn').index(this);
-    $('.ajaxCont:eq('+indexA+')').load('http://localhost/projet-ic4/'+href+'-ajax .detail', function() {
+    
+    $('.ajaxCont:eq('+indexA+')').load(href+'-ajax .detail', function() {
       $('#myModal'+eventId).modal('show');
       
       $('.ajaxCont .modal-footer .inscrire').click(function(e) {
