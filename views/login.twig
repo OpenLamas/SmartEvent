@@ -1,17 +1,17 @@
 {% extends 'layout.twig' %}
     
     {% block body %}
-      {% if state|length > 0 %}
-        
-        {% if state == 'wrong' %}
-        <div class="alert alert-error span4 offset2">Email/Mot de passe incorect</div>
-        {% elseif state == 'noData' %}
-        <div class="alert alert-error span4 offset2">Vous devez renseigné tous les champs</div>
-        {% elseif state == 'success' %}
-        <div class="alert alert-success span4 offset2">Email/Mot de passe incorect</div>
-        {% endif %}
-      {% endif %}
+      
           <div class="span12">
+            {% if state|length > 0 %}
+              {% if state == 'wrong' %}
+              <div class="alert alert-error span4 offset2">Email/Mot de passe incorect</div>
+              {% elseif state == 'noData' %}
+              <div class="alert alert-error span4 offset2">Vous devez renseignÃ© tous les champs</div>
+              {% elseif state == 'success' %}
+              <div class="alert alert-success span4 offset2">Email/Mot de passe incorect</div>
+              {% endif %}
+            {% endif %}
             <form class="well form-inline" method="POST" action="#">
               <input type="text" name="email" class="input-small" placeholder="Email">
               <input type="password" name="password" class="input-small" placeholder="Mot de Passe">
