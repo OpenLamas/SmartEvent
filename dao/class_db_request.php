@@ -23,6 +23,10 @@
                    'registered_count' => 69,
                    'rights' => $this->getRights($id));
 		}
+    
+    public function deleteUser($id){      
+      /* code SQL */
+    }
 		
 		/* Renvoie le hash du password et l'id de l'email passé en argument */
 		public function getPassword($email){
