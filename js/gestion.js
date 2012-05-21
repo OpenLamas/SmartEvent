@@ -50,19 +50,9 @@ $(document).ready(function () {
       $(this).attr('checked', true);
     }
   });
-
-  /*$('#utilisateurs tbody tr input').click(function() {
-    if($(this).attr('checked')){
-      idUsers.splice(idUsers.indexOf($(this).attr('name')),1);
-      $('input', this).attr('checked', false);
-    }
-
-    else{
-      idUsers.push($(this).attr('name'));
-      $('input', this).attr('checked', true);
-    }
-  });*/
   
+  // Envoie des users a supprimer via ajax
+
   $('#utilisateurs .btn-danger').click(function(){
     if(idUsers.length > 0){
       $.post('users-delete', {'tabUsers' : idUsers}, function(data){
@@ -87,5 +77,11 @@ $(document).ready(function () {
     else{
       alert('Vous devez selectionnez au moins un utilisateur');
     }
+  });
+
+ 
+  // Gestion des tags 
+  $('#utilisateurs .listTags li i').click(function(){
+    $('#utilisateurs .listTags li:eq(0)').remove();
   });
 });

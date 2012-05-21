@@ -14,6 +14,11 @@
         {% if cur_user.rights.add_user %}<a class="btn btn-primary" href="#">Ajouter</a>{% endif %}
         {% if cur_user.rights.edit_user %}<a class="btn btn-warning" href="#">Modifier</a>{% endif %}
         {% if cur_user.rights.delete_user %}<a class="btn btn-danger" href="#">Supprimer</a>{% endif %}
+        <ul class="listTags">
+          <li class="tag">A1 <i class=" icon-remove closeTag"></i></li>
+          <li class="tag">12 <i class=" icon-remove closeTag"></i></li>
+          <input type="text" placeholder="ex A1 C2"/>
+        </ul>
         <table class="table table-condensed">
           <thead>
             <tr>
