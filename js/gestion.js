@@ -59,7 +59,7 @@ $(document).ready(function () {
         if(data == 'ok'){
           for(var i=0;i<idUsers.length;i++){
             $('#utilisateurs tbody #user-'+idUsers[i]).hide(function() {
-              idUsers = '';
+              idUsers.splice(0, idUsers.length);
             });
           }
         }
