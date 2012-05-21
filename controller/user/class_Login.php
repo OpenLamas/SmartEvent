@@ -15,9 +15,9 @@
             $state = 'success';
           }
           $state = 'wrong';
+        } else {
+          $state = 'noData';
         }
-      } else {
-        $state = 'noData';
       }
       $template = $this->twig->loadTemplate('login.twig');
       if(!isset($_SESSION['login'])){
