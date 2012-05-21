@@ -6,7 +6,7 @@
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">Accès Rapide</li>
-              <li class="active"><a href="./"><i class="icon-home"></i>Vue globale</a></li>
+              <li {% if cur_page == 'home' %}class="active"{% endif %}><a href="./"><i class="icon-home"></i>Vue globale</a></li>
               {% if cur_user.rights.add_event %}
               <li><a href="#"><i class="icon-plus-sign"></i>Ajouter un évènement</a></li>
               {% endif %}
@@ -16,7 +16,7 @@
               <li class="nav-header">Evènement</li>
               {% endif %}
               {% if cur_user.rights.add_event or cur_user.rights.edit_event or cur_user.rights.delete_event %}
-              <li><a href="events-manage"><i class="icon-calendar"></i>Gérer les évènements</a></li>
+              <li {% if cur_page == 'events' %}class="active"{% endif %}><a href="events-manage"><i class="icon-calendar"></i>Gérer les évènements</a></li>
               {% endif %}
               {% if cur_user.rights.print_listing %}
               <li><a href="#"><i class="icon-print"></i>Feuilles d'émargement &amp; absences</a></li>              
@@ -26,17 +26,17 @@
             <ul class="nav nav-list">
               <li class="nav-header">Utilisateurs</li>
               {% if cur_user.rights.add_user or cur_user.rights.edit_user or cur_user.rights.delete_user %}
-              <li><a href="users-manage"><i class="icon-user"></i>Gérer les utilisateurs</a></li>
+              <li {% if cur_page == 'users' %}class="active"{% endif %}><a href="users-manage"><i class="icon-user"></i>Gérer les utilisateurs</a></li>
               {% endif %}
               {% if cur_user.rights.manage_rights %}
-              <li><a href="rgroups-manage"><i class="icon-lock"></i>Gérer les droits</a></li>  
+              <li {% if cur_page == 'rightgrps' %}class="active"{% endif %}><a href="rgroups-manage"><i class="icon-lock"></i>Gérer les droits</a></li>  
               {% endif %}            
             </ul>
             {% endif %}
             {% if cur_user.rights.superadmin %}
             <ul class="nav nav-list">
               <li class="nav-header">Administration</li>
-              <li><a href="admin-config"><i class="icon-wrench"></i>Gestion de l'application</a></li>
+              <li {% if cur_page == 'config' %}class="active"{% endif %}><a href="admin-config"><i class="icon-wrench"></i>Gestion de l'application</a></li>
             </ul>
             {% endif %}
           </div><!--/.well -->
