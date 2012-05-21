@@ -18,6 +18,7 @@
 				'cache' => false, 'debug' => true, 'strict_variables' => true
 			));
       $this->twig->addExtension(new Twig_Extension_Debug());
+      $this->twig->addGlobal('cur_page', "");
 		}
 	}
 ?>
