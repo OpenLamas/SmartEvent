@@ -41,10 +41,28 @@
         </table>
       </form>
     </div>
-    <div class="tab-pane" id="groupes">
-      {% if cur_user.rights.add_grp %}<a class="btn btn-primary" href="">Ajouter</a>{% endif %}
-      {% if cur_user.rights.edit_grp %}<a class="btn btn-warning" href="">Modifier</a>{% endif %}
-      {% if cur_user.rights.delete_grp %}<a class="btn btn-danger" href="">Supprimer</a>{% endif %}
+    <div class="tab-pane" id="groupes">      
+      <form method="POST" action="#">
+        {% if cur_user.rights.add_grp %}<a class="btn btn-primary" href="#">Ajouter</a>{% endif %}
+        {% if cur_user.rights.edit_grp %}<a class="btn btn-warning" href="#">Modifier</a>{% endif %}
+        {% if cur_user.rights.delete_grp %}<a class="btn btn-danger" href="#">Supprimer</a>{% endif %}
+        <table class="table table-condensed">
+          <thead>
+            <tr>
+              <th><label class="checkbox inline"><input type="checkbox" id="checkboxAll"></label></th>
+              <th>Nom</th>
+            </tr>
+          </thead>
+          <tbody>          
+            {% for group in groups %}
+            <tr id="group-{{ group.id }}">
+              <td><label class="checkbox inline"><input type="checkbox"/></label></td>
+              <td>{{ group.name }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </form>
     </div>
   </div>
 </div>

@@ -2,6 +2,16 @@
 	require('class_pg_connect.php');
 	
 	class db_request{
+	  
+	  /* Renvoie tout les groupes IRL */
+	  public function getAllGroups(){
+	    
+	    /* code SQL */
+	    $group1 = array('id' => 1, 'name' => 'A1');
+	    $group2 = array('id' => 2, 'name' => 'A2');
+	    $group3 = array('id' => 3, 'name' => 'C1');
+	    return array($group1, $group2, $group3);
+    }
 
     /* Renvoie uniquement les droits d'un utilisateur en particulier */
 		public function getRights($id){

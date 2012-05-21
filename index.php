@@ -5,7 +5,7 @@
 	if(!$dom->load('./config/routes.xml')){
 		throw new RuntimeException ("Routes introuvable");
 	}
-
+	
 	foreach ($dom->getElementsByTagName('route') as $route)
 	{
 		if(preg_match('#'.$route->getAttribute('url').'$#', $_SERVER['REQUEST_URI'], $matches)){
