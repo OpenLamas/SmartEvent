@@ -39,9 +39,19 @@ $(document).ready(function () {
     }
   });
 
-  /*// Rétablissement des events sur les case a coché
+  // Rétablissement des events sur les case a coché
 
-  $('#utilisateurs tbody tr input').click(function() {
+  $('#utilisateurs tbody tr :checkbox').click(function() {
+    if ($(this).attr('checked')) {
+      $(this).attr('checked', false);
+    }
+
+    else{
+      $(this).attr('checked', true);
+    }
+  });
+
+  /*$('#utilisateurs tbody tr input').click(function() {
     if($(this).attr('checked')){
       idUsers.splice(idUsers.indexOf($(this).attr('name')),1);
       $('input', this).attr('checked', false);
