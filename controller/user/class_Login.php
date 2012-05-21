@@ -8,17 +8,15 @@
       $state = '';
       if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $donnees = new db_request();
-        echo 'requete post<br />';
         if(isset($_POST['email']) && isset($_POST['password'])){
           $tmpUser = $donnees->getPassword(addslashes($_POST['email']));
-          echo 'champs remplis<br />';
           if($tmpUser['password'] == md5(addslashes($_POST['password']))){
-            echo 'identification ok';
             $_SESSION = $donnees->getUser($tmpUser['id']);
             $state = 'success';
           }
           $state = 'wrong';
         }
+      } else {
         $state = 'noData';
       }
       $template = $this->twig->loadTemplate('login.twig');

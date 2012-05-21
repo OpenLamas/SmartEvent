@@ -4,10 +4,10 @@
       {% if state|length > 0 %}
         {% if state == 'wrong' %}
         <div class="alert alert-error span4 offset2">Email/Mot de passe incorect</div>
-        {% elseif state == 'noData' %}
-        <div class="alert alert-error span4 offset2">Vous devez renseigné tous les champs</div>
         {% elseif state == 'success' %}
-        <div class="alert alert-success span4 offset2">Email/Mot de passe incorect</div>
+        <div class="alert alert-success span4 offset2">Identification réussie</div>
+        {% elseif state == 'noData' %}
+        <div class="alert alert-error span4 offset2">Vous devez renseigner tous les champs</div>
         {% endif %}
       {% endif %}
           <div class="span12">
