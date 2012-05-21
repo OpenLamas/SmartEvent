@@ -13,8 +13,9 @@
           if($tmpUser['password'] == md5(addslashes($_POST['password']))){
             $_SESSION = $donnees->getUser($tmpUser['id']);
             $state = 'success';
+          } else {
+            $state = 'wrong';
           }
-          $state = 'wrong';
         } else {
           $state = 'noData';
         }
