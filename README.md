@@ -1,4 +1,4 @@
-# Projet-IC4 (temporary name)
+# SmartEvent
 ## Web-based event management
 
 ### Overview
