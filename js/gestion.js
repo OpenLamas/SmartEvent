@@ -84,4 +84,16 @@ $(document).ready(function () {
   $('#utilisateurs .listTags li i').click(function(){
     $('#utilisateurs .listTags li:eq(0)').remove();
   });
+
+  $('#utilisateurs .listTags input').keypress(function(e){
+      if(e.which == 32 && $(this).val() != ''){
+        var tag = $(this).val();
+        $(this).val('');
+        $('#utilisateurs .listTags li:last').after('<li class="tag">'+tag+' <i class=" icon-remove closeTag"></i></li>')
+      
+        $('#utilisateurs .listTags li i').click(function(){
+          $('#utilisateurs .listTags li:eq(0)').remove();
+        });
+      }
+  });
 });
