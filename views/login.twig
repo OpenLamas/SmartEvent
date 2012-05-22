@@ -1,21 +1,26 @@
 {% extends 'layout.twig' %}
     
-    {% block body %}
-      {% if state|length > 0 %}
-        {% if state == 'wrong' %}
-        <div class="alert alert-error span4 offset2">Email/Mot de passe incorect</div>
-        {% elseif state == 'success' %}
-        <div class="alert alert-success span4 offset2">Identification réussie</div>
-        {% elseif state == 'noData' %}
-        <div class="alert alert-error span4 offset2">Vous devez renseigner tous les champs</div>
+{% block body %}
+        </div><!--/row-fluid-->
+      </div><!--/container-fluid-->
+      <row>
+        {% if state|length > 0 %}
+          {% if state == 'wrong' %}
+          <div class="alert alert-error span4 offset2">Email/Mot de passe incorect</div>
+          {% elseif state == 'success' %}
+          <div class="alert alert-success span4 offset2">Identification réussie</div>
+          {% elseif state == 'noData' %}
+          <div class="alert alert-error span4 offset2">Vous devez renseigner tous les champs</div>
+          {% endif %}
         {% endif %}
-      {% endif %}
-          <div class="span12">
-            
+          <div class="span4 offset4">            
             <form class="well form-inline" method="POST" action="#">
               <input type="text" name="email" class="input-small" placeholder="Email">
               <input type="password" name="password" class="input-small" placeholder="Mot de Passe">
               <button type="submit" class="btn">Connexion</button>
             </form>
           </div>
-    {% endblock %}
+        </row>
+        <div class="container-fluid">
+          <div class="row-fluid">
+{% endblock %}

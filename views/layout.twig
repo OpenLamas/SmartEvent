@@ -29,11 +29,10 @@
             <span class="icon-bar"></span>
           </a>
           <a class="brand" href="./">ADE Anmieu</a>
+          {% if cur_user.login|length > 0 %}
           <div class="btn-group pull-right">
-            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-              {% if cur_user.login|length > 0 %}
-							<i class="icon-user"></i> {{ cur_user.login }}
-							{% endif %}
+            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">              
+							<i class="icon-user"></i> {{ cur_user.login }}							
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
@@ -42,6 +41,7 @@
               <li><a href="./disconnect">Déconnexion</a></li>
             </ul>
           </div>
+          {% endif %}
           <div class="nav-collapse">
             <ul class="nav">
               <li><a href="#">Aide</a></li>
