@@ -2,12 +2,14 @@
 {% extends 'body.twig' %}
 {% block content %}
         <div class="span9">  
-          <!-- hero-unit -->
-          <div class="hero-unit">
-            <button id="close-hero-unit" class="close" data-dismiss="alert">&times;</button>
-            <h1>Bienvenue {{ [cur_user.firstname, cur_user.lastname]|join(' ')}} !</h1>
-            <p>Actuellement vous êtes inscrit à {{ cur_user.registered_count }} évènements.</p>
-          </div><!--/hero-unit--> 
+          {% if cur_user.login|length > 0 %}
+            <!-- hero-unit -->
+            <div class="hero-unit">
+              <button id="close-hero-unit" class="close" data-dismiss="alert">&times;</button>
+              <h1>Bienvenue {{ [cur_user.firstname, cur_user.lastname]|join(' ')}} !</h1>
+              <p>Actuellement vous êtes inscrit à {{ cur_user.registered_count }} évènements.</p>
+            </div><!--/hero-unit-->
+          {% endif %} 
           <!-- Accordéon -->
           <div class="accordion" id="accordion2"> 
             <!-- Groupe 1 -->

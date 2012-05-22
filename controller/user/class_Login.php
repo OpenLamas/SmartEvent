@@ -22,9 +22,11 @@
       }
       $template = $this->twig->loadTemplate('login.twig');
       if(!isset($_SESSION['login'])){
-        $_SESSION['login'] = '';
+        echo $template->render(array('cur_user' => array('login'=> ''), 'state' => $state));
       }
-      echo $template->render(array('cur_user' => $_SESSION, 'state' => $state));
+      else{
+        echo $template->render(array('cur_user' => $_SESSION, 'state' => $state));
+      }
     }
   }
 ?>

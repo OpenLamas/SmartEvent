@@ -4,10 +4,17 @@
 	
 	class ListEvents extends Controller{
 		public function action(){
-			$donnees = new db_request();
 			
-			$template = $this->twig->loadTemplate('home.twig');
-			echo $template->render(array('cur_user' => $donnees->getUser(1), 'events' => $donnees->getAllEvents()));
+      $template = $this->twig->loadTemplate('home.twig');
+
+      if(!isset($_SESSION['login'])){
+				echo $template->render(array('cur_user' => array('login' => ''), 'events' => $donnees->getAllEvents()));
+			}
+
+			else{
+        $donnees = new db_request();
+			 echo $template->render(array('cur_user' => $_SESSION, 'events' => $donnees->getAllEvents()));
+      }
 		}
 	}
 ?>
