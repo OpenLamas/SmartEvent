@@ -10,6 +10,6 @@ do
 	    done;
 	    rm *~
 	    cd ..;
-		continue
+            continue
     fi  
 done;
