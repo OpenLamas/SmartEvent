@@ -11,10 +11,12 @@
           <div class="alert alert-success span4 offset2">Identification réussie</div>
           {% elseif state == 'noData' %}
           <div class="alert alert-error span4 offset2">Vous devez renseigner tous les champs</div>
+          {% else %}
+          <div class="alert alert-error span4 offset2">{{ state }}</div>
           {% endif %}
         {% endif %}
           <div class="span4 offset4">            
-            <form class="well form-inline" method="POST" action="#">
+            <form class="well form-inline" method="POST" action="login">
               <input type="text" name="email" class="input-small" placeholder="Email">
               <input type="password" name="password" class="input-small" placeholder="Mot de Passe">
               <button type="submit" class="btn">Connexion</button>

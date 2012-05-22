@@ -18,6 +18,8 @@
   <route url="/event-(\d+)-detail((-ajax)?)" module="event" action="Detail" vars="idEvent,ajax" />
   <route url="/events-manage" module="event" action="ManageEvents" />
   
+  <!-- Error -->
+  <route url="/error-403" module="error" action="Error403" />
   <!-- Index -->
   <route url="/" module="event" action="ListEvents" />
 </routes>
