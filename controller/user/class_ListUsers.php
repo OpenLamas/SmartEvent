@@ -19,7 +19,7 @@
 
       $donnees = new db_request();
       $template = $this->twig->loadTemplate('users.twig');
-      echo $template->render(array('cur_user' => $donnees->getUser(1), 'users' => $donnees->getAllUsers(), 'groups' => $donnees->getAllGroups()));
+      echo $template->render(array('cur_user' => $donnees->getUser(1), 'users' => $donnees->getUser(), 'groups' => $donnees->getGroup()));
     }
   }
 ?>

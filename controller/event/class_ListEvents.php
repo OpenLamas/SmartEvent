@@ -10,10 +10,10 @@
       $template = $this->twig->loadTemplate('home.twig');
       
       if(!isset($_SESSION['login'])){
-        echo $template->render(array('cur_user' => array('login' => ''), 'events' => $donnees->getAllEvents()));
+        echo $template->render(array('cur_user' => array('login' => ''), 'events' => $donnees->getEvent()));
       }
       else{
-       echo $template->render(array('cur_user' => $_SESSION, 'events' => $donnees->getAllEvents()));
+       echo $template->render(array('cur_user' => $_SESSION, 'events' => $donnees->getEvent()));
       }
     }
   }
