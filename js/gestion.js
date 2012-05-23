@@ -19,7 +19,7 @@ $(document).ready(function () {
     else{
       $('#utilisateurs tbody input').each(function(){
         idUsers.push($(this).attr("name"));
-        $('input').attr("checked", true);
+        $(this).attr("checked", true);
       });
     }
   })
