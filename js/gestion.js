@@ -27,6 +27,9 @@ $(document).ready(function () {
   // Selection des lignes
   $('#utilisateurs tbody tr').click(function() {
     if($('input', this).attr('checked')){
+      if ($('#utilisateurs thead input').attr('checked')) {
+        $('#utilisateurs thead input').attr('checked', false);
+      };
       $('input', this).attr('checked', false);
       var tmp = $(this).attr('id').split('-');
       idUsers.splice(idUsers.indexOf(tmp[1]),1);
