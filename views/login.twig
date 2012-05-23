@@ -3,6 +3,7 @@
 {% block body %}
         </div><!--/row-fluid-->
       </div><!--/container-fluid-->
+      <container>
       <row>
         {% if state|length > 0 %}
           {% if state == 'wrong' %}
@@ -23,6 +24,7 @@
             </form>
           </div>
         </row>
+      </container>
         <div class="container-fluid">
           <div class="row-fluid">
 {% endblock %}
