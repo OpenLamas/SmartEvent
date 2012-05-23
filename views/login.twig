@@ -4,18 +4,18 @@
         </div><!--/row-fluid-->
       </div><!--/container-fluid-->
       <container>
-      <row>
-        {% if state|length > 0 %}
-          {% if state == 'wrong' %}
-          <div class="alert alert-error span4 offset2">Email/Mot de passe incorect</div>
-          {% elseif state == 'success' %}
-          <div class="alert alert-success span4 offset2">Identification réussie</div>
-          {% elseif state == 'noData' %}
-          <div class="alert alert-error span4 offset2">Vous devez renseigner tous les champs</div>
-          {% else %}
-          <div class="alert alert-error span4 offset2">{{ state }}</div>
+        <row>
+          {% if state|length > 0 %}
+            {% if state == 'wrong' %}
+            <div class="alert alert-error span4 offset4">Email/Mot de passe incorect</div>
+            {% elseif state == 'success' %}
+            <div class="alert alert-success span4 offset4">Identification réussie</div>
+            {% elseif state == 'noData' %}
+            <div class="alert alert-error span4 offset4">Vous devez renseigner tous les champs</div>
+            {% else %}
+            <div class="alert alert-error span4 offset4">{{ state }}</div>
+            {% endif %}
           {% endif %}
-        {% endif %}
           <div class="span4 offset4">            
             <form class="well form-inline" method="POST" action="login">
               <input type="text" name="email" class="input-small" placeholder="Email">

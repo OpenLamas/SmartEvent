@@ -20,12 +20,24 @@
           $state = 'noData';
         }
       }
-      $template = $this->twig->loadTemplate('login.twig');
-      if(!isset($_SESSION['login'])){
-        echo $template->render(array('cur_user' => array('login'=> ''), 'state' => $state));
+      if($state == 'success'){
+        $template = $this->twig->loadTemplate('home.twig');
+        if(!isset($_SESSION['login'])){
+          echo $template->render(array('cur_user' => array('login' => ''), 'collections' => $donnees->getCollection()));
+        }
+        else{
+          echo $template->render(array('cur_user' => $_SESSION, 'collections' => $donnees->getCollection()));
+        }
       }
-      else{
-        echo $template->render(array('cur_user' => $_SESSION, 'state' => $state));
+      else
+      {
+        $template = $this->twig->loadTemplate('login.twig');
+        if(!isset($_SESSION['login'])){
+          echo $template->render(array('cur_user' => array('login'=> ''), 'state' => $state));
+        }
+        else{
+          echo $template->render(array('cur_user' => $_SESSION, 'state' => $state));
+        }
       }
     }
   }
