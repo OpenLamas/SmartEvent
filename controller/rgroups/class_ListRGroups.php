@@ -9,7 +9,7 @@
 			$donnees = new db_request();
 			
 			$template = $this->twig->loadTemplate('rightgrps.twig');
-			echo $template->render(array('cur_user' => $donnees->getUser(1), 'rightgroups' => $donnees->getAllRightGroups()));
+			echo $template->render(array('cur_user' => $donnees->getUser(1), 'rightgroups' => $donnees->getRightGroup()));
 		}
 	}
 ?>

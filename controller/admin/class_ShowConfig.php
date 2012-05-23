@@ -9,7 +9,7 @@
 			$donnees = new db_request();
 			
 			$template = $this->twig->loadTemplate('config.twig');
-			echo $template->render(array('cur_user' => $donnees->getUser(1), 'users' => $donnees->getAllUsers()));
+			echo $template->render(array('cur_user' => $donnees->getUser(1)));
 		}
 	}
 ?>
