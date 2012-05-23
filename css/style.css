@@ -60,6 +60,7 @@
 
 .listTags input{
   border: none;
+  width: 300px;
   margin: 0;
   margin-top: -2px;
   padding: 0;
