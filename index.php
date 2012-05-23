@@ -59,7 +59,7 @@
   }
   
   if(!isset($page)){
-    require('./controller/error/404.php');
+    require('./controller/error/class_Error404.php');
     $error = new Error404;
     $error->action();
     

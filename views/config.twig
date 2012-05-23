@@ -16,9 +16,13 @@
           <div class="control-group">
             <label class="control-label" for="input_siteRoot">Racine du site</label>
             <div class="controls">
-              <input type=text" class="input-xlarge" id="input_siteRoot">
+              <input type="text" class="input-xlarge" id="input_siteRoot" value="{{ site_root }}" />
               <p class="help-block">monsite.com/events/ par ex.</p>
             </div>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Sauvegarder</button>
+            <button class="btn">Annuler</button>
           </div>
         </fieldset>
       </form>
