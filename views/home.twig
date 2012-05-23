@@ -9,23 +9,10 @@
       <button id="close-hero-unit" class="close" data-dismiss="alert">&times;</button>
       <h1>Bienvenue {{ [cur_user.firstname, cur_user.lastname]|join(' ')}} !</h1>
       <p>Actuellement vous êtes inscrit à {{ cur_user.registered_count }} évènements.</p>
+      <a class="btn btn-primary" href="register">Parcourir les évènements&raquo;</a>
     </div>
   {% endif %} 
-
-  {% for collection in collections %}
-  <div class="span4">
-    <div class="event-header">
-      <h2>{{ collection.name }}</h2>
-    </div>
-    <dl>
-      <dt>Description</dt>
-      <dd>{{ collection.description }}</dd>
-    </dl>
-    <p><a class="btn detailBtn" href="collection-{{ collection.id }}-detail">Voir &raquo;</a></p>
-    <div class="ajaxCont"></div>
-  </div><!--/span4 data-toggle="modal"-->
-  {% endfor %}
-
+  <h2>TODO : Afficher le calendrier ici ?</h2>
 </div> 
 
 {% endblock %}

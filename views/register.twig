@@ -1,0 +1,23 @@
+{% set cur_page = 'register' %}
+{% extends 'body.twig' %}
+{% block content %}
+
+<div class="span9">  
+
+  {% for collection in collections %}
+  <div class="span4">
+    <div class="event-header">
+      <h2>{{ collection.name }}</h2>
+    </div>
+    <dl>
+      <dt>Description</dt>
+      <dd>{{ collection.description }}</dd>
+    </dl>
+    <p><a class="btn detailBtn" href="collection-{{ collection.id }}-detail">Voir &raquo;</a></p>
+    <div class="ajaxCont"></div>
+  </div><!--/span4 data-toggle="modal"-->
+  {% endfor %}
+
+</div> 
+
+{% endblock %}

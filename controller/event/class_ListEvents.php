@@ -7,7 +7,7 @@
     public function action(){
 
       $donnees = new db_request();  
-      $template = $this->twig->loadTemplate('home.twig');
+      $template = $this->twig->loadTemplate('listevents.twig');
       
       if(!isset($_SESSION['login'])){
         echo $template->render(array('cur_user' => array('login' => ''), 'events' => $donnees->getEvent()));
