@@ -1,63 +1,31 @@
 {% set cur_page = 'home' %}
 {% extends 'body.twig' %}
 {% block content %}
-        <div class="span9">  
-          {% if cur_user.login|length > 0 %}
-            <!-- hero-unit -->
-            <div class="hero-unit">
-              <button id="close-hero-unit" class="close" data-dismiss="alert">&times;</button>
-              <h1>Bienvenue {{ [cur_user.firstname, cur_user.lastname]|join(' ')}} !</h1>
-              <p>Actuellement vous êtes inscrit à {{ cur_user.registered_count }} évènements.</p>
-            </div><!--/hero-unit-->
-          {% endif %} 
-          <!-- Accordéon -->
-          <div class="accordion" id="accordion2"> 
-            <!-- Groupe 1 -->
-            <div class="accordion-group">
-              <!-- Titre Accordéon -->
-              <div class="accordion-heading"> 
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">Soutenances RT1</a> 
-              </div>
-              <!-- Contenu Accordéon -->
-              <div id="collapseOne" class="accordion-body collapse in"> 
-                <div class="accordion-inner"> 
-                {% for event in events %} 
-                <div class="span4">
-                  <div class="event-header">
-                    <h2>{{ event.name }}</h2>
-                    <h4><span class="badge badge-inverse">{{ event.placeLibre }} places libres</span></h4>
-                  </div>
-                  <dl>
-                    <dt>Description</dt>
-                    <dd>{{ event.description }}</dd>
-                    <dt>Organisateurs</dt>
-                    <dd><span class="label label-info">Créateur</span> {{ [event.creator.firstname, event.creator.lastname]|join(' ') }}</dd>
-                    {% for admin in event.admin %}
-                    <dd>{{ [admin.firstname, admin.lastname]|join(' ') }}</dd>
-                    {% endfor %}
-                  </dl>
-                  <p>
-                  <a class="btn detailBtn" href="event-{{ event.id }}-detail">Détails &raquo;</a>
-                  </p>
-                  <div class="ajaxCont">
-                  </div>
-                </div><!--/span4 data-toggle="modal"-->
-                {% endfor %}                    
-                </div><!--/accordion-inner-->
-              </div><!--/collapseOne-->
-            </div><!--accordion-group-->
-            
-            <!-- Groupe 2 de sample -->
-            <div class="accordion-group"> 
-              <div class="accordion-heading"> 
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">Soutenances RT2</a> 
-              </div> 
-              <div id="collapseTwo" class="accordion-body collapse"> 
-                <div class="accordion-inner"> 
-                  Nothin' to see here.
-                </div> 
-              </div> 
-            </div><!--accordion-group-->
-          </div>
-        </div><!--/span9-->          
+
+<div class="span9">  
+
+  {% if cur_user.login|length > 0 %}
+    <div class="hero-unit">
+      <button id="close-hero-unit" class="close" data-dismiss="alert">&times;</button>
+      <h1>Bienvenue {{ [cur_user.firstname, cur_user.lastname]|join(' ')}} !</h1>
+      <p>Actuellement vous êtes inscrit à {{ cur_user.registered_count }} évènements.</p>
+    </div>
+  {% endif %} 
+
+  {% for collection in collections %}
+  <div class="span4">
+    <div class="event-header">
+      <h2>{{ collection.name }}</h2>
+    </div>
+    <dl>
+      <dt>Description</dt>
+      <dd>{{ collection.description }}</dd>
+    </dl>
+    <p><a class="btn detailBtn" href="collection-{{ collection.id }}-detail">Voir &raquo;</a></p>
+    <div class="ajaxCont"></div>
+  </div><!--/span4 data-toggle="modal"-->
+  {% endfor %}
+
+</div> 
+
 {% endblock %}
