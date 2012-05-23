@@ -4,7 +4,9 @@
 	
 	class ListEvents extends Controller{
 		public function action(){
-			
+		
+		
+        $donnees = new db_request();	
       $template = $this->twig->loadTemplate('home.twig');
 
       if(!isset($_SESSION['login'])){
@@ -12,7 +14,6 @@
 			}
 
 			else{
-        $donnees = new db_request();
 			 echo $template->render(array('cur_user' => $_SESSION, 'events' => $donnees->getAllEvents()));
       }
 		}
