@@ -82,6 +82,58 @@ $(document).ready(function () {
     }
   });
 
+
+  // Selection groupe IRL
+
+  var idGroupeIRL = new Array();
+
+  // Selection global
+
+  $('#groupes thead input').click(function(){
+    if(!$(this).attr('checked')){ //on lit l'event après le clique donc on inverse les états
+      idGroupeIRL.splice(0, idGroupeIRL.length);
+      $('#groupes tbody tr').each(function(){
+        $('input', this).attr("checked", false);
+      });
+    }
+
+    else{
+      $('#groupes tbody input').each(function(){
+        idGroupeIRL.push($(this).attr("name"));
+        $(this).attr("checked", true);
+      });
+    }
+  })
+
+  // Selection des lignes
+  $('#groupes tbody tr').click(function() {
+    if($('input', this).attr('checked')){
+      if ($('#groupes thead input').attr('checked')) {
+        $('#groupes thead input').attr('checked', false);
+      };
+      $('input', this).attr('checked', false);
+      var tmp = $(this).attr('id').split('-');
+      idGroupeIRL.splice(idGroupeIRL.indexOf(tmp[1]),1);
+    }
+     
+    else{
+      $('input', this).attr('checked', true);
+      var tmp = $(this).attr('id').split('-');
+      idGroupeIRL.push(tmp[1]);
+    }
+  });
+
+  // Rétablissement des events sur les case a coché
+
+  $('#groupes tbody tr :checkbox').click(function() {
+    if ($(this).attr('checked')) {
+      $(this).attr('checked', false);
+    }
+
+    else{
+      $(this).attr('checked', true);
+    }
+  });
  
   // Gestion des tags 
   $('#utilisateurs .listTags li').click(function(e){
