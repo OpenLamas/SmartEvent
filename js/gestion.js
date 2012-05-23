@@ -156,4 +156,56 @@ $(document).ready(function () {
     }
   });
 
+  // Selection groupe rights
+
+  var idGroupeRights = new Array();
+
+  // Selection global
+
+  $('#rgroups thead input').click(function(){
+    if(!$(this).attr('checked')){ //on lit l'event après le clique donc on inverse les états
+      idGroupeRights.splice(0, idGroupeRights.length);
+      $('#rgroups tbody tr').each(function(){
+        $('input', this).attr("checked", false);
+      });
+    }
+
+    else{
+      $('#rgroups tbody input').each(function(){
+        idGroupeRights.push($(this).attr("name"));
+        $(this).attr("checked", true);
+      });
+    }
+  })
+
+  // Selection des lignes
+  $('#rgroups tbody tr').click(function() {
+    if($('input', this).attr('checked')){
+      if ($('#rgroups thead input').attr('checked')) {
+        $('#rgroups thead input').attr('checked', false);
+      };
+      $('input', this).attr('checked', false);
+      var tmp = $(this).attr('id').split('-');
+      idGroupeRights.splice(idGroupeRights.indexOf(tmp[1]),1);
+    }
+     
+    else{
+      $('input', this).attr('checked', true);
+      var tmp = $(this).attr('id').split('-');
+      idGroupeRights.push(tmp[1]);
+    }
+  });
+
+  // Rétablissement des events sur les case a coché
+
+  $('#rgroups tbody tr :checkbox').click(function() {
+    if ($(this).attr('checked')) {
+      $(this).attr('checked', false);
+    }
+
+    else{
+      $(this).attr('checked', true);
+    }
+  });
+
 });
