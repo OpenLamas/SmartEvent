@@ -8,7 +8,7 @@
               <ul class="nav nav-list">
                 <li class="nav-header">Accès Rapide</li>
                 <li {% if cur_page == 'home' %}class="active"{% endif %}><a href="{{ site_root }}"><i class="icon-home"></i>Vue globale</a></li>
-                <li {% if cur_page == 'register' %}class="active"{% endif %}><a href="{{ site_root }}/register"><i class="icon-certificate"></i>Inscription</a></li>
+                <li {% if cur_page == 'register' %}class="active"{% endif %}><a href="{{ site_root }}/register"><i class="icon-certificate"></i>S'inscrire à un évènement</a></li>
                 {% if cur_user.rights.add_event %}
                 <li><a href="#"><i class="icon-plus-sign"></i>Ajouter un évènement</a></li>
                 {% endif %}
