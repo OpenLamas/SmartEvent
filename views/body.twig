@@ -21,7 +21,7 @@
                 <li {% if cur_page == 'events' %}class="active"{% endif %}><a href="{{ site_root }}/events-manage"><i class="icon-calendar"></i>Gérer les évènements</a></li>
                 {% endif %}
                 {% if cur_user.rights.print_listing %}
-                <li><a href="#"><i class="icon-print"></i>Feuilles d'émargement &amp; absences</a></li>              
+                <li {% if cur_page == 'printlists' %}class="active"{% endif %}><a href="events-print-lists"><i class="icon-print"></i>Feuilles d'émargement &amp; absences</a></li>              
               </ul>
               {% endif %}
               {% if cur_user.rights.add_user or cur_user.rights.edit_user or cur_user.rights.delete_user or cur_user.rights.manage_rights %}

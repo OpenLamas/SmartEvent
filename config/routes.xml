@@ -19,6 +19,7 @@
   <route url="/events-manage" module="event" action="ManageEvents" />
   <route url="/events-add" module="event" action="AddEvents" />
   <route url="/events-register" module="event" action="ListCollections" />
+  <route url="/events-print-lists" module="event" action="PrintLists" />
   
   <!-- Error -->
   <route url="/error-403" module="error" action="Error403" />
