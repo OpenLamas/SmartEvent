@@ -20,6 +20,7 @@
           $state = 'noData';
         }
       }
+      
       if($state == 'success'){
         $template = $this->twig->loadTemplate('home.twig');
         if(!isset($_SESSION['login'])){
