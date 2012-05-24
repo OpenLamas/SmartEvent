@@ -17,7 +17,8 @@
   <!-- Evenements -->
   <route url="/event-(\d+)-detail((-ajax)?)" module="event" action="Detail" vars="idEvent,ajax" />
   <route url="/events-manage" module="event" action="ManageEvents" />
-  <route url="/register" module="event" action="ListCollections" />
+  <route url="/events-add" module="event" action="AddEvents" />
+  <route url="/events-register" module="event" action="ListCollections" />
   
   <!-- Error -->
   <route url="/error-403" module="error" action="Error403" />

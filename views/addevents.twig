@@ -1,0 +1,68 @@
+{% set cur_page = 'addevents' %}
+{% extends 'body.twig' %}
+{# TODO : Implémenter la sécurité #}
+{% block content %}
+<div class="span9">
+  <form class="form-horizontal" method="POST" action="#">
+    <fieldset>
+      <legend>Informations de base</legend>
+      <div class="control-group">
+        <label class="control-label" for="input_eventName">Nom</label>
+        <div class="controls">
+          <input type="text" class="input-xlarge" id="input_eventName" />
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="input_eventDate">Date</label>
+        <div class="controls">
+          <input type="text" class="input-xlarge" id="input_eventDate" />
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="input_eventDescription">Description</label>
+        <div class="controls">
+          <textarea class="input-xlarge" id="input_eventDescription" rows="3"></textarea>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="selectCollection">Collection</label>
+        <div class="controls">
+          <select id="selectCollection">
+            {% for collection in collections %}
+            <option>{{ collection.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>      
+    </fieldset>
+    <legend>Informations complémentaires</legend>
+      <div class="control-group">
+        <label class="control-label" for="input_eventOrganisators">Organisateurs</label>
+        <div class="controls">
+          <input type="text" class="input-xlarge" id="input_eventOrganisators" />
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="input_eventPlaces">Nombre de places</label>
+        <div class="controls">
+          <input type="text" class="input-mini" id="input_eventPlaces" />
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="selectDateLimit">Date limite d'inscription</label>
+        <div class="controls">
+          <select id="selectDateLimit">
+            <option>Aucune</option>
+            <option>La veille</option>
+            <option>1 semaine avant</option>
+            <option>2 semaines avant</option>
+          </select>
+        </div>
+      </div>  
+    </fieldset>
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+      </div>
+  </form>
+</div>
+{% endblock %}
