@@ -6,21 +6,21 @@
     
     public function action(){
       $donnees = new db_request();
-      if(isset($_SESSION['rights']) && $_SESSION['rights']['delete_user']){
+      if(isset($_SESSION['rights']['delete_user']) && $_SESSION['rights']['delete_user']){
         if(isset($_POST['tabUsers'])){       
-          for($i=0; $i < count($_POST['tabUsers']); $i++){
-            $donnees->deleteUser($_POST['tabUsers'][$i]);
+          foreach($_POST['tabUsers'] as $i){
+            $donnees->deleteUser($i);
           }
           echo "ok";
-          return ;
+          exit;
         }
         echo "!user";
-        return;
+        exit;
       }
       
       else{
         echo "!rights";
-        return;
+        exit;
       }
     }
   }
