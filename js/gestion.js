@@ -17,9 +17,12 @@ $(document).ready(function () {
     }
 
     else{
-      $('#utilisateurs tbody input').each(function(){
-        idUsers.push($(this).attr("name"));
-        $(this).attr("checked", true);
+      $('#utilisateurs tbody tr').each(function(){
+        if(!$('input', this).attr("checked")){
+          var tmp = $(this).attr('id').split('-');
+          idUsers.push(tmp[1]);
+          $('input', this).attr("checked", true);
+        }
       });
     }
   })
@@ -61,10 +64,9 @@ $(document).ready(function () {
       $.post('users-delete', {'tabUsers' : idUsers}, function(data){
         if(data == 'ok'){
           for(var i=0;i<idUsers.length;i++){
-            $('#utilisateurs tbody #user-'+idUsers[i]).hide(function() {
-              idUsers.splice(0, idUsers.length);
-            });
+            $('#utilisateurs tbody #user-'+idUsers[i]).hide();
           }
+          idUsers.splice(0, idUsers.length); //On purge le tableau
         }
       
         else if(data == '!user'){
@@ -76,7 +78,6 @@ $(document).ready(function () {
         }
       });
     }
-    
     else{
       alert('Vous devez selectionnez au moins un utilisateur');
     }
