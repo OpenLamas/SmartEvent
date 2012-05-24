@@ -99,12 +99,15 @@ $(document).ready(function () {
     }
 
     else{
-      $('#groupes tbody input').each(function(){
-        idGroupeIRL.push($(this).attr("name"));
-        $(this).attr("checked", true);
+      $('#groupes tbody tr').each(function(){
+        if(!$('input', this).attr("checked")){
+          var tmp = $(this).attr('id').split('-');
+          idGroupeIRL.push(tmp[1]);
+          $('input', this).attr("checked", true);
+        }
       });
     }
-  })
+  });
 
   // Selection des lignes
   $('#groupes tbody tr').click(function() {
@@ -172,12 +175,15 @@ $(document).ready(function () {
     }
 
     else{
-      $('#rgroups tbody input').each(function(){
-        idGroupeRights.push($(this).attr("name"));
-        $(this).attr("checked", true);
+      $('#rgroups tbody tr').each(function(){
+        if(!$('input', this).attr("checked")){
+          var tmp = $(this).attr('id').split('-');
+          idGroupeRights.push(tmp[1]);
+          $('input', this).attr("checked", true);
+        }
       });
     }
-  })
+  });
 
   // Selection des lignes
   $('#rgroups tbody tr').click(function() {

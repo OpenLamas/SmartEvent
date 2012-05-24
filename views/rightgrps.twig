@@ -22,8 +22,8 @@
         </thead>
         <tbody>
           {% for rightgroup in rightgroups %}
-          <tr>
-            <td><label class="checkbox inline"><input type="checkbox" id="checkbox{{ rightgroup.id }}" value="option1"></label></td>
+          <tr  id="checkbox-{{ rightgroup.id }}" >
+            <td><label class="checkbox inline"><input type="checkbox" value="option1"></label></td>
             <td>{{ rightgroup.name }}</td>
             <td>
             {% if rightgroup.rights.add_event %}Ajouter un évenement,{% endif %}
