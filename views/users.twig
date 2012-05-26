@@ -1,7 +1,7 @@
 {% set cur_page = 'users' %}
 {% extends 'body.twig' %}
 {% block content %}
-{% if cur_user.rights.add_user or cur_user.rights.edit_user or cur_user.rights.delete_user %}
+{% if cur_user.rights == "admin" %}
 <div class="span9">
   <ul class="nav nav-tabs" id="myTab">
     <li class="active"><a data-toggle="tab" href="#utilisateurs">Utilisateurs</a></li>
@@ -11,9 +11,9 @@
   <div class="tab-content">
     <div class="tab-pane active" id="utilisateurs">
       <form method="POST" action="#">
-        {% if cur_user.rights.add_user %}<a class="btn btn-primary" href="#">Ajouter</a>{% endif %}
-        {% if cur_user.rights.edit_user %}<a class="btn btn-warning" href="#">Modifier</a>{% endif %}
-        {% if cur_user.rights.delete_user %}<a class="btn btn-danger" href="#">Supprimer</a>{% endif %}
+        <a class="btn btn-primary" href="#">Ajouter</a>
+        <a class="btn btn-warning" href="#">Modifier</a>
+        <a class="btn btn-danger" href="#">Supprimer</a>
         <ul class="listTags">
           <li class="tag">A1 <i class=" icon-remove closeTag"></i></li>
           <li class="tag">12 <i class=" icon-remove closeTag"></i></li>
@@ -47,11 +47,12 @@
         </table>
       </form>
     </div>
-    <div class="tab-pane" id="groupes">      
+    
+    {# <div class="tab-pane" id="groupes">      
       <form method="POST" action="#">
-        {% if cur_user.rights.add_grp %}<a class="btn btn-primary" href="#">Ajouter</a>{% endif %}
-        {% if cur_user.rights.edit_grp %}<a class="btn btn-warning" href="#">Modifier</a>{% endif %}
-        {% if cur_user.rights.delete_grp %}<a class="btn btn-danger" href="#">Supprimer</a>{% endif %}
+        <a class="btn btn-primary" href="#">Ajouter</a>
+        <a class="btn btn-warning" href="#">Modifier</a>
+        <a class="btn btn-danger" href="#">Supprimer</a>
         <table class="table table-condensed">
           <thead>
             <tr>
@@ -69,7 +70,7 @@
           </tbody>
         </table>
       </form>
-    </div>
+    </div> #}
   </div>
 </div>
 {% endif %}
