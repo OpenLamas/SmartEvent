@@ -110,7 +110,7 @@
     public function getRights($id){
       
       /* code SQL */
-      return array('manage_collections' => true, 'superadmin' => true, 'add_event' => true, 'edit_event'=>true, 'delete_event'=>true, 'print_listing'=>true, 'add_user'=>true, 'edit_user'=>true, 'delete_user'=>true, 'manage_rights'=>true, 'add_grp' => true, 'edit_grp' => true, 'delete_grp' => true);
+      return 'admin';
     }
 
     /* Renvoie un groupe de droit */
