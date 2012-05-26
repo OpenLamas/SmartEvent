@@ -44,12 +44,12 @@ $(document).ready(function() {
     dayNamesShort: ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'],
     dayNamesMin: ['Di','Lu','Ma','Me','Je','Ve','Sa'],
     weekHeader: 'Sm',
-    dateFormat: 'dd/mm/yy',
+    dateFormat: 'DD d MM yy',
     firstDay: 1,
     isRTL: false,
     showMonthAfterYear: false,
     yearSuffix: ''};
   $.datepicker.setDefaults($.datepicker.regional['fr']);
 
-   $('#input_eventDate').datepicker({ dateFormat: "DD d MM yy" });
+   $('#input_eventDate').datepicker();
 });
