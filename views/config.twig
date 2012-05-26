@@ -1,7 +1,7 @@
 {% set cur_page = 'config' %}
 {% extends 'body.twig' %}
 {% block content %}
-{% if cur_user.rights.superadmin %}
+{% if cur_user.rights == 'admin' %}
 <div class="span9">
   <ul class="nav nav-tabs" id="myTab">
     <li class="active"><a data-toggle="tab" href="#config"><i class="icon-wrench"></i> Configuration</a></li>
