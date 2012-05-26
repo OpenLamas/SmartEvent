@@ -4,7 +4,31 @@
 {% block content %}
 {% if cur_user.rights == "manager" or cur_user.rights == "admin"%}
   <div class="span9">
-    <form class="form-horizontal" method="POST" action="#">
+      <form class="well form-horizontal">
+        <fieldset>
+          <legend>Choisir la session à éditer</legend>
+          <div class="control-group">
+            <div class="controls">
+              <select id="selectCollection">
+                {% for collection in collections %}
+                <option>{{ collection.name }}</option>
+                {% endfor %}
+                <option>Nouvelle session</option>
+              </select>
+              <input type="text" class="input-xlarge" id="input_sessionName" />
+            </div>
+          </div>  
+        </fieldset>
+      </form>
+
+
+
+
+
+
+
+
+    {# <form class="form-horizontal" method="POST" action="#">
       <fieldset>
         <legend>Informations de base</legend>
         <div class="control-group">
@@ -32,6 +56,7 @@
               {% for collection in collections %}
               <option>{{ collection.name }}</option>
               {% endfor %}
+              <option>Nouvelle session</option>
             </select>
           </div>
         </div>      
@@ -64,7 +89,7 @@
       <div class="form-actions">
           <button type="submit" class="btn btn-primary">Ajouter</button>
         </div>
-    </form>
+    </form> #}
   </div>
 {% endif %}
 {% endblock %}
