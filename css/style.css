@@ -78,3 +78,15 @@
 .brand i {
   vertical-align: 1px;
 }
+
+#selectSession button i{
+  margin-right: 5px;
+}
+
+#selectSession button{
+  margin-right: 5px;
+}
+
+#selectSession select{
+  margin-right: 5px;
+}

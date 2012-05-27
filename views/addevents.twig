@@ -4,18 +4,20 @@
 {% block content %}
 {% if cur_user.rights == "manager" or cur_user.rights == "admin"%}
   <div class="span9">
-      <form class="well form-horizontal">
+      <form class="well form-horizontal" id="selectSession">
         <fieldset>
           <legend>Choisir la session à éditer</legend>
           <div class="control-group">
             <div class="controls">
-              <select id="selectCollection">
+              <button class="btn btn-success"><i class="icon-ok"></i>Valider</button>
+              <select>
                 {% for collection in collections %}
                 <option>{{ collection.name }}</option>
                 {% endfor %}
                 <option>Nouvelle session</option>
               </select>
               <input type="text" class="input-xlarge" id="input_sessionName" />
+            
             </div>
           </div>  
         </fieldset>
