@@ -4,18 +4,17 @@
 
 <div class="span9">  
 
-  {% for collection in collections %}
+  {% for session in sessions %}
   <div class="span4">
     <div class="event-header">
-      <h2>{{ collection.name }}</h2>
+      <h2>{{ session.name }}</h2>
     </div>
     <dl>
       <dt>Description</dt>
-      <dd>{{ collection.description }}</dd>
+      <dd>{{ session.description }}</dd>
     </dl>
-    <p><a class="btn detailBtn" href="collection-{{ collection.id }}-detail">Voir &raquo;</a></p>
-    <div class="ajaxCont"></div>
-  </div><!--/span4 data-toggle="modal"-->
+    <p><a class="btn" href="session-{{ session.id }}">Voir &raquo;</a></p>
+  </div><!--/span4-->
   {% endfor %}
 
 </div> 

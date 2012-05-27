@@ -85,23 +85,23 @@
     }
 
     /* Renvoie une/des collection(s) d'évenements */
-    public function getCollection($id=''){
+    public function getSession($id=''){
       /* code SQL */
       /* Sample */
-      $collection0 = array('id'=>0, 'name' => 'Soutenances RT1', 'description' => '...', 'events' => array($this->getEvent(0), $this->getEvent(1)));
-      $collection1 = array('id'=>1, 'name' => 'Soutenances RT2', 'description' => '...', 'events' => array($this->getEvent(2), $this->getEvent(3)));
-      $collections = array($collection0, $collection1);
+      $session0 = array('id'=>0, 'name' => 'Soutenances RT1', 'description' => '...', 'events' => array($this->getEvent(0), $this->getEvent(1)));
+      $session1 = array('id'=>1, 'name' => 'Soutenances RT2', 'description' => '...', 'events' => array($this->getEvent(2), $this->getEvent(3)));
+      $sessions = array($session0, $session1);
       /* Logique */
       if(!empty($id)){
-        return $collections[$id];
+        return $sessions[$id];
       }
       else{
-        return $collections;
+        return $sessions;
       }
     }
 
     /* Ajoute, modifie, ou supprime une collection d'évenements */
-    public function setCollection($id){
+    public function setSession($id){
       /* code SQL */
     }
     

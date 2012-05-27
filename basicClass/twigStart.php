@@ -5,6 +5,7 @@
     protected $twig;
     protected $view_folder;
     protected $loader;
+    protected $vars;
     
     public function __construct(){
       Twig_Autoloader::register();
@@ -20,6 +21,10 @@
       $this->twig->addExtension(new Twig_Extension_Debug());
       $this->twig->addGlobal('cur_page', "");
       $this->twig->addGlobal('site_root', "/projet-ic4");
+    }
+
+    public function setVars(array $vars){
+      $this->vars = $vars;
     }
   }
 ?>
