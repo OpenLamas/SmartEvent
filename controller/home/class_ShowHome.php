@@ -15,7 +15,7 @@
       }
       else{
         $template = $this->twig->loadTemplate('home.twig');
-        echo $template->render(array('cur_user' => $_SESSION, 'sessions' => $donnees->getSession()));
+        echo $template->render(array('cur_user' => $_SESSION, 'sessions' => $donnees->getSession(), 'totalRegisteredCount' => $donnees->getNbEventRegistered($_SESSION['id'])));
       }
     }
   }
