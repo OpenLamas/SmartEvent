@@ -1,5 +1,6 @@
 <?php
   session_start();
+  include('config/config.php');
   
   $dom = new DOMDocument;
   if(!$dom->load('./config/routes.xml')){
