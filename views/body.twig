@@ -14,7 +14,7 @@
               <li {% if cur_page == 'register' %}class="active"{% endif %}><a href="{{ site_root }}/events-register"><i class="icon-certificate"></i>S'inscrire à un évènement</a></li>
             </ul>
             
-            {% if cur_user.rights == "manager" or cur_user.rights == "admin"%}
+            {% if cur_user.right == "manager" or cur_user.right == "admin"%}
             <ul class="nav nav-list">
               <li class="nav-header">Gestionaire</li>
               <li {% if cur_page == 'addevents' %}class="active"{% endif %}><a href="events-add"><i class="icon-plus-sign"></i>Créer un évènement</a></li>
@@ -22,7 +22,7 @@
             </ul>
             {% endif %}
 
-            {% if cur_user.rights == "admin" %}
+            {% if cur_user.right == "admin" %}
             <ul class="nav nav-list">
               <li class="nav-header">Adminitration</li>
               <li {% if cur_page == 'users' %}class="active"{% endif %}><a href="{{ site_root }}/users-manage"><i class="icon-user"></i>Gérer les utilisateurs</a></li>
@@ -34,33 +34,33 @@
                 <li class="nav-header">Accès Rapide</li>
                 <li {% if cur_page == 'home' %}class="active"{% endif %}><a href="{{ site_root }}"><i class="icon-home"></i>Vue globale</a></li>
                 <li {% if cur_page == 'register' %}class="active"{% endif %}><a href="{{ site_root }}/events-register"><i class="icon-certificate"></i>S'inscrire à un évènement</a></li>
-                {% if cur_user.rights.add_event %}
+                {% if cur_user.right.add_event %}
                 <li {% if cur_page == 'addevents' %}class="active"{% endif %}><a href="events-add"><i class="icon-plus-sign"></i>Ajouter un évènement</a></li>
                 {% endif %}
               </ul>
-              {% if cur_user.rights.add_event or cur_user.rights.edit_event or cur_user.rights.delete_event or cur_user.rights.print_listing %}
+              {% if cur_user.right.add_event or cur_user.right.edit_event or cur_user.right.delete_event or cur_user.right.print_listing %}
               <ul class="nav nav-list">              
                 <li class="nav-header">Evènement</li>
                 {% endif %}
-                {% if cur_user.rights.add_event or cur_user.rights.edit_event or cur_user.rights.delete_event %}
+                {% if cur_user.right.add_event or cur_user.right.edit_event or cur_user.right.delete_event %}
                 <li {% if cur_page == 'events' %}class="active"{% endif %}><a href="{{ site_root }}/events-manage"><i class="icon-calendar"></i>Gérer les évènements</a></li>
                 {% endif %}
-                {% if cur_user.rights.print_listing %}
+                {% if cur_user.right.print_listing %}
                 <li {% if cur_page == 'printlists' %}class="active"{% endif %}><a href="events-print-lists"><i class="icon-print"></i>Feuilles d'émargement &amp; absences</a></li>              
               </ul>
               {% endif %}
-              {% if cur_user.rights.add_user or cur_user.rights.edit_user or cur_user.rights.delete_user or cur_user.rights.manage_rights %}
+              {% if cur_user.right.add_user or cur_user.right.edit_user or cur_user.right.delete_user or cur_user.right.manage_rights %}
               <ul class="nav nav-list">
                 <li class="nav-header">Utilisateurs</li>
-                {% if cur_user.rights.add_user or cur_user.rights.edit_user or cur_user.rights.delete_user %}
+                {% if cur_user.right.add_user or cur_user.right.edit_user or cur_user.right.delete_user %}
                 <li {% if cur_page == 'users' %}class="active"{% endif %}><a href="{{ site_root }}/users-manage"><i class="icon-user"></i>Gérer les utilisateurs</a></li>
                 {% endif %}
-                {% if cur_user.rights.manage_rights %}
+                {% if cur_user.right.manage_rights %}
                 <li {% if cur_page == 'rightgrps' %}class="active"{% endif %}><a href="{{ site_root }}/rgroups-manage"><i class="icon-lock"></i>Gérer les droits</a></li>  
                 {% endif %}            
               </ul>
               {% endif %}
-              {% if cur_user.rights.superadmin %}
+              {% if cur_user.right.superadmin %}
               <ul class="nav nav-list">
                 <li class="nav-header">Administration</li>
                 <li {% if cur_page == 'config' %}class="active"{% endif %}><a href="{{ site_root }}/admin-config"><i class="icon-wrench"></i>Gestion de l'application</a></li>

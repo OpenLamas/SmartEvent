@@ -2,7 +2,7 @@
 {% extends 'body.twig' %}
 {# TODO : Implémenter la sécurité #}
 {% block content %}
-{% if cur_user.rights == "manager" or cur_user.rights == "admin"%}
+{% if cur_user.right == "manager" or cur_user.right == "admin"%}
   <div class="span9">
       <form class="well form-horizontal" id="selectSession">
         <fieldset>
