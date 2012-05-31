@@ -11,14 +11,14 @@
           $donnees;
 
           if(!empty($id)){
-            $req = $this->bdd->prepare('SELECT * FROM UTILISATEURS WHERE idUtilisateur = :idUser');
+            $req = $this->bdd->prepare('SELECT idUtilisateur,refDroit,nomUtilisateur,prenomUtilisateur,mailUtilisateur,mdpUtilisateur FROM UTILISATEURS WHERE idUtilisateur = :idUser');
             $req->bindValue(':idUser', $id, PDO::PARAM_INT);
             $req->execute();
             $donnees = $req->fetch();
           }
 
           else{
-            $req = $this->bdd->query('SELECT * FROM UTILISATEURS');
+            $req = $this->bdd->query('SELECT idUtilisateur,refDroit,nomUtilisateur,prenomUtilisateur,mailUtilisateur,mdpUtilisateur FROM UTILISATEURS');
             while($champs = $req->fetch()){
             array_push($donnees, $champs);
             }
@@ -67,14 +67,14 @@
           $donnees;
 
           if(!empty($id)){
-            $req = $this->bdd->prepare('SELECT * FROM EVENEMENTS WHERE idEvenement = :idEvent');
+            $req = $this->bdd->prepare('SELECT idEvenement,refSession,nomEvenement,dateEvenement,descEvenement,heureDebutEvenement,heureFinEvenement,emplacementEvenement FROM EVENEMENTS WHERE idEvenement = :idEvent');
             $req->bindValue(':idEvent', $id, PDO::PARAM_INT);
             $req->execute();
             $donnees = $req->fetch();
           }
 
           else{
-            $req = $this->bdd->query('SELECT * FROM EVENEMENTS');
+            $req = $this->bdd->query('SELECT idEvenement,refSession,nomEvenement,dateEvenement,descEvenement,heureDebutEvenement,heureFinEvenement,emplacementEvenement FROM EVENEMENTS');
             while($champs = $req->fetch()){
             array_push($donnees, $champs);
             }
@@ -109,14 +109,14 @@
           $donnees;
 
           if(!empty($id)){
-            $req = $this->bdd->prepare('SELECT * FROM SESSIONS WHERE idSession= :idSession');
+            $req = $this->bdd->prepare('SELECT idSession,refCreateur,nomSession,nbMaxInscritEvenement,nbMinParticipationEvenement,dateLimiteInscription,dateRappelMail FROM SESSIONS WHERE idSession= :idSession');
             $req->bindValue(':idSession', $id, PDO::PARAM_INT);
             $req->execute();
             $donnees = $req->fetch();
           }
 
           else{
-            $req = $this->bdd->query('SELECT * FROM SESSIONS');
+            $req = $this->bdd->query('SELECT idSession,refCreateur,nomSession,nbMaxInscritEvenement,nbMinParticipationEvenement,dateLimiteInscription,dateRappelMail FROM SESSIONS');
             while($champs = $req->fetch()){
             array_push($donnees, $champs);
             }
@@ -168,7 +168,7 @@
       /* code SQL */
     }
 
-    public function getNbEventRegtered($id){
+    public function getNbEventRegistered($id){
       /** Code de la methode final
           $donnees;
             
