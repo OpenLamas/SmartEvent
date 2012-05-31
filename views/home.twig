@@ -1,18 +1,16 @@
 {% set cur_page = 'home' %}
 {% extends 'body.twig' %}
 {% block content %}
-
-<div class="span9">  
-
+<div class="span10 offset1">  
   {% if cur_user.login|length > 0 %}
     <div class="hero-unit">
-      <button id="close-hero-unit" class="close" data-dismiss="alert">&times;</button>
-      <h1>Bienvenue {{ [cur_user.firstname, cur_user.lastname]|join(' ')}} !</h1>
+      <h1>Bienvenue {{ cur_user.firstname }}</h1>
       <p>Actuellement vous êtes inscrit à XXX évènements.</p>
       <a class="btn btn-primary" href="events-register">Parcourir les évènements &raquo;</a>
     </div>
   {% endif %} 
-  <h2>TODO : Afficher le calendrier</h2>
-</div> 
-
+  <div class="row">
+    <h2>TODO : Afficher le calendrier</h2>
+  </div> 
+</div>
 {% endblock %}
