@@ -25,7 +25,6 @@
         $template = $this->twig->loadTemplate('home.twig');
         if(!isset($_SESSION['login'])){
           echo $template->render(array('cur_user' => array('login' => ''), 'sessions' => $donnees->getSession()));
-
         }
         else{
           echo $template->render(array('cur_user' => $_SESSION, 'sessions' => $donnees->getSession()));

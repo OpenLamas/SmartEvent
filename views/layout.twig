@@ -41,7 +41,9 @@
             <li><a href="{{ site_root }}/admin-config"><i class="icon-cog"></i> Administration</a></li>
           </ul>
           <ul class="nav pull-right nav-collapse">
-            <li><a href="#">{{ [cur_user.firstname,cur_user.lastname]|join(' ') }}</a></li>
+            {% if cur_user.login|length > 0 %}
+            <li><a href="{{ site_root }}/disconnect">{{ [cur_user.firstname,cur_user.lastname]|join(' ') }}</a></li>
+            {% endif %}
             <li><a href="#">Aide</a></li>
           </ul>
         </div>
