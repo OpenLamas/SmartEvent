@@ -167,4 +167,18 @@
     public function setRight($id){
       /* code SQL */
     }
+
+    public function getNbEventRegtered($id){
+      /** Code de la methode final
+          $donnees;
+            
+            $req = $this->bdd->prepare('SELECT COUNT(*) FROM PARTICIPER WHERE idRefUtilisateur = :idUser');
+            $req->bindValue(':idUser', $id, PDO::PARAM_INT);
+            $req->execute();
+            $donnees = $req->fetch();
+
+        return $donnees;
+      */
+        return 69; 
+    }
   }
