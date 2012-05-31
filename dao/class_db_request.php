@@ -41,8 +41,7 @@
 
     /* --- Evènements --- */
     /* Renvoie un/des évenement(s) */
-    public function getEvent($id=''){
-    
+    public function getEvent($id='vide'){
       /* code SQL */
       /* SELECT * FROM EVENEMENTS */
       /* SELECT * FROM EVENEMENTS WHERE idEvenement=$id */
@@ -53,7 +52,7 @@
       $event3 = array('id'=>3, 'name' => 'Exploration d\'espace hostils par robots autonome', 'description' => 'Programation de robots permettant de cartographier en toute autonomie des milieux hostils. Récuperation des données sur grande distance (~100 km) via une technologie sans-fil', 'placeLibre' => '5', 'creator' => $this->getUser(1), 'admin' =>  array($this->getUser(1)));
       $events = array($event0, $event1, $event2, $event3);
       /* Logique */
-      if(!empty($id)){
+      if($id != 'vide'){
         return $events[$id];
       }
       else{
@@ -67,16 +66,16 @@
     }
 
     /* Renvoie une/des collection(s) d'évenements */
-    public function getSession($id=''){
+    public function getSession($id='vide'){
       /* code SQL */
       /* SELECT * FROM SESSIONS */
       /* SELECT * FROM SESSIONS WHERE idSession=$id */
       /* Sample */
-      $session0 = array('id'=>0, 'name' => 'Soutenances RT1', 'description' => '...', 'events' => array($this->getEvent(0), $this->getEvent(1)));
+      $session0 = array('id'=>0, 'name' => 'Soutenances RT1', 'description' => '...', 'events' => array($this->getEvent('0'), $this->getEvent(1)));
       $session1 = array('id'=>1, 'name' => 'Soutenances RT2', 'description' => '...', 'events' => array($this->getEvent(2), $this->getEvent(3)));
       $sessions = array($session0, $session1);
       /* Logique */
-      if(!empty($id)){
+      if($id != 'vide'){
         return $sessions[$id];
       }
       else{
