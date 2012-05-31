@@ -1,15 +1,32 @@
 <?php
   require('class_pg_connect.php');
   
-  class db_request{
+  class db_request extends PostgreConnection{
     
     /* --- Utilisateurs --- */    
     /* Renvoie un/des utilisateur(s) */
     public function getUser($id=''){
       
-      /* code SQL*/
-      /* SELECT * FROM UTILISATEURS */
-      /* SELECT * FROM UTILISATEURS WHERE idUtilisateur='$id' */
+      /** Code de la methode final
+          $donnees;
+
+          if(!empty($id)){
+            $req = $this->bdd->prepare('SELECT * FROM UTILISATEURS WHERE idUtilisateur = :idUser');
+            $req->bindValue(':idUser', $id, PDO::PARAM_INT);
+            $req->execute();
+            $donnees = $req->fetch();
+          }
+
+          else{
+            $req = $this->bdd->query('SELECT * FROM UTILISATEURS');
+            while($champs = $req->fetch()){
+            array_push($donnees, $champs);
+            }
+          }
+
+        return $donnees;
+      */
+
       /* Sample */
       $user0 = array('id' => 0, 'firstname' => 'Jean', 'lastname'=> 'Moulin', 'login' => 'jeanMoul', 'mail' => 'jeanMoul@chut.com', 'right' => $this->getRight(1));
       $user1 = array('id' => 1, 'firstname' => 'Pierre', 'lastname'=> 'Quiroule', 'login' => 'pierreQuir', 'mail' => 'pierreQuir@chut.com', 'right' => $this->getRight(2));
@@ -32,9 +49,13 @@
 
     /* Renvoie le hash du password et l'id de l'email passé en argument */
     public function getPassword($email){
-      
-      /* code SQL */
-      /* SELECT mdpUtilisateur FROM UTILISATEURS where mailUtilisateur='$email' */
+      /** Code de la methode final
+        $req = $this->bdd->prepare('SELECT idUtilisateur, mdpUtilisateur FROM UTILISATEURS where mailUtilisateur = :email');
+        $req->bindValue(':email', $email, PDO::PARAM_STR);
+        $req->execute();
+
+        return $req->fetch();
+      */
       return array('id' => 1,
                    'password' => '81dc9bdb52d04dc20036dbd8313ed055'); /* le password est 1234 */
     }   
@@ -42,9 +63,26 @@
     /* --- Evènements --- */
     /* Renvoie un/des évenement(s) */
     public function getEvent($id='vide'){
-      /* code SQL */
-      /* SELECT * FROM EVENEMENTS */
-      /* SELECT * FROM EVENEMENTS WHERE idEvenement='$id' */
+      /** Code de la methode final
+          $donnees;
+
+          if(!empty($id)){
+            $req = $this->bdd->prepare('SELECT * FROM EVENEMENTS WHERE idEvenement = :idEvent');
+            $req->bindValue(':idEvent', $id, PDO::PARAM_INT);
+            $req->execute();
+            $donnees = $req->fetch();
+          }
+
+          else{
+            $req = $this->bdd->query('SELECT * FROM EVENEMENTS');
+            while($champs = $req->fetch()){
+            array_push($donnees, $champs);
+            }
+          }
+
+        return $donnees;
+      */
+
       /* Sample */
       $event0 = array('id'=>0, 'name' => 'La fête de la patate', 'description' => 'C\'est le jour où toutes des patates de retrouvent et dansent jusqu\'au bout de la nuit !', 'placeLibre' => '12', 'creator' => $this->getUser(1), 'admin' =>  array( $this->getUser(1), $this->getUser(1)));
       $event1 = array('id'=>1, 'name' => 'Résolution dynamique du lien fort', 'description' => 'Gestion d\'un lien fort entre deux base de donnée avec mise à jour dynamique et gestion des exeptions', 'placeLibre' => '274', 'creator' => $this->getUser(1), 'admin' =>  array($this->getUser(1)));
@@ -67,9 +105,27 @@
 
     /* Renvoie une/des collection(s) d'évenements */
     public function getSession($id='vide'){
-      /* code SQL */
-      /* SELECT * FROM SESSIONS */
-      /* SELECT * FROM SESSIONS WHERE idSession='$id' */
+      /** Code de la methode final
+          $donnees;
+
+          if(!empty($id)){
+            $req = $this->bdd->prepare('SELECT * FROM SESSIONS WHERE idSession= :idSession');
+            $req->bindValue(':idSession', $id, PDO::PARAM_INT);
+            $req->execute();
+            $donnees = $req->fetch();
+          }
+
+          else{
+            $req = $this->bdd->query('SELECT * FROM SESSIONS');
+            while($champs = $req->fetch()){
+            array_push($donnees, $champs);
+            }
+          }
+
+        return $donnees;
+      */
+
+
       /* Sample */
       $session0 = array('id'=>0, 'name' => 'Soutenances RT1', 'description' => '...', 'events' => array($this->getEvent('0'), $this->getEvent(1)));
       $session1 = array('id'=>1, 'name' => 'Soutenances RT2', 'description' => '...', 'events' => array($this->getEvent(2), $this->getEvent(3)));
@@ -91,8 +147,17 @@
     /* --- Sécurité --- */
     /* Renvoie le statut d'un utilisateur */
     public function getRight($id){      
-      /* code SQL */
-      /* SELECT nomDroit FROM DROITS INNER JOIN UTILISATEURS ON refDroit=idDroit WHERE idUtilisateur='$id' */
+      /** Code de la methode final
+          $donnees;
+            
+            $req = $this->bdd->prepare('SELECT nomDroit FROM DROITS INNER JOIN UTILISATEURS ON refDroit=idDroit WHERE idUtilisateur = :idDroit');
+            $req->bindValue(':idDroit', $id, PDO::PARAM_INT);
+            $req->execute();
+            $donnees = $req->fetch();
+
+        return $donnees;
+      */
+
       /* Sample */
       $right = 'admin';
       /* Logique */
