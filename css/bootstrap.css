@@ -1077,6 +1077,8 @@ select:focus {
 
 .input-xxlarge {
   width: 530px;
+  height: 30px;
+  vertical-align: -3px;
 }
 
 input[class*="span"],
@@ -3868,6 +3870,10 @@ input[type="submit"].btn.btn-mini {
   text-decoration: none;
 }
 
+.navbar .nav > li > a > i {
+  vertical-align: -1px;
+}
+
 .navbar .btn {
   display: inline-block;
   padding: 4px 10px 4px;
@@ -5009,7 +5015,8 @@ a.badge:hover {
 }
 
 .hero-unit {
-  padding: 20px;
+  padding: 0;
+  margin-top: 20px;
   margin-bottom: 30px;
   background-color: transparent;
   -webkit-border-radius: 6px;
@@ -5030,7 +5037,7 @@ a.badge:hover {
   font-size: 18px;
   font-weight: 200;
   line-height: 27px;
-  color: inherit;
+  color: #999999;
 }
 
 .pull-right {

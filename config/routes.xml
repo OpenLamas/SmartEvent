@@ -8,9 +8,6 @@
   <route url="/users-manage" module="user" action="ListUsers" />
   <route url="/users-delete" module="user" action="DeleteUsers" />
   
-  <!-- Droits -->
-  <route url="/rgroups-manage" module="rgroups" action="ListRGroups" />
-  
   <!-- Admin -->
   <route url="/admin-config" module="admin" action="ShowConfig" />
   
