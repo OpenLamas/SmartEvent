@@ -89,32 +89,17 @@
     }
     
     /* --- Sécurité --- */
-    /* Renvoie les droits d'un utilisateur (TEMP A DELETE APRES BDD) */
-    public function getRights($id){
-      
+    /* Renvoie le statut d'un utilisateur */
+    public function getRights($id){      
       /* code SQL */
-      return 'admin';
-    }
-
-    /* Renvoie un groupe de droit */
-    public function getRightGroup($id=''){
-
-      /* code SQL */
+      /* SELECT nomDroit FROM DROITS INNER JOIN UTILISATEURS ON refDroit=idDroit WHERE idUtilisateur=$id */
       /* Sample */
-      $rightgroup0 = array('id' => 0, 'name' => 'eleves1', 'rights' => array('add_event' => true, 'edit_event'=>true, 'delete_event'=>false, 'print_listing'=>false, 'add_user'=>true, 'edit_user'=>true, 'delete_user'=>true, 'manage_rights'=>false, 'add_grp' => true, 'edit_grp' => false, 'delete_grp' => false));
-      $rightgroup1 = array('id' => 1, 'name' => 'profIUT', 'rights' => array('add_event' => true, 'edit_event'=>true, 'delete_event'=>true, 'print_listing'=>true, 'add_user'=>true, 'edit_user'=>true, 'delete_user'=>true, 'manage_rights'=>true, 'add_grp' => true, 'edit_grp' => true, 'delete_grp' => true));
-      $rightgroups = array($rightgroup0, $rightgroup1);
+      $right = 'admin';
       /* Logique */
-      if(!empty($id)){
-        return $rightgroups[$id];
-      }
-      else{
-        return $rightgroups;
-      }
+      return $right;
     }
 
-    /* Ajoute, modifie, ou supprime un groupe de droit */
-    public function setRightGroup($id){
+    public function setRight($id){
       /* code SQL */
     }
   }
