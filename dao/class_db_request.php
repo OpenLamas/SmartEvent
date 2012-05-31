@@ -127,8 +127,8 @@
 
 
       /* Sample */
-      $session0 = array('id'=>0, 'name' => 'Soutenances RT1', 'description' => '...', 'events' => array($this->getEvent('0'), $this->getEvent(1)));
-      $session1 = array('id'=>1, 'name' => 'Soutenances RT2', 'description' => '...', 'events' => array($this->getEvent(2), $this->getEvent(3)));
+      $session0 = array('id'=>0, 'name' => 'Soutenances RT1', 'description' => '...', 'events' => array($this->getEvent('0'), $this->getEvent(1)), 'nbMinParticipationEvenement' => 2);
+      $session1 = array('id'=>1, 'name' => 'Soutenances RT2', 'description' => '...', 'events' => array($this->getEvent(2), $this->getEvent(3)), 'nbMinParticipationEvenement' => 3);
       $sessions = array($session0, $session1);
       /* Logique */
       if($id != 'vide'){
