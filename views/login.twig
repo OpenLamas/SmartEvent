@@ -1,30 +1,24 @@
-{% extends 'layout.twig' %}
+{% extends 'body.twig' %}
     
-{% block body %}
-        </div><!--/row-fluid-->
-      </div><!--/container-fluid-->
-      <container>
-        <row>
-          {% if state|length > 0 %}
-            {% if state == 'wrong' %}
-            <div class="alert alert-error span4 offset4">Email/Mot de passe incorect</div>
-            {% elseif state == 'success' %}
-            <div class="alert alert-success span4 offset4">Identification réussie</div>
-            {% elseif state == 'noData' %}
-            <div class="alert alert-error span4 offset4">Vous devez renseigner tous les champs</div>
-            {% else %}
-            <div class="alert alert-error span4 offset4">{{ state }}</div>
-            {% endif %}
-          {% endif %}
-          <div class="span4 offset4">            
-            <form class="well form-inline" method="POST" action="login">
-              <input type="text" name="email" class="input-small" placeholder="Email">
-              <input type="password" name="password" class="input-small" placeholder="Mot de Passe">
-              <button type="submit" class="btn">Connexion</button>
-            </form>
-          </div>
-        </row>
-      </container>
-        <div class="container-fluid">
-          <div class="row-fluid">
+{% block content %}
+<div class="row">
+  {% if state|length > 0 %}
+    {% if state == 'wrong' %}
+    <div class="alert alert-error span4 offset4">Email/Mot de passe incorect</div>
+    {% elseif state == 'success' %}
+    <div class="alert alert-success span4 offset4">Identification réussie</div>
+    {% elseif state == 'noData' %}
+    <div class="alert alert-error span4 offset4">Vous devez renseigner tous les champs</div>
+    {% else %}
+    <div class="alert alert-error span4 offset4">{{ state }}</div>
+    {% endif %}
+  {% endif %}
+  <div class="span6 offset3">            
+    <form class="well form-inline" method="POST" action="login">
+      <input type="text" name="email" class="input-small" placeholder="Email">
+      <input type="password" name="password" class="input-small" placeholder="Mot de Passe">
+      <button type="submit" class="btn">Connexion</button>
+    </form>
+  </div>
+</div>
 {% endblock %}

@@ -7,13 +7,16 @@
     public function action(){
 
       $donnees = new db_request();  
-      $template = $this->twig->loadTemplate('home.twig');
+      
       
       if(!isset($_SESSION['login'])){
-        echo $template->render(array('cur_user' => array('login' => '')));
+        $template = $this->twig->loadTemplate('login.twig');
+        echo $template->render(array('cur_user' => array('login' => ''), 'state' => 'Vous devez être connecté pour voir cette page'));
+        exit;
       }
       else{
-       echo $template->render(array('cur_user' => $_SESSION));
+        $template = $this->twig->loadTemplate('home.twig');
+        echo $template->render(array('cur_user' => $_SESSION, 'sessions' => $donnees->getSession()));
       }
     }
   }

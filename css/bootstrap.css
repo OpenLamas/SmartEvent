@@ -119,6 +119,110 @@ textarea {
   vertical-align: top;
 }
 
+@font-face {
+  font-family: 'BitterRegular';
+  font-style: normal;
+  font-weight: normal;
+  src: url('Bitter-Regular-webfont.eot');
+  src: url('Bitter-Regular-webfont.eot?#iefix') format('embedded-opentype'), url('Bitter-Regular-webfont.woff') format('woff'), url('Bitter-Regular-webfont.ttf') format('truetype'), url('Bitter-Regular-webfont.svg#BitterRegular') format('svg');
+}
+
+@font-face {
+  font-family: 'BitterItalic';
+  font-style: normal;
+  font-weight: normal;
+  src: url('Bitter-Italic-webfont.eot');
+  src: url('Bitter-Italic-webfont.eot?#iefix') format('embedded-opentype'), url('Bitter-Italic-webfont.woff') format('woff'), url('Bitter-Italic-webfont.ttf') format('truetype'), url('Bitter-Italic-webfont.svg#BitterItalic') format('svg');
+}
+
+@font-face {
+  font-family: 'BitterBold';
+  font-style: normal;
+  font-weight: normal;
+  src: url('Bitter-Bold-webfont.eot');
+  src: url('Bitter-Bold-webfont.eot?#iefix') format('embedded-opentype'), url('Bitter-Bold-webfont.woff') format('woff'), url('Bitter-Bold-webfont.ttf') format('truetype'), url('Bitter-Bold-webfont.svg#BitterBold') format('svg');
+}
+
+@font-face {
+  font-family: 'LatoBlackItalic';
+  font-style: normal;
+  font-weight: normal;
+  src: url('Lato-BlaIta-webfont.eot');
+  src: url('Lato-BlaIta-webfont.eot?#iefix') format('embedded-opentype'), url('Lato-BlaIta-webfont.woff') format('woff'), url('Lato-BlaIta-webfont.ttf') format('truetype'), url('Lato-BlaIta-webfont.svg#LatoBlackItalic') format('svg');
+}
+
+@font-face {
+  font-family: 'LatoBlack';
+  font-style: normal;
+  font-weight: normal;
+  src: url('Lato-Bla-webfont.eot');
+  src: url('Lato-Bla-webfont.eot?#iefix') format('embedded-opentype'), url('Lato-Bla-webfont.woff') format('woff'), url('Lato-Bla-webfont.ttf') format('truetype'), url('Lato-Bla-webfont.svg#LatoBlack') format('svg');
+}
+
+@font-face {
+  font-family: 'LatoBoldItalic';
+  font-style: normal;
+  font-weight: normal;
+  src: url('Lato-BolIta-webfont.eot');
+  src: url('Lato-BolIta-webfont.eot?#iefix') format('embedded-opentype'), url('Lato-BolIta-webfont.woff') format('woff'), url('Lato-BolIta-webfont.ttf') format('truetype'), url('Lato-BolIta-webfont.svg#LatoBoldItalic') format('svg');
+}
+
+@font-face {
+  font-family: 'LatoBold';
+  font-style: normal;
+  font-weight: normal;
+  src: url('Lato-Bol-webfont.eot');
+  src: url('Lato-Bol-webfont.eot?#iefix') format('embedded-opentype'), url('Lato-Bol-webfont.woff') format('woff'), url('Lato-Bol-webfont.ttf') format('truetype'), url('Lato-Bol-webfont.svg#LatoBold') format('svg');
+}
+
+@font-face {
+  font-family: 'LatoItalic';
+  font-style: normal;
+  font-weight: normal;
+  src: url('Lato-RegIta-webfont.eot');
+  src: url('Lato-RegIta-webfont.eot?#iefix') format('embedded-opentype'), url('Lato-RegIta-webfont.woff') format('woff'), url('Lato-RegIta-webfont.ttf') format('truetype'), url('Lato-RegIta-webfont.svg#LatoItalic') format('svg');
+}
+
+@font-face {
+  font-family: 'LatoRegular';
+  font-style: normal;
+  font-weight: normal;
+  src: url('Lato-Reg-webfont.eot');
+  src: url('Lato-Reg-webfont.eot?#iefix') format('embedded-opentype'), url('Lato-Reg-webfont.woff') format('woff'), url('Lato-Reg-webfont.ttf') format('truetype'), url('Lato-Reg-webfont.svg#LatoRegular') format('svg');
+}
+
+@font-face {
+  font-family: 'LatoLightItalic';
+  font-style: normal;
+  font-weight: normal;
+  src: url('Lato-LigIta-webfont.eot');
+  src: url('Lato-LigIta-webfont.eot?#iefix') format('embedded-opentype'), url('Lato-LigIta-webfont.woff') format('woff'), url('Lato-LigIta-webfont.ttf') format('truetype'), url('Lato-LigIta-webfont.svg#LatoLightItalic') format('svg');
+}
+
+@font-face {
+  font-family: 'LatoLight';
+  font-style: normal;
+  font-weight: normal;
+  src: url('Lato-Lig-webfont.eot');
+  src: url('Lato-Lig-webfont.eot?#iefix') format('embedded-opentype'), url('Lato-Lig-webfont.woff') format('woff'), url('Lato-Lig-webfont.ttf') format('truetype'), url('Lato-Lig-webfont.svg#LatoLight') format('svg');
+}
+
+@font-face {
+  font-family: 'LatoHairlineItalic';
+  font-style: normal;
+  font-weight: normal;
+  src: url('Lato-HaiIta-webfont.eot');
+  src: url('Lato-HaiIta-webfont.eot?#iefix') format('embedded-opentype'), url('Lato-HaiIta-webfont.woff') format('woff'), url('Lato-HaiIta-webfont.ttf') format('truetype'), url('Lato-HaiIta-webfont.svg#LatoHairlineItalic') format('svg');
+}
+
+@font-face {
+  font-family: 'LatoHairline';
+  font-style: normal;
+  font-weight: normal;
+  src: url('Lato-Hai-webfont.eot');
+  src: url('Lato-Hai-webfont.eot?#iefix') format('embedded-opentype'), url('Lato-Hai-webfont.woff') format('woff'), url('Lato-Hai-webfont.ttf') format('truetype'), url('Lato-Hai-webfont.svg#LatoHairline') format('svg');
+}
+
 .clearfix {
   *zoom: 1;
 }
@@ -153,10 +257,11 @@ textarea {
 
 body {
   margin: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 13px;
   line-height: 18px;
   color: #333333;
+  background: #ffffff url(../img/tile.gif) repeat 0 0;
   background-color: #ffffff;
 }
 
@@ -418,7 +523,7 @@ a:hover {
 
 p {
   margin: 0 0 9px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 13px;
   line-height: 18px;
 }
@@ -762,7 +867,7 @@ input,
 button,
 select,
 textarea {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 label {
@@ -972,6 +1077,8 @@ select:focus {
 
 .input-xxlarge {
   width: 530px;
+  height: 30px;
+  vertical-align: -3px;
 }
 
 input[class*="span"],
@@ -3560,21 +3667,9 @@ input[type="submit"].btn.btn-mini {
   min-height: 40px;
   padding-right: 20px;
   padding-left: 20px;
-  background-color: #2c2c2c;
-  background-image: -moz-linear-gradient(top, #333333, #222222);
-  background-image: -ms-linear-gradient(top, #333333, #222222);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#333333), to(#222222));
-  background-image: -webkit-linear-gradient(top, #333333, #222222);
-  background-image: -o-linear-gradient(top, #333333, #222222);
-  background-image: linear-gradient(top, #333333, #222222);
-  background-repeat: repeat-x;
   -webkit-border-radius: 4px;
      -moz-border-radius: 4px;
           border-radius: 4px;
-  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#333333', endColorstr='#222222', GradientType=0);
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
-     -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
 }
 
 .navbar .container {
@@ -3610,11 +3705,11 @@ input[type="submit"].btn.btn-mini {
 }
 
 .navbar .navbar-link {
-  color: #999999;
+  color: #0088cc;
 }
 
 .navbar .navbar-link:hover {
-  color: #ffffff;
+  color: #005580;
 }
 
 .navbar .btn,
@@ -3680,7 +3775,7 @@ input[type="submit"].btn.btn-mini {
 
 .navbar-search .search-query {
   padding: 4px 9px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 13px;
   font-weight: normal;
   line-height: 1;
@@ -3769,10 +3864,14 @@ input[type="submit"].btn.btn-mini {
 .navbar .nav > li > a {
   float: none;
   padding: 9px 10px 11px;
+  font-size: 16px;
   line-height: 19px;
-  color: #999999;
+  color: #0088cc;
   text-decoration: none;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.navbar .nav > li > a > i {
+  vertical-align: -1px;
 }
 
 .navbar .btn {
@@ -3788,14 +3887,14 @@ input[type="submit"].btn.btn-mini {
 }
 
 .navbar .nav > li > a:hover {
-  color: #ffffff;
+  color: #005580;
   text-decoration: none;
   background-color: transparent;
 }
 
 .navbar .nav .active > a,
 .navbar .nav .active > a:hover {
-  color: #ffffff;
+  color: #005580;
   text-decoration: none;
   background-color: #222222;
 }
@@ -3810,7 +3909,7 @@ input[type="submit"].btn.btn-mini {
 }
 
 .navbar .nav.pull-right {
-  margin-right: 0;
+  margin-right: 10px;
   margin-left: 10px;
 }
 
@@ -4916,9 +5015,10 @@ a.badge:hover {
 }
 
 .hero-unit {
-  padding: 60px;
+  padding: 0;
+  margin-top: 20px;
   margin-bottom: 30px;
-  background-color: #eeeeee;
+  background-color: transparent;
   -webkit-border-radius: 6px;
      -moz-border-radius: 6px;
           border-radius: 6px;
@@ -4926,7 +5026,8 @@ a.badge:hover {
 
 .hero-unit h1 {
   margin-bottom: 0;
-  font-size: 60px;
+  font-family: BitterRegular, Georgia, "Times New Roman", Times, serif;
+  font-size: 80px;
   line-height: 1;
   letter-spacing: -1px;
   color: inherit;
@@ -4936,7 +5037,7 @@ a.badge:hover {
   font-size: 18px;
   font-weight: 200;
   line-height: 27px;
-  color: inherit;
+  color: #999999;
 }
 
 .pull-right {

@@ -1,18 +1,25 @@
 {% set cur_page = 'home' %}
 {% extends 'body.twig' %}
 {% block content %}
-
-<div class="span9">  
-
-  {% if cur_user.login|length > 0 %}
-    <div class="hero-unit">
-      <button id="close-hero-unit" class="close" data-dismiss="alert">&times;</button>
-      <h1>Bienvenue {{ [cur_user.firstname, cur_user.lastname]|join(' ')}} !</h1>
-      <p>Actuellement vous êtes inscrit à XXX évènements.</p>
-      <a class="btn btn-primary" href="events-register">Parcourir les évènements &raquo;</a>
-    </div>
-  {% endif %} 
-  <h2>TODO : Afficher le calendrier</h2>
+<div class="hero-unit">
+  <h1>Bienvenue,</h1>
+  <p>Actuellement vous êtes inscrit à XXX évènements.</p><br />
+</div>
+<div class="row">
+  <div class="span6">
+    <h2>Sessions</h2>
+    <ul class="unstyled">
+      {% for session in sessions %}
+      <li><a href="#">{{ session.name }} &raquo;</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="span6">
+    <h2>Prochains évenements</h2>
+    <ul class="unstyled">
+      {# Faire un for sur la liste des évenements auxquels un utilisateur est inscrit #}
+      <li><a href="#">...</a></li>
+    </ul>
+  </div>
 </div> 
-
 {% endblock %}
