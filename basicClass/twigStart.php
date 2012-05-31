@@ -27,6 +27,6 @@
     public function setVars(array $vars){
       $this->vars = $vars;
     }
-		
+
   }
 ?>
