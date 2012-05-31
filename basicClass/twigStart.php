@@ -1,7 +1,7 @@
 <?php 
   require_once('Twig/Autoloader.php');
 
-  class Controller{
+  abstract class Controller{
     protected $twig;
     protected $view_folder;
     protected $loader;
@@ -21,10 +21,12 @@
       $this->twig->addExtension(new Twig_Extension_Debug());
       $this->twig->addGlobal('cur_page', "");
       $this->twig->addGlobal('site_root', "/SmartEvent");
+
     }
 
     public function setVars(array $vars){
       $this->vars = $vars;
     }
+		
   }
 ?>
