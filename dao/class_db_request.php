@@ -9,7 +9,7 @@
       
       /* code SQL*/
       /* SELECT * FROM UTILISATEURS */
-      /* SELECT * FROM UTILISATEURS WHERE idUtilisateur=$id */
+      /* SELECT * FROM UTILISATEURS WHERE idUtilisateur='$id' */
       /* Sample */
       $user0 = array('id' => 0, 'firstname' => 'Jean', 'lastname'=> 'Moulin', 'login' => 'jeanMoul', 'mail' => 'jeanMoul@chut.com', 'grp_irl' => $this->getGroup(0), 'grp_right' => 5,'registered_count' => 69, 'rights' => $this->getRights(1));
       $user1 = array('id' => 1, 'firstname' => 'Pierre', 'lastname'=> 'Quiroule', 'login' => 'pierreQuir', 'mail' => 'pierreQuir@chut.com', 'grp_irl' => $this->getGroup(1), 'grp_right' => 1,'registered_count' => 69, 'rights' => $this->getRights(2));
@@ -34,7 +34,7 @@
     public function getPassword($email){
       
       /* code SQL */
-      /* SELECT mdpUtilisateur FROM UTILISATEURS where mailUtilisateur=$email */
+      /* SELECT mdpUtilisateur FROM UTILISATEURS where mailUtilisateur='$email' */
       return array('id' => 1,
                    'password' => '81dc9bdb52d04dc20036dbd8313ed055'); /* le password est 1234 */
     }   
@@ -44,7 +44,7 @@
     public function getEvent($id='vide'){
       /* code SQL */
       /* SELECT * FROM EVENEMENTS */
-      /* SELECT * FROM EVENEMENTS WHERE idEvenement=$id */
+      /* SELECT * FROM EVENEMENTS WHERE idEvenement='$id' */
       /* Sample */
       $event0 = array('id'=>0, 'name' => 'La fête de la patate', 'description' => 'C\'est le jour où toutes des patates de retrouvent et dansent jusqu\'au bout de la nuit !', 'placeLibre' => '12', 'creator' => $this->getUser(1), 'admin' =>  array( $this->getUser(1), $this->getUser(1)));
       $event1 = array('id'=>1, 'name' => 'Résolution dynamique du lien fort', 'description' => 'Gestion d\'un lien fort entre deux base de donnée avec mise à jour dynamique et gestion des exeptions', 'placeLibre' => '274', 'creator' => $this->getUser(1), 'admin' =>  array($this->getUser(1)));
@@ -69,7 +69,7 @@
     public function getSession($id='vide'){
       /* code SQL */
       /* SELECT * FROM SESSIONS */
-      /* SELECT * FROM SESSIONS WHERE idSession=$id */
+      /* SELECT * FROM SESSIONS WHERE idSession='$id' */
       /* Sample */
       $session0 = array('id'=>0, 'name' => 'Soutenances RT1', 'description' => '...', 'events' => array($this->getEvent('0'), $this->getEvent(1)));
       $session1 = array('id'=>1, 'name' => 'Soutenances RT2', 'description' => '...', 'events' => array($this->getEvent(2), $this->getEvent(3)));
@@ -92,7 +92,7 @@
     /* Renvoie le statut d'un utilisateur */
     public function getRights($id){      
       /* code SQL */
-      /* SELECT nomDroit FROM DROITS INNER JOIN UTILISATEURS ON refDroit=idDroit WHERE idUtilisateur=$id */
+      /* SELECT nomDroit FROM DROITS INNER JOIN UTILISATEURS ON refDroit=idDroit WHERE idUtilisateur='$id' */
       /* Sample */
       $right = 'admin';
       /* Logique */
