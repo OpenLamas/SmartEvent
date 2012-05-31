@@ -6,7 +6,7 @@
     
     public function action(){
       $donnees = new db_request();
-      if(isset($_SESSION['rights']['delete_user']) && $_SESSION['rights']['delete_user']){
+      if($_SESSION["right"]=="admin"){
         if(isset($_POST['tabUsers'])){       
           foreach($_POST['tabUsers'] as $i){
             $donnees->deleteUser($i);

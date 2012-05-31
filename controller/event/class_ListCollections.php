@@ -6,14 +6,20 @@
 
     public function action(){
 
-      $donnees = new db_request();  
-      $template = $this->twig->loadTemplate('register.twig');
-      
       if(!isset($_SESSION['login'])){
-        echo $template->render(array('cur_user' => array('login' => ''), 'collections' => $donnees->getSession()));
+        $template = $this->twig->loadTemplate('login.twig');
+        echo $template->render(array('cur_user' => array('login' => ''), 'state' => 'Vous devez être connecté pour voir cette page'));
+        exit;
       }
-      else{
-       echo $template->render(array('cur_user' => $_SESSION, 'sessions' => $donnees->getSession()));
+      elseif ($_SESSION["right"]=="utilisateur" || $_SESSION["right"]=="gestionnaire" || $_SESSION["right"]=="admin") {
+        $donnees = new db_request();  
+        $template = $this->twig->loadTemplate('register.twig');
+        echo $template->render(array('cur_user' => $_SESSION, 'sessions' => $donnees->getSession()));
+        exit;
+      }
+      else{        
+        header('Location: error-403');
+        exit;
       }
     }
   }

@@ -11,14 +11,15 @@
         echo $template->render(array('cur_user' => array('login' => ''), 'state' => 'Vous devez être connecté pour voir cette page'));
         exit;
       }
-      elseif (!$_SESSION["rights"]['add_user'] && !$_SESSION["rights"]['edit_user'] && !$_SESSION["rights"]['delete_user']) {
-        header('Location: error-403');
-        exit;
-      }
-      else{
+      elseif ($_SESSION["right"]=="admin") {
         $donnees = new db_request();
         $template = $this->twig->loadTemplate('users.twig');
-        echo $template->render(array('cur_user' => $donnees->getUser(1), 'users' => $donnees->getUser()));
+        echo $template->render(array('cur_user' => $_SESSION, 'users' => $donnees->getUser()));
+        exit;
+      }
+      else{        
+        header('Location: error-403');
+        exit;
       }      
     }
   }

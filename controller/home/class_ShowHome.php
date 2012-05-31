@@ -6,8 +6,7 @@
 
     public function action(){
 
-      $donnees = new db_request();  
-      
+      $donnees = new db_request();
       
       if(!isset($_SESSION['login'])){
         $template = $this->twig->loadTemplate('login.twig');
