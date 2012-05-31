@@ -11,8 +11,8 @@
             <div class="controls">
               <button class="btn btn-success"><i class="icon-ok"></i>Valider</button>
               <select>
-                {% for collection in collections %}
-                <option>{{ collection.name }}</option>
+                {% for session in sessions %}
+                <option>{{ session.name }}</option>
                 {% endfor %}
                 <option>Nouvelle session</option>
               </select>

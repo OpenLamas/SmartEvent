@@ -23,11 +23,11 @@
             </tr>
           </thead>
           <tbody>          
-            {% for collection in collections %}
-            <tr id="collection-{{ collection.id }}">
+            {% for session in sessions %}
+            <tr id="session-{{ session.id }}">
               <td><label class="checkbox inline"><input type="checkbox"/></label></td>
-              <td>{{ collection.name }}</td>
-              <td>{{ collection.description }}</td>
+              <td>{{ session.name }}</td>
+              <td>{{ session.description }}</td>
             </tr>
             {% endfor %}          
           </tbody>
