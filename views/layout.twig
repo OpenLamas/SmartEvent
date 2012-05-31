@@ -37,14 +37,19 @@
           </a>
           <ul class="nav nav-collapse">
             <li><a href="{{ site_root }}"><i class="icon-home icon-white"></i> Vue globale</a></li>
-            <li><a href="{{ site_root }}/events-manage"><i class="icon-certificate icon-white"></i> Gestion évenements</a></li>
+            <li class="dropdown" id="menuGestion">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#menuGestion"><i class="icon-list-alt icon-white"></i> Gestion <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="{{ site_root }}/events-manage"><i class="icon-calendar"></i> Evenements</a></li>
+                <li><a href="{{ site_root }}/users-manage"><i class="icon-user"></i> Utilisateurs</a></li>
+              </ul>
             <li><a href="{{ site_root }}/admin-config"><i class="icon-cog icon-white"></i> Administration</a></li>
           </ul>
           <ul class="nav pull-right nav-collapse">
             {% if cur_user.login|length > 0 %}
-            <li><a href="{{ site_root }}/disconnect">{{ [cur_user.firstname,cur_user.lastname]|join(' ') }}</a></li>
+            <li><a href="{{ site_root }}/disconnect"><i class="icon-off icon-white"></i> {{ [cur_user.firstname,cur_user.lastname]|join(' ') }}</a></li>
             {% endif %}
-            <li><a href="#">Aide</a></li>
+            <li><a href="#"><i class="icon-question-sign icon-white"></i> Aide</a></li>
           </ul>
         </div>
       </div>
@@ -60,5 +65,8 @@
     <script src="{{ site_root }}/js/inscription.js"></script>
     <script src="{{ site_root }}/js/gestion-utilisateur.js"></script>
     <script src="{{ site_root }}/js/gestion-event.js"></script>
+    <script type="text/javascript">
+      $('.dropdown-toggle').dropdown();
+    </script>
   </body>
 </html>

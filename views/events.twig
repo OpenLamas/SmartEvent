@@ -3,7 +3,7 @@
 {# TODO : Implémenter la sécurité #}
 {% block content %}
 {% if cur_user.right == "manager" or cur_user.right == "admin"%}
-  <div class="span9">
+  <div class="span12">
     <ul class="nav nav-tabs" id="myTab">
       <li class="active"><a data-toggle="tab" href="#collections">Sessions</a></li>
       <li><a data-toogle="tab" href="#evenements">Evenements</a></li>
@@ -13,13 +13,17 @@
       <div class="tab-pane active" id="collections">
         <a class="btn btn-primary" href="#">Ajouter</a>
         <a class="btn btn-warning" href="#">Modifier</a>
-        <a class="btn btn-danger" href="#">Supprimer</a>
-        <table class="table table-condensed">
+        <a class="btn btn-danger" href="#">Supprimer</a><br /><br />
+        <table class="table table-condensed well">
           <thead>
             <tr>
               <th><label class="checkbox inline"><input type="checkbox" id="checkboxAll"></label></th>
               <th>Nom</th>
               <th>Description</th>
+              <th>Date limite d'inscription</th>
+              <th>Date rappel par mail</th>
+              <th>Nb. d'inscriptions min./utilisateur</th>
+              <th>Nb/ d'inscriptions max./evenemts.</th>
             </tr>
           </thead>
           <tbody>          
@@ -28,13 +32,46 @@
               <td><label class="checkbox inline"><input type="checkbox"/></label></td>
               <td>{{ session.name }}</td>
               <td>{{ session.description }}</td>
+              <td>{{ session.dateLimiteInscription }}</td>
+              <td>{{ session.dateRappelMail }}
+              <td>{{ session.nbMinParticipationEvenement }}</td>
+              <td>{{ session.nbMaxInscritEvenement }}</td>
             </tr>
             {% endfor %}          
           </tbody>
         </table>
       </div>
       <div class="tab-pane" id="evenements">
-      <h2>TODO</h2>
+        <a class="btn btn-primary" href="#">Ajouter</a>
+        <a class="btn btn-warning" href="#">Modifier</a>
+        <a class="btn btn-danger" href="#">Supprimer</a>
+        <a class="btn btn-info" href="#">Imprimer la/les liste(s) d'émargement</a><br /><br />
+        <table class="table table-condensed well">
+          <thead>
+            <tr>
+              <th><label class="checkbox inline"><input type="checkbox" id="checkboxAll"></label></th>
+              <th>Nom</th>
+              <th>Description</th>
+              <th>Date</th>
+              <th>Heure début</th>
+              <th>Heure fin</th>
+              <th>Emplacement</th>
+            </tr>
+          </thead>
+          <tbody>          
+            {% for evenement in evenements %}
+            <tr id="evenement-{{ evenement.id }}">
+              <td><label class="checkbox inline"><input type="checkbox"/></label></td>
+              <td>{{ evenement.name }}</td>
+              <td>{{ evenement.description }}</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            {% endfor %}          
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

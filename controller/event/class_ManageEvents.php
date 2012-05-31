@@ -9,7 +9,7 @@
       $donnees = new db_request();
       $template = $this->twig->loadTemplate('events.twig');
 
-      echo $template->render(array('cur_user' => $donnees->getUser(1), 'events' => $donnees->getEvent(), 'sessions' => $donnees->getSession()));
+      echo $template->render(array('cur_user' => $donnees->getUser(1), 'events' => $donnees->getEvent(), 'sessions' => $donnees->getSession(), 'evenements' => $donnees->getEvent()));
     }
   }
 ?>
