@@ -26,10 +26,9 @@ CREATE TABLE EVENEMENTS (
   idEvenement SERIAL NOT NULL UNIQUE PRIMARY KEY,
   refSession INTEGER NOT NULL REFERENCES SESSIONS ON UPDATE CASCADE ON DELETE RESTRICT,
   nomEvenement VARCHAR(50) NOT NULL,
-  dateEvenement DATE NOT NULL,
   descEvenement TEXT,
-  heureDebutEvenement TIMESTAMP,
-  heureFinEvenement TIMESTAMP,
+  dateDebutEvenement TIMESTAMP,
+  dateFinEvenement TIMESTAMP,
   emplacementEvenement VARCHAR(50)
 );
 

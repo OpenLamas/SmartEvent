@@ -1,5 +1,5 @@
 <?php
-  require('class_pg_connect.php');
+  require('class_PostgreConnection.php');
   
   class db_request extends PostgreConnection{
     
@@ -180,5 +180,19 @@
         return $donnees;
       */
         return 69; 
+    }
+
+    public function getLastEvents($id){
+      /*Code de la methode final
+          $donnees;
+            
+            $req = $this->bdd->prepare('SELECT NomEvent, dateEvenement, heureDebutEvenement FROM EVENEMENTS INNER JOIN PARTICIPER ON idEvenement=idRefEvenement WHERE idRefUtilisateur = :idUser LIMIT 0,3 ORDER BY heureDebutEvenement ASC');
+            $req->bindValue(':idUser', $id, PDO::PARAM_INT);
+            $req->execute();
+            $donnees = $req->fetch();
+
+        return $donnees;
+        
+      */
     }
   }
