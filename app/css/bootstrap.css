@@ -1081,6 +1081,11 @@ select:focus {
   vertical-align: -3px;
 }
 
+.input-xxxlarge {
+  width: 600px;
+  height: 30px;
+}
+
 input[class*="span"],
 select[class*="span"],
 textarea[class*="span"],

@@ -8,14 +8,11 @@
 .sidebar-nav {
   padding: 9px 0;
 }
-/* Suppression de la marge tous les quatres éléments */
-.accordion-inner .span4:nth-child(4n){
-  margin-left: 0px;        
+
+#home-search {
+  margin-left:0px;
 }
-/* Fix temporaire pour aligner les events */
-.accordion-inner .event-header {
-  min-height:137px;
-}
+
 /* Correction des checkboxs inline dans les table-condensed*/
 .table-condensed td .checkbox {
   margin-top:-8px;
