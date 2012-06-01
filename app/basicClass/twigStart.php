@@ -20,7 +20,7 @@
       ));
       $this->twig->addExtension(new Twig_Extension_Debug());
       $this->twig->addGlobal('cur_page', "");
-      $this->twig->addGlobal('site_root', "/SmartEvent");
+      $this->twig->addGlobal('site_root', "/SmartEvent/app");
 
     }
 
