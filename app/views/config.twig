@@ -3,49 +3,46 @@
 {% block content %}
 {% if cur_user.right == 'admin' %}
 <div class="span9">
-  <ul class="nav nav-tabs" id="myTab">
-    <li class="active"><a data-toggle="tab" href="#config"><i class="icon-wrench"></i> Configuration</a></li>
-    <li><a data-toogle="tab" href="#sauvegardes"><i class="icon-hdd"></i> Sauvegardes</a></li>
-  </ul>
-
-  <div class="tab-content">
-    <div class="tab-pane active" id="config">
-      <form class="form-horizontal" method="POST" action="#">
-        <fieldset>
-          <legend>Serveur</legend>
-          <div class="control-group">
-            <label class="control-label" for="input_siteRoot">Racine du site</label>
-            <div class="controls">
-              <input type="text" class="input-xlarge" id="input_siteRoot" value="{{ site_root }}" />
-              <p class="help-block">monsite.com/events/ par ex.</p>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" for="input_sqlServer">Serveur SQL</label>
-            <div class="controls">
-              <input type="text" class="input-xlarge" id="input_sqlServer" />
-              <p class="help-block">localhost par ex.</p>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" for="input_sqlPort">Port SQL</label>
-            <div class="controls">
-              <input type="text" class="input-mini" id="input_sqlPort" />
-              <p class="help-block">3380 par ex.</p>
-            </div>
-          </div>
-          <div class="form-actions">
-            <button type="submit" class="btn btn-primary">Sauvegarder</button>
-            <button class="btn">Annuler</button>
-          </div>
-        </fieldset>
-      </form>
-    </div>
-    <div class="tab-pane" id="sauvegardes">
-      <a href="#" class="btn btn-success btn-large">Sauvegarder la base SQL</a>&nbsp;
-      <a href="#" class="btn btn-info btn-large">Restaurer la base SQL</a>
-    </div>
-  </div>
+  <form class="form-horizontal" method="POST" action="#">
+    <fieldset>
+      <legend>Application</legend>
+      <div class="control-group">
+        <label class="control-label" for="input_siteRoot">Domaines à filtrer</label>
+        <div class="controls">
+          <input type="text" class="input-xlarge" id="input_siteRoot" value="" />
+          <p class="help-block">@etu.mon-univ.com par ex.</p>
+        </div>
+    </fieldset>
+    <fieldset>
+      <legend>Serveur</legend>
+      <div class="control-group">
+        <label class="control-label" for="input_siteRoot">Racine du site</label>
+        <div class="controls">
+          <input type="text" class="input-xlarge" id="input_siteRoot" value="{{ site_root }}" />
+          <p class="help-block">monsite.com/events/ par ex.</p>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="input_sqlServer">Serveur SQL</label>
+        <div class="controls">
+          <input type="text" class="input-xlarge" id="input_sqlServer" />
+          <p class="help-block">localhost par ex.</p>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="input_sqlPort">Port SQL</label>
+        <div class="controls">
+          <input type="text" class="input-mini" id="input_sqlPort" />
+          <p class="help-block">3380 par ex.</p>
+        </div>
+      </div>
+      
+    </fieldset>    
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Sauvegarder</button>
+        <button class="btn">Annuler</button>
+      </div>
+  </form>
 </div>
 {% endif %}
 {% endblock %}
