@@ -6,7 +6,7 @@
   <div class="span9 offset1">
     <form method="POST" action="#" id="utilisateurs">
       <a class="btn btn-primary" href="#">Ajouter un utilisateur</a>   
-      <a class="btn btn-info" href="#">Promouvoir</a>   
+      <a class="btn btn-info" data-toggle="modal" href="#promoteModal">Promouvoir</a>   
       <a class="btn btn-danger" href="#">Supprimer</a><br /><br />
       {# <ul class="listTags">
         <li class="tag">A1 <i class=" icon-remove closeTag"></i></li>
@@ -38,5 +38,31 @@
     </form>
   </div>
 </div>
+{# MODAL PROMOTE ***************************************************************** #}
+<div class="modal hide" id="promoteModal">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>Promouvoir des utilisateurs</h3>
+  </div>
+  <div class="modal-body">
+    <form class="form-horizontal" method="POST" action="#">
+      <div class="control-group">
+        <label class="control-label" for="input_newRight">Nouveau droit</label>
+        <div class="controls">
+          <select id="input_newRight">
+            <option>Utilisateur</option>
+            <option>Gestionnaire</option>
+            <option>Administrateur</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal">Annuler</a>
+        <button type="submit" class="btn btn-primary">Promouvoir</button>
+      </div>
+    </form>    
+  </div>
+</div>
+{# FIN MODAL ************************************************************** #}
 {% endif %}
 {% endblock %}
