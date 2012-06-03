@@ -6,12 +6,20 @@ We are 3 students in Networking & Telecommunications and as a first year project
 
 ### Technology
 * HTML5/CSS/JS
+* LESS
 * PHP
 * MVC model
 
+### Setup
+####
+If your server has access to Internet, run  
+`git clone git://github.com/sikado/SmartEvent.git`  
+Or download the tarball  
+`wget https://github.com/sikado/SmartEvent/tarball/master`
+
 ### Third-party code that we use
-* Twig (See Twig/LICENSE) => twig.sensiolabs.org
-* Bootstrap (Apache License v2.0) => twitter.github.com/bootstrap/
+* Twig (See Twig/LICENSE) => http://twig.sensiolabs.org
+* Bootstrap (Apache License v2.0) => http://twitter.github.com/bootstrap/
 * JQuery (See jquery.org/license) => http://jquery.com/
 
 ### Contributors
