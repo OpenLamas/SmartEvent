@@ -5,7 +5,7 @@
 {% if cur_user.right == "gestionnaire" or cur_user.right == "admin"%}
 <div class="row">
   <div class="span6">
-    <a class="btn btn-primary" href="#">Ajouter une session</a>
+    <a class="btn btn-primary" data-toggle="modal" href="#addSessionModal">Ajouter une session</a>
     <a class="btn btn-danger" href="#">Supprimer</a><br /><br />
     <h5>Cliquez sur le nom d'une session pour voir/modifier ses détails</h5>
     <table class="table table-condensed well">
@@ -28,5 +28,61 @@
     </table>
   </div>
 </div>
+{# MODAL ***************************************************************** #}
+<div class="modal hide" id="addSessionModal">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>Ajouter une session</h3>
+  </div>
+  <div class="modal-body">
+    <form class="form-horizontal" method="POST" action="#">
+      <div class="control-group">
+        <label class="control-label" for="input_sessionName">Nom de la session</label>
+        <div class="controls">
+          <input type="text" class="input-xlarge" id="input_sessionName" value="" />
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="input_dest">Destinataires</label>
+        <div class="controls">
+          <input type="text" class="input-xlarge" id="input_dest" value="" />
+          <p class="help-block">Adresses mail séparés par des point-virgules.</p>
+          <a class="btn btn-info" href="#">Importer un fichier CSV</a>
+        </div>
+      </div>
+      <legend>Options supplémentaires</legend>
+      <div class="control-group">
+        <label class="control-label" for="input_sizeEvent">Maximum d'inscrits par évènements</label>
+        <div class="controls">
+          <input type="text" class="input-mini" id="input_sizeEvent" value="" />
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="input_minEvent">Minimum d'inscriptions</label>
+        <div class="controls">
+          <input type="text" class="input-mini" id="input_minEvent" />
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="input_dateExp">Date limite d'inscription</label>
+        <div class="controls">
+          <input type="text" class="input-large" id="input_dateExp" />
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="input_dateMail">Date du rappel par mail</label>
+        <div class="controls">
+          <input type="text" class="input-large" id="input_dateMail" />
+        </div>
+      </div> 
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="btn" data-dismiss="modal">Annuler</a>
+      <button type="submit" class="btn btn-primary">Ajouter</button>
+    </div>
+    </form>    
+  </div>
+</div>
+{# FIN MODAL ************************************************************** #}
 {% endif %}
 {% endblock %}
