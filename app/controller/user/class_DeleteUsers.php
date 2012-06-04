@@ -6,10 +6,10 @@
     
     public function action(){
       $donnees = new db_request();
-      if($_SESSION["right"]=="admin"){
+      if($_SESSION["right"]=='admin'){
         if(isset($_POST['tabUsers'])){       
           foreach($_POST['tabUsers'] as $i){
-            $donnees->deleteUser($i);
+            $donnees->setUser($i);
           }
           echo "ok";
           exit;

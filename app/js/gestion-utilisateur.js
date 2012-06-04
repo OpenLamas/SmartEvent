@@ -74,7 +74,7 @@ $(document).ready(function () {
         }
       
         else{
-          alert('Vous n\'avaez pas le droit de supprimer des utilisateurs');
+          alert('Vous n\'avez pas le droit de supprimer des utilisateurs');
         }
       });
     }
