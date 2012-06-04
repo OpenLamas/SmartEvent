@@ -1,0 +1,13 @@
+{% extends 'body.twig' %}
+    
+{% block content %}
+<div class="row">
+  <div class="span5 offset3">            
+    <form class="well form-inline" method="POST" action="signin">
+      <input type="text" name="email" class="input-small" placeholder="Email">
+      <input type="password" name="password" class="input-small" placeholder="Mot de Passe">
+      <button type="submit" class="btn">S'inscrire</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
