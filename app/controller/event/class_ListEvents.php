@@ -16,7 +16,7 @@
       elseif ($_SESSION["right"]=="GESTIONNAIRE" || $_SESSION["right"]=="ADMIN") {
         $donnees = new db_request();
         $template = $this->twig->loadTemplate('listevents.twig');
-        echo $template->render(array('cur_user' => $_SESSION, 'session' => $donnees->getSession($this->vars['idSession']), 'events' => $donnees->getEventsFromSession($this->vars['idSession'])));
+        echo $template->render(array('cur_user' => $_SESSION, 'session' => $donnees->getSession($this->vars['idSession']), 'events' => $donnees->getEventsFromSessionWithNbInscrit($this->vars['idSession'])));
         exit;
       }
       else{        

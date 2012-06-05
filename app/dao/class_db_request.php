@@ -66,12 +66,51 @@
         return $donnees;
     }
 
+    /* Renvoie un/des évenement(s) avec leur nombre d'inscrits */
+    public function getEventWithNbInscrit($id='vide'){
+      // Code de la methode final
+          $donnees;
+
+          if($id != 'vide'){
+            $req = $this->bdd->prepare('SELECT idEvenement,refSession,nomEvenement,descEvenement,dateDebutEvenement,dateFinEvenement,emplacementEvenement, COUNT(*) AS nbInscrit FROM EVENEMENTS INNER JOIN PARTICIPER ON PARTICIPER.idRefEvenement = EVENEMENTS.idEvenement WHERE idEvenement= :idEvent GROUP BY idEvenement,refSession,nomEvenement,descEvenement,dateDebutEvenement,dateFinEvenement,emplacementEvenement;');
+            $req->bindValue(':idEvent', $id, PDO::PARAM_INT);
+            $req->execute();
+            $donnees = $req->fetch();
+          }
+
+          else{
+            $req = $this->bdd->query('SELECT idEvenement,refSession,nomEvenement,descEvenement,dateDebutEvenement,dateFinEvenement,emplacementEvenement, COUNT(*) AS nbInscrit FROM EVENEMENTS INNER JOIN PARTICIPER ON PARTICIPER.idRefEvenement = EVENEMENTS.idEvenement GROUP BY idEvenement,refSession,nomEvenement,descEvenement,dateDebutEvenement,dateFinEvenement,emplacementEvenement');
+            $donnees = array();
+            while($champs = $req->fetch()){
+            array_push($donnees, $champs);
+            }
+          }
+
+        return $donnees;
+    }
+
     /* Renvoie tout les évènements d'une session */
     public function getEventsFromSession($id){
       // Code de la methode final
           $donnees;
 
           $req = $this->bdd->prepare('SELECT idEvenement,refSession,nomEvenement,descEvenement,dateDebutEvenement,dateFinEvenement,emplacementEvenement FROM EVENEMENTS WHERE refSession = :idSession');
+          $req->bindValue(':idSession', $id, PDO::PARAM_INT);
+          $req->execute();
+          $donnees = array();
+          while($champs = $req->fetch()){
+            array_push($donnees, $champs);
+          }
+
+        return $donnees;
+    }
+
+    /* Renvoie tout les évènements d'une session avec leur nombre d'inscrits */
+    public function getEventsFromSessionWithNbInscrit($id){
+      // Code de la methode final
+          $donnees;
+
+          $req = $this->bdd->prepare('SELECT idEvenement,refSession,nomEvenement,descEvenement,dateDebutEvenement,dateFinEvenement,emplacementEvenement, COUNT(*) AS nbInscrit FROM EVENEMENTS INNER JOIN PARTICIPER ON PARTICIPER.idRefEvenement = EVENEMENTS.idEvenement WHERE refSession = :idSession GROUP BY idEvenement,refSession,nomEvenement,descEvenement,dateDebutEvenement,dateFinEvenement,emplacementEvenement');
           $req->bindValue(':idSession', $id, PDO::PARAM_INT);
           $req->execute();
           $donnees = array();
@@ -110,6 +149,21 @@
         return $donnees;
     }
 
+    public function getSessionPlace($id='vide'){
+      $donnees;
+      if($id != 'vide'){
+
+      }
+
+      else{
+        $req = $this->bdd->query('SELECT idSession,nbMinParticipationEvenement,COUNT(*) FROM SESSIONS INNER JOIN EVENEMENTS ON RefSession=IdSession INNER JOIN PARTICIPER ON idEvenement=idRefEvenement WHERE PARTICIPER.IdRefUtilisateur=2 OR IdRefUtilisateur NOT IN (SELECT IdRefUtilisateur FROM PARTICIPER) GROUP BY idSession,nbMinParticipationEvenement');
+        $donnees = array();
+        while($champs = $req->fetch()){
+          array_push($donnees, $champs);
+        }
+      }
+
+    }
     /* Ajoute, modifie, ou supprime une collection d'évenements */
     public function setSession($id){
       /* code SQL */
@@ -158,5 +212,14 @@
           }
 
         return $donnees;
+    }
+
+    public function getRegisteredEventPerSession($idUser, $idSession){
+      $donnees;
+      $req = $this->bdd->prepare('SELECT COUNT(*) FROM EVENEMENTS INNER JOIN SESSIONS ON IdSession = RefSession INNER JOIN PARTICIPER ON idEvenement=idRefEvenement WHERE idRefUtilisateur = :idUser AND idSession = :idSession');
+      $req->bindValue(':idUser', $idUser, PDO::PARAM_INT);
+      $req->bindValue(':idSession', $idSession, PDO::PARAM_INT);
+      $req->execute();
+      $donnees = $req->fetch();
     }
   }
