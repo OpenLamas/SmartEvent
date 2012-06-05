@@ -1,7 +1,9 @@
 {% extends 'body.twig' %}
 {% block content %}
-{% for event in events %} 
-<div class="span4">
+<div class="row">
+<div class="span12"><h1>{{ session.nomsession }}</h1></div>
+{% for event in events %}
+<div class="span4 well">
   <div class="event-header">
     <h2>{{ event.nomevenement }}</h2>
     <h4><span class="badge badge-inverse">{{ session.nbmaxinscritevenement - event.nbinscrit }} places libres</span></h4>
@@ -14,4 +16,5 @@
   <div class="ajaxCont"></div>
 </div><!--/span4 data-toggle="modal"-->
 {% endfor %}
+</div>
 {% endblock %}
