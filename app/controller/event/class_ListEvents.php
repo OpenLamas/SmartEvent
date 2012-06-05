@@ -8,12 +8,20 @@
 
       $donnees = new db_request();  
       $template = $this->twig->loadTemplate('listevents.twig');
-      
       if(!isset($_SESSION['login'])){
-        echo $template->render(array('cur_user' => array('login' => ''), 'events' => $donnees->getEvent()));
+        $template = $this->twig->loadTemplate('login.twig');
+        echo $template->render(array('cur_user' => array('login' => ''), 'state' => 'Vous devez être connecté pour voir cette page'));
+        exit;
       }
-      else{
-       echo $template->render(array('cur_user' => $_SESSION, 'events' => $donnees->getEvent()));
+      elseif ($_SESSION["right"]=="GESTIONNAIRE" || $_SESSION["right"]=="ADMIN") {
+        $donnees = new db_request();
+        $template = $this->twig->loadTemplate('listevents.twig');
+        echo $template->render(array('cur_user' => $_SESSION, 'session' => $donnees->getSession($this->vars['idSession']), 'events' => $donnees->getEventsFromSession($this->vars['idSession'])));
+        exit;
+      }
+      else{        
+        header('Location: error-403');
+        exit;
       }
     }
   }
