@@ -138,6 +138,21 @@
       }*/
     }
 
+    public function getSessionPlace($id='vide'){
+      $donnees;
+      if($id != 'vide'){
+
+      }
+
+      else{
+        $req = $this->bdd->query('SELECT idSession,nbMinParticipationEvenement,COUNT(*) FROM SESSIONS INNER JOIN EVENEMENTS ON RefSession=IdSession INNER JOIN PARTICIPER ON idEvenement=idRefEvenement WHERE PARTICIPER.IdRefUtilisateur=2 OR IdRefUtilisateur NOT IN (SELECT IdRefUtilisateur FROM PARTICIPER) GROUP BY idSession,nbMinParticipationEvenement');
+        $donnees = array();
+        while($champs = $req->fetch()){
+          array_push($donnees, $champs);
+        }
+      }
+
+    }
     /* Ajoute, modifie, ou supprime une collection d'évenements */
     public function setSession($id){
       /* code SQL */
@@ -189,5 +204,14 @@
             $donnees = $req->fetch();
 
         return $donnees;
+    }
+
+    public function getRegisteredEventPerSession($idUser, $idSession){
+      $donnees;
+      $req = $this->bdd->prepare('SELECT COUNT(*) FROM EVENEMENTS INNER JOIN SESSIONS ON IdSession = RefSession INNER JOIN PARTICIPER ON idEvenement=idRefEvenement WHERE idRefUtilisateur = :idUser AND idSession = :idSession');
+      $req->bindValue(':idUser', $idUser, PDO::PARAM_INT);
+      $req->bindValue(':idSession', $idSession, PDO::PARAM_INT);
+      $req->execute();
+      $donnees = $req->fetch();
     }
   }
