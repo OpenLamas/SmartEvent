@@ -1,7 +1,7 @@
 {% set cur_page = 'users' %}
 {% extends 'body.twig' %}
 {% block content %}
-{% if cur_user.right == "admin" %}
+{% if cur_user.right == "ADMIN" %}
 <div class="row">
   <div class="span9 offset1">
     <form method="POST" action="#" id="utilisateurs">
@@ -25,11 +25,11 @@
         </thead>
         <tbody>          
           {% for user in users %}
-          <tr id="user-{{ user.id }}">
+          <tr id="user-{{ user.idutilisateur }}">
             <td><label class="checkbox inline"><input type="checkbox"/></label></td>
-            <td>{{ user.firstname }}</td>
-            <td>{{ user.lastname }}</td>
-            <td>{{ user.mail }}</td>
+            <td>{{ user.prenomutilisateur }}</td>
+            <td>{{ user.nomutilisateur }}</td>
+            <td>{{ user.mailutilisateur }}</td>
             <td>{{ user.right }}</td>
           </tr>
           {% endfor %}          

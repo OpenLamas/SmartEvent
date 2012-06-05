@@ -10,14 +10,15 @@
           $donnees;
 
           if(!empty($id)){
-            $req = $this->bdd->prepare('SELECT idUtilisateur,nomUtilisateur,prenomUtilisateur,mailUtilisateur FROM UTILISATEURS WHERE idUtilisateur = :idUser');
+            $req = $this->bdd->prepare('SELECT idUtilisateur,nomUtilisateur,prenomUtilisateur,mailUtilisateur,mailUtilisateur AS login,nomDroit AS right FROM UTILISATEURS INNER JOIN DROITS ON RefDroit=IdDroit WHERE idUtilisateur = :idUser');
             $req->bindValue(':idUser', $id, PDO::PARAM_INT);
             $req->execute();
             $donnees = $req->fetch();
           }
 
           else{
-            $req = $this->bdd->query('SELECT idUtilisateur,refDroit,nomUtilisateur,prenomUtilisateur,mailUtilisateur,mdpUtilisateur FROM UTILISATEURS');
+            $req = $this->bdd->query('SELECT idUtilisateur,refDroit,nomUtilisateur,prenomUtilisateur,mailUtilisateur,mdpUtilisateur,nomDroit AS right FROM UTILISATEURS INNER JOIN DROITS ON RefDroit=IdDroit');
+            $donnees = array();
             while($champs = $req->fetch()){
             array_push($donnees, $champs);
             }

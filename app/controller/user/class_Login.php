@@ -17,8 +17,6 @@
             $tmpUser = $donnees->getPassword(addslashes($_POST['email']));
             if($tmpUser['mdputilisateur'] == md5(addslashes($_POST['password']))){
               $_SESSION = $donnees->getUser($tmpUser['idutilisateur']);
-              $_SESSION['login'] = $_SESSION['mailutilisateur'];
-              $_SESSION['right'] = $donnees->getRight($_SESSION['idutilisateur'])['nomdroit'];
               $state = 'success';
             } else {
               $state = 'wrong';
