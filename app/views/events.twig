@@ -1,6 +1,5 @@
 {% set cur_page = 'manageevents' %}
 {% extends 'body.twig' %}
-{# TODO : Implémenter la sécurité #}
 {% block content %}
 {% if cur_user.right == "GESTIONNAIRE" or cur_user.right == "ADMIN"%}
 <div class="row">
@@ -46,8 +45,6 @@
         <label class="control-label" for="input_dest">Destinataires</label>
         <div class="controls">
           <input type="text" class="input-xlarge" id="input_dest" value="" />
-          <p class="help-block">Adresses mail séparés par des point-virgules.</p>
-          <a class="btn btn-info" href="#">Importer un fichier CSV</a>
         </div>
       </div>
       <legend>Options supplémentaires</legend>
