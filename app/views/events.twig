@@ -2,7 +2,7 @@
 {% extends 'body.twig' %}
 {# TODO : Implémenter la sécurité #}
 {% block content %}
-{% if cur_user.right == "gestionnaire" or cur_user.right == "admin"%}
+{% if cur_user.right == "GESTIONNAIRE" or cur_user.right == "ADMIN"%}
 <div class="row">
   <div class="span6">
     <a class="btn btn-primary" data-toggle="modal" href="#addSessionModal">Ajouter une session</a>
@@ -18,9 +18,9 @@
       </thead>
       <tbody>          
         {% for session in sessions %}
-        <tr id="session-{{ session.id }}">
+        <tr id="session-{{ session.idsession }}">
           <td><label class="checkbox inline"><input type="checkbox"/></label></td>
-          <td><a href="#">{{ session.name }}</a></td>
+          <td><a href="#">{{ session.nomsession }}</a></td>
           <td><a href="#">Voir &raquo;</a></td>
         </tr>
         {% endfor %}          

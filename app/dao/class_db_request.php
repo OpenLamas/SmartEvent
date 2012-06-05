@@ -64,7 +64,7 @@
       // Code de la methode final
           $donnees;
 
-          if(!empty($id)){
+          if($id != 'vide'){
             $req = $this->bdd->prepare('SELECT idEvenement,refSession,nomEvenement,descEvenement,dateDebutEvenement,dateFinEvenement,emplacementEvenement FROM EVENEMENTS WHERE idEvenement = :idEvent');
             $req->bindValue(':idEvent', $id, PDO::PARAM_INT);
             $req->execute();
@@ -73,6 +73,7 @@
 
           else{
             $req = $this->bdd->query('SELECT idEvenement,refSession,nomEvenement,descEvenement,dateDebutEvenement,dateFinEvenement,emplacementEvenement FROM EVENEMENTS');
+            $donnees = array();
             while($champs = $req->fetch()){
             array_push($donnees, $champs);
             }

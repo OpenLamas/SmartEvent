@@ -11,7 +11,7 @@
         echo $template->render(array('cur_user' => array('login' => ''), 'state' => 'Vous devez être connecté pour voir cette page'));
         exit;
       }
-      elseif ($_SESSION["right"]=="gestionnaire" || $_SESSION["right"]=="admin") {
+      elseif ($_SESSION["right"]=="GESTIONNAIRE" || $_SESSION["right"]=="ADMIN") {
         $donnees = new db_request();
         $template = $this->twig->loadTemplate('events.twig');
         echo $template->render(array('cur_user' => $_SESSION, 'sessions' => $donnees->getSession(), 'evenements' => $donnees->getEvent()));
