@@ -11,20 +11,26 @@
   <div class="span6">
     <h2>Sessions</h2>
     <ul class="unstyled">
+      {% if sessions|length > 0 %}
       {% for session in sessions %}
       <li><a href="{{ site_root }}/session-{{ session.idsession }}-list">{{ session.nomsession }} ({# {{ session.eventInscrit }} #}xx / {{ session.nbminparticipationevenement }}) &raquo;</a></li>
-  {% endfor %}
+      {% endfor %}
+      {% else %}
+      <li>Aucune session.</li>
+      {% endif %}  
     </ul>
   </div>
   <div class="span6">
     <h2>Prochains évenements</h2>
     <ul class="unstyled">
-      {# Faire un for sur la liste des évenements auxquels un utilisateur est inscrit #}
-
+      {% if lastevent|length > 0 %}
       {% for levent in lastevent %}
-        <li><a href="#">{{ levent.datedebutevenement|truncate(11,true)|date("d M") }} - {{ levent.nomevenement }}</a></li>
+      <li><a href="#">{{ levent.datedebutevenement|truncate(11,true)|date("d M") }} - {{ levent.nomevenement }}</a></li>
       {% endfor %}
-      <li><a href="#">Voir tout &raquo;</a></li>
+      <li><a href="#">Voir tout &raquo;</a></li>      
+      {% else %}
+      <li>Vous n'êtes inscrit à aucun évènement.</li>
+      {% endif %}
     </ul>
   </div>
 </div> 
