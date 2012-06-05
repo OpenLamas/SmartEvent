@@ -11,10 +11,9 @@
   <div class="span6">
     <h2>Sessions</h2>
     <ul class="unstyled">
-      {{ dump(sessions)}}
       {% for session in sessions %}
-      <li><a href="#">{{ session.nomsession }} ({# {{ session.eventInscrit }} #} / {{ session.nbminparticipationevenement }}) &raquo;</a></li>
-      {% endfor %}
+      <li><a href="{{ site_root }}/session-{{ session.idsession }}-list">{{ session.nomsession }} ({# {{ session.eventInscrit }} #}xx / {{ session.nbminparticipationevenement }}) &raquo;</a></li>
+  {% endfor %}
     </ul>
   </div>
   <div class="span6">
