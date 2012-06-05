@@ -5,12 +5,12 @@
     public function __construct(){
       // $host = '';
       // $dbname = '';
-      $login = 'dev';
-      $password = 'ku67j8';
+      $login = 'projetRT1';
+      $password = 'projetRT1';
 
       try{
         $pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
-        $this->bdd = new PDO('pgsql:host=178.32.211.21;dbname=smartevent', $login, $password, $pdo_options);
+        $this->bdd = new PDO('pgsql:host=198.245.60.178;dbname=smartevent', $login, $password, $pdo_options);
       }
 
       catch(Exception $e){
