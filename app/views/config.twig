@@ -1,7 +1,7 @@
 {% set cur_page = 'config' %}
 {% extends 'body.twig' %}
 {% block content %}
-{% if cur_user.right == 'admin' %}
+{% if cur_user.right == 'ADMIN' %}
 <div class="span9">
   <form class="form-horizontal" method="POST" action="#">
     <fieldset>
