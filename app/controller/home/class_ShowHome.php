@@ -14,8 +14,9 @@
         exit;
       }
       else{
+        $nbEvent = $donnees->getNbEventRegistered($_SESSION['idutilisateur']);
         $template = $this->twig->loadTemplate('home.twig');
-        echo $template->render(array('cur_user' => $_SESSION, 'sessions' => $donnees->getSession(), 'totalRegisteredCount' => $donnees->getNbEventRegistered($_SESSION['idutilisateur'])['count'], 'lastevent' => $donnees->getLastEvents($_SESSION['idutilisateur'])));
+        echo $template->render(array('cur_user' => $_SESSION, 'sessions' => $donnees->getSession(), 'totalRegisteredCount' => $nbEvent['count'], 'lastevent' => $donnees->getLastEvents($_SESSION['idutilisateur'])));
       }
     }
   }
