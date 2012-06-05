@@ -6,7 +6,7 @@
     
     public function action(){
       $donnees = new db_request();
-      if($_SESSION["right"]=='admin'){
+      if($_SESSION["right"]=='ADMIN'){
         if(isset($_POST['tabUsers'])){       
           foreach($_POST['tabUsers'] as $i){
             $donnees->setUser($i);
