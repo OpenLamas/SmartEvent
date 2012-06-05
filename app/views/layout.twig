@@ -39,10 +39,10 @@
           <ul class="nav nav-collapse">
             <li><a href="{{ site_root }}"><i class="icon-home icon-white"></i> Vue globale</a></li>
             {% if cur_user.right is defined %}
-            {% if cur_user.right == "gestionnaire" or cur_user.right == "admin" %}
+            {% if cur_user.right == "GESTIONNAIRE" or cur_user.right == "ADMIN" %}
             <li><a href="{{ site_root }}/events-manage"><i class="icon-calendar icon-white"></i> Gestion des évènements</a></li>
             {% endif %}
-            {% if cur_user.right == "admin" %}
+            {% if cur_user.right == "ADMIN" %}
             <li class="dropdown" id="menuAdmin">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#menuAdmin"><i class="icon-list-alt icon-white"></i> Administration <b class="caret"></b></a>
               <ul class="dropdown-menu">                

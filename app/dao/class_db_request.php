@@ -10,7 +10,7 @@
           $donnees;
 
           if(!empty($id)){
-            $req = $this->bdd->prepare('SELECT idUtilisateur,refDroit,nomUtilisateur,prenomUtilisateur,mailUtilisateur,mdpUtilisateur FROM UTILISATEURS WHERE idUtilisateur = :idUser');
+            $req = $this->bdd->prepare('SELECT idUtilisateur,nomUtilisateur,prenomUtilisateur,mailUtilisateur FROM UTILISATEURS WHERE idUtilisateur = :idUser');
             $req->bindValue(':idUser', $id, PDO::PARAM_INT);
             $req->execute();
             $donnees = $req->fetch();
