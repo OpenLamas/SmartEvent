@@ -15,8 +15,9 @@
           $donnees = new db_request();
           if(isset($_POST['email']) && isset($_POST['password'])){
             $tmpUser = $donnees->getPassword(addslashes($_POST['email']));
-            if($tmpUser['password'] == md5(addslashes($_POST['password']))){
-              $_SESSION = $donnees->getUser($tmpUser['id']);
+            if($tmpUser['mdputilisateur'] == md5(addslashes($_POST['password']))){
+              $_SESSION = $donnees->getUser($tmpUser['idutilisateur']);
+              $_SESSION['login'] = $_SESSION['mailutilisateur'];
               $state = 'success';
             } else {
               $state = 'wrong';

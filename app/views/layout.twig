@@ -56,7 +56,7 @@
           </ul>
           <ul class="nav pull-right nav-collapse">
             {% if cur_user.login|length > 0 %}
-            <li><a href="{{ site_root }}/disconnect"><i class="icon-off icon-white"></i> {{ [cur_user.firstname,cur_user.lastname]|join(' ') }}</a></li>
+            <li><a href="{{ site_root }}/disconnect"><i class="icon-off icon-white"></i> {{ [cur_user.nomutilisateur,cur_user.prenomutilisateur]|join(' ') }}</a></li>
             {% endif %}
             <li><a href="#"><i class="icon-question-sign icon-white"></i> Aide</a></li>
           </ul>
