@@ -221,5 +221,6 @@
       $req->bindValue(':idSession', $idSession, PDO::PARAM_INT);
       $req->execute();
       $donnees = $req->fetch();
+      return $donnees;
     }
   }

@@ -18,9 +18,10 @@
         $template = $this->twig->loadTemplate('home.twig');
         // $sessions = $donnees->getSessionPlace();
         $sessions = $donnees->getSession();
-        /* for($i=0;$i<count($sessions);$i++) {
-          $sessions[$i]['eventInscrit'] = $donnees->getRegisteredEventPerSession($_SESSION['idutilisateur'], $sessions[$i]['idsession']);
-        }*/
+        for($i=0;$i<count($sessions);$i++) {
+          $nbReg = $donnees->getRegisteredEventPerSession($_SESSION['idutilisateur'], $sessions[$i]['idsession']);
+          $sessions[$i]['eventInscrit'] = $nbReg['count'];
+        }
         echo $template->render(array('cur_user' => $_SESSION, 'sessions' => $sessions, 'totalRegisteredCount' => $nbEvent['count'], 'lastevent' => $donnees->getLastEvents($_SESSION['idutilisateur'])));
       }
     }
