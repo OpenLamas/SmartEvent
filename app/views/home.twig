@@ -20,7 +20,10 @@
     <h2>Prochains évenements</h2>
     <ul class="unstyled">
       {# Faire un for sur la liste des évenements auxquels un utilisateur est inscrit #}
-      <li><a href="#">...</a></li>
+
+      {% for levent in lastevent %}
+        <li><a href="#">{{ levent.datedebutevenement|truncate(11,true)|date("d M") }} - {{ levent.nomevenement }}</a></li>
+      {% endfor %}
       <li><a href="#">Voir tout &raquo;</a></li>
     </ul>
   </div>

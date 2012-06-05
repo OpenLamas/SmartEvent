@@ -148,10 +148,14 @@
     public function getLastEvents($id){
       // Code de la methode final
           $donnees;
+
             $req = $this->bdd->prepare('SELECT NomEvenement, dateDebutEvenement, emplacementEvenement FROM EVENEMENTS INNER JOIN PARTICIPER ON idEvenement=idRefEvenement WHERE idRefUtilisateur = :idUser ORDER BY dateDebutEvenement LIMIT 3');
             $req->bindValue(':idUser', $id, PDO::PARAM_INT);
             $req->execute();
-            $donnees = $req->fetch();
+            $donnees = array();
+            while($champs = $req->fetch()){
+            array_push($donnees, $champs);
+          }
 
         return $donnees;
     }
