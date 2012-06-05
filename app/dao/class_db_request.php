@@ -66,12 +66,51 @@
         return $donnees;
     }
 
+    /* Renvoie un/des évenement(s) avec leur nombre d'inscrits */
+    public function getEventWithNbInscrit($id='vide'){
+      // Code de la methode final
+          $donnees;
+
+          if($id != 'vide'){
+            $req = $this->bdd->prepare('SELECT idEvenement,refSession,nomEvenement,descEvenement,dateDebutEvenement,dateFinEvenement,emplacementEvenement, COUNT(*) AS nbInscrit FROM EVENEMENTS INNER JOIN PARTICIPER ON PARTICIPER.idRefEvenement = EVENEMENTS.idEvenement WHERE idEvenement= :idEvent GROUP BY idEvenement,refSession,nomEvenement,descEvenement,dateDebutEvenement,dateFinEvenement,emplacementEvenement;');
+            $req->bindValue(':idEvent', $id, PDO::PARAM_INT);
+            $req->execute();
+            $donnees = $req->fetch();
+          }
+
+          else{
+            $req = $this->bdd->query('SELECT idEvenement,refSession,nomEvenement,descEvenement,dateDebutEvenement,dateFinEvenement,emplacementEvenement, COUNT(*) AS nbInscrit FROM EVENEMENTS INNER JOIN PARTICIPER ON PARTICIPER.idRefEvenement = EVENEMENTS.idEvenement GROUP BY idEvenement,refSession,nomEvenement,descEvenement,dateDebutEvenement,dateFinEvenement,emplacementEvenement');
+            $donnees = array();
+            while($champs = $req->fetch()){
+            array_push($donnees, $champs);
+            }
+          }
+
+        return $donnees;
+    }
+
     /* Renvoie tout les évènements d'une session */
     public function getEventsFromSession($id){
       // Code de la methode final
           $donnees;
 
           $req = $this->bdd->prepare('SELECT idEvenement,refSession,nomEvenement,descEvenement,dateDebutEvenement,dateFinEvenement,emplacementEvenement FROM EVENEMENTS WHERE refSession = :idSession');
+          $req->bindValue(':idSession', $id, PDO::PARAM_INT);
+          $req->execute();
+          $donnees = array();
+          while($champs = $req->fetch()){
+            array_push($donnees, $champs);
+          }
+
+        return $donnees;
+    }
+
+    /* Renvoie tout les évènements d'une session avec leur nombre d'inscrits */
+    public function getEventsFromSessionWithNbInscrit($id){
+      // Code de la methode final
+          $donnees;
+
+          $req = $this->bdd->prepare('SELECT idEvenement,refSession,nomEvenement,descEvenement,dateDebutEvenement,dateFinEvenement,emplacementEvenement, COUNT(*) AS nbInscrit FROM EVENEMENTS INNER JOIN PARTICIPER ON PARTICIPER.idRefEvenement = EVENEMENTS.idEvenement WHERE refSession = :idSession GROUP BY idEvenement,refSession,nomEvenement,descEvenement,dateDebutEvenement,dateFinEvenement,emplacementEvenement');
           $req->bindValue(':idSession', $id, PDO::PARAM_INT);
           $req->execute();
           $donnees = array();

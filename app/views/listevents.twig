@@ -4,11 +4,11 @@
 <div class="span4">
   <div class="event-header">
     <h2>{{ event.nomevenement }}</h2>
-    <h4><span class="badge badge-inverse">xx places libres</span></h4>
+    <h4><span class="badge badge-inverse">{{ session.nbmaxinscritevenement - event.nbinscrit }} places libres</span></h4>
   </div>
   <dl>
     <dt>Description</dt>
-    <dd>xxx</dd>
+    <dd>{{ event.descevenement }}</dd>
   </dl>
   <p><a class="btn detailBtn" href="event-xxx-detail">Détails &raquo;</a></p>
   <div class="ajaxCont"></div>
