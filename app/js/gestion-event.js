@@ -1,12 +1,9 @@
 $(document).ready(function(){
-  $('#selectSession input').hide();
-
-  $('#selectSession select option:last').click(function(){
-    $('#selectSession input').fadeIn("slow");
-  });
-
-  $('#selectSession select option:not(:last)').click(function(){
-    $('#selectSession input').fadeOut("slow");
+  var thisSpan;
+  $('#session .span4.well').click(function(e){
+    if($(e.target).hasClass('detailBtn')){
+      thisSpan = $(this);
+    }
   });
 
   $('#session .modal').click(function(e){
@@ -18,10 +15,16 @@ $(document).ready(function(){
           if(data.ok){
             $('.modal-header', modal).append('<span class="badge badge-success">Inscrit</span>');
             $('.inscrire', modal).html('Se déinscrire');
+            $('.event-header h4', thisSpan).append('<span class="badge badge-success">Inscrit</span>');
           }
           else{
-            $('.modal-header .badge', modal).hide();
+            $('.modal-header .badge', modal).hide(function(){
+              $(this).remove;
+            });
             $('.inscrire', modal).html('S\'inscrire');
+            $('.event-header .badge-success', thisSpan).hide(function(){
+              $(this).remove;
+            });
           }
       });
     }
@@ -47,5 +50,14 @@ $(document).ready(function(){
       });
     }
     e.preventDefault();
+  });*/
+  /*$('#selectSession input').hide();
+
+  $('#selectSession select option:last').click(function(){
+    $('#selectSession input').fadeIn("slow");
+  });
+
+  $('#selectSession select option:not(:last)').click(function(){
+    $('#selectSession input').fadeOut("slow");
   });*/
 });

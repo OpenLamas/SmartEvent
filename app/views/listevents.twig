@@ -38,7 +38,11 @@
     </div>
     <div class="modal-footer">
       <a href="#" class="btn" data-dismiss="modal">Close</a>
+      {% if event.estinscrit == 1 %}
+      <a href="#" class="btn btn-primary inscrire">Se déinscrire</a>  
+      {% else %}
       <a href="#" class="btn btn-primary inscrire">S'inscrire</a>
+      {% endif %}
     </div>
   </div>
 </div><!--/span4 data-toggle="modal"-->
