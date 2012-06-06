@@ -1,3 +1,5 @@
+// icon-pencil
+
 $(document).ready(function(){
   var thisSpan;
   $('#session .span4.well').click(function(e){
