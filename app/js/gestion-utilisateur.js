@@ -84,60 +84,6 @@ $(document).ready(function () {
   });
 
 
-  // Selection groupe IRL
-
-  var idGroupeIRL = new Array();
-
-  // Selection global
-
-  $('#groupes thead input').click(function(){
-    if(!$(this).attr('checked')){ //on lit l'event après le clique donc on inverse les états
-      idGroupeIRL.splice(0, idGroupeIRL.length);
-      $('#groupes tbody tr').each(function(){
-        $('input', this).attr("checked", false);
-      });
-    }
-
-    else{
-      $('#groupes tbody tr').each(function(){
-        if(!$('input', this).attr("checked")){
-          var tmp = $(this).attr('id').split('-');
-          idGroupeIRL.push(tmp[1]);
-          $('input', this).attr("checked", true);
-        }
-      });
-    }
-  });
-
-  // Selection des lignes
-  $('#groupes tbody tr').click(function() {
-    if($('input', this).attr('checked')){
-      if ($('#groupes thead input').attr('checked')) {
-        $('#groupes thead input').attr('checked', false);
-      };
-      $('input', this).attr('checked', false);
-      var tmp = $(this).attr('id').split('-');
-      idGroupeIRL.splice(idGroupeIRL.indexOf(tmp[1]),1);
-    }
-     
-    else{
-      $('input', this).attr('checked', true);
-      var tmp = $(this).attr('id').split('-');
-      idGroupeIRL.push(tmp[1]);
-    }
-  });
-
-  // Rétablissement des events sur les case a coché
-
-  $('#groupes tbody tr :checkbox').click(function() {
-    if ($(this).attr('checked')) {
-      $(this).attr('checked', false);
-    }
-
-    else{
-      $(this).attr('checked', true);
-    }
-  });
  
   // Gestion des tags 
   $('#utilisateurs .listTags li').click(function(e){
@@ -160,59 +106,5 @@ $(document).ready(function () {
     }
   });
 
-  // Selection groupe rights
-
-  var idGroupeRights = new Array();
-
-  // Selection global
-
-  $('#rgroups thead input').click(function(){
-    if(!$(this).attr('checked')){ //on lit l'event après le clique donc on inverse les états
-      idGroupeRights.splice(0, idGroupeRights.length);
-      $('#rgroups tbody tr').each(function(){
-        $('input', this).attr("checked", false);
-      });
-    }
-
-    else{
-      $('#rgroups tbody tr').each(function(){
-        if(!$('input', this).attr("checked")){
-          var tmp = $(this).attr('id').split('-');
-          idGroupeRights.push(tmp[1]);
-          $('input', this).attr("checked", true);
-        }
-      });
-    }
-  });
-
-  // Selection des lignes
-  $('#rgroups tbody tr').click(function() {
-    if($('input', this).attr('checked')){
-      if ($('#rgroups thead input').attr('checked')) {
-        $('#rgroups thead input').attr('checked', false);
-      };
-      $('input', this).attr('checked', false);
-      var tmp = $(this).attr('id').split('-');
-      idGroupeRights.splice(idGroupeRights.indexOf(tmp[1]),1);
-    }
-     
-    else{
-      $('input', this).attr('checked', true);
-      var tmp = $(this).attr('id').split('-');
-      idGroupeRights.push(tmp[1]);
-    }
-  });
-
-  // Rétablissement des events sur les case a coché
-
-  $('#rgroups tbody tr :checkbox').click(function() {
-    if ($(this).attr('checked')) {
-      $(this).attr('checked', false);
-    }
-
-    else{
-      $(this).attr('checked', true);
-    }
-  });
-
+  
 });

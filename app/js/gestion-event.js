@@ -9,15 +9,28 @@ $(document).ready(function(){
     $('#selectSession input').fadeOut("slow");
   });
 
-  /*$('#session .span4.well').click(function(e){
-    if($(e.target).hasClass('detailBtn')){
-      
+  $('#session .modal').click(function(e){
+    if($(e.target).hasClass('inscrire')){
+      var Tevent = $(this).attr('id').split('-');
+      var modal = $(this);
+      $('.inscrire', modal).html('En cours...');
+      $.getJSON('event-'+Tevent[1]+'-inscription',function(data){
+          if(data.ok){
+            $('.modal-header', modal).append('<span class="badge badge-success">Inscrit</span>');
+            $('.inscrire', modal).html('Se déinscrire');
+          }
+          else{
+            $('.modal-header .badge', modal).hide();
+            $('.inscrire', modal).html('S\'inscrire');
+          }
+      });
     }
     e.preventDefault();
-  });*/
-});
+  });
 
-/*$.getJSON($(e.target).attr("href"), function(data){
+  /*$('#session .span4.well').click(function(e){
+    if($(e.target).hasClass('detailBtn')){
+      $.getJSON($(e.target).attr("href"), function(data){
         alert('coucou');
         /*$('<div class="modal-header">
         <button class="close" data-dismiss="modal">×</button>
@@ -31,4 +44,8 @@ $(document).ready(function(){
         <a href="#" class="btn" data-dismiss="modal">Close</a>
         <a href="#" class="btn btn-primary inscrire">S\'inscrire</a>
       </div>').appendTo($('.ajaxCont', this);
-      });*/
+      });
+    }
+    e.preventDefault();
+  });*/
+});

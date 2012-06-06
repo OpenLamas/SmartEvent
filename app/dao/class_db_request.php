@@ -223,4 +223,29 @@
       $donnees = $req->fetch();
       return $donnees;
     }
+
+    public function getRegisteredFromEvent($idUser, $idEvent){
+      $donnees;
+      $req = $this->bdd->prepare('SELECT COUNT(*) FROM PARTICIPER WHERE idRefEvenement = :idEvent AND idRefUtilisateur = :idUser');
+      $req->bindValue(':idUser', $idUser, PDO::PARAM_INT);
+      $req->bindValue(':idEvent', $idEvent, PDO::PARAM_INT);
+      $req->execute();
+      $donnees = $req->fetch();
+      return $donnees;
+    }
+
+    public function addRegisteredFromEvent($idUser, $idEvent){
+      
+      $req = $this->bdd->prepare('INSERT INTO PARTICIPER (idRefEvenement, idRefUtilisateur) VALUES (:idEvent,:idUser)');
+      $req->bindValue(':idUser', $idUser, PDO::PARAM_INT);
+      $req->bindValue(':idEvent', $idEvent, PDO::PARAM_INT);
+      $req->execute();
+    }
+
+    public function removeRegisteredFromEvent($idUser, $idEvent){
+      $req = $this->bdd->prepare('DELETE FROM PARTICIPER WHERE idRefEvenement = :idEvent AND idRefUtilisateur = :idUser');
+      $req->bindValue(':idUser', $idUser, PDO::PARAM_INT);
+      $req->bindValue(':idEvent', $idEvent, PDO::PARAM_INT);
+      $req->execute();
+    }
   }

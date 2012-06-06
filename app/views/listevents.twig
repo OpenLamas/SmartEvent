@@ -6,9 +6,9 @@
 <div class="span4 well">
   <div class="event-header">
     <h2>{{ event.nomevenement }}</h2>
-    {% if 1==2%}
-    {# Si on est inscrit a cet event#}
-    {% elseif (session.nbmaxinscritevenement - event.nbinscrit) > 0 %}
+    {% if event.estinscrit == 1 %}
+    <h4><span class="badge badge-inverse">{{ session.nbmaxinscritevenement - event.nbinscrit }} places libres</span> <span class="badge badge-success">Inscrit</span></h4>
+    {% elseif (session.nbmaxinscritevenement - event.nbinscrit) > niveauAlert %}
     <h4><span class="badge badge-inverse">{{ session.nbmaxinscritevenement - event.nbinscrit }} places libres</span></h4>
     {% else %}
     <h4><span class="badge badge-alert">0 places libres</span></h4>
@@ -23,6 +23,9 @@
     <div class="modal-header">
       <button class="close" data-dismiss="modal">×</button>
       <h3>{{ event.nomevenement }}</h3>
+      {% if event.estinscrit == 1 %}
+      <span class="badge badge-success">Inscrit</span>  
+      {% endif %}
     </div>
     <div class="modal-body">
       {% if event.datedebutevenement|truncate(11,true)|date("dmy") == event.datefinevenement|truncate(11,true)|date("dmy") %}

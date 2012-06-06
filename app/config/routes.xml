@@ -15,6 +15,7 @@
   
   <!-- Evenements -->
   <route url="/event-(\d+)-detail((-ajax)?)" module="event" action="Detail" vars="idEvent,ajax" />
+  <route url="/event-(\d+)-inscription" module="event" action="Inscription" vars="idEvent" />
   <route url="/session-(\d+)-detail" module="event" action="DetailSession" vars="idEvent" />
   <route url="/session-(\d+)-list" module="event" action="ListEvents" vars="idSession" />
   <route url="/events-manage" module="event" action="ManageEvents" />

@@ -23,6 +23,7 @@
       $this->twig->getExtension('core')->setTimezone('Europe/Paris');
       $this->twig->addGlobal('cur_page', "");
       $this->twig->addGlobal('site_root', "/SmartEvent/app");
+      $this->twig->addGlobal('niveauAlert', 2);
 
     }
 
