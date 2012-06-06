@@ -20,6 +20,7 @@
       ));
       $this->twig->addExtension(new Twig_Extension_Debug());
       $this->twig->addExtension(new Twig_Extension_Text());
+      $this->twig->getExtension('core')->setTimezone('Europe/Paris');
       $this->twig->addGlobal('cur_page', "");
       $this->twig->addGlobal('site_root', "/SmartEvent/app");
 

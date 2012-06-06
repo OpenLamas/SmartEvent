@@ -1,7 +1,7 @@
 $(document).ready(function() {
   
   
-  $('.detailBtn').click(function (e) {
+  /*$('.detailBtn').click(function (e) {
     var href = $(this).attr("href");
     var eventIdArray = href.split('-');
     eventId = eventIdArray[1];
@@ -12,14 +12,14 @@ $(document).ready(function() {
       
       $('.ajaxCont .modal-footer .inscrire').click(function(e) {
         if(!$(this).hasClass("inscrit")){
-          /* Mettre ici l'ajax pour l'inscription*/
+          /* Mettre ici l'ajax pour l'inscription
           $(this).html('<span style="display: none;">Inscrit</span>');
           $('span',this).fadeIn(1000, function() {$('.modal .modal-footer .inscrire').html('<span>Se désinscrire</span>');});
           $(this).addClass("inscrit");
           }
         
         else{
-          /* Mettre ici l'ajax pour la déinscription */
+          /* Mettre ici l'ajax pour la déinscription 
           $(this).html('<span style="display: none;">Désinscrit</span>');
           $('span',this).fadeIn(1000, function() {$('.modal .modal-footer .inscrire').html('<span>S\'inscrire</span>');});
           $(this).removeClass("inscrit");
@@ -29,7 +29,7 @@ $(document).ready(function() {
     });
     
     e.preventDefault();
-  });
+  });*/
   
   $.datepicker.regional['fr'] = {
     closeText: 'Fermer',

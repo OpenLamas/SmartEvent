@@ -6,7 +6,7 @@
       
     public function action(){
       
-      if(isset($this->vars['ajax']) && $this->vars['ajax'] == 'ajax'){
+      /*if(isset($this->vars['ajax']) && $this->vars['ajax'] == 'ajax'){
         $addClass = 'modal fade';
       }
       else{
@@ -27,6 +27,12 @@
       else{        
         header('Location: error-403');
         exit;
+      }*/
+
+      if($_SESSION['login']){
+        $donnees = new db_request();
+        $event = $donnees->getEvent($this->vars['idEvent']);
+        echo json_encode($event);
       }
     }
   }
