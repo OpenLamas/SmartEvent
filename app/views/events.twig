@@ -4,7 +4,7 @@
 {% if cur_user.right == "GESTIONNAIRE" or cur_user.right == "ADMIN"%}
 <div class="row">
   {# PARTIE SESSIONS ******************************************************************** #}
-  <div class="span6">
+  <div class="span6" id="session">
     <a class="btn btn-primary" data-toggle="modal" href="#addSessionModal">Ajouter une session</a>
     <a class="btn btn-danger" href="#">Supprimer</a><br /><br />
     <h5>Cliquez sur le nom d'une session pour voir/modifier ses détails</h5>
@@ -21,7 +21,7 @@
         <tr id="session-{{ session.idsession }}">
           <td><label class="checkbox inline"><input type="checkbox"/></label></td>
           <td><a href="#">{{ session.nomsession }}</a></td>
-          <td><a href="#">Voir &raquo;</a></td>
+          <td><a href="#" class="voir">Voir &raquo;</a></td>
           {#<div class="ajaxCont modal fade" id="modal-{{ session.idsession }}">
             <div class="modal-header">
               <button class="close" data-dismiss="modal">×</button>
@@ -41,8 +41,9 @@
     </table>
   </div>
   {# PARTIE EVENTS ********************************************************************** #}
-  <div class="span6">
+  <div class="hide span6" id="events">
     <a class="btn btn-primary" data-toggle="modal" href="#">Ajouter un évènement</a>
+    <a class="btn btn-success" data-toggle="modal" href="#">Importer des évènements</a>
     <a class="btn btn-danger" href="#">Supprimer</a><br /><br />
     <h5>Cliquez sur le nom d'un évènement pour voir/modifier ses détails</h5>
     <table class="table table-condensed well">
@@ -54,13 +55,13 @@
         </tr>
       </thead>
       <tbody>          
-        {#% for event in session %#}
-        <tr id="event-{#{ event.idevent }#}">
+        {#% for event in session %
+        <tr id="event-{#{ event.idevent }">
           <td><label class="checkbox inline"><input type="checkbox"/></label></td>
-          <td><a href="#">{#{ event.nomevent }#}</a></td>
-          <td><a href="#">{#{ event.emplacementEvenement }#}</a></td>
+          <td><a href="#">{#{ event.nomevent }</a></td>
+          <td><a href="#">{#{ event.emplacementEvenement }</a></td>
         </tr>
-        {#% endfor %#}          
+        % endfor %#}          
       </tbody>
     </table>
   </div>
