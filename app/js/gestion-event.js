@@ -35,8 +35,8 @@ $(document).ready(function(){
 
   $('#session tr[id|="session"]').click(function(e){
     if($(e.target).hasClass('voir')){
+      $('#session+.progress').fadeIn('slow');
       $.getJSON($(this).attr('id')+'-get',function(data){
-        
         if($("#events tbody").has('tr').length){
           //$("#events tbody tr").hide('slow', function(){
             $("#events tbody").empty();
@@ -47,10 +47,12 @@ $(document).ready(function(){
         }
 
         else{
-          $('#events').fadeIn('slow');
           for(var i=0;i<data.length;i++){
             $('<tr id="'+data[i]['idevenement']+'"> <td><label class="checkbox inline"><input type="checkbox"/></label></td> <td><a href="#">'+data[i]['nomevenement']+'</a></td> <td><a href="#">'+data[i]['emplacementevenement']+'</a></td> </tr>').appendTo("#events tbody");
           }
+          $('#session+.progress').fadeOut('slow', function(){
+            $('#events').fadeIn('slow');
+          });
         }
         data = '';
       });
