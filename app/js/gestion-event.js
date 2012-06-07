@@ -38,6 +38,10 @@ $(document).ready(function(){
       if(!$("#events tbody").has('tr').length){
         $('#session+.progress').fadeIn('slow');
       }
+      else{
+        $("#events tbody tr ").hide('slow');
+        //$("#events tbody").empty();
+      }
       $.getJSON($(this).attr('id')+'-get',function(data){
         if($("#events tbody").has('tr').length){
           //$("#events tbody tr").hide('slow', function(){
