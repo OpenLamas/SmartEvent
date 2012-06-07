@@ -35,7 +35,9 @@ $(document).ready(function(){
 
   $('#session tr[id|="session"]').click(function(e){
     if($(e.target).hasClass('voir')){
-      $('#session+.progress').fadeIn('slow');
+      if(!$("#events tbody").has('tr').length){
+        $('#session+.progress').fadeIn('slow');
+      }
       $.getJSON($(this).attr('id')+'-get',function(data){
         if($("#events tbody").has('tr').length){
           //$("#events tbody tr").hide('slow', function(){
