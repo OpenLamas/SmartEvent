@@ -3,6 +3,7 @@
 {% block content %}
 {% if cur_user.right == "GESTIONNAIRE" or cur_user.right == "ADMIN"%}
 <div class="row">
+  {# PARTIE SESSIONS ******************************************************************** #}
   <div class="span6">
     <a class="btn btn-primary" data-toggle="modal" href="#addSessionModal">Ajouter une session</a>
     <a class="btn btn-danger" href="#">Supprimer</a><br /><br />
@@ -36,6 +37,30 @@
           </div>#}
         </tr>
         {% endfor %}          
+      </tbody>
+    </table>
+  </div>
+  {# PARTIE EVENTS ********************************************************************** #}
+  <div class="span6">
+    <a class="btn btn-primary" data-toggle="modal" href="#">Ajouter un évènement</a>
+    <a class="btn btn-danger" href="#">Supprimer</a><br /><br />
+    <h5>Cliquez sur le nom d'un évènement pour voir/modifier ses détails</h5>
+    <table class="table table-condensed well">
+      <thead>
+        <tr>
+          <th><label class="checkbox inline"><input type="checkbox" id="checkboxAll"></label></th>
+          <th>Nom</th>
+          <th>Emplacement</th>
+        </tr>
+      </thead>
+      <tbody>          
+        {#% for event in session %#}
+        <tr id="event-{#{ event.idevent }#}">
+          <td><label class="checkbox inline"><input type="checkbox"/></label></td>
+          <td><a href="#">{#{ event.nomevent }#}</a></td>
+          <td><a href="#">{#{ event.emplacementEvenement }#}</a></td>
+        </tr>
+        {#% endfor %#}          
       </tbody>
     </table>
   </div>
