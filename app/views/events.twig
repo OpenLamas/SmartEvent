@@ -52,7 +52,7 @@
     <div class="bar" style="width: 100%;"></div>
   </div>
   <div class="hide span6" id="events">
-    <a class="btn btn-primary" data-toggle="modal" href="#">Ajouter un évènement</a>
+    <a class="btn btn-primary" data-toggle="modal" href="#addEventModal">Ajouter un évènement</a>
     <a class="btn btn-success" data-toggle="modal" href="#">Importer des évènements</a>
     <a class="btn btn-danger" href="#">Supprimer</a><br /><br />
     <h5>Cliquez sur le nom d'un évènement pour voir/modifier ses détails</h5>
@@ -129,6 +129,50 @@
     </form>    
   </div>
 </div>
-{# FIN MODAL ************************************************************** #}
+{# MODAL AJOUT EVENT ************************************************************** #}
+<div class="modal fade" id="addEventModal"> 
+  <div class="modal-header"> 
+    <button class="close" data-dismiss="modal">×</button> 
+    <h3>Ajouter un évènement</h3> 
+  </div> <div class="modal-body"> 
+    
+    <form class="form-horizontal" method="POST" action="#"> 
+      <div class="control-group">
+        <label for="descEvent">Description de l'évènement :</label>
+        <div class="controls">
+          <input type="text" class="input-xlarge" id="descEvent" name="descEvent"/>
+        </div>
+      </div>
+      <div class="control-group">
+        <label for="nbInscrit">Nombre d'inscrit :</label>
+        <div class="controls">
+          <input type="text" class="input-xlarge" id="nbInscrit" name="nbInscrit"/>
+        </div>
+      </div>
+      <div class="control-group">
+        <label for="dateDebut">Date du début de l'évènement :</label>
+        <div class="controls">
+          <input type="text" class="input-xlarge" id="dateDebut" name="dateDebut"/>
+        </div>
+      </div>
+      <div class="control-group">
+        <label for="dateFin">Date de la fin de l'évènement :</label>
+        <div class="controls">
+          <input type="text" class="input-xlarge" id="dateFin" name="dateFin"/>
+        </div>
+      </div>
+      <div class="control-group">
+        <label for="emplacement">Emplacement :</label>
+        <div class="controls">
+          <input type="text" class="input-xlarge" id="emplacement" name="emplacement"/>
+        </div>
+      </div>
+    </form> 
+  </div> 
+  <div class="modal-footer"> 
+    <a href="#" class="btn" data-dismiss="modal">Annuler</a>
+      <button type="submit" class="btn btn-primary">Ajouter</button> 
+  </div> 
+</div> 
 {% endif %}
 {% endblock %}
