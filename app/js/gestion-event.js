@@ -8,6 +8,8 @@ $(document).ready(function(){
     }
   });
 
+
+  /* Inscription a un event*/
   $('#session .modal').click(function(e){
     if($(e.target).hasClass('inscrire')){
       var Tevent = $(this).attr('id').split('-');
@@ -33,6 +35,23 @@ $(document).ready(function(){
     e.preventDefault();
   });
 
+  /* Modifiquation info Session*/
+  $('#session .modal li').click(function(e){
+    if($(e.target).hasClass('icon-pencil')){
+      $('span',this).replaceWith('<input type="text" value="'+$('span',this).text()+'" />')
+      $('i', this).removeClass('icon-pencil');
+      $('i', this).addClass('icon-ok');
+    }
+
+    else if($(e.target).hasClass('icon-ok')){
+      alert('Envois AJAX !');
+      $('input',this).replaceWith('<span>'+$('input',this).val()+'</span>')
+      $('i', this).removeClass('icon-ok');
+      $('i', this).addClass('icon-pencil');
+    }
+  });
+
+  /*Affichage events par session*/
   $('#session tr[id|="session"]').click(function(e){
     if($(e.target).hasClass('voir')){
       if(!$("#events tbody").has('tr').length){
