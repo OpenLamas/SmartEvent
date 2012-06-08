@@ -18,10 +18,7 @@
 
           else{
             $req = $this->bdd->query('SELECT idUtilisateur,refDroit,nomUtilisateur,prenomUtilisateur,mailUtilisateur,mdpUtilisateur,nomDroit AS right FROM UTILISATEURS INNER JOIN DROITS ON RefDroit=IdDroit');
-            $donnees = array();
-            while($champs = $req->fetch()){
-            array_push($donnees, $champs);
-            }
+            $donnees = $req->fetchAll();
           }
 
         return $donnees;
@@ -57,12 +54,8 @@
 
           else{
             $req = $this->bdd->query('SELECT idEvenement,refSession,nomEvenement,descEvenement,dateDebutEvenement,dateFinEvenement,emplacementEvenement FROM EVENEMENTS');
-            $donnees = array();
-            while($champs = $req->fetch()){
-            array_push($donnees, $champs);
-            }
+            $donnees = $req->fetchAll();
           }
-
         return $donnees;
     }
 
@@ -80,10 +73,7 @@
 
           else{
             $req = $this->bdd->query('SELECT idEvenement,refSession,nomEvenement,descEvenement,dateDebutEvenement,dateFinEvenement,emplacementEvenement, COUNT(*) AS nbInscrit FROM EVENEMENTS INNER JOIN PARTICIPER ON PARTICIPER.idRefEvenement = EVENEMENTS.idEvenement GROUP BY idEvenement,refSession,nomEvenement,descEvenement,dateDebutEvenement,dateFinEvenement,emplacementEvenement');
-            $donnees = array();
-            while($champs = $req->fetch()){
-            array_push($donnees, $champs);
-            }
+            $donnees = $req->fetchAll();
           }
 
         return $donnees;
@@ -97,10 +87,7 @@
           $req = $this->bdd->prepare('SELECT idEvenement,refSession,nomEvenement,descEvenement,dateDebutEvenement,dateFinEvenement,emplacementEvenement FROM EVENEMENTS WHERE refSession = :idSession');
           $req->bindValue(':idSession', $id, PDO::PARAM_INT);
           $req->execute();
-          $donnees = array();
-          while($champs = $req->fetch()){
-            array_push($donnees, $champs);
-          }
+          $donnees = $req->fetchAll();
 
         return $donnees;
     }
@@ -113,10 +100,7 @@
           $req = $this->bdd->prepare('SELECT idEvenement,refSession,nomEvenement,descEvenement,dateDebutEvenement,dateFinEvenement,emplacementEvenement, COUNT(*) AS nbInscrit FROM EVENEMENTS INNER JOIN PARTICIPER ON PARTICIPER.idRefEvenement = EVENEMENTS.idEvenement WHERE refSession = :idSession GROUP BY idEvenement,refSession,nomEvenement,descEvenement,dateDebutEvenement,dateFinEvenement,emplacementEvenement');
           $req->bindValue(':idSession', $idSession, PDO::PARAM_INT);
           $req->execute();
-          $donnees = array();
-          while($champs = $req->fetch()){
-            array_push($donnees, $champs);
-          }
+          $donnees = $req->fetchAll();
 
         return $donnees;
     }
@@ -140,10 +124,7 @@
 
           else{
             $req = $this->bdd->query('SELECT idSession,refCreateur,nomSession,nbMaxInscritEvenement,nbMinParticipationEvenement,dateLimiteInscription,dateRappelMail FROM SESSIONS');
-            $donnees = array();
-            while($champs = $req->fetch()){
-            array_push($donnees, $champs);
-            }
+            $donnees = $req->fetchAll();
           }
 
         return $donnees;
@@ -152,10 +133,7 @@
     public function getSessionAndCreator(){
       $req = $this->bdd->query('SELECT idSession,prenomUtilisateur AS prenomCreateur,nomUtilisateur AS nomCreateur,nomSession,nbMaxInscritEvenement,nbMinParticipationEvenement,dateLimiteInscription,dateRappelMail FROM SESSIONS INNER JOIN UTILISATEURS ON refCreateur = idUtilisateur');
       
-      $donnees = array();
-      while($champs = $req->fetch()){
-          array_push($donnees, $champs);
-      }
+      $donnees = $req->fetchAll();
 
       return $donnees;
     }
@@ -164,10 +142,7 @@
       $req = $this->bdd->prepare('SELECT idSession,prenomUtilisateur AS prenomCreateur,nomUtilisateur AS nomCreateur,nomSession,nbMaxInscritEvenement,nbMinParticipationEvenement,dateLimiteInscription,dateRappelMail FROM SESSIONS INNER JOIN UTILISATEURS ON refCreateur = idUtilisateur WHERE refCreateur = :idUser');
       $req->bindValue(':idUser', $id, PDO::PARAM_INT);
       $req->execute();
-      $donnees = array();
-      while($champs = $req->fetch()){
-          array_push($donnees, $champs);
-      }
+      $donnees = $req->fetchAll();
       return $donnees;
     }
 
@@ -179,10 +154,7 @@
 
       else{
         $req = $this->bdd->query('SELECT idSession,nbMinParticipationEvenement,COUNT(*) FROM SESSIONS INNER JOIN EVENEMENTS ON RefSession=IdSession INNER JOIN PARTICIPER ON idEvenement=idRefEvenement WHERE PARTICIPER.IdRefUtilisateur=2 OR IdRefUtilisateur NOT IN (SELECT IdRefUtilisateur FROM PARTICIPER) GROUP BY idSession,nbMinParticipationEvenement');
-        $donnees = array();
-        while($champs = $req->fetch()){
-          array_push($donnees, $champs);
-        }
+        $donnees = $req->fetchAll();
       }
 
     }
@@ -228,10 +200,7 @@
             $req = $this->bdd->prepare('SELECT NomEvenement, dateDebutEvenement, emplacementEvenement FROM EVENEMENTS INNER JOIN PARTICIPER ON idEvenement=idRefEvenement WHERE idRefUtilisateur = :idUser ORDER BY dateDebutEvenement LIMIT 3');
             $req->bindValue(':idUser', $id, PDO::PARAM_INT);
             $req->execute();
-            $donnees = array();
-            while($champs = $req->fetch()){
-            array_push($donnees, $champs);
-          }
+            $donnees = $req->fetchAll();
 
         return $donnees;
     }
@@ -243,10 +212,7 @@
             $req = $this->bdd->prepare('SELECT NomEvenement, dateDebutEvenement, emplacementEvenement FROM EVENEMENTS INNER JOIN PARTICIPER ON idEvenement=idRefEvenement WHERE idRefUtilisateur = :idUser ORDER BY dateDebutEvenement');
             $req->bindValue(':idUser', $id, PDO::PARAM_INT);
             $req->execute();
-            $donnees = array();
-            while($champs = $req->fetch()){
-            array_push($donnees, $champs);
-          }
+            $donnees = $req->fetchAll();
 
         return $donnees;
     }
