@@ -134,39 +134,47 @@
   <div class="modal-header"> 
     <button class="close" data-dismiss="modal">×</button> 
     <h3>Ajouter un évènement</h3> 
-  </div> <div class="modal-body"> 
-    
-    <form class="form-horizontal" method="POST" action="#"> 
-      <div class="control-group">
-        <label for="descEvent">Description de l'évènement :</label>
-        <div class="controls">
-          <input type="text" class="input-xlarge" id="descEvent" name="descEvent"/>
+  </div> 
+  <div class="modal-body"> 
+    <form class="form-horizontal" method="POST" action="#">
+      <fieldset>
+        <div class="control-group">
+          <label class="control-label" for="titreEvent">Nom de l'évènement :</label>
+          <div class="controls">
+            <input type="text" class="input-xlarge" id="titreEvent" />
+          </div>
+        </div> 
+        <div class="control-group">
+          <label class="control-label" for="descEvent">Description de l'évènement :</label>
+          <div class="controls">
+            <textarea class="input-xlarge" id="descEvent" row="3"></textarea>
+          </div>
         </div>
-      </div>
-      <div class="control-group">
-        <label for="nbInscrit">Nombre d'inscrit :</label>
-        <div class="controls">
-          <input type="text" class="input-xlarge" id="nbInscrit" name="nbInscrit"/>
+        <div class="control-group">
+          <label class="control-label" for="nbInscrit">Nombre d'inscrit :</label>
+          <div class="controls">
+            <input type="text" class="input-mini" id="nbInscrit" />
+          </div>
         </div>
-      </div>
-      <div class="control-group">
-        <label for="dateDebut">Date du début de l'évènement :</label>
-        <div class="controls">
-          <input type="text" class="input-xlarge" id="dateDebut" name="dateDebut"/>
+        <div class="control-group">
+          <label class="control-label" for="dateDebut">Date du début de l'évènement :</label>
+          <div class="controls">
+            <input type="text" class="input-large" id="dateDebut" name="dateDebut" />
+          </div>
         </div>
-      </div>
-      <div class="control-group">
-        <label for="dateFin">Date de la fin de l'évènement :</label>
-        <div class="controls">
-          <input type="text" class="input-xlarge" id="dateFin" name="dateFin"/>
+        <div class="control-group">
+          <label class="control-label" for="dateFin">Date de la fin de l'évènement :</label>
+          <div class="controls">
+            <input type="text" class="input-large" id="dateFin" name="dateFin"/>
+          </div>
         </div>
-      </div>
-      <div class="control-group">
-        <label for="emplacement">Emplacement :</label>
-        <div class="controls">
-          <input type="text" class="input-xlarge" id="emplacement" name="emplacement"/>
+        <div class="control-group">
+          <label class="control-label" for="emplacement">Emplacement :</label>
+          <div class="controls">
+            <input type="text" class="input-large" id="emplacement" name="emplacement"/>
+          </div>
         </div>
-      </div>
+      </fieldset>  
     </form> 
   </div> 
   <div class="modal-footer"> 
