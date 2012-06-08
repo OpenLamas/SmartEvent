@@ -97,7 +97,7 @@
       // Code de la methode final
           $donnees;
 
-          $req = $this->bdd->prepare('SELECT idEvenement,refSession,nomEvenement,descEvenement,dateDebutEvenement,dateFinEvenement,emplacementEvenement, COUNT(*) AS nbInscrit FROM EVENEMENTS INNER JOIN PARTICIPER ON PARTICIPER.idRefEvenement = EVENEMENTS.idEvenement WHERE refSession = :idSession GROUP BY idEvenement,refSession,nomEvenement,descEvenement,dateDebutEvenement,dateFinEvenement,emplacementEvenement');
+          $req = $this->bdd->prepare('SELECT idEvenement,refSession,nomEvenement,descEvenement,dateDebutEvenement,dateFinEvenement,emplacementEvenement, COUNT(*) AS nbInscrit FROM EVENEMENTS LEFT OUTER JOIN PARTICIPER ON EVENEMENTS.idEvenement = PARTICIPER.idRefEvenement WHERE refSession = :idSession GROUP BY idEvenement,refSession,nomEvenement,descEvenement,dateDebutEvenement,dateFinEvenement,emplacementEvenement');
           $req->bindValue(':idSession', $idSession, PDO::PARAM_INT);
           $req->execute();
           $donnees = $req->fetchAll();
@@ -215,6 +215,17 @@
             $donnees = $req->fetchAll();
 
         return $donnees;
+    }
+
+    public function addEvent($valeur){
+      $req = $this->bdd->prepare('INSERT INTO EVENEMENTS(refSession, nomEvenement, descEvenement, datedebutevenement, datefinevenement, emplacementEvenement) VALUES (:idSession, :titre, :description, :dateDebut, :dateFin, :emplacement)');
+      $req->bindValue(':idSession', $valeur['idSession'], PDO::PARAM_INT);
+      $req->bindValue(':titre', $valeur['titre'], PDO::PARAM_STR);
+      $req->bindValue(':description', $valeur['description'], PDO::PARAM_STR);
+      $req->bindValue(':dateDebut', $valeur['dateDebut'], PDO::PARAM_STR);
+      $req->bindValue(':dateFin', $valeur['dateFin'], PDO::PARAM_STR);
+      $req->bindValue(':emplacement', $valeur['emplacement'], PDO::PARAM_STR);
+      $req->execute();
     }
 
     public function getRegisteredEventPerSession($idUser, $idSession){
