@@ -67,6 +67,7 @@ $(document).ready(function(){
     }
   });
 
+  var currentSession;
   /*Affichage events par session*/
   $('#session tr[id|="session"]').click(function(e){
     if($(e.target).hasClass('voir')){
@@ -77,7 +78,10 @@ $(document).ready(function(){
         $("#events tbody tr ").hide('slow');
         //$("#events tbody").empty();
       }
-      $.getJSON($(this).attr('id')+'-get',function(data){
+
+      var sessionPlusId = $(this).attr('id');
+      $.getJSON(sessionPlusId+'-get',function(data){
+        currentSession = sessionPlusId.split('-')[1];
         if($("#events tbody").has('tr').length){
           //$("#events tbody tr").hide('slow', function(){
             $("#events tbody").empty();
@@ -103,6 +107,25 @@ $(document).ready(function(){
     }
   });
 
+  /* Ajout d'un event dans une session*/
+  $('#addEventModal').click(function(e){
+    e.preventDefault();
+    if($(e.target).hasClass('btn-primary')){
+      var data = {
+        nom: $('form #titreEvent',this).val(),
+        description: $('form #descEvent',this).val(),
+        nbInscrit: $('form #nbInscrit',this).val(),
+        dateDebut: $('form #dateDebut',this).val(),
+        dateFin: $('form #dateFin',this).val(),
+        emplacement: $('form #emplacement',this).val(),
+        session: currentSession
+      };
+
+      $.post($(e.target).attr('href'),data,function(callBack){
+        alert(data.session);
+      });
+    }
+  })
 });
 
   /*$('#session .span4.well').click(function(e){
