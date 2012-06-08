@@ -151,8 +151,23 @@
 
     public function getSessionAndCreator(){
       $req = $this->bdd->query('SELECT idSession,prenomUtilisateur AS prenomCreateur,nomUtilisateur AS nomCreateur,nomSession,nbMaxInscritEvenement,nbMinParticipationEvenement,dateLimiteInscription,dateRappelMail FROM SESSIONS INNER JOIN UTILISATEURS ON refCreateur = idUtilisateur');
-      $donnees = $req->fetch();
+      
+      $donnees = array();
+      while($champs = $req->fetch()){
+          array_push($donnees, $champs);
+      }
 
+      return $donnees;
+    }
+
+    public function getSessionAndCreatorFromCreator($id){
+      $req = $this->bdd->prepare('SELECT idSession,prenomUtilisateur AS prenomCreateur,nomUtilisateur AS nomCreateur,nomSession,nbMaxInscritEvenement,nbMinParticipationEvenement,dateLimiteInscription,dateRappelMail FROM SESSIONS INNER JOIN UTILISATEURS ON refCreateur = idUtilisateur WHERE refCreateur = :idUser');
+      $req->bindValue(':idUser', $id, PDO::PARAM_INT);
+      $req->execute();
+      $donnees = array();
+      while($champs = $req->fetch()){
+          array_push($donnees, $champs);
+      }
       return $donnees;
     }
 

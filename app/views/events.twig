@@ -20,21 +20,28 @@
         {% for session in sessions %}
         <tr id="session-{{ session.idsession }}">
           <td><label class="checkbox inline"><input type="checkbox"/></label></td>
-          <td><a href="#">{{ session.nomsession }}</a></td>
+          <td><a href="#modal-session-{{ session.idsession }}" data-toggle="modal">{{ session.nomsession }}</a></td>
           <td><a href="#" class="voir">Voir &raquo;</a></td>
-          {#<div class="ajaxCont modal fade" id="modal-{{ session.idsession }}">
-            <div class="modal-header">
-              <button class="close" data-dismiss="modal">×</button>
-              <h3>{{ session.nomsession }}</h3>
+          <td>
+            <div class="modal fade" id="modal-session-{{ session.idsession }}">
+              <div class="modal-header">
+                <button class="close" data-dismiss="modal">×</button>
+                <h3>{{ session.nomsession }}</h3>
+              </div>
+              <div class="modal-body">
+                <ul>
+                  <li>Créé par {{ [session.prenomcreateur,session.nomcreateur]|join(' ') }}</li>
+                  <li>Nombre max d'inscrit : <span>{{ session.nbmaxinscritevenement }}</span> <i class="icon-pencil"></i></li>
+                  <li>Nombre d'event mini : <span>{{ session.nbminparticipationevenement }}</span> <i class="icon-pencil"></i></li>
+                  <li>Date limite d'inscription : <span>{{ session.datelimiteinscription }}</span> <i class="icon-pencil"></i></li>
+                  <li>Date rappel mail : <span>{{ session.daterappelmail}}</span> <i class="icon-pencil"></i></li>
+                </ul>
+              </div>
+              <div class="modal-footer">
+                <a href="#" class="btn" data-dismiss="modal">Close</a>
+              </div>
             </div>
-            <div class="modal-body">
-              <ul>
-                <li>Créé par {{ [session.prenomcreateur,session.nomcreateur]|join(' ') }}</li>
-              </ul>
-            </div>
-            <div class="modal-footer">
-              <a href="#" class="btn" data-dismiss="modal">Close</a>
-          </div>#}
+          </td>
         </tr>
         {% endfor %}          
       </tbody>
@@ -42,7 +49,7 @@
   </div>
   {# PARTIE EVENTS ********************************************************************** #}
   <div class="hide progress progress-striped active span3 offset2" style="margin-top: 100px;">
-    <div class="bar" style="width: 500%;"></div>
+    <div class="bar" style="width: 100%;"></div>
   </div>
   <div class="hide span6" id="events">
     <a class="btn btn-primary" data-toggle="modal" href="#">Ajouter un évènement</a>
