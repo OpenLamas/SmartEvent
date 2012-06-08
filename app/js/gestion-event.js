@@ -1,7 +1,23 @@
-// icon-pencil
+var showModalEvents = function(){
+  $('#events .modal li').click(function(e){
+    if($(e.target).hasClass('icon-pencil')){
+      $('span',this).replaceWith('<input type="text" value="'+$('span',this).text()+'" />')
+      $('i', this).removeClass('icon-pencil');
+      $('i', this).addClass('icon-ok');
+    }
+
+    else if($(e.target).hasClass('icon-ok')){
+      alert('Envoie AJAX !');
+      $('input',this).replaceWith('<span>'+$('input',this).val()+'</span>')
+      $('i', this).removeClass('icon-ok');
+      $('i', this).addClass('icon-pencil');
+    }
+  });
+};
 
 $(document).ready(function(){
   var thisSpan;
+
   $('#session .span4.well').click(function(e){
     if($(e.target).hasClass('detailBtn')){
       thisSpan = $(this);
@@ -44,7 +60,7 @@ $(document).ready(function(){
     }
 
     else if($(e.target).hasClass('icon-ok')){
-      alert('Envois AJAX !');
+      alert('Envoie AJAX !');
       $('input',this).replaceWith('<span>'+$('input',this).val()+'</span>')
       $('i', this).removeClass('icon-ok');
       $('i', this).addClass('icon-pencil');
@@ -66,20 +82,22 @@ $(document).ready(function(){
           //$("#events tbody tr").hide('slow', function(){
             $("#events tbody").empty();
             for(var i=0;i<data.length;i++){
-              $('<tr id="'+data[i]['idevenement']+'"> <td><label class="checkbox inline"><input type="checkbox"/></label></td> <td><a href="#">'+data[i]['nomevenement']+'</a></td> <td><a href="#">'+data[i]['emplacementevenement']+'</a></td> </tr>').appendTo("#events tbody");
+              $('<tr id="'+data[i]['idevenement']+'"> <td><label class="checkbox inline"><input type="checkbox"/></label></td> <td><a href="#modal-'+data[i]['idevenement']+'" data-toggle="modal">'+data[i]['nomevenement']+'</a></td> <td><a href="#">'+data[i]['emplacementevenement']+'</a></td> <td> <div class="modal fade" id="modal-'+data[i]['idevenement']+'"> <div class="modal-header"> <button class="close" data-dismiss="modal">×</button> <h3>'+data[i]['nomevenement']+'</h3> </div> <div class="modal-body"> <ul> <li>Description de l\'évènement : <span>'+data[i]['descevenement']+'</span> <i class="icon-pencil"></i></li> <li>Nombre d\'inscrit : <span>'+data[i]['nbinscrit']+'</span> <i class="icon-pencil"></i></li> <li>Date du début de l\'évènement : <span>'+data[i]['datedebutevenement']+'</span> <i class="icon-pencil"></i></li> <li>Date de la fin de l\'évènement : <span>'+data[i]['datefinevenement']+'</span> <i class="icon-pencil"></i></li> <li>Emplacment : <span>'+data[i]['emplacementevenement']+'</span> <i class="icon-pencil"></i></li> </ul> </div> <div class="modal-footer"> <a href="#" class="btn" data-dismiss="modal">Close</a> </div> </div> </td></tr>').appendTo("#events tbody");
             }
           //});
         }
 
         else{
           for(var i=0;i<data.length;i++){
-            $('<tr id="'+data[i]['idevenement']+'"> <td><label class="checkbox inline"><input type="checkbox"/></label></td> <td><a href="#">'+data[i]['nomevenement']+'</a></td> <td><a href="#">'+data[i]['emplacementevenement']+'</a></td> </tr>').appendTo("#events tbody");
+            $('<tr id="'+data[i]['idevenement']+'"> <td><label class="checkbox inline"><input type="checkbox"/></label></td> <td><a href="#modal-'+data[i]['idevenement']+'" data-toggle="modal">'+data[i]['nomevenement']+'</a></td> <td><a href="#">'+data[i]['emplacementevenement']+'</a></td> <td> <div class="modal fade" id="modal-'+data[i]['idevenement']+'"> <div class="modal-header"> <button class="close" data-dismiss="modal">×</button> <h3>'+data[i]['nomevenement']+'</h3> </div> <div class="modal-body"> <ul> <li>Description de l\'évènement : <span>'+data[i]['descevenement']+'</span> <i class="icon-pencil"></i></li> <li>Nombre d\'inscrit : <span>'+data[i]['nbinscrit']+'</span> <i class="icon-pencil"></i></li> <li>Date du début de l\'évènement : <span>'+data[i]['datedebutevenement']+'</span> <i class="icon-pencil"></i></li> <li>Date de la fin de l\'évènement : <span>'+data[i]['datefinevenement']+'</span> <i class="icon-pencil"></i></li> <li>Emplacment : <span>'+data[i]['emplacementevenement']+'</span> <i class="icon-pencil"></i></li> </ul> </div> <div class="modal-footer"> <a href="#" class="btn" data-dismiss="modal">Close</a> </div> </div> </td></tr>').appendTo("#events tbody");
           }
           $('#session+.progress').fadeOut('slow', function(){
             $('#events').fadeIn('slow');
           });
         }
+        showModalEvents();
         data = '';
+
       });
       e.preventDefault();
     }

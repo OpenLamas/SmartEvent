@@ -13,7 +13,7 @@
       }
       elseif ($_SESSION["right"]=="GESTIONNAIRE" || $_SESSION["right"]=="ADMIN") {
         $donnees = new db_request();
-        echo json_encode($donnees->getEventsFromSession($this->vars['idSession']));
+        echo json_encode($donnees->getEventsFromSessionWithNbInscrit($this->vars['idSession']));
         exit;
       }
       else{        
