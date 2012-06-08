@@ -27,7 +27,7 @@
       {% for levent in lastevent %}
       <li><a href="#">{{ levent.datedebutevenement|truncate(11,true)|date("d M") }} - {{ levent.nomevenement }}</a></li>
       {% endfor %}
-      <li><a href="#">Voir tout &raquo;</a></li>      
+      <li><a href="{{ site_root }}/next-events">Voir tout &raquo;</a></li>      
       {% else %}
       <li>Vous n'êtes inscrit à aucun évènement.</li>
       {% endif %}

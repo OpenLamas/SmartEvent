@@ -236,6 +236,21 @@
         return $donnees;
     }
 
+    public function getEventsFromUser($id){
+      // Code de la methode final
+          $donnees;
+
+            $req = $this->bdd->prepare('SELECT NomEvenement, dateDebutEvenement, emplacementEvenement FROM EVENEMENTS INNER JOIN PARTICIPER ON idEvenement=idRefEvenement WHERE idRefUtilisateur = :idUser ORDER BY dateDebutEvenement');
+            $req->bindValue(':idUser', $id, PDO::PARAM_INT);
+            $req->execute();
+            $donnees = array();
+            while($champs = $req->fetch()){
+            array_push($donnees, $champs);
+          }
+
+        return $donnees;
+    }
+
     public function getRegisteredEventPerSession($idUser, $idSession){
       $donnees;
       $req = $this->bdd->prepare('SELECT COUNT(*) FROM EVENEMENTS INNER JOIN SESSIONS ON IdSession = RefSession INNER JOIN PARTICIPER ON idEvenement=idRefEvenement WHERE idRefUtilisateur = :idUser AND idSession = :idSession');
