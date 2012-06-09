@@ -2,8 +2,14 @@
 {% block content %}
 <div class="row" id="session">
 <div class="span12"><h1>{{ session.nomsession }}</h1></div>
+</div>
+<div class="row">
 {% for event in events %}
-<div class="span4 well">
+{% if loop.index0 % 3 == 0 and loop.index0 != 0 %}
+</div>
+<div class="row">
+{% endif %}
+<div class="span3 well">
   <div class="event-header">
     <h2>{{ event.nomevenement }}</h2>
     {% if event.estinscrit == 1 %}
