@@ -13,16 +13,16 @@
       }
       
       elseif ($_SESSION["right"]=="GESTIONNAIRE"){
-        $donnees = new db_request();
+        $dbSessions = new db_sessions();
         $template = $this->twig->loadTemplate('events.twig');
-        echo $template->render(array('cur_user' => $_SESSION, 'sessions' => $donnees->getSessionAndCreatorFromCreator()));
+        echo $template->render(array('cur_user' => $_SESSION, 'sessions' => $dbSessions->getSessionAndCreatorFromCreator($_SESSION['idUtilisateur'])));
         exit;
       }      
 
       elseif ($_SESSION["right"]=="ADMIN") {
-        $donnees = new db_request();
+        $dbSessions = new db_sessions();
         $template = $this->twig->loadTemplate('events.twig');
-        echo $template->render(array('cur_user' => $_SESSION, 'sessions' => $donnees->getSessionAndCreator()));
+        echo $template->render(array('cur_user' => $_SESSION, 'sessions' => $dbSessions->getAllSessionAndCreator()));
         exit;
       }
       else{        

@@ -12,9 +12,8 @@
         exit;
       }
       elseif ($_SESSION["right"]=="ADMIN") {
-        $donnees = new db_request();
         $template = $this->twig->loadTemplate('config.twig');
-        echo $template->render(array('cur_user' => $_SESSION, 'users' => $donnees->getUser()));
+        echo $template->render(array('cur_user' => $_SESSION));
         exit;
       }
       else{        

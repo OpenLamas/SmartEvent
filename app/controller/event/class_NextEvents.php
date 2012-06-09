@@ -12,9 +12,9 @@
         exit;
       }
       else{
-        $donnees = new db_request();
+        $dbEvents = new db_events();
         $template = $this->twig->loadTemplate('calendar.twig');
-        $events = $donnees->getEventsFromUser($_SESSION['idutilisateur']);
+        $events = $dbEvents->getEventsFromUser($_SESSION['idutilisateur']);
         $script = "";
 
         foreach ($events as $event) {

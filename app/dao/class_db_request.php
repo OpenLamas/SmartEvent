@@ -5,10 +5,10 @@
   require('class_db_events.php');
   require('class_db_sessions.php');
   
-  class db_request extends PostgreConnection{
+  /*class db_request extends PostgreConnection{
     
-    /* --- Utilisateurs --- */    
-    /* Renvoie un/des utilisateur(s) */
+    /* --- Utilisateurs ---   
+    /* Renvoie un/des utilisateur(s) 
     public function getUser($id=''){
       // Code de la methode final
           $donnees;
@@ -28,12 +28,12 @@
         return $donnees;
     }
 
-    /* Ajoute, modifie, ou supprime un utilisateur */
+    /* Ajoute, modifie, ou supprime un utilisateur 
     public function setUser($id){
-      /* code SQL */
+      /* code SQL 
     }
 
-    /* Renvoie le hash du password et l'id de l'email passé en argument */
+    /* Renvoie le hash du password et l'id de l'email passé en argument 
     public function getPassword($email){
       // Code de la methode final
         $req = $this->bdd->prepare('SELECT idUtilisateur, mdpUtilisateur FROM UTILISATEURS where mailUtilisateur = :email');
@@ -43,8 +43,8 @@
         return $req->fetch();
     }   
 
-    /* --- Evènements --- */
-    /* Renvoie un/des évenement(s) */
+    /* --- Evènements --- 
+    /* Renvoie un/des évenement(s) 
     public function getEvent($id='vide'){
       // Code de la methode final
           $donnees;
@@ -63,7 +63,7 @@
         return $donnees;
     }
 
-    /* Renvoie un/des évenement(s) avec leur nombre d'inscrits */
+    /* Renvoie un/des évenement(s) avec leur nombre d'inscrits 
     public function getEventWithNbInscrit($id='vide'){
       // Code de la methode final
           $donnees;
@@ -83,8 +83,7 @@
         return $donnees;
     }
 
-    /* Renvoie tout les évènements d'une session */
-    public function getEventsFromSession($id){
+    /* Renvoie tout les évènements d'une session 
       // Code de la methode final
           $donnees;
 
@@ -96,7 +95,7 @@
         return $donnees;
     }
 
-    /* Renvoie tout les évènements d'une session avec leur nombre d'inscrits */
+    /* Renvoie tout les évènements d'une session avec leur nombre d'inscrits 
     public function getEventsFromSessionWithNbInscrit($idSession){
       // Code de la methode final
           $donnees;
@@ -109,12 +108,12 @@
         return $donnees;
     }
 
-    /* Ajoute, modifie, ou supprime un evenement */
+    /* Ajoute, modifie, ou supprime un evenement 
     public function setEvent($id){
-      /* code SQL */
+      /* code SQL 
     }
 
-    /* Renvoie une/des collection(s) d'évenements */
+    /* Renvoie une/des collection(s) d'évenements 
     public function getSession($id='vide'){
       // Code de la methode final
           $donnees;
@@ -162,13 +161,13 @@
       }
 
     }
-    /* Ajoute, modifie, ou supprime une collection d'évenements */
+    /* Ajoute, modifie, ou supprime une collection d'évenements 
     public function setSession($id){
-      /* code SQL */
+      /* code SQL 
     }
     
-    /* --- Sécurité --- */
-    /* Renvoie le statut d'un utilisateur */
+    /* --- Sécurité --- 
+    /* Renvoie le statut d'un utilisateur 
     public function getRight($id){      
       // Code de la methode final
           $donnees;
@@ -182,7 +181,7 @@
     }
 
     public function setRight($id){
-      /* code SQL */
+      /* code SQL 
     }
 
     public function getNbEventRegistered($id){
@@ -266,4 +265,4 @@
       $req->bindValue(':idEvent', $idEvent, PDO::PARAM_INT);
       $req->execute();
     }
-  }
+  }*/

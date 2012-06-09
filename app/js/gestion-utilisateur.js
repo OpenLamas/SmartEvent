@@ -73,6 +73,9 @@ $(document).ready(function () {
           alert('Vous devez selectionnez au moins un utilisateur');
         }
       
+        else if(data == '!soi'){
+          alert('Vous ne pouvez pas vous supprimer !');
+        }
         else{
           alert('Vous n\'avez pas le droit de supprimer des utilisateurs');
         }

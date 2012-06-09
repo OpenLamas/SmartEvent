@@ -43,7 +43,7 @@
     * @return array info des évènement
     */
     public function getEventsFromSessionWithNbInscrit($idSession){
-      $req = $this->bdd->prepare('SELECT idEvenement,refSession,nomEvenement,descEvenement,dateDebutEvenement,dateFinEvenement,emplacementEvenement, COUNT(idRefUtilisateur) AS nbInscrit FROM EVENEMENTS LEFT OUTER JOIN PARTICIPER ON PARTICIPER.idRefEvenement = EVENEMENTS.idEvenement WHERE refSession=1 GROUP BY idEvenement,refSession,nomEvenement,descEvenement,dateDebutEvenement,dateFinEvenement,emplacementEvenement');
+      $req = $this->bdd->prepare('SELECT idEvenement,refSession,nomEvenement,descEvenement,dateDebutEvenement,dateFinEvenement,emplacementEvenement, COUNT(idRefUtilisateur) AS nbInscrit FROM EVENEMENTS LEFT OUTER JOIN PARTICIPER ON PARTICIPER.idRefEvenement = EVENEMENTS.idEvenement WHERE refSession= :idSession GROUP BY idEvenement,refSession,nomEvenement,descEvenement,dateDebutEvenement,dateFinEvenement,emplacementEvenement');
       $req->bindValue(':idSession', $idSession, PDO::PARAM_INT);
       $req->execute();
       return $req->fetchAll();

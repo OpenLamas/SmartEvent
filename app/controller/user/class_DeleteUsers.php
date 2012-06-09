@@ -1,15 +1,20 @@
 <?php
   require('dao/class_db_request.php');
-  // require('basicClass/twigStart.php');
   
   class DeleteUsers{
     
     public function action(){
-      $donnees = new db_request();
+      $dbUsers = new db_users();
       if($_SESSION["right"]=='ADMIN'){
         if(isset($_POST['tabUsers'])){       
           foreach($_POST['tabUsers'] as $i){
-            $donnees->setUser($i);
+            if($i != $_SESSION['idUtilisateur']){
+              $dbUsers->removeUser($i);
+            }
+
+            else{
+              echo "!soi";
+            }
           }
           echo "ok";
           exit;

@@ -6,7 +6,6 @@
 
     public function action(){
 
-      $donnees = new db_request();
       $template = $this->twig->loadTemplate('listevents.twig');
       if(!isset($_SESSION['login'])){
         $template = $this->twig->loadTemplate('login.twig');
@@ -14,14 +13,16 @@
         exit;
       }
       elseif ($_SESSION["right"]=="GESTIONNAIRE" || $_SESSION["right"]=="ADMIN") {
-        $donnees = new db_request();
+        $dbEvents = new db_events();
+        $dbSessions = new db_sessions();
+
         $template = $this->twig->loadTemplate('listevents.twig');
-        $events = $donnees->getEventsFromSessionWithNbInscrit($this->vars['idSession']);
+        $events = $dbEvents->getEventsFromSessionWithNbInscrit($this->vars['idSession']);
         for($i=0;$i<count($events);$i++) {
-          $bool = $donnees->getRegisteredFromEvent($_SESSION['idutilisateur'], $events[$i]['idevenement']);
+          $bool = $dbEvents->getRegisteredFromEvent($_SESSION['idutilisateur'], $events[$i]['idevenement']);
           $events[$i]['estinscrit'] = $bool['count'];
         }
-        echo $template->render(array('cur_user' => $_SESSION, 'session' => $donnees->getSession($this->vars['idSession']), 'events' => $events));
+        echo $template->render(array('cur_user' => $_SESSION, 'session' => $dbSessions->getSession($this->vars['idSession']), 'events' => $events));
         exit;
       }
       else{        

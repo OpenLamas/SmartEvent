@@ -12,11 +12,11 @@
       }
       else{
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
-          $donnees = new db_request();
+          $dbUsers = new db_users();
           if(isset($_POST['email']) && isset($_POST['password'])){
-            $tmpUser = $donnees->getPassword(addslashes($_POST['email']));
+            $tmpUser = $dbUsers->getPassword(addslashes($_POST['email']));
             if($tmpUser['mdputilisateur'] == md5(addslashes($_POST['password']))){
-              $_SESSION = $donnees->getUser($tmpUser['idutilisateur']);
+              $_SESSION = $dbUsers->getUser($tmpUser['idutilisateur']);
               $state = 'success';
             } else {
               $state = 'wrong';
@@ -28,8 +28,7 @@
         
         if($state == 'success'){
           if(!isset($_SESSION['login'])){          
-            $template = $this->twig->loadTemplate('home.twig');
-            echo $template->render(array('cur_user' => array('login' => ''), 'sessions' => $donnees->getSession()));
+            throw new Exception("Error Processing Request", 1);
           }
           else{
             $tmp = $this->twig->getGlobals();

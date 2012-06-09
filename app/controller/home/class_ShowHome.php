@@ -6,7 +6,8 @@
 
     public function action(){
 
-      $donnees = new db_request();
+      $dbEvents = new db_events();
+      $dbSessions = new db_sessions();
       
       if(!isset($_SESSION['login'])){
         $template = $this->twig->loadTemplate('login.twig');
@@ -14,15 +15,15 @@
         exit;
       }
       else{
-        $nbEvent = $donnees->getNbEventRegistered($_SESSION['idutilisateur']);
+        $nbEvent = $dbEvents->getNbEventRegistered($_SESSION['idutilisateur']);
         $template = $this->twig->loadTemplate('home.twig');
         // $sessions = $donnees->getSessionPlace();
-        $sessions = $donnees->getSession();
+        $sessions = $dbSessions->getAllSession();
         for($i=0;$i<count($sessions);$i++) {
-          $nbReg = $donnees->getRegisteredEventPerSession($_SESSION['idutilisateur'], $sessions[$i]['idsession']);
+          $nbReg = $dbEvents->getRegisteredEventPerSession($_SESSION['idutilisateur'], $sessions[$i]['idsession']);
           $sessions[$i]['eventInscrit'] = $nbReg['count'];
         }
-        echo $template->render(array('cur_user' => $_SESSION, 'sessions' => $sessions, 'totalRegisteredCount' => $nbEvent['count'], 'lastevent' => $donnees->getLastEvents($_SESSION['idutilisateur'])));
+        echo $template->render(array('cur_user' => $_SESSION, 'sessions' => $sessions, 'totalRegisteredCount' => $nbEvent['count'], 'lastevent' => $dbEvents->getLastEvents($_SESSION['idutilisateur'])));
       }
     }
   }
