@@ -1,6 +1,4 @@
-<?php
-  require('class_PostgreConnection.php');
-  
+<?php  
   class db_users extends PostgreConnection{
     
     /**
@@ -95,7 +93,7 @@
     * @param $refDroit
     * @return void
     */
-    public function updateRight($idUser, $refDroit){
+    public function updateUserRight($idUser, $refDroit){
       $req = $this->bdd->prepare('UPDATE UTILISATEURS SET refDroit = :refDroit');
       $req->bindValue(':refDroit', $refDroit, PDO::PARAM_INT);
       $req->execute();

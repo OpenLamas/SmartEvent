@@ -14,7 +14,7 @@
   <route url="/admin-backup" module="admin" action="" />
   
   <!-- Evenements -->
-  <route url="/event-(\d+)-detail((-ajax)?)" module="event" action="Detail" vars="idEvent,ajax" />
+  <!-- <route url="/event-(\d+)-detail((-ajax)?)" module="event" action="Detail" vars="idEvent,ajax" /> -->
   <route url="/event-(\d+)-inscription" module="event" action="Inscription" vars="idEvent" />
   <route url="/session-(\d+)-get" module="event" action="GetEvents" vars="idSession" />
   <route url="/session-(\d+)-list" module="event" action="ListEvents" vars="idSession" />
