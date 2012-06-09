@@ -13,7 +13,7 @@
     <ul class="unstyled">
       {% if sessions|length > 0 %}
       {% for session in sessions %}
-      <li><a href="{{ site_root }}/session-{{ session.idsession }}-list">{{ session.nomsession }} ( {{ session.eventInscrit }} / {{ session.nbminparticipationevenement }}) &raquo;</a></li>
+      <li><a href="{{ site_root }}/session-{{ session.idsession }}-list">{{ session.nomsession }} ({{ session.eventInscrit }} / {{ session.nbminparticipationevenement }}) &raquo;</a></li>
       {% endfor %}
       {% else %}
       <li>Aucune session.</li>
