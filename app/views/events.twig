@@ -131,37 +131,44 @@
   <div class="modal-body"> 
     <form class="form-horizontal" method="POST" action="#">
       <fieldset>
-        <div class="control-group">
-          <label class="control-label" for="titreEvent">Nom de l'évènement :</label>
-          <div class="controls">
-            <input type="text" class="input-xlarge" id="titreEvent" />
-          </div>
-        </div> 
-        <div class="control-group">
-          <label class="control-label" for="descEvent">Description de l'évènement :</label>
-          <div class="controls">
-            <textarea class="input-xlarge" id="descEvent" row="3"></textarea>
-          </div>
+    <div class="control-group">
+      <label class="control-label" for="titre">Nom de l'évènement :</label>
+      <div class="controls">
+        <input type="text" class="input-xlarge" name="titre" id="titre" />
+      </div>
+    </div> 
+    <div class="control-group">
+      <label class="control-label" for="descEvent">Description de l'évènement :</label>
+      <div class="controls">
+        <textarea class="input-xlarge" id="description" name="description" row="3"></textarea>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="dateDebut">Date du début de l'évènement :</label>
+      <div class="controls">
+        <input type="text" class="input-medium date" id="dateDebut" name="dateDebut" />
+        <div class="input-append input-prepend">
+          <input type="text" class="input-mini" id="heureDebut" name="heureDebut" placeholder="Heures"/><span class="add-on">:</span><input type="text" class="input-mini" name="minuteDebut" id="minuteDebut" placeholder="Minutes"/>
         </div>
-        <div class="control-group">
-          <label class="control-label" for="dateDebut">Date du début de l'évènement :</label>
-          <div class="controls">
-            <input type="text" class="input-large" id="dateDebut" name="dateDebut" />
-          </div>
+        
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="dateFin">Date de la fin de l'évènement :</label>
+      <div class="controls">
+        <input type="text" class="input-medium date" id="dateFin" name="dateFin"/>
+        <div class="input-append input-prepend">
+          <input type="text" class="input-mini" id="heureFin" name="heureFin" placeholder="Heures"/><span class="add-on">:</span><input type="text" class="input-mini" name="minuteFin" id="minuteFin" placeholder="Minutes"/>
         </div>
-        <div class="control-group">
-          <label class="control-label" for="dateFin">Date de la fin de l'évènement :</label>
-          <div class="controls">
-            <input type="text" class="input-large" id="dateFin" name="dateFin"/>
-          </div>
-        </div>
-        <div class="control-group">
-          <label class="control-label" for="emplacement">Emplacement :</label>
-          <div class="controls">
-            <input type="text" class="input-large" id="emplacement" name="emplacement"/>
-          </div>
-        </div>
-      </fieldset>  
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="emplacement">Emplacement :</label>
+      <div class="controls">
+        <input type="text" class="input-large" id="emplacement" name="emplacement"/>
+      </div>
+    </div>
+  </fieldset>   
     </form> 
   </div> 
   <div class="modal-footer"> 

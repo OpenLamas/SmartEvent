@@ -112,15 +112,21 @@ $(document).ready(function(){
     e.preventDefault();
     if($(e.target).hasClass('btn-primary')){
       var data = {
-        titre: $('form #titreEvent',this).val(),
-        description: $('form #descEvent',this).val(),
+        titre: $('form #titre',this).val(),
+        description: $('form #description',this).val(),
         dateDebut: $('form #dateDebut',this).val(),
+        heureDebut: $('form #heureDebut',this).val(),
+        minuteDebut: $('form #minuteDebut',this).val(),
+        heureFin: $('form #heureFin',this).val(),
+        minuteFin: $('form #minuteFin',this).val(),
         dateFin: $('form #dateFin',this).val(),
         emplacement: $('form #emplacement',this).val(),
         idSession: currentSession
       };
       
-      $.post($(e.target).attr('href'),data,function(callBack){
+      console.log(data);
+      $.post($(e.target).attr('href'), data, function(callBack){
+        console.log(callBack);
         $('#addEventModal').modal('hide');
         if (callBack.code == 'ok') {
           $('<tr id="'+callBack.idevent+'"> <td><label class="checkbox inline"><input type="checkbox"/></label></td> <td><a href="#modal-'+callBack.idevent+'" data-toggle="modal">'+data.titre+'</a></td> <td><a href="#">'+data.emplacement+'</a></td> <td> <div class="modal fade" id="modal-'+callBack.idevent+'"> <div class="modal-header"> <button class="close" data-dismiss="modal">×</button> <h3>'+data.titre+'</h3> </div> <div class="modal-body"> <ul> <li>Description de l\'évènement : <span>'+data.description+'</span> <i class="icon-pencil"></i></li> <li>Nombre d\'inscrit : <span>'+data.nbinscrit+'</span> <i class="icon-pencil"></i></li> <li>Date du début de l\'évènement : <span>'+data.dateDebut+'</span> <i class="icon-pencil"></i></li> <li>Date de la fin de l\'évènement : <span>'+data.dateFin+'</span> <i class="icon-pencil"></i></li> <li>Emplacment : <span>'+data.emplacement+'</span> <i class="icon-pencil"></i></li> </ul> </div> <div class="modal-footer"> <a href="#" class="btn" data-dismiss="modal">Close</a> </div> </div> </td></tr>').appendTo("#events tbody");
