@@ -1,6 +1,4 @@
-<?php
-  require('class_PostgreConnection.php');
-  
+<?php  
   class db_events extends PostgreConnection{
     
     /**
@@ -34,7 +32,7 @@
     */
     public function getEventsFromSession($idSession){
       $req = $this->bdd->prepare('SELECT idEvenement,refSession,nomEvenement,descEvenement,dateDebutEvenement,dateFinEvenement,emplacementEvenement FROM EVENEMENTS WHERE refSession = :idSession');
-      $req->bindValue(':idSession', $id, PDO::PARAM_INT);
+      $req->bindValue(':idSession', $idSession, PDO::PARAM_INT);
       $req->execute();
       return $req->fetchAll();
     }
@@ -80,7 +78,7 @@
       $req->bindValue(':dateDebut', $data['dateDebut'], PDO::PARAM_STR);
       $req->bindValue(':dateFin', $data['dateFin'], PDO::PARAM_STR);
       $req->bindValue(':emplacement', $data['emplacement'], PDO::PARAM_STR);
-      $req->blindValue(':idEvent', $data['idEvenement'], PDO::PARAM_STR)
+      $req->blindValue(':idEvent', $data['idEvenement'], PDO::PARAM_INT);
       $req->execute();
     }
 
@@ -102,7 +100,7 @@
     */
     public function getNbEventRegistered($idUser){
       $req = $this->bdd->prepare('SELECT COUNT(*) FROM PARTICIPER WHERE idRefUtilisateur = :idUser');
-      $req->bindValue(':idUser', $id, PDO::PARAM_INT);
+      $req->bindValue(':idUser', $idUser, PDO::PARAM_INT);
       $req->execute();
       return $req->fetch();
     }
@@ -112,9 +110,9 @@
     * @param $idUser
     * @return array liste des évènement
     */
-    public function getLastEvents($id){
+    public function getLastEvents($idUser){
       $req = $this->bdd->prepare('SELECT NomEvenement, dateDebutEvenement, emplacementEvenement FROM EVENEMENTS INNER JOIN PARTICIPER ON idEvenement=idRefEvenement WHERE idRefUtilisateur = :idUser ORDER BY dateDebutEvenement LIMIT 3');
-      $req->bindValue(':idUser', $id, PDO::PARAM_INT);
+      $req->bindValue(':idUser', $idUser, PDO::PARAM_INT);
       $req->execute();
       return $req->fetchAll();
     }
@@ -126,7 +124,7 @@
     */
     public function getEventsFromUser($idUser){
       $req = $this->bdd->prepare('SELECT NomEvenement, dateDebutEvenement, emplacementEvenement FROM EVENEMENTS INNER JOIN PARTICIPER ON idEvenement=idRefEvenement WHERE idRefUtilisateur = :idUser ORDER BY dateDebutEvenement');
-      $req->bindValue(':idUser', $id, PDO::PARAM_INT);
+      $req->bindValue(':idUser', $idUser, PDO::PARAM_INT);
       $req->execute();
       return $req->fetchAll();
     }
@@ -142,7 +140,7 @@
       $req->bindValue(':idUser', $idUser, PDO::PARAM_INT);
       $req->bindValue(':idSession', $idSession, PDO::PARAM_INT);
       $req->execute();
-      return $req->fetch()
+      return $req->fetch();
     }
 
     /**

@@ -5,7 +5,6 @@
     * Methode retournant tous les utilisateurs
     * @return array Liste des utilisateurs et de leurs droits
     */
-
     public function getAllUsers(){
       $req = $this->bdd->query('SELECT idUtilisateur,refDroit,nomUtilisateur,prenomUtilisateur,mailUtilisateur,mdpUtilisateur,nomDroit AS right FROM UTILISATEURS INNER JOIN DROITS ON RefDroit=IdDroit');
       return $req->fetchAll();
