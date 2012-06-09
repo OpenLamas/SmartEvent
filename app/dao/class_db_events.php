@@ -4,7 +4,7 @@
     /**
     * Methode retournant un evenement
     * @param $idEvent
-    * @return array info d'un event
+    * @return array
     */
     public function getEvent($idEvent){
       $req = $this->bdd->prepare('SELECT idEvenement,refSession,nomEvenement,descEvenement,dateDebutEvenement,dateFinEvenement,emplacementEvenement FROM EVENEMENTS WHERE idEvenement = :idEvent');
@@ -16,7 +16,7 @@
     /**
     * Methode retournant un évènement avec le nombre d'inscrit
     * @param $idEvent
-    * @return array info d'un event
+    * @return array
     */
     public function getEventWithNbInscrit($idEvent){
       $req = $this->bdd->prepare('SELECT idEvenement,refSession,nomEvenement,descEvenement,dateDebutEvenement,dateFinEvenement,emplacementEvenement, COUNT(idRefUtilisateur) AS nbInscrit FROM EVENEMENTS LEFT OUTER JOIN PARTICIPER ON PARTICIPER.idRefEvenement = EVENEMENTS.idEvenement WHERE idEvenement = :idEvent GROUP BY idEvenement,refSession,nomEvenement,descEvenement,dateDebutEvenement,dateFinEvenement,emplacementEvenement');
@@ -28,7 +28,7 @@
     /**
     * Methode retournant tous les évènement d'une session
     * @param $idSession
-    * @return array info des évènements
+    * @return array
     */
     public function getEventsFromSession($idSession){
       $req = $this->bdd->prepare('SELECT idEvenement,refSession,nomEvenement,descEvenement,dateDebutEvenement,dateFinEvenement,emplacementEvenement FROM EVENEMENTS WHERE refSession = :idSession');
@@ -40,7 +40,7 @@
     /**
     * Methode retournant tous les évènement d'une session et les inscrit a chaque évènement
     * @param $idSession
-    * @return array info des évènement
+    * @return array
     */
     public function getEventsFromSessionWithNbInscrit($idSession){
       $req = $this->bdd->prepare('SELECT idEvenement,refSession,nomEvenement,descEvenement,dateDebutEvenement,dateFinEvenement,emplacementEvenement, COUNT(idRefUtilisateur) AS nbInscrit FROM EVENEMENTS LEFT OUTER JOIN PARTICIPER ON PARTICIPER.idRefEvenement = EVENEMENTS.idEvenement WHERE refSession= :idSession GROUP BY idEvenement,refSession,nomEvenement,descEvenement,dateDebutEvenement,dateFinEvenement,emplacementEvenement');
@@ -52,7 +52,7 @@
     /**
     * Ajoute un évènement
     * @param array info de l'évènement
-    * @return void
+    * @return id de l'évènement ajouté
     */
     public function addEvent($data){
       $req = $this->bdd->prepare('INSERT INTO EVENEMENTS(refSession, nomEvenement, descEvenement, datedebutevenement, datefinevenement, emplacementEvenement) VALUES (:idSession, :titre, :description, :dateDebut, :dateFin, :emplacement)');
@@ -63,6 +63,18 @@
       $req->bindValue(':dateFin', $data['dateFin'], PDO::PARAM_STR);
       $req->bindValue(':emplacement', $data['emplacement'], PDO::PARAM_STR);
       $req->execute();
+
+      $req1 = $this->bdd->prepare('SELECT idEvenement FROM EVENEMENTS WHERE refSession = :idSession AND nomEvenement = :titre AND descEvenement = :description AND datedebutevenement = :dateDebut AND datefinevenement = :dateFin AND emplacementEvenement = :emplacement');
+      $req1->bindValue(':idSession', $data['idSession'], PDO::PARAM_INT);
+      $req1->bindValue(':titre', $data['titre'], PDO::PARAM_STR);
+      $req1->bindValue(':description', $data['description'], PDO::PARAM_STR);
+      $req1->bindValue(':dateDebut', $data['dateDebut'], PDO::PARAM_STR);
+      $req1->bindValue(':dateFin', $data['dateFin'], PDO::PARAM_STR);
+      $req1->bindValue(':emplacement', $data['emplacement'], PDO::PARAM_STR);
+      $req1->execute();
+      return $req1->fetch();
+      /*echo serialize($tmp);
+      return $tmp['idevenement'];*/
     }
 
     /**
@@ -96,7 +108,7 @@
     /**
     * Methode retournant le nombre d'évènement auquelle l'utilisateur est inscrit
     * @param $idUser utilisateur a cherché
-    * @return array nombre d'évènement inscrit
+    * @return array
     */
     public function getNbEventRegistered($idUser){
       $req = $this->bdd->prepare('SELECT COUNT(*) FROM PARTICIPER WHERE idRefUtilisateur = :idUser');
@@ -108,7 +120,7 @@
     /**
     * Methode retournant les trois prochain évènement trier par ordre chronologique
     * @param $idUser
-    * @return array liste des évènement
+    * @return array
     */
     public function getLastEvents($idUser){
       $req = $this->bdd->prepare('SELECT NomEvenement, dateDebutEvenement, emplacementEvenement FROM EVENEMENTS INNER JOIN PARTICIPER ON idEvenement=idRefEvenement WHERE idRefUtilisateur = :idUser ORDER BY dateDebutEvenement LIMIT 3');
@@ -120,7 +132,7 @@
     /**
     * Liste des évènements auquelle l'utilisateur est inscrit
     * @param $idUser id de l'utilisateur
-    * @return array liste des évènements
+    * @return array
     */
     public function getEventsFromUser($idUser){
       $req = $this->bdd->prepare('SELECT NomEvenement, dateDebutEvenement, emplacementEvenement FROM EVENEMENTS INNER JOIN PARTICIPER ON idEvenement=idRefEvenement WHERE idRefUtilisateur = :idUser ORDER BY dateDebutEvenement');
@@ -133,7 +145,7 @@
     * Nombre d'évènement pour une session définie auqelle une personne est inscrite
     * @param $idUser id de l'utilisateur 
     * @param $idSession id de la session
-    * @return array nombre d'évènement
+    * @return array
     */
     public function getRegisteredEventPerSession($idUser, $idSession){
       $req = $this->bdd->prepare('SELECT COUNT(*) FROM EVENEMENTS INNER JOIN SESSIONS ON IdSession = RefSession INNER JOIN PARTICIPER ON idEvenement=idRefEvenement WHERE idRefUtilisateur = :idUser AND idSession = :idSession');

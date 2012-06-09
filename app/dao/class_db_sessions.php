@@ -4,7 +4,7 @@
     /**
     * Methode retournant une session
     * @param $idSession id de la session
-    * @return array id de de la session
+    * @return array
     */
     public function getSession($idSession){
       $req = $this->bdd->prepare('SELECT idSession,refCreateur,nomSession,nbMaxInscritEvenement,nbMinParticipationEvenement,dateLimiteInscription,dateRappelMail FROM SESSIONS WHERE idSession= :idSession');
@@ -24,7 +24,7 @@
 
     /**
     * Methode retournant toutes les sessions et leurs créateur
-    * @return liste des session
+    * @return array
     */
     public function getAllSessionAndCreator(){
       $req = $this->bdd->query('SELECT idSession,prenomUtilisateur AS prenomCreateur,nomUtilisateur AS nomCreateur,nomSession,nbMaxInscritEvenement,nbMinParticipationEvenement,dateLimiteInscription,dateRappelMail FROM SESSIONS INNER JOIN UTILISATEURS ON refCreateur = idUtilisateur');
@@ -34,7 +34,7 @@
     /**
     * Liste des sessions crée par un utilisateur
     * @param $idUser
-    * @return array liste des sessions
+    * @return array
     */
     public function getSessionAndCreatorFromCreator($idUser){
       $req = $this->bdd->prepare('SELECT idSession,prenomUtilisateur AS prenomCreateur,nomUtilisateur AS nomCreateur,nomSession,nbMaxInscritEvenement,nbMinParticipationEvenement,dateLimiteInscription,dateRappelMail FROM SESSIONS INNER JOIN UTILISATEURS ON refCreateur = idUtilisateur WHERE refCreateur = :idUser');
@@ -44,9 +44,22 @@
     }
 
     /**
+    * Methode retournant le createur d'une session
+    * @param $idSession id de la session
+    * @return id du createur
+    */
+    public function getSessionCreator($idSession){
+      $req = $this->bdd->prepare('SELECT refCreateur FROM SESSIONS WHERE idSession = :idSession');
+      $req->bindValue(':idSession', $idSession, PDO::PARAM_INT);
+      $req->execute();
+      $tmp = $req->fetch();
+      return $tmp['refCreateur'];
+    }
+
+    /**
     * Méthode retourne la liste des sessions avec le nombre évènement auquelle l'utilisateur est incrit
     * @param $idUser id de l'utilisateur
-    * @return array liste des session
+    * @return array
     * NE MARCHE PAS !
     */
     public function getSessionPlace($id='vide'){

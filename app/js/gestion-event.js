@@ -112,20 +112,34 @@ $(document).ready(function(){
     e.preventDefault();
     if($(e.target).hasClass('btn-primary')){
       var data = {
-        nom: $('form #titreEvent',this).val(),
+        titre: $('form #titreEvent',this).val(),
         description: $('form #descEvent',this).val(),
-        nbInscrit: $('form #nbInscrit',this).val(),
         dateDebut: $('form #dateDebut',this).val(),
         dateFin: $('form #dateFin',this).val(),
         emplacement: $('form #emplacement',this).val(),
-        session: currentSession
+        idSession: currentSession
       };
-
+      
       $.post($(e.target).attr('href'),data,function(callBack){
-        alert(data.session);
-      });
+        $('#addEventModal').modal('hide');
+        if (callBack.code == 'ok') {
+          $('<tr id="'+callBack.idevent+'"> <td><label class="checkbox inline"><input type="checkbox"/></label></td> <td><a href="#modal-'+callBack.idevent+'" data-toggle="modal">'+data.titre+'</a></td> <td><a href="#">'+data.emplacement+'</a></td> <td> <div class="modal fade" id="modal-'+callBack.idevent+'"> <div class="modal-header"> <button class="close" data-dismiss="modal">×</button> <h3>'+data.titre+'</h3> </div> <div class="modal-body"> <ul> <li>Description de l\'évènement : <span>'+data.description+'</span> <i class="icon-pencil"></i></li> <li>Nombre d\'inscrit : <span>'+data.nbinscrit+'</span> <i class="icon-pencil"></i></li> <li>Date du début de l\'évènement : <span>'+data.dateDebut+'</span> <i class="icon-pencil"></i></li> <li>Date de la fin de l\'évènement : <span>'+data.dateFin+'</span> <i class="icon-pencil"></i></li> <li>Emplacment : <span>'+data.emplacement+'</span> <i class="icon-pencil"></i></li> </ul> </div> <div class="modal-footer"> <a href="#" class="btn" data-dismiss="modal">Close</a> </div> </div> </td></tr>').appendTo("#events tbody");
+        }
+
+        else if(callBack.code == '!right'){
+          alert('Vous n\'avez pas le droit d\'ajouté d\'évènement');
+        }
+
+        else if(callBack.code == '!createur'){
+          alert('Vous n\'avez pas le droit d\'ajouté d\'évènement a une session que vous n\'avez pas créé');
+        }
+
+        else{
+          console.log(callBack);
+        }
+      }, 'json');
     }
-  })
+  });
 });
 
   /*$('#session .span4.well').click(function(e){
