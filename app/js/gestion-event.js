@@ -1,3 +1,4 @@
+/* Affichage des modals event */
 var showModalEvents = function(){
   $('#events .modal li').click(function(e){
     if($(e.target).hasClass('icon-pencil')){
@@ -23,7 +24,6 @@ $(document).ready(function(){
       thisSpan = $(this);
     }
   });
-
 
   /* Inscription a un event*/
   $('#session .modal').click(function(e){
@@ -66,6 +66,32 @@ $(document).ready(function(){
       $('i', this).addClass('icon-pencil');
     }
   });
+
+  /* Ajout session */
+  $('#addSessionModal').click(function(e){
+    if($(e.target).hasClass("btn-primary")){
+      e.preventDefault();
+      var data = {
+        nomSession: $('#input_sessionName', this).val(),
+        maxInscrit: $('#input_sizeEvent', this).val(),
+        minParticipation: $('#input_minEvent', this).val(),
+        dateLimite: $('#input_dateExp', this).val(),
+        dateRappel: $('#input_dateMail', this).val(),
+        idCreateur: ''
+      };
+      $.post($(e.target).attr("href"), data, function(callBack){
+        console.log(callBack);
+        if (callBack.code == 'ok'){
+          $('#addSessionModal').modal('hide');
+          $('<tr id="session-'+callBack.idSession.idsession+'"><td><label class="checkbox inline"><input type="checkbox"/></label></td><td><a href="#modal-session-'+callBack.idSession.idsession+'" data-toggle="modal">'+data.nomSession+'</a></td><td><a href="#" class="voir">Voir &raquo;</a></td><td><div class="modal fade" id="modal-session-'+callBack.idSession.idsession+'"><div class="modal-header"><button class="close" data-dismiss="modal">×</button><h3>'+data.nomSession+'</h3></div><div class="modal-body"> <ul><li>Créé par '+'Toi'+'</li><li>Nombre max d\'inscrit : <span>'+data.maxInscrit+'</span> <i class="icon-pencil"></i></li><li>Nombre d\'event mini : <span>'+data.minParticipation+'</span> <i class="icon-pencil"></i></li><li>Date limite d\'inscription : <span>'+data.dateLimite+'</span> <i class="icon-pencil"></i></li><li>Date rappel mail : <span>'+data.dateRappel+'</span> <i class="icon-pencil"></i></li></ul></div><div class="modal-footer"><a href="#" class="btn" data-dismiss="modal">Close</a></div></div></td></tr>').appendTo("#session tbody");
+        }
+
+        else{
+          alert('Vous n\'avez pas le droit d\'ajouté une session');
+        }
+      }, 'json');
+    }
+  })
 
   var currentSession;
   /*Affichage events par session*/
@@ -124,7 +150,6 @@ $(document).ready(function(){
         idSession: currentSession
       };
       
-      console.log(data);
       $.post($(e.target).attr('href'), data, function(callBack){
         console.log(callBack);
         $('#addEventModal').modal('hide');

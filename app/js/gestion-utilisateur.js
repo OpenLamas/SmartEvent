@@ -88,7 +88,7 @@ $(document).ready(function () {
 
 
  
-  // Gestion des tags 
+  /* Gestion des tags 
   $('#utilisateurs .listTags li').click(function(e){
     if ($(e.target).is('i')) {
       $(this).remove();
@@ -107,7 +107,7 @@ $(document).ready(function () {
         }
       });
     }
-  });
+  });*/
 
   
 });

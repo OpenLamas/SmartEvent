@@ -86,7 +86,7 @@
       <div class="control-group">
         <label class="control-label" for="input_dest">Destinataires</label>
         <div class="controls">
-          <input type="text" class="input-xlarge" id="input_dest" value="" />
+          <input type="text" class="input-xlarge disabled" id="input_dest" value="" disabled />
         </div>
       </div>
       <legend>Options supplémentaires</legend>
@@ -105,21 +105,20 @@
       <div class="control-group">
         <label class="control-label" for="input_dateExp">Date limite d'inscription</label>
         <div class="controls">
-          <input type="text" class="input-large" id="input_dateExp" />
+          <input type="text" class="input-large date" id="input_dateExp" />
         </div>
       </div>
       <div class="control-group">
         <label class="control-label" for="input_dateMail">Date du rappel par mail</label>
         <div class="controls">
-          <input type="text" class="input-large" id="input_dateMail" />
+          <input type="text" class="input-large date" id="input_dateMail" />
         </div>
-      </div> 
-    </div>
-    <div class="modal-footer">
-      <a href="#" class="btn" data-dismiss="modal">Annuler</a>
-      <button type="submit" class="btn btn-primary">Ajouter</button>
-    </div>
-    </form>    
+      </div>
+    </form> 
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Annuler</a>
+    <a href="session-submit" class="btn btn-primary">Ajouter</a>    
   </div>
 </div>
 {# MODAL AJOUT EVENT ************************************************************** #}
