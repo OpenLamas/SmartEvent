@@ -23,6 +23,7 @@
         }
 
         elseif($_SESSION['right'] == 'ADMIN'){
+          
           $idEvent = $dbEvents->addEvent($_POST);
           echo json_encode(array('code' => 'ok', 'idEvent' => $idEvent));
           exit;
@@ -46,14 +47,10 @@
     'Juillet','Août','Septembre','Octobre','Novembre','Décembre');
 
     $dateCasse = explode(' ', $date);
-    /*Echo '<pre>';
-    Print_r($dateCasse);
-    Echo '</pre>';*/
-    $dateOutput = $dateCasse[3].'-'.$dateCasse[1].'-';
 
     foreach($listMois as $key => $mois){
       if($mois == $dateCasse[2]){
-        return $dateCasse[3].'-'.$dateCasse[1].'-'.$key.' '.$heure.':'.$minute;
+        return $dateCasse[3].'-'.$key.'-'.$dateCasse[1].' '.$heure.':'.$minute;
       }
     }
 
