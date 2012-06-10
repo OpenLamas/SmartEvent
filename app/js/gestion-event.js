@@ -39,7 +39,7 @@ $(document).ready(function(){
 
   var thisSpan;
 
-  $('#session .span4.well').click(function(e){
+  $('#session .span3.well').click(function(e){
     if($(e.target).hasClass('detailBtn')){
       thisSpan = $(this);
     }
@@ -50,6 +50,7 @@ $(document).ready(function(){
     if($(e.target).hasClass('inscrire')){
       var Tevent = $(this).attr('id').split('-');
       var modal = $(this);
+      console.log(thisSpan);
       $('.inscrire', modal).html('En cours...');
       $.getJSON('event-'+Tevent[1]+'-inscription',function(data){
           if(data.ok){

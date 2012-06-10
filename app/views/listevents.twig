@@ -1,57 +1,58 @@
 {% extends 'body.twig' %}
 {% block content %}
-<div class="row" id="session">
+<div class="row">
 <div class="span12"><h1>{{ session.nomsession }}</h1></div>
 </div>
-<div class="row">
-{% for event in events %}
-{% if loop.index % 4 == 0 and loop.index0 != 0 and not loop.last %}
-</div>
-<div class="row">
-{% endif %}
-<div class="span3 well">
-  <div class="event-header">
-    <h2>{{ event.nomevenement }}</h2>
-    {% if event.estinscrit == 1 %}
-    <h4><span class="badge badge-inverse">{{ session.nbmaxinscritevenement - event.nbinscrit }} places libres</span> <span class="badge badge-success">Inscrit</span></h4>
-    {% elseif (session.nbmaxinscritevenement - event.nbinscrit) > niveauAlert %}
-    <h4><span class="badge badge-inverse">{{ session.nbmaxinscritevenement - event.nbinscrit }} places libres</span></h4>
-    {% else %}
-    <h4><span class="badge badge-alert">0 places libres</span></h4>
-    {% endif %}
+<div id="session">
+  <div class="row">
+  {% for event in events %}
+  {% if loop.index % 4 == 0 and loop.index0 != 0 and not loop.last %}
   </div>
-  <dl>
-    <dt>Description</dt>
-    <dd>{{ event.descevenement }}</dd>
-  </dl>
-  <p><a class="btn detailBtn" data-toggle="modal" href="#modal-{{ event.idevenement }}{# event-{{ event.idevenement }}-detail #}">Détails &raquo;</a></p>
-  <div class="ajaxCont modal fade" id="modal-{{ event.idevenement }}">
-    <div class="modal-header">
-      <button class="close" data-dismiss="modal">×</button>
-      <h3>{{ event.nomevenement }}</h3>
+  <div class="row">
+  {% endif %}
+  <div class="span3 well">
+    <div class="event-header">
+      <h2>{{ event.nomevenement }}</h2>
       {% if event.estinscrit == 1 %}
-      <span class="badge badge-success">Inscrit</span>  
-      {% endif %}
-    </div>
-    <div class="modal-body">
-      {% if event.datedebutevenement|truncate(11,true)|date("dmy") == event.datefinevenement|truncate(11,true)|date("dmy") %}
-      <p>Le {{ event.datedebutevenement|truncate(11,true)|date("d/m/y") }}, de {{ event.datedebutevenement|truncate(11,true)|date("H\\hi") }} à {{ event.datefinevenement|truncate(11,true)|date("H\\hi") }}</p>
+      <h4><span class="badge badge-inverse">{{ session.nbmaxinscritevenement - event.nbinscrit }} places libres</span> <span class="badge badge-success">Inscrit</span></h4>
+      {% elseif (session.nbmaxinscritevenement - event.nbinscrit) > niveauAlert %}
+      <h4><span class="badge badge-inverse">{{ session.nbmaxinscritevenement - event.nbinscrit }} places libres</span></h4>
       {% else %}
-      <p>Du {{ event.datedebutevenement|truncate(11,true)|date("d/m/y \\à H\\hi") }} au {{ event.datefinevenement|truncate(11,true)|date("d/m/y \\à H\\hi") }}
-      {% endif %}
-      <p>{{ event.descevenement }}<br />
-      Il ne reste plus que {{ session.nbmaxinscritevenement - event.nbinscrit }} place(s) pour cette évènement</p>
-    </div>
-    <div class="modal-footer">
-      <a href="#" class="btn" data-dismiss="modal">Close</a>
-      {% if event.estinscrit == 1 %}
-      <a href="#" class="btn btn-primary inscrire">Se déinscrire</a>  
-      {% else %}
-      <a href="#" class="btn btn-primary inscrire">S'inscrire</a>
+      <h4><span class="badge badge-alert">0 places libres</span></h4>
       {% endif %}
     </div>
-  </div>
-</div><!--/span4 data-toggle="modal"-->
-{% endfor %}
+    <dl>
+      <dt>Description</dt>
+      <dd>{{ event.descevenement }}</dd>
+    </dl>
+    <p><a class="btn detailBtn" data-toggle="modal" href="#modal-{{ event.idevenement }}">Détails &raquo;</a></p>
+    <div class="ajaxCont modal fade" id="modal-{{ event.idevenement }}">
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal">×</button>
+        <h3>{{ event.nomevenement }}</h3>
+        {% if event.estinscrit == 1 %}
+        <span class="badge badge-success">Inscrit</span>  
+        {% endif %}
+      </div>
+      <div class="modal-body">
+        {% if event.datedebutevenement|truncate(11,true)|date("dmy") == event.datefinevenement|truncate(11,true)|date("dmy") %}
+        <p>Le {{ event.datedebutevenement|truncate(11,true)|date("d/m/y") }}, de {{ event.datedebutevenement|truncate(11,true)|date("H\\hi") }} à {{ event.datefinevenement|truncate(11,true)|date("H\\hi") }}</p>
+        {% else %}
+        <p>Du {{ event.datedebutevenement|truncate(11,true)|date("d/m/y \\à H\\hi") }} au {{ event.datefinevenement|truncate(11,true)|date("d/m/y \\à H\\hi") }}
+        {% endif %}
+        <p>{{ event.descevenement }}<br />
+        Il ne reste plus que {{ session.nbmaxinscritevenement - event.nbinscrit }} place(s) pour cette évènement</p>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal">Close</a>
+        {% if event.estinscrit == 1 %}
+        <a href="#" class="btn btn-primary inscrire">Se déinscrire</a>  
+        {% else %}
+        <a href="#" class="btn btn-primary inscrire">S'inscrire</a>
+        {% endif %}
+      </div>
+    </div>
+  </div><!--/span4 data-toggle="modal"-->
+  {% endfor %}
 </div>
 {% endblock %}
