@@ -29,7 +29,7 @@
 
           $script .= "{
             title: '".$titre."',
-            start: new Date("./*$date[0]*/'2012'.", ".$date[1].", ".$date[2].")
+            start: new Date("./*$date[0]*/'2012'.", ".($date[1] - 1).", ".$date[2].")
           },";
         }
         echo $template->render(array('cur_user' => $_SESSION, 'nextevents' => $script));
