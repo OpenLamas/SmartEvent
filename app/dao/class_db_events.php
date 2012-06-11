@@ -123,7 +123,7 @@
     * @return array
     */
     public function getLastEvents($idUser){
-      $req = $this->bdd->prepare('SELECT NomEvenement, dateDebutEvenement, emplacementEvenement FROM EVENEMENTS INNER JOIN PARTICIPER ON idEvenement=idRefEvenement WHERE idRefUtilisateur = :idUser ORDER BY dateDebutEvenement LIMIT 3');
+      $req = $this->bdd->prepare('SELECT NomEvenement, dateDebutEvenement, emplacementEvenement FROM EVENEMENTS INNER JOIN PARTICIPER ON idEvenement=idRefEvenement WHERE idRefUtilisateur = :idUser AND dateDebutEvenement >= NOW() ORDER BY dateDebutEvenement LIMIT 3');
       $req->bindValue(':idUser', $idUser, PDO::PARAM_INT);
       $req->execute();
       return $req->fetchAll();
