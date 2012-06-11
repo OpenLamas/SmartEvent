@@ -97,7 +97,7 @@ $(document).ready(function(){
         }
       }, 'json');
     }
-  })
+  });
 
   var currentSession;
   /*Affichage events par session*/
@@ -177,6 +177,14 @@ $(document).ready(function(){
       }, 'json');
     }
   });
+
+  /* Selection des events*/
+  $('#events tbody ')
+  $('#events table').click(function(e){
+
+  })
+
+  /* Suppression events */
 });
 
   /*$('#session .span4.well').click(function(e){
