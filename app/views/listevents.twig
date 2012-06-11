@@ -1,7 +1,10 @@
 {% extends 'body.twig' %}
 {% block content %}
 <div class="row">
-<div class="span12"><h1>{{ session.nomsession }}</h1></div>
+  <div class="span12">
+    <h1>{{ session.nomsession }}</h1>
+    <h3>Vous devez vous inscrire à {{ session.nbminparticipationevenement }} évènements au minimum.</h3><br />
+  </div>
 </div>
 <div id="session">
   <div class="row">
