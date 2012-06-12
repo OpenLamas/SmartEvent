@@ -1,7 +1,21 @@
 {% extends 'body.twig' %}
 
 {% block content %}
-  <div class="well" id='calendar'>&nbsp;</div>
+  {# Boutons radios #}
+  <div id="btngroupe-listevents" class="btn-group" data-toggle="buttons-radio">
+    <button class="btn">Calendrier</button>
+    <button class="btn">Liste</button>
+  </div>
+  {# Calendrier #}
+  <div class="well span9" id='calendar'>&nbsp;</div>
+  {# Liste #}
+  <div class="span9">
+    <ul class="unstyled">
+    {% for event in events %}
+    <li><a href="#">{{ event.datedebutevenement|truncate(11,true)|date("d M")|replace({'Feb': 'Fev', 'Apr': 'Avr', 'May': 'Mai', 'Jun': 'Juin', 'Jul': 'Juil', 'Aug': 'Août'}) }} - {{ event.nomevenement }}</a></li>
+    {% endfor %}
+    </ul>
+  </div>
 {% endblock %}
 
 {% block calendarscript %}
