@@ -23,7 +23,7 @@ var showModalEvents = function(){
 
 /* Gestion des sessions */
 var selectSession = function(){
-  /* Selection via les lignes */
+  /* Selection via les lignes*/
   $('#session tbody tr').click(function(e){
       if(!$(e.target).is('a')){
         if($(':checkbox', this).attr("checked")){
