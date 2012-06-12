@@ -2,8 +2,8 @@
 {% extends 'body.twig' %}
 {% block content %}
 {% if cur_user.right == 'ADMIN' %}
-<div class="span9">
-  <form class="form-horizontal" method="POST" action="#">
+<div class="span9 offset1">
+  <form class="form-horizontal well" method="POST" action="#">
     <fieldset>
       <legend>Application</legend>
       <div class="control-group">
@@ -14,44 +14,41 @@
         </div>
     </fieldset>
     <fieldset>
-      <legend>Serveur</legend>
+      <legend>Serveur Web</legend>
       <div class="control-group">
         <label class="control-label" for="input_siteRoot">Racine du site</label>
         <div class="controls">
-          <input type="text" class="input-xlarge" id="input_siteRoot" value="{{ site_root }}" />
+          <input type="text" class="input-large" id="input_siteRoot" value="{{ site_root }}" />
           <p class="help-block">monsite.com/events/ par ex.</p>
         </div>
       </div>
+    </fieldset>
+    <fieldset>
+      <legend>Serveur SQL</legend>
       <div class="control-group">
         <label class="control-label" for="input_sqlServer">Serveur SQL</label>
-        <div class="controls">
-          <input type="text" class="input-xlarge" id="input_sqlServer" />
-          <p class="help-block">localhost par ex.</p>
-        </div>
-      </div>
-      <div class="control-group">
-        <label class="control-label" for="input_sqlPort">Port SQL</label>
-        <div class="controls">
-          <input type="text" class="input-mini" id="input_sqlPort" />
-          <p class="help-block">3380 par ex.</p>
+        <div class="controls">  
+          <div class="input-append input-prepend">
+            <input type="text" class="input-medium" id="input_sqlServer" name="IPSqlServer" placeholder="Adresse IP"/><span class="add-on">:</span><input type="text" class="input-mini" name="PortSqlServer" id="input_portsqlServer" placeholder="Port"/>
+          </div>
         </div>
       </div>
       <div class="control-group">
         <label class="control-label" for="input_sqlUser">Utilisateur SQL</label>
         <div class="controls">
-          <input type="text" class="input" id="input_sqlUser" />
+          <input type="text" class="input-medium" id="input_sqlUser" />
         </div>
       </div>
       <div class="control-group">
         <label class="control-label" for="input_sqlPwd">Mot de passe SQL</label>
         <div class="controls">
-          <input type="text" class="input" id="input_sqlPwd" />
+          <input type="password" class="input-medium" id="input_sqlPwd" />
         </div>
       </div>
       <div class="control-group">
         <label class="control-label" for="input_sqlDB">Base SQL</label>
         <div class="controls">
-          <input type="text" class="input" id="input_sqlDB" />
+          <input type="text" class="input-medium" id="input_sqlDB" />
         </div>
       </div>
       
