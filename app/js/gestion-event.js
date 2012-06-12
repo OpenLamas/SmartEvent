@@ -1,4 +1,5 @@
 var idSessions = new Array();
+var idEvents = new Array();
 
 
 /* Modif des modals event */
@@ -20,22 +21,26 @@ var showModalEvents = function(){
 };
 
 
-/* Selection des events */
+/* Gestion des sessions */
 var selectSession = function(){
+  /* Selection via les lignes */
   $('#session tbody tr').click(function(e){
-      if($(':checkbox', this).attr("checked")){
-        $(':checkbox', this).attr('checked', false);
-        var tmp = $(this).attr('id').split('-');
-        idSessions.splice(idSessions.indexOf(tmp[1]),1);
-      }
+      if(!$(e.target).is('a')){
+        if($(':checkbox', this).attr("checked")){
+          $(':checkbox', this).attr('checked', false);
+          var tmp = $(this).attr('id').split('-');
+          idSessions.splice(idSessions.indexOf(tmp[1]),1);
+        }
 
-      else{
-        var tmp = $(this).attr('id').split('-');
-        idSessions.push(tmp[1]);
-        $(':checkbox', this).attr("checked", true);
+        else{
+          var tmp = $(this).attr('id').split('-');
+          idSessions.push(tmp[1]);
+          $(':checkbox', this).attr("checked", true);
+        }
       }
   });
 
+  /* Envoie des sessions a delete */
   $('#session .btn-danger').click(function(e){
     $.post($(this).attr('href'), {'tabSessions': idSessions}, function(data){
       if(data.code == 'ok'){
@@ -53,6 +58,7 @@ var selectSession = function(){
     e.preventDefault();
   });
 
+  /* On rétablie les checkbox */
   $('#session tbody tr :checkbox').click(function() {
     if ($(this).attr('checked')) {
       $(this).attr('checked', false);
@@ -64,6 +70,12 @@ var selectSession = function(){
   });
 };
 
+/* Gestion des events */
+var selectEvent = function(){
+  $('#events tbody tr').click(function(e){
+    console.log('Couc !');
+  });
+};
 
 /* Modif des modals session */
 var showModalSessions = function(){
