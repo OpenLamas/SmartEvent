@@ -27,6 +27,8 @@
   
   <!-- Error -->
   <route url="/error-403" module="error" action="Error403" />
+  <route url="/error-500" module="error" action="Error500" />
+  <route url="/error-manchot" module="error" action="ErrorManchot" />
   <!-- Index -->
   <route url="/" module="home" action="ShowHome" />
 </routes>
