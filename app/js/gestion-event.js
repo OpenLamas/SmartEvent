@@ -20,10 +20,8 @@ var showModalEvents = function(){
   });
 };
 
-
-/* Gestion des sessions */
+/* Selection des Sessions */
 var selectSession = function(){
-  /* Selection via les lignes*/
   $('#session tbody tr').click(function(e){
       if(!$(e.target).is('a')){
         if($(':checkbox', this).attr("checked")){
@@ -31,31 +29,12 @@ var selectSession = function(){
           var tmp = $(this).attr('id').split('-');
           idSessions.splice(idSessions.indexOf(tmp[1]),1);
         }
-
         else{
           var tmp = $(this).attr('id').split('-');
           idSessions.push(tmp[1]);
           $(':checkbox', this).attr("checked", true);
         }
       }
-  });
-
-  /* Envoie des sessions a delete */
-  $('#session .btn-danger').click(function(e){
-    $.post($(this).attr('href'), {'tabSessions': idSessions}, function(data){
-      if(data.code == 'ok'){
-        for(var i=0;i<idSessions.length;i++){
-          $('#session tr#session-'+idSessions[i]).hide('slow');
-        }
-        idSessions.splice(0, idSessions.length); //On purge le tableau 
-      }
-
-      else{
-        alert('Vous n\'avez pas le droit de supprimé ces évènement');
-      }
-    }, 'json');
-
-    e.preventDefault();
   });
 
   /* On rétablie les checkbox */
@@ -68,6 +47,14 @@ var selectSession = function(){
       $(this).attr('checked', true);
     }
   });
+}
+
+
+
+/* Suppression des sessions */
+var deleteSession = function(){
+  
+  
 };
 
 /* Gestion des events */
@@ -120,7 +107,6 @@ var showEvent = function(){
         }
 
         $('#events+.progress').fadeOut('slow', function(){ // On fait disparaitre la progress-bar
-          console.log($(this));
           $(this).remove(); // On la supprime du DOM
           if(!$('#events table').hasClass('dejaVu')){ // Si il n'a pas la classe dejaVu
             $('#events table').addClass('dejaVu');    // On lui donne
@@ -144,7 +130,7 @@ var showEvent = function(){
 $(document).ready(function(){
   showModalSessions();
   showEvent();
-  //selectSession();
+  selectSession();
 
   var thisSpan;
 
@@ -194,12 +180,12 @@ $(document).ready(function(){
         idCreateur: ''
       };
       $.post($(e.target).attr("href"), data, function(callBack){
-        console.log(callBack);
         if (callBack.code == 'ok'){
           $('#addSessionModal').modal('hide');
           $('<tr id="session-'+callBack.idSession.idsession+'"><td><label class="checkbox inline"><input type="checkbox"/></label></td><td><a href="#modal-session-'+callBack.idSession.idsession+'" data-toggle="modal">'+data.nomSession+'</a></td><td><a href="#" class="voir">Voir &raquo;</a></td><td><div class="modal fade" id="modal-session-'+callBack.idSession.idsession+'"><div class="modal-header"><button class="close" data-dismiss="modal">×</button><h3>'+data.nomSession+'</h3></div><div class="modal-body"> <ul><li>Créé par '+'Toi'+'</li><li>Nombre max d\'inscrit : <span>'+data.maxInscrit+'</span> <i class="icon-pencil"></i></li><li>Nombre d\'event mini : <span>'+data.minParticipation+'</span> <i class="icon-pencil"></i></li><li>Date limite d\'inscription : <span>'+data.dateLimite+'</span> <i class="icon-pencil"></i></li><li>Date rappel mail : <span>'+data.dateRappel+'</span> <i class="icon-pencil"></i></li></ul></div><div class="modal-footer"><a href="#" class="btn" data-dismiss="modal">Close</a></div></div></td></tr>').appendTo("#session tbody");
           showModalSessions();
           showEvent();
+          selectSession();
         }
 
         else{
@@ -210,7 +196,23 @@ $(document).ready(function(){
     }
   });
 
-  
+  /* Envoie des sessions a delete */
+  $('#session .btn-danger').click(function(e){
+    $.post($(this).attr('href'), {'tabSessions': idSessions}, function(data){
+      if(data.code == 'ok'){
+        for(var i=0;i<idSessions.length;i++){
+          $('#session tr#session-'+idSessions[i]).hide('slow');
+        }
+        idSessions.splice(0, idSessions.length); //On purge le tableau 
+      }
+
+      else{
+        alert('Vous n\'avez pas le droit de supprimé ces évènement');
+      }
+    }, 'json');
+
+    e.preventDefault();
+  });
 
   /* Ajout d'un event dans une session*/
   $('#addEventModal').click(function(e){
@@ -250,14 +252,6 @@ $(document).ready(function(){
       }, 'json');
     }
   });
-
-  /* Selection des events*/
-  $('#events tbody ')
-  $('#events table').click(function(e){
-
-  })
-
-  /* Suppression events */
 });
 
   /*$('#session .span4.well').click(function(e){
