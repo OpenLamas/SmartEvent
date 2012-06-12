@@ -11,7 +11,7 @@
   
   <!-- Admin -->
   <route url="/admin-config" module="admin" action="ShowConfig" />
-  <route url="/admin-backup" module="admin" action="" />
+  <route url="/admin-backup" module="admin" action="ManageBackups" />
   
   <!-- Evenements -->
   <!-- <route url="/event-(\d+)-detail((-ajax)?)" module="event" action="Detail" vars="idEvent,ajax" /> -->
