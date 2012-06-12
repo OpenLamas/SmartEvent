@@ -16,6 +16,16 @@ var showModalEvents = function(){
   });
 };
 
+
+/* Selection des events */
+var selectEvent = function(){
+  $('#events tbody tr').click(function(e){
+    idEvents.push($(e.target).attr('id'));
+      alert(idEvent);
+  });
+};
+
+
 /* Modif des modals session */
 var showModalSessions = function(){
   $('#session .modal li').click(function(e){
@@ -72,11 +82,14 @@ var showEvent = function(){
 
       });
       e.preventDefault();
+      selectEvent();
     }
   });
 };
 
 $(document).ready(function(){
+  var idEvents = new Array();
+
   showModalSessions();
   showEvent();
 
