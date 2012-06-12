@@ -1,6 +1,6 @@
 <?php 
+  require_once('Twig/lib/Twig/Autoloader.php');
 
-  require_once('Twig/Autoloader.php');
 
   abstract class Controller{
     protected $twig;

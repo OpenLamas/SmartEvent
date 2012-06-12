@@ -101,3 +101,15 @@
 #selectSession select{
   margin-right: 5px;
 }
+
+.redText {
+  color: red;
+}
+
+.greenText {
+  color: green;
+}
+
+.table-search {
+  width: 600px;
+}
