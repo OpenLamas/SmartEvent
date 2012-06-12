@@ -1,0 +1,10 @@
+{% set cur_page = 'backup' %}
+{% extends 'body.twig' %}
+{% block content %}
+{% if cur_user.right == 'ADMIN' %}
+<div class="span9 offset1">
+  <a href="#" class="btn btn-success"><i class="icon-download icon-white"></i> Sauvegarder la base SQL</a>
+  <a href="#" class="btn btn-warning"><i class="icon-upload icon-white"></i> Restaurer la base SQL</a>
+</div>
+{% endif %}
+{% endblock %}
