@@ -100,15 +100,14 @@ var currentSession;
 var showEvent = function(){
  $('#session tr[id|="session"]').click(function(e){ // Si on selectionneune ligne qui à un id qui commence par session
     if($(e.target).hasClass('voir')){ // si c'est bien le lien 'voir'
-      if(!$("#events table").hasClass('visible')){ // si le tableau est n'a pas été visible
+      if(!$("#events table").hasClass('dejaVu')){ // si le tableau n'a jamais été affiché
         $('#events').after('<div class="hide progress progress-striped active span3 offset2" style="margin-top: 100px;"><div class="bar" style="width: 100%;"></div></div>');
         $('#events+.progress').fadeIn('slow'); // On affiche la progress-barre
-        //$('#session+.progress').addClass('visible').fadeIn('slow');
       }
       else{
-        $('#events').after('<div class="hide progress progress-striped active span3 offset2"><div class="bar" style="width: 100%;"></div></div>');
-        $("#events table").fadeOut('slow', function(){
-          $('#events+.progress').fadeIn('slow');
+        $('#events').after('<div class="hide progress progress-striped active span3 offset1" style="margin-top: 60px;"><div class="bar" style="width: 100%;"></div></div>');
+        $("#events table").fadeOut('slow', function(){ // On cache le tableau
+          $('#events+.progress').fadeIn('slow');       // et on affiche la barre de progression
         });
       }
 
@@ -116,21 +115,28 @@ var showEvent = function(){
       $.getJSON(sessionPlusId+'-get',function(data){
         currentSession = sessionPlusId.split('-')[1];
         $("#events tbody").empty(); // on purge la table
-        for(var i=0;i<data.length;i++){
+        for(var i=0;i<data.length;i++){ // On ajoute les ligne
           $('<tr id="'+data[i]['idevenement']+'"> <td><label class="checkbox inline"><input type="checkbox"/></label></td> <td><a href="#modal-'+data[i]['idevenement']+'" data-toggle="modal">'+data[i]['nomevenement']+'</a></td> <td><a href="#">'+data[i]['emplacementevenement']+'</a></td> <td> <div class="modal fade" id="modal-'+data[i]['idevenement']+'"> <div class="modal-header"> <button class="close" data-dismiss="modal">×</button> <h3>'+data[i]['nomevenement']+'</h3> </div> <div class="modal-body"> <ul> <li>Description de l\'évènement : <span>'+data[i]['descevenement']+'</span> <i class="icon-pencil"></i></li> <li>Nombre d\'inscrit : <span>'+data[i]['nbinscrit']+'</span> <i class="icon-pencil"></i></li> <li>Date du début de l\'évènement : <span>'+data[i]['datedebutevenement']+'</span> <i class="icon-pencil"></i></li> <li>Date de la fin de l\'évènement : <span>'+data[i]['datefinevenement']+'</span> <i class="icon-pencil"></i></li> <li>Emplacment : <span>'+data[i]['emplacementevenement']+'</span> <i class="icon-pencil"></i></li> </ul> </div> <div class="modal-footer"> <a href="#" class="btn" data-dismiss="modal">Close</a> </div> </div> </td></tr>').appendTo("#events tbody");
         }
 
-        if()
-        $('#events+.progress').fadeOut('slow', function(){
-          $('#events').fadeIn('slow');
-          $('#events').addClass('visible');
+        $('#events+.progress').fadeOut('slow', function(){ // On fait disparaitre la progress-bar
+          console.log($(this));
+          $(this).remove(); // On la supprime du DOM
+          if(!$('#events table').hasClass('dejaVu')){ // Si il n'a pas la classe dejaVu
+            $('#events table').addClass('dejaVu');    // On lui donne
+            $('#events').fadeIn('slow');
+          }
+
+          else{
+            $('#events table').fadeIn('slow'); // On affiche le tabeau 
+          }
         });
-        showModalEvents();
+        showModalEvents(); // On bind les modif des modos
         data = '';
 
       });
       e.preventDefault();
-      selectEvent();
+      selectEvent(); // On bind la selection des events;
     }
   });
 };
@@ -138,7 +144,7 @@ var showEvent = function(){
 $(document).ready(function(){
   showModalSessions();
   showEvent();
-  selectSession();
+  //selectSession();
 
   var thisSpan;
 
