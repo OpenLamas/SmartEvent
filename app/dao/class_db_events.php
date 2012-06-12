@@ -195,4 +195,16 @@
       $req->bindValue(':idEvent', $idEvent, PDO::PARAM_INT);
       $req->execute();
     }
+
+    /**
+    * Methode retournant les trois prochain évènement trier par ordre chronologique
+    * @param $search mots recherchés
+    * @return array
+    */
+    public function searchEvents($search){
+      $req = $this->bdd->prepare('SELECT EVENEMENTS.NomEvenement, EVENEMENTS.descEvenement, SESSIONS.nbMaxInscritEvenement, count(PARTICIPER.idRefUtilisateur) FROM EVENEMENTS INNER JOIN PARTICIPER ON idEvenement=idRefEvenement INNER JOIN SESSIONS ON idEvenement = idRefEvenement WHERE EVENEMENTS.nomEvenement LIKE \'%$search%\' OR EVENEMENTS.descEvenement LIKE \'%$search%\' ORDER BY dateDebutEvenement');
+      $req->bindValue(':search', $search, PDO::PARAM_STR);
+      $req->execute();
+      return $req->fetchAll();
+    }
   }

@@ -58,7 +58,7 @@
     <ul class="unstyled">
       {% if lastevent|length > 0 %}
       {% for levent in lastevent %}
-      <li><a href="#">{{ levent.datedebutevenement|truncate(11,true)|date("d M") }} - {{ levent.nomevenement }}</a></li>
+      <li><a href="#">{{ levent.datedebutevenement|truncate(11,true)|date("d M")|replace({'Feb': 'Fev', 'Apr': 'Avr', 'May': 'Mai', 'Jun': 'Juin', 'Jul': 'Juil', 'Aug': 'Août'}) }} - {{ levent.nomevenement }}</a></li>
       {% endfor %}
       <li><a href="{{ site_root }}/next-events">Voir tout &raquo;</a></li>      
       {% else %}
