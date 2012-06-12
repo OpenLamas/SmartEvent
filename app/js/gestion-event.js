@@ -1,3 +1,6 @@
+var idSessions = new Array();
+
+
 /* Modif des modals event */
 var showModalEvents = function(){
   $('#events .modal li').click(function(e){
@@ -18,10 +21,37 @@ var showModalEvents = function(){
 
 
 /* Selection des events */
-var selectEvent = function(){
-  $('#events tbody tr').click(function(e){
-    idEvents.push($(e.target).attr('id'));
-      alert(idEvent);
+var selectSession = function(){
+  $('#session tbody tr').click(function(e){
+      if($(':checkbox', this).attr("checked")){
+        $(':checkbox', this).attr('checked', false);
+        var tmp = $(this).attr('id').split('-');
+        idSessions.splice(idSessions.indexOf(tmp[1]),1);
+      }
+
+      else{
+        var tmp = $(this).attr('id').split('-');
+        idSessions.push(tmp[1]);
+        $(':checkbox', this).attr("checked", true);
+      }
+  });
+
+  $('#session .btn-danger').click(function(e){
+    $.getJSON($(this).attr(href), {'tabSessions': idSessions}, function(data){
+      alert(data);
+    });
+
+    e.preventDefault();
+  });
+
+  $('#session tbody tr :checkbox').click(function() {
+    if ($(this).attr('checked')) {
+      $(this).attr('checked', false);
+    }
+
+    else{
+      $(this).attr('checked', true);
+    }
   });
 };
 
@@ -88,10 +118,9 @@ var showEvent = function(){
 };
 
 $(document).ready(function(){
-  var idEvents = new Array();
-
   showModalSessions();
   showEvent();
+  selectSession();
 
   var thisSpan;
 
