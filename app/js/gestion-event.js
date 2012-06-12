@@ -58,7 +58,7 @@ var deleteSession = function(){
 };
 
 /* Gestion des events */
-var selectEvent = function(){
+var selectEvents = function(){
   $('#events tbody tr').click(function(e){
     console.log('Couc !');
   });

@@ -22,4 +22,17 @@ $(document).ready(function() {
   $.datepicker.setDefaults($.datepicker.regional['fr']);
 
   $('.date').datepicker();
+
+  $('.well form.span11').click(function(e){
+    if($(e.target).is('a')){
+      var query = $('input', this).val;
+      console.log('Query send ! to '+$(e.target).attr("href"));
+      $.post($(e.target).attr("href"), { 'query': query}, function(data){
+        console.log(data);
+      }, 'json');
+      //console.log($('input', this).val());
+      e.preventDefault();
+    }
+
+  });
 });

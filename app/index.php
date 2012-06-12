@@ -67,7 +67,8 @@
     exit;
   }
   catch(Exception $e){
-    header('Location: error-500');
+    //header('Location: error-500');
+    echo $e->getMessage();
     exit;
   }
   
