@@ -37,9 +37,18 @@ var selectSession = function(){
   });
 
   $('#session .btn-danger').click(function(e){
-    $.getJSON($(this).attr(href), {'tabSessions': idSessions}, function(data){
-      alert(data);
-    });
+    $.post($(this).attr('href'), {'tabSessions': idSessions}, function(data){
+      if(data.code == 'ok'){
+        for(var i=0;i<idSessions.length;i++){
+          $('#session tr#session-'+idSessions[i]).hide('slow');
+        }
+        idSessions.splice(0, idSessions.length); //On purge le tableau 
+      }
+
+      else{
+        alert('Vous n\'avez pas le droit de supprimé ces évènement');
+      }
+    }, 'json');
 
     e.preventDefault();
   });
