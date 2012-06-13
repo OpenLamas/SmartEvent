@@ -87,7 +87,16 @@ $(document).ready(function () {
       alert('Vous devez selectionnez au moins un utilisateur');
     }
   });
+
+  /* Promotion d'utilisateurs */
+  $('#promoteModal').click(function(e){
+    if($(e.target).is('a')){
+      console.log($('#promoteModal form option:selected').html());
+      e.preventDefault();
+    }
+  });
  
+ /* Affichage des event auquelle l'user a participé */
  $('#utilisateurs tr').click(function(e){
   if($(e.target).is('a')){
     var tmp = $(this).attr('id').split('-');

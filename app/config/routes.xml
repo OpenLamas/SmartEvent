@@ -8,6 +8,7 @@
   <route url="/signin" module="user" action="Signin" />
   <route url="/users-manage" module="user" action="ListUsers" />
   <route url="/users-delete" module="user" action="DeleteUsers" />
+  <route url="/users-promote" module="user" action="PromoteUsers" />
   
   <!-- Admin -->
   <route url="/admin-config" module="admin" action="ShowConfig" />
