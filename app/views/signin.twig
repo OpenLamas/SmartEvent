@@ -2,11 +2,46 @@
     
 {% block content %}
 <div class="row">
-  <div class="span5 offset3">            
-    <form class="well form-inline" method="POST" action="signin">
-      <input type="text" name="email" class="input-small" placeholder="Email">
-      <input type="password" name="password" class="input-small" placeholder="Mot de Passe">
-      <button type="submit" class="btn">S'inscrire</button>
+  <div class="span7 offset2">            
+    <form class="well form-horizontal" method="POST" action="signin">
+      <fieldset>
+        <legend>Inscription</legend>
+        
+        <div class="control-group">
+          <label class="control-label" for="inputNom">Nom</label>
+          <div class="controls">
+            <input type="text" class="input-large" name="inputNom" id="inputNom">          
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="inputPrenom">Prenom</label>
+          <div class="controls">
+            <input type="text" class="input-large" name="inputPrenom" id="inputPrenom">            
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="inputEmail">Email</label>
+          <div class="controls">
+            <input type="text" class="input-large" name="inputEmail" id="inputEmail">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="inputPassword">Mot de passe</label>
+          <div class="controls">
+            <input type="password" name="inputPassword" id="inputPassword" class="input-large">
+          </div>
+        </div>      
+        <div class="control-group">
+          <label class="control-label" for="inputPassword2">Confirmer le mot de passe</label>
+          <div class="controls">
+            <input type="password" name="inputPassword2" id="inputPassword2" class="input-large">
+          </div>
+        </div>    
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">S'inscrire</button>
+        </div>
+        
+      </fieldset>
     </form>
   </div>
 </div>
