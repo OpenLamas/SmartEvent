@@ -19,7 +19,7 @@
         echo json_encode(array('code' => 'Non'));
         exit;
       }
-      header('Location: error-403');
+      throw new ForbiddenError ("Nope");
       exit;
     }
 
@@ -39,8 +39,6 @@
         return $dateCasse[3].'-'.$key.'-'.$dateCasse[1];
       }
     }
-
-    //throw new Exception("Error Processing Request", 1);
   }
 }
 ?>

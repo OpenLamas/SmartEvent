@@ -17,7 +17,7 @@
         exit;
       }
       else{        
-        header('Location: error-403');
+        throw new ForbiddenError ("Nope");
         exit;
       }     
 		}

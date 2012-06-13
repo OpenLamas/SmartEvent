@@ -1,6 +1,6 @@
 <?php
   session_start();
-  require('basicClass/class_ManchotError.php');
+  require('basicClass/customError.php');
   include('config/config.php');
   
   try {
@@ -66,6 +66,17 @@
     echo $e->getMessage();
     exit;
   }
+
+  catch(NotFoundError $e){
+    //header('Location: error-404');
+    echo 'Axiste pas !';
+  }
+
+  catch(ForbiddenError $e){
+    //header('Location: error-403');
+    echo 'Pas le droit !';
+  }
+
   catch(Exception $e){
     //header('Location: error-500');
     echo $e->getMessage();
