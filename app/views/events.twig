@@ -54,9 +54,10 @@
   <div class="hide span6" id="events">
     <a class="btn btn-primary" data-toggle="modal" href="#addEventModal"><i class="icon-plus-sign icon-white"></i> Ajouter un évènement</a>
     <a class="btn btn-info" data-toggle="modal" href="#"><i class="icon-download icon-white"></i> Importer des évènements</a>
-    <a class="btn btn-danger" href="#"><i class="icon-remove-sign icon-white"></i> Supprimer</a><br /><br />
-    <form method="POST" action="events-print">
-      <button type="submit" class="btn btn-inverse"><i class="icon-print icon-white"></i> Afficher les listes d'émargement</button><br /><br />
+    <a class="btn btn-danger" href="#"><i class="icon-remove-sign icon-white"></i> Supprimer</a><br /><br />    
+    <form method="POST" action="events-print">      
+      <button type="submit" class="btn btn-inverse"><i class="icon-th-list icon-white"></i> Listes d'émargement</button>
+      <a data-toggle="modal" href="#remindUsersModal" class="btn btn-inverse"><i class="icon-warning-sign icon-white"></i> "Rappels utilisateurs"</a><br /><br />
       <h5>Cliquez sur le nom d'un évènement pour voir/modifier ses détails</h5>
       <table class="table table-condensed well">
         <thead>
@@ -178,6 +179,37 @@
     <a href="#" class="btn" data-dismiss="modal">Annuler</a>
     <a href="event-submit" class="btn btn-primary">Ajouter</a> 
   </div> 
-</div> 
+</div>
+{# MODAL RAPPEL UTILISATEURS ***************************************************************** #}
+<div class="modal fade" id="remindUsersModal">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>Liste des utilisateurs qui ne sont pas inscrits au nombre requis d'évènements</h3>
+  </div>
+  <div class="modal-body">
+    <table class="table table-condensed">
+      <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Inscriptions manquantes</th>
+      </tr>
+      </thead>
+      <tbody>
+        {#% for user in users %#}
+        <tr>
+          <td>Jean</td>
+          <td>Jean</td>
+          <td>2</td>
+        </tr>
+        {#% endfor %#}
+      </tbody>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Fermer</a>
+    <a href="session-submit" class="btn btn-primary"><i class="icon-envelope icon-white"></i> Envoyer des mails de rappel</a>    
+  </div>
+</div>
 {% endif %}
 {% endblock %}
