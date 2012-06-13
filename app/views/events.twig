@@ -1,12 +1,12 @@
 {% set cur_page = 'manageevents' %}
 {% extends 'body.twig' %}
 {% block content %}
-{% if cur_user.right == "GESTIONNAIRE" or cur_user.right == "ADMIN"%}
+{% if cur_user.right == "GESTIONNAIRE" or cur_user.right == "ADMIN" %}
 <div class="row">
   {# PARTIE SESSIONS ******************************************************************** #}
   <div class="span6" id="session">
-    <a class="btn btn-primary" data-toggle="modal" href="#addSessionModal">Ajouter une session</a>
-    <a class="btn btn-danger" href="#">Supprimer</a><br /><br />
+    <a class="btn btn-primary" data-toggle="modal" href="#addSessionModal"><i class="icon-plus-sign icon-white"></i> Ajouter une session</a>
+    <a class="btn btn-danger" href="#"><i class="icon-remove-sign icon-white"></i> Supprimer</a><br /><br />
     <h5>Cliquez sur le nom d'une session pour voir/modifier ses détails</h5>
     <table class="table table-condensed well">
       <thead>
@@ -52,21 +52,25 @@
     <div class="bar" style="width: 100%;"></div>
   </div>
   <div class="hide span6" id="events">
-    <a class="btn btn-primary" data-toggle="modal" href="#addEventModal">Ajouter un évènement</a>
-    <a class="btn btn-info" data-toggle="modal" href="#">Importer des évènements</a>
-    <a class="btn btn-danger" href="#">Supprimer</a><br /><br />
-    <h5>Cliquez sur le nom d'un évènement pour voir/modifier ses détails</h5>
-    <table class="table table-condensed well">
-      <thead>
-        <tr>
-          <th><label class="checkbox inline"><input type="checkbox" id="checkboxAll"></label></th>
-          <th>Nom</th>
-          <th>Emplacement</th>
-        </tr>
-      </thead>
-      <tbody>         
-      </tbody>
-    </table>
+    <a class="btn btn-primary" data-toggle="modal" href="#addEventModal"><i class="icon-plus-sign icon-white"></i> Ajouter un évènement</a>
+    <a class="btn btn-info" data-toggle="modal" href="#"><i class="icon-download icon-white"></i> Importer des évènements</a>
+    <a class="btn btn-danger" href="#"><i class="icon-remove-sign icon-white"></i> Supprimer</a><br /><br />
+    <form method="POST" action="events-print">
+      <button type="submit" class="btn btn-inverse"><i class="icon-print icon-white"></i> Afficher les listes d'émargement</button><br /><br />
+      <h5>Cliquez sur le nom d'un évènement pour voir/modifier ses détails</h5>
+      <table class="table table-condensed well">
+        <thead>
+          <tr>
+            <th><label class="checkbox inline"><input type="checkbox" id="checkboxAll"></label></th>
+            <th>Nom</th>
+            <th>Nombre d'inscrits</th>
+          </tr>
+        </thead>
+        <tbody>         
+        </tbody>
+      </table>
+      <input type="hidden" />
+    </form>
   </div>
 </div>
 {# MODAL AJOUT SESSIONS ***************************************************************** #}

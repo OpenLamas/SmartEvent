@@ -22,7 +22,8 @@
   <route url="/next-events" module="event" action="NextEvents" vars="idSession" />
   <route url="/event-submit" module="event" action="EventSubmit" />
   <route url="/session-submit" module="event" action="SessionSubmit" />
-  
+  <route url="/events-print" module="event" action="PrintLists" />
+
   <!-- Error -->
   <route url="/error-403" module="error" action="Error403" />
   <!-- Index -->

@@ -1,0 +1,34 @@
+{% set cur_page = 'listings' %}
+{% extends 'body.twig' %}
+{% block content %}
+{% if cur_user.right == 'GESTIONNAIRE' or cur_user.right == "ADMIN" %}
+<div class="span3 offset1">
+<a href="#" class="btn btn-inverse"><i class="icon-print icon-white"></i> Imprimer</a><br /><br />
+</div>
+{#% for event in events %#}
+<div class="row">
+  <div class="span9 offset1 well">
+  <h1>Session / Nom de l'évènement</h1>
+  <h3>23 Juin 2013 de 10h00 à 11h00</h3>
+  <br />
+   <table class="table table-condensed table-bordered">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Prenom</th>
+        <th>Présence ?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Jean</td>
+        <td>Jean</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+{#% endfor %#}
+{% endif %}
+{% endblock %}
