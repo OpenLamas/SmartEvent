@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    
+  
   $.datepicker.regional['fr'] = {
     closeText: 'Fermer',
     prevText: '&#x3c;Préc',
@@ -17,8 +17,26 @@ $(document).ready(function() {
     firstDay: 1,
     isRTL: false,
     showMonthAfterYear: false,
-    yearSuffix: ''};
+    yearSuffix: ''
+  };
   $.datepicker.setDefaults($.datepicker.regional['fr']);
 
   $('.date').datepicker();
+
+  $('.well form.span11').click(function(e){
+    if($(e.target).is('a')){
+      var query = $('input', this).val;
+      console.log('Query send ! to '+$(e.target).attr("href"));
+      $.post($(e.target).attr("href"), { 'query': query}, function(data){
+        console.log(data);
+      }, 'json');
+      //console.log($('input', this).val());
+      e.preventDefault();
+    }
+
+  });
+
+  $("#btngroupe-listevents button").click(function(){
+    $('.span9').fadeToggle('slow');
+  });
 });

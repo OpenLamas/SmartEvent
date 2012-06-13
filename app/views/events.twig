@@ -6,7 +6,7 @@
   {# PARTIE SESSIONS ******************************************************************** #}
   <div class="span6" id="session">
     <a class="btn btn-primary" data-toggle="modal" href="#addSessionModal"><i class="icon-plus-sign icon-white"></i> Ajouter une session</a>
-    <a class="btn btn-danger" href="#"><i class="icon-remove-sign icon-white"></i> Supprimer</a><br /><br />
+    <a class="btn btn-danger" href="session-delete"><i class="icon-remove-sign icon-white"></i> Supprimer</a><br /><br />
     <h5>Cliquez sur le nom d'une session pour voir/modifier ses détails</h5>
     <table class="table table-condensed well">
       <thead>
@@ -48,9 +48,9 @@
     </table>
   </div>
   {# PARTIE EVENTS ********************************************************************** #}
-  <div class="hide progress progress-striped active span3 offset2" style="margin-top: 100px;">
+  <!--<div class="hide progress progress-striped active span3 offset2" style="margin-top: 100px;">
     <div class="bar" style="width: 100%;"></div>
-  </div>
+  </div>-->
   <div class="hide span6" id="events">
     <a class="btn btn-primary" data-toggle="modal" href="#addEventModal"><i class="icon-plus-sign icon-white"></i> Ajouter un évènement</a>
     <a class="btn btn-info" data-toggle="modal" href="#"><i class="icon-download icon-white"></i> Importer des évènements</a>
@@ -61,7 +61,7 @@
       <table class="table table-condensed well">
         <thead>
           <tr>
-            <th><label class="checkbox inline"><input type="checkbox" id="checkboxAll"></label></th>
+            <th><label class="checkbox inline all"><input type="checkbox" id="checkboxAll"></label></th>
             <th>Nom</th>
             <th>Nombre d'inscrits</th>
           </tr>

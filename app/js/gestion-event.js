@@ -1,3 +1,7 @@
+var idSessions = new Array();
+var idEvents = new Array();
+
+
 /* Modif des modals event */
 var showModalEvents = function(){
   $('#events .modal li').click(function(e){
@@ -16,15 +20,49 @@ var showModalEvents = function(){
   });
 };
 
-
-/* Selection des events */
-var selectEvent = function(){
-  $('#events tbody tr').click(function(e){
-    idEvents.push($(e.target).attr('id'));
-      alert(idEvent);
+/* Selection des Sessions */
+var selectSession = function(){
+  $('#session tbody tr').click(function(e){
+      if(!$(e.target).is('a')){
+        if($(':checkbox', this).attr("checked")){
+          $(':checkbox', this).attr('checked', false);
+          var tmp = $(this).attr('id').split('-');
+          idSessions.splice(idSessions.indexOf(tmp[1]),1);
+        }
+        else{
+          var tmp = $(this).attr('id').split('-');
+          idSessions.push(tmp[1]);
+          $(':checkbox', this).attr("checked", true);
+        }
+      }
   });
+
+  /* On rétablie les checkbox */
+  $('#session tbody tr :checkbox').click(function() {
+    if ($(this).attr('checked')) {
+      $(this).attr('checked', false);
+    }
+
+    else{
+      $(this).attr('checked', true);
+    }
+  });
+}
+
+
+
+/* Suppression des sessions */
+var deleteSession = function(){
+  
+  
 };
 
+/* Gestion des events */
+var selectEvents = function(){
+  $('#events tbody tr').click(function(e){
+    console.log('Couc !');
+  });
+};
 
 /* Modif des modals session */
 var showModalSessions = function(){
@@ -47,51 +85,52 @@ var showModalSessions = function(){
 /*Affichage events par session*/
 var currentSession;
 var showEvent = function(){
- $('#session tr[id|="session"]').click(function(e){
-    if($(e.target).hasClass('voir')){
-      if(!$("#events tbody").has('tr').length){
-        $('#session+.progress').fadeIn('slow');
+ $('#session tr[id|="session"]').click(function(e){ // Si on selectionneune ligne qui à un id qui commence par session
+    if($(e.target).hasClass('voir')){ // si c'est bien le lien 'voir'
+      if(!$("#events table").hasClass('dejaVu')){ // si le tableau n'a jamais été affiché
+        $('#events').after('<div class="hide progress progress-striped active span3 offset2" style="margin-top: 100px;"><div class="bar" style="width: 100%;"></div></div>');
+        $('#events+.progress').fadeIn('slow'); // On affiche la progress-barre
       }
       else{
-        $("#events tbody tr ").hide('slow');
-        //$("#events tbody").empty();
+        $('#events').after('<div class="hide progress progress-striped active span3 offset1" style="margin-top: 60px;"><div class="bar" style="width: 100%;"></div></div>');
+        $("#events table").fadeOut('slow', function(){ // On cache le tableau
+          $('#events+.progress').fadeIn('slow');       // et on affiche la barre de progression
+        });
       }
 
       var sessionPlusId = $(this).attr('id');
       $.getJSON(sessionPlusId+'-get',function(data){
         currentSession = sessionPlusId.split('-')[1];
-        if($("#events tbody").has('tr').length){
-          //$("#events tbody tr").hide('slow', function(){
-            $("#events tbody").empty();
-            for(var i=0;i<data.length;i++){
-              $('<tr id="'+data[i]['idevenement']+'"> <td><label class="checkbox inline"><input type="checkbox"/></label></td> <td><a href="#modal-'+data[i]['idevenement']+'" data-toggle="modal">'+data[i]['nomevenement']+'</a></td> <td><a href="#">'+data[i]['emplacementevenement']+'</a></td> <td> <div class="modal fade" id="modal-'+data[i]['idevenement']+'"> <div class="modal-header"> <button class="close" data-dismiss="modal">×</button> <h3>'+data[i]['nomevenement']+'</h3> </div> <div class="modal-body"> <ul> <li>Description de l\'évènement : <span>'+data[i]['descevenement']+'</span> <i class="icon-pencil"></i></li> <li>Nombre d\'inscrit : <span>'+data[i]['nbinscrit']+'</span> <i class="icon-pencil"></i></li> <li>Date du début de l\'évènement : <span>'+data[i]['datedebutevenement']+'</span> <i class="icon-pencil"></i></li> <li>Date de la fin de l\'évènement : <span>'+data[i]['datefinevenement']+'</span> <i class="icon-pencil"></i></li> <li>Emplacment : <span>'+data[i]['emplacementevenement']+'</span> <i class="icon-pencil"></i></li> </ul> </div> <div class="modal-footer"> <a href="#" class="btn" data-dismiss="modal">Close</a> </div> </div> </td></tr>').appendTo("#events tbody");
-            }
-          //});
+        $("#events tbody").empty(); // on purge la table
+        for(var i=0;i<data.length;i++){ // On ajoute les ligne
+          $('<tr id="'+data[i]['idevenement']+'"> <td><label class="checkbox inline"><input type="checkbox"/></label></td> <td><a href="#modal-'+data[i]['idevenement']+'" data-toggle="modal">'+data[i]['nomevenement']+'</a></td> <td><a href="#">'+data[i]['emplacementevenement']+'</a></td> <td> <div class="modal fade" id="modal-'+data[i]['idevenement']+'"> <div class="modal-header"> <button class="close" data-dismiss="modal">×</button> <h3>'+data[i]['nomevenement']+'</h3> </div> <div class="modal-body"> <ul> <li>Description de l\'évènement : <span>'+data[i]['descevenement']+'</span> <i class="icon-pencil"></i></li> <li>Nombre d\'inscrit : <span>'+data[i]['nbinscrit']+'</span> <i class="icon-pencil"></i></li> <li>Date du début de l\'évènement : <span>'+data[i]['datedebutevenement']+'</span> <i class="icon-pencil"></i></li> <li>Date de la fin de l\'évènement : <span>'+data[i]['datefinevenement']+'</span> <i class="icon-pencil"></i></li> <li>Emplacment : <span>'+data[i]['emplacementevenement']+'</span> <i class="icon-pencil"></i></li> </ul> </div> <div class="modal-footer"> <a href="#" class="btn" data-dismiss="modal">Close</a> </div> </div> </td></tr>').appendTo("#events tbody");
         }
 
-        else{
-          for(var i=0;i<data.length;i++){
-            $('<tr id="'+data[i]['idevenement']+'"> <td><label class="checkbox inline"><input type="checkbox"/></label></td> <td><a href="#modal-'+data[i]['idevenement']+'" data-toggle="modal">'+data[i]['nomevenement']+'</a></td> <td><a href="#">'+data[i]['emplacementevenement']+'</a></td> <td> <div class="modal fade" id="modal-'+data[i]['idevenement']+'"> <div class="modal-header"> <button class="close" data-dismiss="modal">×</button> <h3>'+data[i]['nomevenement']+'</h3> </div> <div class="modal-body"> <ul> <li>Description de l\'évènement : <span>'+data[i]['descevenement']+'</span> <i class="icon-pencil"></i></li> <li>Nombre d\'inscrit : <span>'+data[i]['nbinscrit']+'</span> <i class="icon-pencil"></i></li> <li>Date du début de l\'évènement : <span>'+data[i]['datedebutevenement']+'</span> <i class="icon-pencil"></i></li> <li>Date de la fin de l\'évènement : <span>'+data[i]['datefinevenement']+'</span> <i class="icon-pencil"></i></li> <li>Emplacment : <span>'+data[i]['emplacementevenement']+'</span> <i class="icon-pencil"></i></li> </ul> </div> <div class="modal-footer"> <a href="#" class="btn" data-dismiss="modal">Close</a> </div> </div> </td></tr>').appendTo("#events tbody");
-          }
-          $('#session+.progress').fadeOut('slow', function(){
+        $('#events+.progress').fadeOut('slow', function(){ // On fait disparaitre la progress-bar
+          $(this).remove(); // On la supprime du DOM
+          if(!$('#events table').hasClass('dejaVu')){ // Si il n'a pas la classe dejaVu
+            $('#events table').addClass('dejaVu');    // On lui donne
             $('#events').fadeIn('slow');
-          });
-        }
-        showModalEvents();
+          }
+
+          else{
+            $('#events table').fadeIn('slow'); // On affiche le tabeau 
+          }
+        });
+        showModalEvents(); // On bind les modif des modos
         data = '';
 
       });
       e.preventDefault();
-      selectEvent();
+      selectEvent(); // On bind la selection des events;
     }
   });
 };
 
 $(document).ready(function(){
-  var idEvents = new Array();
-
   showModalSessions();
   showEvent();
+  selectSession();
 
   var thisSpan;
 
@@ -141,12 +180,12 @@ $(document).ready(function(){
         idCreateur: ''
       };
       $.post($(e.target).attr("href"), data, function(callBack){
-        console.log(callBack);
         if (callBack.code == 'ok'){
           $('#addSessionModal').modal('hide');
           $('<tr id="session-'+callBack.idSession.idsession+'"><td><label class="checkbox inline"><input type="checkbox"/></label></td><td><a href="#modal-session-'+callBack.idSession.idsession+'" data-toggle="modal">'+data.nomSession+'</a></td><td><a href="#" class="voir">Voir &raquo;</a></td><td><div class="modal fade" id="modal-session-'+callBack.idSession.idsession+'"><div class="modal-header"><button class="close" data-dismiss="modal">×</button><h3>'+data.nomSession+'</h3></div><div class="modal-body"> <ul><li>Créé par '+'Toi'+'</li><li>Nombre max d\'inscrit : <span>'+data.maxInscrit+'</span> <i class="icon-pencil"></i></li><li>Nombre d\'event mini : <span>'+data.minParticipation+'</span> <i class="icon-pencil"></i></li><li>Date limite d\'inscription : <span>'+data.dateLimite+'</span> <i class="icon-pencil"></i></li><li>Date rappel mail : <span>'+data.dateRappel+'</span> <i class="icon-pencil"></i></li></ul></div><div class="modal-footer"><a href="#" class="btn" data-dismiss="modal">Close</a></div></div></td></tr>').appendTo("#session tbody");
           showModalSessions();
           showEvent();
+          selectSession();
         }
 
         else{
@@ -155,9 +194,25 @@ $(document).ready(function(){
       }, 'json');
       showModalSessions();
     }
-  })
+  });
 
-  
+  /* Envoie des sessions a delete */
+  $('#session .btn-danger').click(function(e){
+    $.post($(this).attr('href'), {'tabSessions': idSessions}, function(data){
+      if(data.code == 'ok'){
+        for(var i=0;i<idSessions.length;i++){
+          $('#session tr#session-'+idSessions[i]).hide('slow');
+        }
+        idSessions.splice(0, idSessions.length); //On purge le tableau 
+      }
+
+      else{
+        alert('Vous n\'avez pas le droit de supprimé ces évènement');
+      }
+    }, 'json');
+
+    e.preventDefault();
+  });
 
   /* Ajout d'un event dans une session*/
   $('#addEventModal').click(function(e){
