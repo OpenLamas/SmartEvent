@@ -55,7 +55,7 @@
     * @return id de l'évènement ajouté
     */
     public function addEvent($data){
-      $req = $this->bdd->prepare('INSERT INTO EVENEMENTS(refSession, nomEvenement, descEvenement, datedebutevenement, datefinevenement, emplacementEvenement) VALUES (:idSession, :titre, :description, :dateDebut, :dateFin, :emplacement)');
+      $req = $this->bdd->prepare('INSERT INTO EVENEMENTS(refSession, nomEvenement, descEvenement, datedebutevenement, datefinevenement, emplacementEvenement) VALUES (:idSession, :titre, :description, :dateDebut, :dateFin, :emplacement)  RETURNING idEvenement');
       $req->bindValue(':idSession', $data['idSession'], PDO::PARAM_INT);
       $req->bindValue(':titre', $data['titre'], PDO::PARAM_STR);
       $req->bindValue(':description', $data['description'], PDO::PARAM_STR);
@@ -63,8 +63,9 @@
       $req->bindValue(':dateFin', $data['dateFin'], PDO::PARAM_STR);
       $req->bindValue(':emplacement', $data['emplacement'], PDO::PARAM_STR);
       $req->execute();
+      return $req->fetch();
 
-      $req1 = $this->bdd->prepare('SELECT idEvenement FROM EVENEMENTS WHERE refSession = :idSession AND nomEvenement = :titre AND descEvenement = :description AND datedebutevenement = :dateDebut AND datefinevenement = :dateFin AND emplacementEvenement = :emplacement');
+      /*$req1 = $this->bdd->prepare('SELECT idEvenement FROM EVENEMENTS WHERE refSession = :idSession AND nomEvenement = :titre AND descEvenement = :description AND datedebutevenement = :dateDebut AND datefinevenement = :dateFin AND emplacementEvenement = :emplacement');
       $req1->bindValue(':idSession', $data['idSession'], PDO::PARAM_INT);
       $req1->bindValue(':titre', $data['titre'], PDO::PARAM_STR);
       $req1->bindValue(':description', $data['description'], PDO::PARAM_STR);
@@ -73,7 +74,7 @@
       $req1->bindValue(':emplacement', $data['emplacement'], PDO::PARAM_STR);
       $req1->execute();
       return $req1->fetch();
-      /*echo serialize($tmp);
+      echo serialize($tmp);
       return $tmp['idevenement'];*/
     }
 
@@ -197,13 +198,25 @@
     }
 
     /**
-    * Methode retournant les trois prochain évènement trier par ordre chronologique
+    * Methode retournant le résultat de la recherche
     * @param $search mots recherchés
     * @return array
     */
     public function searchEvents($search){
       $req = $this->bdd->prepare('SELECT EVENEMENTS.NomEvenement, EVENEMENTS.descEvenement, SESSIONS.nbMaxInscritEvenement, count(PARTICIPER.idRefUtilisateur) FROM EVENEMENTS INNER JOIN PARTICIPER ON idEvenement=idRefEvenement INNER JOIN SESSIONS ON idEvenement = idRefEvenement WHERE EVENEMENTS.nomEvenement LIKE \'%$search%\' OR EVENEMENTS.descEvenement LIKE \'%$search%\' ORDER BY dateDebutEvenement');
       $req->bindValue(':search', $search, PDO::PARAM_STR);
+      $req->execute();
+      return $req->fetchAll();
+    }
+
+    /**
+    * Methode retournant tous les events auquel un user a participé ou est inscrit
+    * @param $user id de l'utilisateur
+    * @return array
+    */
+    public function getParticipation($user){
+      $req = $this->bdd->prepare('SELECT nomEvenement, nomSession, dateDebutEvenement FROM PARTICIPER INNER JOIN EVENEMENTS ON idRefEvenement = idEvenement INNER JOIN SESSIONS ON refSession = idSession WHERE idRefUtilisateur = :user');
+      $req->bindValue(':user', $user, PDO::PARAM_STR);
       $req->execute();
       return $req->fetchAll();
     }

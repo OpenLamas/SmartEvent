@@ -4,7 +4,7 @@
 {% if cur_user.right == "ADMIN" %}
 <div class="row">
   <div class="span9 offset1">
-    <form method="POST" action="#" id="utilisateurs">
+    <div id="utilisateurs">
       <a class="btn btn-primary" href="#">Ajouter un utilisateur</a>   
       <a class="btn btn-info" data-toggle="modal" href="#promoteModal">Promouvoir</a>   
       <a class="btn btn-danger" href="#">Supprimer</a><br /><br />
@@ -21,6 +21,7 @@
             <th>Prenom</th>
             <th>Courriel</th>
             <th>Droit</th>
+            <th>Participation</th>
           </tr>
         </thead>
         <tbody>          
@@ -31,15 +32,16 @@
             <td>{{ user.nomutilisateur }}</td>
             <td>{{ user.mailutilisateur }}</td>
             <td>{{ user.right }}</td>
+            <td><a href="events-participation">Voir &raquo;</a></td>
           </tr>
-          {% endfor %}          
+          {% endfor %}
         </tbody>
       </table>
-    </form>
+    </div>
   </div>
 </div>
 {# MODAL PROMOTE ***************************************************************** #}
-<div class="modal hide" id="promoteModal">
+<div class="modal fade" id="promoteModal">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">×</button>
     <h3>Promouvoir des utilisateurs</h3>
@@ -61,6 +63,49 @@
         <button type="submit" class="btn btn-primary">Promouvoir</button>
       </div>
     </form>    
+  </div>
+</div>
+{# MODAL PARTICIPATION **************************************************** #}
+<div class="modal fade" id="participationModal">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>PARTICIPATION</h3>
+  </div>
+  <div class="modal-body">
+    <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th>Nom de l'évènement</th>
+        <th>Date de l'évènement</th>
+        <th>Session</th>
+      </tr>
+    </thead>
+    <tbody>
+      {#<tr>
+        <td>Lorem ipsum dor sit amet</td>
+        <td>02/08/11</td>
+        <td>Zoo</td>
+      </tr>
+      <tr>
+        <td>Lorem ipsum dor sit amet</td>
+        <td>02/08/11</td>
+        <td>Zoo</td>
+      </tr>
+      <tr>
+        <td>Lorem ipsum dor sit amet</td>
+        <td>02/08/11</td>
+        <td>Zoo</td>
+      </tr>
+      <tr>
+        <td>Lorem ipsum dor sit amet</td>
+        <td>02/08/11</td>
+        <td>Zoo</td>
+      </tr>#}
+    </tbody>  
+    </table>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Fermer</a>
   </div>
 </div>
 {# FIN MODAL ************************************************************** #}

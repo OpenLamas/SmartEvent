@@ -28,20 +28,22 @@ $(document).ready(function () {
   })
 
   // Selection des lignes
-  $('#utilisateurs tbody tr').click(function() {
-    if($('input', this).attr('checked')){
-      if ($('#utilisateurs thead input').attr('checked')) {
-        $('#utilisateurs thead input').attr('checked', false);
-      };
-      $('input', this).attr('checked', false);
-      var tmp = $(this).attr('id').split('-');
-      idUsers.splice(idUsers.indexOf(tmp[1]),1);
-    }
-     
-    else{
-      $('input', this).attr('checked', true);
-      var tmp = $(this).attr('id').split('-');
-      idUsers.push(tmp[1]);
+  $('#utilisateurs tbody tr').click(function(e) {
+    if(!$(e.target).is('a')){
+      if($('input', this).attr('checked')){
+        if ($('#utilisateurs thead input').attr('checked')) {
+          $('#utilisateurs thead input').attr('checked', false);
+        };
+        $('input', this).attr('checked', false);
+        var tmp = $(this).attr('id').split('-');
+        idUsers.splice(idUsers.indexOf(tmp[1]),1);
+      }
+       
+      else{
+        $('input', this).attr('checked', true);
+        var tmp = $(this).attr('id').split('-');
+        idUsers.push(tmp[1]);
+      }
     }
   });
 
@@ -85,9 +87,25 @@ $(document).ready(function () {
       alert('Vous devez selectionnez au moins un utilisateur');
     }
   });
-
-
  
+ $('#utilisateurs tr').click(function(e){
+  if($(e.target).is('a')){
+    var tmp = $(this).attr('id').split('-');
+    var user = tmp[1];
+    var nomUser = $("td:eq(1)" , this).html()+' '+$("td:eq(2)", this).html();
+    $.post($(e.target).attr('href'), {'idUser': user}, function(data){
+      $('#participationModal table tbody').empty();
+      $('#participationModal .modal-header h3').html("Participation(s) de "+nomUser);
+      for(ligne in data){
+        $('#participationModal table tbody').append('<tr><td>'+data[ligne].nomevenement+'</td><td>'+data[ligne].datedebutevenement+'</td><td>'+data[ligne].nomsession+'</td></tr>');
+      }
+      $('#participationModal').modal('show');
+    }, 'json');
+    e.preventDefault();
+  }
+ });
+});
+
   /* Gestion des tags 
   $('#utilisateurs .listTags li').click(function(e){
     if ($(e.target).is('i')) {
@@ -108,6 +126,3 @@ $(document).ready(function () {
       });
     }
   });*/
-
-  
-});
