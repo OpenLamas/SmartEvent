@@ -35,4 +35,8 @@ $(document).ready(function() {
     }
 
   });
+
+  $("#btngroupe-listevents button").click(function(){
+    $('.span9').fadeToggle('slow');
+  });
 });

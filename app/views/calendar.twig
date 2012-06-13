@@ -3,13 +3,13 @@
 {% block content %}
   {# Boutons radios #}
   <div id="btngroupe-listevents" class="btn-group" data-toggle="buttons-radio">
-    <button class="btn">Calendrier</button>
-    <button class="btn">Liste</button>
+    <button class="btn active" id="buttonCalendar">Calendrier</button>
+    <button class="btn" id="buttonList">Liste</button>
   </div>
   {# Calendrier #}
   <div class="well span9" id='calendar'>&nbsp;</div>
   {# Liste #}
-  <div class="span9">
+  <div class="span9 hide">
     <ul class="unstyled">
     {% for event in events %}
     <li><a href="#">{{ event.datedebutevenement|truncate(11,true)|date("d M")|replace({'Feb': 'Fev', 'Apr': 'Avr', 'May': 'Mai', 'Jun': 'Juin', 'Jul': 'Juil', 'Aug': 'Août'}) }} - {{ event.nomevenement }}</a></li>
