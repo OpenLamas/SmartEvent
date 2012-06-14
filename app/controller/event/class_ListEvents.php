@@ -18,11 +18,12 @@
 
         $template = $this->twig->loadTemplate('listevents.twig');
         $events = $dbEvents->getEventsFromSessionWithNbInscrit($this->vars['idSession']);
+        $dateslimites  = $dbEvents->getDateLimiteInscriptionFromSession($this->vars['idSession']);
         for($i=0;$i<count($events);$i++) {
           $bool = $dbEvents->getRegisteredFromEvent($_SESSION['idutilisateur'], $events[$i]['idevenement']);
           $events[$i]['estinscrit'] = $bool['count'];
         }
-        echo $template->render(array('cur_user' => $_SESSION, 'session' => $dbSessions->getSession($this->vars['idSession']), 'events' => $events));
+        echo $template->render(array('cur_user' => $_SESSION, 'session' => $dbSessions->getSession($this->vars['idSession']), 'events' => $events, 'dateactuelle' => date("dmY"), 'dateslimites' => $dateslimites));
         exit;
       }
       else{        
