@@ -4,11 +4,6 @@
 {% if cur_user.right == "GESTIONNAIRE" or cur_user.right == "ADMIN" %}
 <div class="row">
   {# PARTIE SESSIONS ******************************************************************** #}
-  <style type="text/css">
-  li.success{
-    color: #468847;
-  }
-  </style>
   <div class="span6" id="session">
     <a class="btn btn-primary" data-toggle="modal" href="#addSessionModal"><i class="icon-plus-sign icon-white"></i> Ajouter une session</a>
     <a class="btn btn-danger" href="session-delete"><i class="icon-remove-sign icon-white"></i> Supprimer</a><br /><br />
