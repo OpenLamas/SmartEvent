@@ -6,7 +6,7 @@
     * @return array Liste des utilisateurs et de leurs droits
     */
     public function getAllUsers(){
-      $req = $this->bdd->query('SELECT idUtilisateur,refDroit,nomUtilisateur,prenomUtilisateur,mailUtilisateur,mdpUtilisateur,nomDroit AS right FROM UTILISATEURS INNER JOIN DROITS ON RefDroit=IdDroit');
+      $req = $this->bdd->query('SELECT idUtilisateur,refDroit,nomUtilisateur,prenomUtilisateur,mailUtilisateur,mdpUtilisateur,nomDroit AS right FROM UTILISATEURS INNER JOIN DROITS ON RefDroit=IdDroit ORDER BY nomUtilisateur ASC');
       return $req->fetchAll();
     }
     
