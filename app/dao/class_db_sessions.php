@@ -105,7 +105,7 @@
       $req->bindValue(':minParticipation', $data['minParticipation'], PDO::PARAM_INT);
       $req->bindValue(':dateLimite', $data['dateLimite'], PDO::PARAM_STR);
       $req->bindValue(':dateRappel', $data['dateRappel'], PDO::PARAM_STR);
-      $req->blindValue(':idSession', $data['idSession'], PDO::PARAM_INT);
+      $req->bindValue(':idSession', $data['idSession'], PDO::PARAM_INT);
       $req->execute();
     }
 

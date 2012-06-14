@@ -4,6 +4,11 @@
 {% if cur_user.right == "GESTIONNAIRE" or cur_user.right == "ADMIN" %}
 <div class="row">
   {# PARTIE SESSIONS ******************************************************************** #}
+  <style type="text/css">
+  li.success{
+    color: #468847;
+  }
+  </style>
   <div class="span6" id="session">
     <a class="btn btn-primary" data-toggle="modal" href="#addSessionModal"><i class="icon-plus-sign icon-white"></i> Ajouter une session</a>
     <a class="btn btn-danger" href="session-delete"><i class="icon-remove-sign icon-white"></i> Supprimer</a><br /><br />
@@ -33,11 +38,12 @@
                   <li>Créé par {{ [session.prenomcreateur,session.nomcreateur]|join(' ') }}</li>
                   <li>Nombre max d'inscrit : <span>{{ session.nbmaxinscritevenement }}</span> <i class="icon-pencil"></i></li>
                   <li>Nombre d'event mini : <span>{{ session.nbminparticipationevenement }}</span> <i class="icon-pencil"></i></li>
-                  <li>Date limite d'inscription : <span>{{ session.datelimiteinscription }}</span> <i class="icon-pencil"></i></li>
-                  <li>Date rappel mail : <span>{{ session.daterappelmail}}</span> <i class="icon-pencil"></i></li>
+                  <li>Date limite d'inscription : <span class="date">{{ session.datelimiteinscription }}</span> <i class="icon-pencil"></i></li>
+                  <li>Date rappel mail : <span class="date">{{ session.daterappelmail}}</span> <i class="icon-pencil"></i></li>
                 </ul>
               </div>
               <div class="modal-footer">
+                <a href="session-update" class="btn btn-primary update">Enregistré les modifications</a>
                 <a href="#" class="btn" data-dismiss="modal">Close</a>
               </div>
             </div>

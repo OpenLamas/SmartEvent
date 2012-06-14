@@ -6,14 +6,21 @@
   
     public function action(){
 
-      if(isset($_SESSION['login']) && isset($_POST['dateLimite'])){
+      if(isset($_SESSION['login']) && isset($_POST['idSession'])){
         if($_SESSION['right'] == 'GESTIONAIRE' || $_SESSION['right'] == 'ADMIN'){
-          $_POST['dateLimite'] = self::rewiteDate($_POST['dateLimite']);
-          $_POST['dateRappel'] = self::rewiteDate($_POST['dateRappel']);
-          $_POST['idCreateur'] = $_SESSION['idutilisateur'];
+          
+          if(!is_numeric($_POST['dateLimite'][0])){
+            $_POST['dateLimite'] = self::rewiteDate($_POST['dateLimite']);
+          }
+
+          if(!is_numeric($_POST['dateRappel'][0])){
+            $_POST['dateRappel'] = self::rewiteDate($_POST['dateRappel']);
+          }
+
+
           $dbSessions = new db_sessions();
-            $idSession = $dbSessions->addSession($_POST);
-          echo json_encode(array('code' => 'ok', 'idSession' => $idSession));
+          $idSession = $dbSessions->updateSession($_POST);
+          echo json_encode(array('code' => 'ok'));
           exit;
         }
         echo json_encode(array('code' => 'Non'));
@@ -39,6 +46,8 @@
         return $dateCasse[3].'-'.$key.'-'.$dateCasse[1];
       }
     }
+
+    return 0;
   }
 }
 ?>

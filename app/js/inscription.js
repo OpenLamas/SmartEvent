@@ -21,7 +21,7 @@ $(document).ready(function() {
   };
   $.datepicker.setDefaults($.datepicker.regional['fr']);
 
-  $('.date').datepicker();
+  $('input.date').datepicker();
 
   /* Recherche des events */
   $('#search form').click(function(e){

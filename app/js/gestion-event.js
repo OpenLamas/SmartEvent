@@ -1,5 +1,27 @@
 var idSessions = new Array();
 var idEvents = new Array();
+var openInput = 0;
+
+/* Parse Date */
+/*var changeDateFormat = function (date){
+  var cut = date.split(' '); // Wed Jan 23 2013 00:00:00 GMT+0100 (Paris, Madrid)
+  var dateOutput;
+  var jour = {
+    'Dimanche',
+    'Lundi',
+    'Mardi',
+    'Mercredi',
+    'Jeudi',
+    'Vendredi',
+    'Samedi'
+  };
+
+  var mois = {
+
+  };
+
+  };
+}*/
 
 
 /* Modif des modals event */
@@ -47,7 +69,7 @@ var selectSession = function(){
       $(this).attr('checked', true);
     }
   });
-}
+};
 
 
 
@@ -68,19 +90,61 @@ var selectEvents = function(){
 var showModalSessions = function(){
   $('#session .modal li').click(function(e){
     if($(e.target).hasClass('icon-pencil')){
-      $('span',this).replaceWith('<input type="text" value="'+$('span',this).text()+'" />')
+      openInput = 1;
+      if(!$('span', this).hasClass('date')){
+        $('span',this).replaceWith('<input type="text" value="'+$('span',this).text()+'" />')
+      }
+
+      else{
+        var dateInput = $('span',this).text();
+        $('span',this).replaceWith('<input type="text" class="date" value="" />')
+        $('input', this).datepicker();
+        $('input', this).datepicker('setDate', $.datepicker.parseDate('yy-mm-dd', dateInput));
+      }
       $('i', this).removeClass('icon-pencil');
       $('i', this).addClass('icon-ok');
     }
 
     else if($(e.target).hasClass('icon-ok')){
-      alert('Envoie AJAX !');
-      $('input',this).replaceWith('<span>'+$('input',this).val()+'</span>')
+      $('input',this).replaceWith('<span>'+$('input',this).val()+'</span>');
+      $(this).addClass("success");
       $('i', this).removeClass('icon-ok');
       $('i', this).addClass('icon-pencil');
+      openInput = 0
     }
   });
 };
+
+/* Update Session */
+$('#session .modal').click(function(e){
+  if($(e.target).hasClass('update')){
+    if(!openInput){
+      var tmp = $(this).attr("id").split('-');
+      var infoSession = {
+        'nomSession': $('.modal-header h3', this).html(),
+        'maxInscrit': $('li:eq(1) span', this).html(),
+        'minParticipation': $('li:eq(2) span', this).html(),
+        'dateLimite': $('li:eq(3) span', this).html(),
+        'dateRappel': $('li:eq(4) span', this).html(),
+        'idSession': tmp[2],
+        'idCreateur': ''
+      };
+
+      $('#session .update').html('En cours...');
+      $.post($(e.target).attr('href'), infoSession, function(data){
+        if(data.code == 'ok'){
+          $('#session .update').html('Modifications Enregistré !');
+        }
+      });
+    }
+
+    else{
+      alert('Vous devez d\'abord valider tous les champs');
+    }
+    e.preventDefault();
+  }
+});
+
 
 /*Affichage events par session*/
 var currentSession;
