@@ -23,14 +23,28 @@ $(document).ready(function() {
 
   $('.date').datepicker();
 
-  $('.well form.span11').click(function(e){
+  /* Recherche des events */
+  $('#search form').click(function(e){
     if($(e.target).is('a')){
-      var query = $('input', this).val;
-      console.log('Query send ! to '+$(e.target).attr("href"));
-      $.post($(e.target).attr("href"), { 'query': query}, function(data){
+      var query = $('input', this).val();
+      $('#search table').fadeOut('slow');
+      $('#search .noResult').fadeOut('slow');
+      $.post($(e.target).attr("href"), { 'query': query }, function(data){
         console.log(data);
+        $('#search tbody').empty();
+        if(data != ''){
+          for(var i=0;i<data.length;i++){
+          console.log(data[i]);
+          $('#search tbody').append('<tr><td><a href="#">'+data[i]['nomevenement']+'</a></td><td>'+data[i]['descevenement']+'</th><td><span class="badge badge-inverse">'+(data[i]['nbmaxinscritevenement']-data[i]['count'])+' place(s) libres</span></td><td><span class="badge badge-success">Inscrit</span></td></tr>');
+          }
+          $('#search table').fadeIn('slow');
+        }
+
+        else{
+          $('#search .noResult').fadeIn('slow');
+        }
+        
       }, 'json');
-      //console.log($('input', this).val());
       e.preventDefault();
     }
 
