@@ -270,6 +270,10 @@ a {
   text-decoration: none;
 }
 
+a.inherit {
+  color: inherit;
+}
+
 a:hover {
   color: #005580;
   text-decoration: underline;
@@ -647,6 +651,22 @@ ol {
 
 li {
   line-height: 18px;
+}
+
+li.success {
+  color: #468847;
+}
+
+li.error {
+  color: #b94a48;
+}
+
+li.warning {
+  color: #c09853;
+}
+
+li.info {
+  color: #3a87ad;
 }
 
 ul.unstyled,
