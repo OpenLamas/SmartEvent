@@ -10,6 +10,11 @@
         if(isset($_POST['query'])){
           $dbEvents = new db_events();
           //echo json_encode($_POST);
+          if(strpos($_POST['query'], '%') !== false){
+            throw new ForbiddenError ("Nope");
+            exit;
+          }
+
           echo json_encode($dbEvents->searchEvents($_POST['query']));
           exit;
         }
