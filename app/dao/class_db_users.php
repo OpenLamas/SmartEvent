@@ -29,12 +29,13 @@
     * @return void
     */
     public function addUser($data){
-      $req = $this->bdd->prepare('INSERT INTO UTILISATEURS (nomUtilisateur, prenomUtilisateur, mailUtilisateur, mdputilisateur) VALUES (:nomUtilisateur, :prenomUtilisateur, :mailUtilisateur, :mdpUtilisateur)');
+      $req = $this->bdd->prepare('INSERT INTO UTILISATEURS (nomUtilisateur, prenomUtilisateur, mailUtilisateur, mdputilisateur) VALUES (:nomUtilisateur, :prenomUtilisateur, :mailUtilisateur, :mdpUtilisateur) RETURNING idUtilisateur');
       $req->bindValue(':nomUtilisateur', $data['nomUtilisateur'], PDO::PARAM_STR);  
       $req->bindValue(':prenomUtilisateur', $data['prenomUtilisateur'], PDO::PARAM_STR);  
       $req->bindValue(':mailUtilisateur', $data['mailUtilisateur'], PDO::PARAM_STR);    
       $req->bindValue(':mdpUtilisateur', $data['mdpUtilisateur'], PDO::PARAM_STR);    
       $req->execute();
+      return $req->fetchColumn();
     }
 
     /**
