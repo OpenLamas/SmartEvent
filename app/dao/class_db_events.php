@@ -38,6 +38,18 @@
     }
 
     /**
+    * Methode retournant tous les évènement d'une session
+    * @param $idSession
+    * @return array
+    */
+    public function getDateLimiteInscriptionFromSession($idSession){
+      $req = $this->bdd->prepare('SELECT dateLimiteInscription FROM SESSIONS WHERE idSession = :idSession');
+      $req->bindValue(':idSession', $idSession, PDO::PARAM_INT);
+      $req->execute();
+      return $req->fetch();
+    }
+
+    /**
     * Methode retournant tous les évènement d'une session et les inscrit a chaque évènement
     * @param $idSession
     * @return array
@@ -177,7 +189,6 @@
     * @return void
     */
     public function addRegisteredFromEvent($idUser, $idEvent){
-      
       $req = $this->bdd->prepare('INSERT INTO PARTICIPER (idRefEvenement, idRefUtilisateur) VALUES (:idEvent,:idUser)');
       $req->bindValue(':idUser', $idUser, PDO::PARAM_INT);
       $req->bindValue(':idEvent', $idEvent, PDO::PARAM_INT);
@@ -203,7 +214,7 @@
     * @return array
     */
     public function searchEvents($search){
-      $req = $this->bdd->prepare('SELECT EVENEMENTS.NomEvenement, EVENEMENTS.descEvenement, SESSIONS.nbMaxInscritEvenement, count(PARTICIPER.idRefUtilisateur) FROM EVENEMENTS INNER JOIN PARTICIPER ON idEvenement=idRefEvenement INNER JOIN SESSIONS ON idEvenement = idRefEvenement WHERE EVENEMENTS.nomEvenement LIKE \'%$search%\' OR EVENEMENTS.descEvenement LIKE \'%$search%\' ORDER BY dateDebutEvenement');
+      $req = $this->bdd->prepare('SELECT NomEvenement, descEvenement, nbMaxInscritEvenement, count(idRefUtilisateur) FROM EVENEMENTS INNER JOIN PARTICIPER ON idEvenement=idRefEvenement INNER JOIN SESSIONS ON idEvenement = idRefEvenement WHERE nomEvenement LIKE \'%$search%\' OR descEvenement LIKE \'%$search%\' ORDER BY dateDebutEvenement');
       $req->bindValue(':search', $search, PDO::PARAM_STR);
       $req->execute();
       return $req->fetchAll();
