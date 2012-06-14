@@ -26,11 +26,15 @@ $(document).ready(function() {
   /* Recherche des events */
   $('#search form').click(function(e){
     if($(e.target).is('a')){
+      console.log($('input', this).val())
       if($('input', this).val() == ''){
+        console.log('pas ok');
         $('div', this).addClass('error');
       }
 
       else{
+        console.log('ok');
+        $('div', this).removeClass('error');
         var query = $('input', this).val();
         $('#search table').fadeOut('slow');
         $('#search .noResult').fadeOut('slow');
@@ -39,8 +43,8 @@ $(document).ready(function() {
           $('#search tbody').empty();
           if(data != ''){
             for(var i=0;i<data.length;i++){
-            console.log(data[i]);
-            $('#search tbody').append('<tr><td><a href="#">'+data[i]['nomevenement']+'</a></td><td>'+data[i]['descevenement']+'</th><td><span class="badge badge-inverse">'+(data[i]['nbmaxinscritevenement']-data[i]['count'])+' place(s) libres</span></td><td><span class="badge badge-success">Inscrit</span></td></tr>');
+              console.log(data[i]);
+              $('#search tbody').append('<tr><td><a href="#">'+data[i]['nomevenement']+'</a></td><td>'+data[i]['descevenement']+'</th><td><span class="badge badge-inverse">'+(data[i]['nbmaxinscritevenement']-data[i]['count'])+' place(s) libres</span></td><td><span class="badge badge-success">Inscrit</span></td></tr>');
             }
             $('#search table').fadeIn('slow');
           }

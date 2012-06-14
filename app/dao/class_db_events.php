@@ -55,7 +55,7 @@
     * @return id de l'évènement ajouté
     */
     public function addEvent($data){
-      $req = $this->bdd->prepare('INSERT INTO EVENEMENTS(refSession, nomEvenement, descEvenement, datedebutevenement, datefinevenement, emplacementEvenement) VALUES (:idSession, :titre, :description, :dateDebut, :dateFin, :emplacement)  RETURNING idEvenement');
+      $req = $this->bdd->prepare('INSERT INTO EVENEMENTS(refSession, nomEvenement, descEvenement, datedebutevenement, datefinevenement, emplacementEvenement) VALUES (:idSession, :titre, :description, :dateDebut, :dateFin, :emplacement) RETURNING idEvenement');
       $req->bindValue(':idSession', $data['idSession'], PDO::PARAM_INT);
       $req->bindValue(':titre', $data['titre'], PDO::PARAM_STR);
       $req->bindValue(':description', $data['description'], PDO::PARAM_STR);
@@ -203,8 +203,8 @@
     * @return array
     */
     public function searchEvents($search){
-      $req = $this->bdd->prepare('SELECT EVENEMENTS.NomEvenement, EVENEMENTS.descEvenement, SESSIONS.nbMaxInscritEvenement, count(PARTICIPER.idRefUtilisateur) FROM EVENEMENTS INNER JOIN PARTICIPER ON idEvenement = idRefEvenement INNER JOIN SESSIONS ON refSession = idSession WHERE EVENEMENTS.nomEvenement LIKE :search OR EVENEMENTS.descEvenement LIKE :search GROUP BY EVENEMENTS.NomEvenement, EVENEMENTS.descEvenement, SESSIONS.nbMaxInscritEvenement, dateDebutEvenement ORDER BY dateDebutEvenement LIMIT 5');
-      $req->bindValue(':search', '%'.$search.'%', PDO::PARAM_STR);
+      $req = $this->bdd->prepare('SELECT EVENEMENTS.NomEvenement, EVENEMENTS.descEvenement, SESSIONS.nbMaxInscritEvenement, count(PARTICIPER.idRefUtilisateur) FROM EVENEMENTS INNER JOIN PARTICIPER ON idEvenement = idRefEvenement INNER JOIN SESSIONS ON refSession = idSession WHERE lower(EVENEMENTS.nomEvenement) LIKE :search OR lower(EVENEMENTS.descEvenement) LIKE :search GROUP BY EVENEMENTS.NomEvenement, EVENEMENTS.descEvenement, SESSIONS.nbMaxInscritEvenement, dateDebutEvenement ORDER BY dateDebutEvenement');
+      $req->bindValue(':search', '%'.strtolower($search).'%', PDO::PARAM_STR);
       $req->execute();
       return $req->fetchAll();
     }

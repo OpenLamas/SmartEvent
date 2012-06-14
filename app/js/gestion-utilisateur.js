@@ -113,7 +113,34 @@ $(document).ready(function () {
     e.preventDefault();
   }
  });
-});
+
+ /* Verification form inscription
+ $('#signinform input').focusout(function(e){
+    if($(e.target).val() == ''){
+      console.log(e['target']);
+      //$('#signinform .control-group:has('e['target']')').addClass('error');
+    }
+
+    else{
+      $(this).removeClass('error');
+    }
+ });*/
+
+  /*$('#signinform').click(function(e){
+    if($(e.target).is('button')){
+      if($("inputNom", this).val == ''){
+        $('control-group:eq(0)', this).addClass('error');
+      }
+
+      else{
+        $('control-group:eq(0)', this).removeClass('error');
+      }
+      console.log($(this));
+      e.preventDefault();
+    }
+ });*/
+
+}); // END document.ready
 
   /* Gestion des tags 
   $('#utilisateurs .listTags li').click(function(e){

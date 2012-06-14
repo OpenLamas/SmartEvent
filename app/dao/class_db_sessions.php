@@ -62,7 +62,7 @@
     * @return array
     * NE MARCHE PAS !
     */
-    public function getSessionPlace($id='vide'){
+    public function getSessionPlace($id){
         $req = $this->bdd->query('SELECT idSession,nbMinParticipationEvenement,COUNT(*) FROM SESSIONS INNER JOIN EVENEMENTS ON RefSession=IdSession INNER JOIN PARTICIPER ON idEvenement=idRefEvenement WHERE PARTICIPER.IdRefUtilisateur=2 OR IdRefUtilisateur NOT IN (SELECT IdRefUtilisateur FROM PARTICIPER) GROUP BY idSession,nbMinParticipationEvenement');
         return $req->fetchAll();
     }
@@ -73,16 +73,16 @@
     * @return void
     */
     public function addSession($data){
-      $req = $this->bdd->prepare('INSERT INTO SESSIONS(refCreateur, nomSession, nbMaxInscritEvenement, nbMinParticipationEvenement, dateLimiteInscription, dateRappelMail) VALUES (:idUser , :nomSession , :maxInscrit, :minParticipation , :dateLimite , :dateRappel)');
+      $req = $this->bdd->prepare('INSERT INTO SESSIONS(refCreateur, nomSession, nbMaxInscritEvenement, nbMinParticipationEvenement, dateLimiteInscription, dateRappelMail) VALUES (:idUser , :nomSession , :maxInscrit, :minParticipation , :dateLimite , :dateRappel) RETURNING idSession');
       $req->bindValue(':idUser', $data['idCreateur'], PDO::PARAM_INT);
       $req->bindValue(':nomSession', $data['nomSession'], PDO::PARAM_STR);
       $req->bindValue(':maxInscrit', $data['maxInscrit'], PDO::PARAM_INT);
       $req->bindValue(':minParticipation', $data['minParticipation'], PDO::PARAM_INT);
       $req->bindValue(':dateLimite', $data['dateLimite'], PDO::PARAM_STR);
       $req->bindValue(':dateRappel', $data['dateRappel'], PDO::PARAM_STR);
-      $req->execute();
+      return $req->execute();
 
-      $req1 = $this->bdd->prepare('SELECT idSession FROM SESSIONS WHERE refCreateur = :idUser AND nomSession = :nomSession AND nbMaxInscritEvenement = :maxInscrit AND nbMinParticipationEvenement = :minParticipation AND dateLimiteInscription = :dateLimite AND dateRappelMail = :dateRappel');
+      /*$req1 = $this->bdd->prepare('SELECT idSession FROM SESSIONS WHERE refCreateur = :idUser AND nomSession = :nomSession AND nbMaxInscritEvenement = :maxInscrit AND nbMinParticipationEvenement = :minParticipation AND dateLimiteInscription = :dateLimite AND dateRappelMail = :dateRappel');
       $req1->bindValue(':idUser', $data['idCreateur'], PDO::PARAM_INT);
       $req1->bindValue(':nomSession', $data['nomSession'], PDO::PARAM_STR);
       $req1->bindValue(':maxInscrit', $data['maxInscrit'], PDO::PARAM_INT);
@@ -90,7 +90,7 @@
       $req1->bindValue(':dateLimite', $data['dateLimite'], PDO::PARAM_STR);
       $req1->bindValue(':dateRappel', $data['dateRappel'], PDO::PARAM_STR);
       $req1->execute();
-      return $req1->fetch();
+      return $req1->fetch();*/
     }
 
     /**
@@ -99,8 +99,7 @@
     * @return void
     */
     public function updateSession($data){
-      $req = $this->bdd->prepare('UPDATE SESSIONS SET refCreateur = :idUser, nomSession = :nomSession, nbMaxInscritEvenement = :maxInscrit, nbMinParticipationEvenement = :minParticipation, dateLimiteInscription = :dateLimite, dateRappelMail = :dateRappel WHERE idSession = :idSession');
-      $req->bindValue(':idUser', $data['idCreateur'], PDO::PARAM_INT);
+      $req = $this->bdd->prepare('UPDATE SESSIONS SET nomSession = :nomSession, nbMaxInscritEvenement = :maxInscrit, nbMinParticipationEvenement = :minParticipation, dateLimiteInscription = :dateLimite, dateRappelMail = :dateRappel WHERE idSession = :idSession');
       $req->bindValue(':nomSession', $data['nomSession'], PDO::PARAM_STR);
       $req->bindValue(':maxInscrit', $data['maxInscrit'], PDO::PARAM_INT);
       $req->bindValue(':minParticipation', $data['minParticipation'], PDO::PARAM_INT);

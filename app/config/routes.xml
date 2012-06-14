@@ -21,6 +21,7 @@
   <route url="/session-(\d+)-list" module="event" action="ListEvents" vars="idSession" />
   <route url="/session-delete" module="event" action="SessionDelete" />
   <route url="/session-submit" module="event" action="SessionSubmit" />
+  <route url="/session-update" module="event" action="SessionUpdate" />
 
   <!-- Evenements -->
   <route url="/events-participation" module="event" action="GetParticipation" />
