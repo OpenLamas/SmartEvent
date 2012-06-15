@@ -22,10 +22,29 @@ var showModalEvents = function(){
 
 /* Selection des Sessions */
 var selectSession = function(){
+  $('#session thead th input').click(function(){
+    if($(this).attr('checked')){
+      idSessions.splice(0, idSessions.length); //On purge le tableau 
+      $('#session tbody tr').each(function(e){
+        $(':checkbox', this).attr('checked', true);
+        var tmp = $(this).attr('id').split('-');
+        idSessions.push(tmp[1]);
+      });
+    }
+
+    else{
+      $('#session tbody :checkbox').each(function(){
+        $(this).attr('checked', false);
+      });
+      idSessions.splice(0, idSessions.length); //On purge le tableau 
+    }
+  });
+
   $('#session tbody tr').click(function(e){
       if(!$(e.target).is('a')){
         if($(':checkbox', this).attr("checked")){
           $(':checkbox', this).attr('checked', false);
+          $('#session thead :checkbox').attr("checked", false);
           var tmp = $(this).attr('id').split('-');
           idSessions.splice(idSessions.indexOf(tmp[1]),1);
         }
@@ -52,10 +71,32 @@ var selectSession = function(){
 
 /* Gestion des events */
 var selectEvents = function(){
+
+  /* Selection globale */
+  $('#events thead th input').click(function(){
+    if($(this).attr('checked')){
+      idEvents.splice(0, idEvents.length); //On purge le tableau 
+      $('#events tbody tr').each(function(e){
+        $(':checkbox', this).attr('checked', true);
+        var tmp = $(this).attr('id').split('-');
+        idEvents.push(tmp[1]);
+      });
+    }
+
+    else{
+      $('#events tbody :checkbox').each(function(){
+        $(this).attr('checked', false);
+      });
+      idEvents.splice(0, idEvents.length); //On purge le tableau 
+    }
+  });
+
+  /* Slection via les lignes */
   $('#events tbody tr').click(function(e){
     if(!$(e.target).is('a')){
       if($(':checkbox', this).attr("checked")){
         $(':checkbox', this).attr("checked", false);
+        $('#events thead :checkbox').attr("checked", false);
         var tmp = $(this).attr('id').split('-');
         idEvents.splice(idEvents.indexOf(tmp[1]),1);
       }
@@ -349,33 +390,3 @@ $(document).ready(function(){
     e.preventDefault();
   });
 });
-
-  /*$('#session .span4.well').click(function(e){
-    if($(e.target).hasClass('detailBtn')){
-      $.getJSON($(e.target).attr("href"), function(data){
-        alert('coucou');
-        /*$('<div class="modal-header">
-        <button class="close" data-dismiss="modal">×</button>
-        <h3>'+data.nomevenement+'</h3>
-      </div>
-      <div class="modal-body">
-        <p>'+data.descevenement+'<br />
-        Il ne reste plus que '+$('h4',this).val()+'place(s) pour cette évènement</p>
-      </div>
-      <div class="modal-footer">
-        <a href="#" class="btn" data-dismiss="modal">Close</a>
-        <a href="#" class="btn btn-primary inscrire">S\'inscrire</a>
-      </div>').appendTo($('.ajaxCont', this);
-      });
-    }
-    e.preventDefault();
-  });*/
-  /*$('#selectSession input').hide();
-
-  $('#selectSession select option:last').click(function(){
-    $('#selectSession input').fadeIn("slow");
-  });
-
-  $('#selectSession select option:not(:last)').click(function(){
-    $('#selectSession input').fadeOut("slow");
-  });*/
