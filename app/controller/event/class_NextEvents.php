@@ -28,8 +28,8 @@
           $titre = (strlen($event['nomevenement']) <= $length) ? $event['nomevenement'] : substr($str,0,strrpos($str,' ')).$cutString;
 
           $script .= "{
-            title: '".$titre."',
-            start: new Date("./*$date[0]*/'2012'.", ".($date[1] - 1).", ".$date[2].")
+            title: '".addslashes($titre)."',
+            start: new Date(".$date[0].", ".($date[1] - 1).", ".$date[2].")
           },";
         }
         echo $template->render(array('cur_user' => $_SESSION, 'nextevents' => $script, 'events' => $events));
