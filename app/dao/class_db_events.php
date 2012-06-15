@@ -131,6 +131,18 @@
     }
 
     /**
+    * Methode retournant le nombre d'évènement auquelle l'utilisateur est inscrit
+    * @param $idUser utilisateur a cherché
+    * @return array
+    */
+    public function getNbEventRegisteredLast($idUser){
+      $req = $this->bdd->prepare('SELECT COUNT(*) FROM PARTICIPER INNER JOIN EVENEMENTS ON idRefEvenement = idEvenement WHERE idRefUtilisateur = :idUser AND dateDebutEvenement >= NOW()');
+      $req->bindValue(':idUser', $idUser, PDO::PARAM_INT);
+      $req->execute();
+      return $req->fetch();
+    }
+
+    /**
     * Methode retournant les trois prochain évènement trier par ordre chronologique
     * @param $idUser
     * @return array

@@ -23,6 +23,15 @@
     }
 
     /**
+    * Methode retournant toutes les sessions
+    * @return array liste des session
+    */
+    public function getAllSessionLast(){
+      $req = $this->bdd->query('SELECT idSession,refCreateur,nomSession,nbMaxInscritEvenement,nbMinParticipationEvenement,dateLimiteInscription,dateRappelMail FROM SESSIONS WHERE dateLimiteInscription >= NOW() ORDER BY dateLimiteInscription');
+      return $req->fetchAll();
+    }
+
+    /**
     * Methode retournant toutes les sessions et leurs créateur
     * @return array
     */
