@@ -2,28 +2,6 @@ var idSessions = new Array();
 var idEvents = new Array();
 var openInput = 0;
 
-/* Parse Date */
-/*var changeDateFormat = function (date){
-  var cut = date.split(' '); // Wed Jan 23 2013 00:00:00 GMT+0100 (Paris, Madrid)
-  var dateOutput;
-  var jour = {
-    'Dimanche',
-    'Lundi',
-    'Mardi',
-    'Mercredi',
-    'Jeudi',
-    'Vendredi',
-    'Samedi'
-  };
-
-  var mois = {
-
-  };
-
-  };
-}*/
-
-
 /* Modif des modals event */
 var showModalEvents = function(){
   $('#events .modal li').click(function(e){
@@ -72,17 +50,33 @@ var selectSession = function(){
 };
 
 
-
-/* Suppression des sessions */
-var deleteSession = function(){
-  
-  
-};
-
 /* Gestion des events */
 var selectEvents = function(){
   $('#events tbody tr').click(function(e){
-    console.log('Couc !');
+    if(!$(e.target).is('a')){
+      if($(':checkbox', this).attr("checked")){
+        $(':checkbox', this).attr("checked", false);
+        var tmp = $(this).attr('id').split('-');
+        idEvents.splice(idEvents.indexOf(tmp[1]),1);
+      }
+
+      else{
+        $(':checkbox', this).attr("checked", true);
+        var tmp = $(this).attr('id').split('-');
+        idEvents.push(tmp[1]);
+      }
+    }
+  });
+
+  /* Rétablissement des checkbox */
+  $('#events tbody tr :checkbox').click(function() {
+    if ($(this).attr('checked')) {
+      $(this).attr('checked', false);
+    }
+
+    else{
+      $(this).attr('checked', true);
+    }
   });
 };
 
@@ -134,6 +128,7 @@ $('#session .modal').click(function(e){
       $.post($(e.target).attr('href'), infoSession, function(data){
         if(data.code == 'ok'){
           $('#session .update').html('Modifications Enregistré !');
+          $('#session .modal .success').removeClass("success");
         }
       });
     }
@@ -166,8 +161,9 @@ var showEvent = function(){
       $.getJSON(sessionPlusId+'-get',function(data){
         currentSession = sessionPlusId.split('-')[1];
         $("#events tbody").empty(); // on purge la table
+        idEvents.splice(0, idEvents.length); //On purge le tableau 
         for(var i=0;i<data.length;i++){ // On ajoute les ligne
-          $('<tr id="'+data[i]['idevenement']+'"> <td><label class="checkbox inline"><input type="checkbox"/></label></td> <td><a href="#modal-'+data[i]['idevenement']+'" data-toggle="modal">'+data[i]['nomevenement']+'</a></td> <td><a href="#">'+data[i]['nbinscrit']+'</a></td> <td> <div class="modal fade" id="modal-'+data[i]['idevenement']+'"> <div class="modal-header"> <button class="close" data-dismiss="modal">×</button> <h3>'+data[i]['nomevenement']+'</h3> </div> <div class="modal-body"> <ul> <li>Description de l\'évènement : <span>'+data[i]['descevenement']+'</span> <i class="icon-pencil"></i></li> <li>Nombre d\'inscrit : <span>'+data[i]['nbinscrit']+'</span> <i class="icon-pencil"></i></li> <li>Date du début de l\'évènement : <span>'+data[i]['datedebutevenement']+'</span> <i class="icon-pencil"></i></li> <li>Date de la fin de l\'évènement : <span>'+data[i]['datefinevenement']+'</span> <i class="icon-pencil"></i></li> <li>Emplacment : <span>'+data[i]['emplacementevenement']+'</span> <i class="icon-pencil"></i></li> </ul> </div> <div class="modal-footer"> <a href="#" class="btn" data-dismiss="modal">Close</a> </div> </div> </td></tr>').appendTo("#events tbody");
+          $('<tr id="event-'+data[i]['idevenement']+'"> <td><label class="checkbox inline"><input type="checkbox"/></label></td> <td><a href="#modal-'+data[i]['idevenement']+'" data-toggle="modal">'+data[i]['nomevenement']+'</a></td> <td><a href="#">'+data[i]['nbinscrit']+'</a></td> <td> <div class="modal fade" id="modal-'+data[i]['idevenement']+'"> <div class="modal-header"> <button class="close" data-dismiss="modal">×</button> <h3>'+data[i]['nomevenement']+'</h3> </div> <div class="modal-body"> <ul> <li>Description de l\'évènement : <span>'+data[i]['descevenement']+'</span> <i class="icon-pencil"></i></li> <li>Nombre d\'inscrit : <span>'+data[i]['nbinscrit']+'</span> <i class="icon-pencil"></i></li> <li>Date du début de l\'évènement : <span>'+data[i]['datedebutevenement']+'</span> <i class="icon-pencil"></i></li> <li>Date de la fin de l\'évènement : <span>'+data[i]['datefinevenement']+'</span> <i class="icon-pencil"></i></li> <li>Emplacment : <span>'+data[i]['emplacementevenement']+'</span> <i class="icon-pencil"></i></li> </ul> </div> <div class="modal-footer"> <a href="#" class="btn" data-dismiss="modal">Close</a> </div> </div> </td></tr>').appendTo("#events tbody");
         }
 
         $('#events+.progress').fadeOut('slow', function(){ // On fait disparaitre la progress-bar
@@ -182,11 +178,11 @@ var showEvent = function(){
           }
         });
         showModalEvents(); // On bind les modif des modos
+        selectEvents(); // On bind les selections
         data = '';
 
       });
       e.preventDefault();
-      selectEvent(); // On bind la selection des events;
     }
   });
 };
@@ -209,7 +205,6 @@ $(document).ready(function(){
     if($(e.target).hasClass('inscrire')){
       var Tevent = $(this).attr('id').split('-');
       var modal = $(this);
-      console.log(thisSpan);
       $('.inscrire', modal).html('En cours...');
       $.getJSON('event-'+Tevent[1]+'-inscription',function(data){
           if(data.ok){
@@ -296,10 +291,10 @@ $(document).ready(function(){
       };
       
       $.post($(e.target).attr('href'), data, function(callBack){
-        console.log(callBack);
         $('#addEventModal').modal('hide');
         if (callBack.code == 'ok') {
-          $('<tr id="'+callBack.idevent+'"> <td><label class="checkbox inline"><input type="checkbox"/></label></td> <td><a href="#modal-'+callBack.idevent+'" data-toggle="modal">'+data.titre+'</a></td> <td><a href="#">'+data.emplacement+'</a></td> <td> <div class="modal fade" id="modal-'+callBack.idevent+'"> <div class="modal-header"> <button class="close" data-dismiss="modal">×</button> <h3>'+data.titre+'</h3> </div> <div class="modal-body"> <ul> <li>Description de l\'évènement : <span>'+data.description+'</span> <i class="icon-pencil"></i></li> <li>Nombre d\'inscrit : <span>0</span> <i class="icon-pencil"></i></li> <li>Date du début de l\'évènement : <span>'+data.dateDebut+'</span> <i class="icon-pencil"></i></li> <li>Date de la fin de l\'évènement : <span>'+data.dateFin+'</span> <i class="icon-pencil"></i></li> <li>Emplacment : <span>'+data.emplacement+'</span> <i class="icon-pencil"></i></li> </ul> </div> <div class="modal-footer"> <a href="#" class="btn" data-dismiss="modal">Close</a> </div> </div> </td></tr>').appendTo("#events tbody");
+          $('<tr id="'+callBack.idevent+'"> <td><label class="checkbox inline"><input type="checkbox"/></label></td> <td><a href="#modal-'+callBack.idevent+'" data-toggle="modal">'+data.titre+'</a></td> <td><a href="#">0</a></td> <td> <div class="modal fade" id="modal-'+callBack.idevent+'"> <div class="modal-header"> <button class="close" data-dismiss="modal">×</button> <h3>'+data.titre+'</h3> </div> <div class="modal-body"> <ul> <li>Description de l\'évènement : <span>'+data.description+'</span> <i class="icon-pencil"></i></li> <li>Nombre d\'inscrit : <span>0</span> <i class="icon-pencil"></i></li> <li>Date du début de l\'évènement : <span>'+data.dateDebut+'</span> <i class="icon-pencil"></i></li> <li>Date de la fin de l\'évènement : <span>'+data.dateFin+'</span> <i class="icon-pencil"></i></li> <li>Emplacment : <span>'+data.emplacement+'</span> <i class="icon-pencil"></i></li> </ul> </div> <div class="modal-footer"> <a href="#" class="btn" data-dismiss="modal">Close</a> </div> </div> </td></tr>').appendTo("#events tbody");
+          selectEvents(); //On bind les checkbox
         }
 
         else if(callBack.code == '!right'){
@@ -315,6 +310,26 @@ $(document).ready(function(){
         }
       }, 'json');
     }
+  });
+
+  /* Envoie des events a delete*/
+  $('#events .deleteEvent').click(function(e){
+    if(idEvents.length != 0){
+      $.post($(this).attr('href'), {'tabEvents': idEvents}, function(data){
+        console.log('ujhhh');
+        if(data.code == 'ok'){
+          for(var i=0;i<idEvents.length;i++){
+            $('#events tbody #event-'+idEvents[i]).hide('slow');
+          }
+          idEvents.splice(0, idEvents.length); //On purge le tableau 
+        }
+      }, 'json');
+    }
+
+    else{
+      alert('Vous devez sélectionner au moins un évènement');
+    }
+    e.preventDefault();
   });
 });
 

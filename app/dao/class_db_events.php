@@ -113,7 +113,7 @@
     * @return void
     */
     public function removeEvent($idEvent){
-      $req = $this->bdd->prepare('DELETE FROM EVENEMENT WHERE idEvenement = :idEvent');
+      $req = $this->bdd->prepare('DELETE FROM EVENEMENTS WHERE idEvenement = :idEvent');
       $req->bindValue(':idEvent', $idEvent, PDO::PARAM_INT);
       $req->execute();
     }
