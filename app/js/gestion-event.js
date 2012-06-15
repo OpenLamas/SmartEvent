@@ -82,11 +82,28 @@ var selectEvents = function(){
 
 /* Modif des modals session */
 var showModalSessions = function(){
+  $('#session .modal h3').click(function(e){
+    if($(e.target).hasClass('icon-pencil')){
+      openInput++;
+      $('span', this).replaceWith('<input type="text" value="'+$('span',this).text()+'" />');
+      $('i', this).removeClass('icon-pencil');
+      $('i', this).addClass('icon-ok');
+    }
+
+    else if($(e.target).hasClass('icon-ok')){
+      $('input',this).replaceWith('<span>'+$('input',this).val()+'</span>');
+      $(this).addClass("success");
+      $('i', this).removeClass('icon-ok');
+      $('i', this).addClass('icon-pencil');
+      openInput--;
+    }
+  });
+
   $('#session .modal li').click(function(e){
     if($(e.target).hasClass('icon-pencil')){
-      openInput = 1;
+      openInput++;
       if(!$('span', this).hasClass('date')){
-        $('span',this).replaceWith('<input type="text" value="'+$('span',this).text()+'" />')
+        $('span',this).replaceWith('<input type="text" value="'+$('span',this).text()+'" />');
       }
 
       else{
@@ -104,7 +121,7 @@ var showModalSessions = function(){
       $(this).addClass("success");
       $('i', this).removeClass('icon-ok');
       $('i', this).addClass('icon-pencil');
-      openInput = 0
+      openInput--;
     }
   });
 };

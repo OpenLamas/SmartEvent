@@ -4,6 +4,11 @@
 {% if cur_user.right == "GESTIONNAIRE" or cur_user.right == "ADMIN" %}
 <div class="row">
   {# PARTIE SESSIONS ******************************************************************** #}
+  <style type="text/css">
+  h3.success{
+    color: #468847;
+  }
+  </style>
   <div class="span6" id="session">
     <a class="btn btn-primary" data-toggle="modal" href="#addSessionModal"><i class="icon-plus-sign icon-white"></i> Ajouter une session</a>
     <a class="btn btn-danger" href="session-delete"><i class="icon-remove-sign icon-white"></i> Supprimer</a><br /><br />
@@ -26,7 +31,7 @@
             <div class="modal fade" id="modal-session-{{ session.idsession }}">
               <div class="modal-header">
                 <button class="close" data-dismiss="modal">&times;</button>
-                <h3>{{ session.nomsession }}</h3>
+                <h3><span>{{ session.nomsession }}</span> <i class="icon-pencil"></i></h3>
               </div>
               <div class="modal-body">
                 <ul>
