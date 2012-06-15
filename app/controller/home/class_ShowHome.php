@@ -15,10 +15,10 @@
         exit;
       }
       else{
-        $nbEvent = $dbEvents->getNbEventRegistered($_SESSION['idutilisateur']);
+        $nbEvent = $dbEvents->getNbEventRegisteredLast($_SESSION['idutilisateur']);
         $template = $this->twig->loadTemplate('home.twig');
         // $sessions = $donnees->getSessionPlace();
-        $sessions = $dbSessions->getAllSession();
+        $sessions = $dbSessions->getAllSessionLast();
         for($i=0;$i<count($sessions);$i++) {
           $nbReg = $dbEvents->getRegisteredEventPerSession($_SESSION['idutilisateur'], $sessions[$i]['idsession']);
           $sessions[$i]['eventInscrit'] = $nbReg['count'];
