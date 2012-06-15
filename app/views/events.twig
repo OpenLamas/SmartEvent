@@ -3,6 +3,20 @@
 {% block content %}
 {% if cur_user.right == "GESTIONNAIRE" or cur_user.right == "ADMIN" %}
 <div class="row">
+
+<style type="text/css">
+  h3.success{
+    color: #468847;
+  }
+
+  .uploadForm{
+    width: 200px;
+    height: 100px;
+    margin: auto;
+  }
+  </style>
+
+
   {# PARTIE SESSIONS ******************************************************************** #}
   <style type="text/css">
   h3.success{
@@ -56,7 +70,7 @@
   {# PARTIE EVENTS ********************************************************************** #}
   <div class="hide span6" id="events">
     <a class="btn btn-primary" data-toggle="modal" href="#addEventModal"><i class="icon-plus-sign icon-white"></i> Ajouter un évènement</a>
-    <a class="btn btn-info" data-toggle="modal" href="#"><i class="icon-download icon-white"></i> Importer des évènements</a>
+    <a class="btn btn-info" data-toggle="modal" href="#uploadFile"><i class="icon-download icon-white"></i> Importer des évènements</a>
     <a class="btn btn-danger deleteEvent" href="event-delete"><i class="icon-remove-sign icon-white"></i> Supprimer</a><br /><br />    
     <form method="POST" action="events-print">      
       <button type="submit" class="btn btn-inverse"><i class="icon-th-list icon-white"></i> Listes d'émargement</button>
@@ -183,7 +197,7 @@
     <a href="event-submit" class="btn btn-primary">Ajouter</a> 
   </div> 
 </div>
-{# MODAL RAPPEL UTILISATEURS ***************************************************************** #}
+{# MODAL RAPPEL UTILISATEURS ************************************* #}
 <div class="modal fade" id="remindUsersModal">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">×</button>
@@ -212,6 +226,23 @@
   <div class="modal-footer">
     <a href="#" class="btn" data-dismiss="modal">Fermer</a>
     <a href="session-submit" class="btn btn-primary"><i class="icon-envelope icon-white"></i> Envoyer des mails de rappel</a>    
+  </div>
+</div>
+{# MODAL UPLOAD XLS **********************************************#}
+<div class="modal fade" id="uploadFile">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>Import d'évènement au format XLS</h3>
+  </div>
+  <div class="modal-body">
+    <div class="well uploadForm">
+      <p>
+        Dropez votre fichier ici pour l'importé
+      </p>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Fermer</a>   
   </div>
 </div>
 {% endif %}
