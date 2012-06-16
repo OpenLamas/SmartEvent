@@ -1,23 +1,100 @@
 var idSessions = new Array();
 var idEvents = new Array();
-var openInput = 0;
+var openInputSession = 0;
+var openInputEvent = 0;
 
 /* Modif des modals event */
-var showModalEvents = function(){
+var updateModalEvents = function(){
   $('#events .modal li').click(function(e){
     if($(e.target).hasClass('icon-pencil')){
+      openInputEvent++;
+      
+      if(!$('span', this).hasClass("date")){
+        $('span',this).replaceWith('<input type="text" value="'+$('span',this).text()+'" />')
+        $('i', this).removeClass('icon-pencil');
+        $('i', this).addClass('icon-ok');
+      }
+
+      else{
+        var dateInput = $('span',this).text().split(' ');
+        if(dateInput.length == 2){
+          var heure = dateInput[1].split(':');
+          $('span',this).replaceWith('<div class="controls"><input type="text" class="date" value="" /><div class="input-append input-prepend"><input type="text" class="input-mini" id="heureDebut"value="'+heure[0]+'"/><span class="add-on">:</span><input type="text" class="input-mini" id="minuteDebut" value="'+heure[1]+'"/></div></div>')
+          $('input.date', this).datepicker();
+          $('input.date', this).datepicker('setDate', $.datepicker.parseDate('yy-mm-dd', dateInput[0]));
+          $('i', this).removeClass('icon-pencil');
+          $('i', this).addClass('icon-ok');
+        }
+
+        else{
+          openInputEvent--;
+        }
+      }
+    }
+
+    else if($(e.target).hasClass('icon-ok')){
+      openInputEvent--;
+      if(!$('input:eq(0)', this).hasClass('date')){
+        $('input',this).replaceWith('<span>'+$('input',this).val()+'</span>')
+      }
+
+      else{
+        $('.controls', this).replaceWith('<span class="date">'+$('input.date',this).val()+' '+$('input:eq(1)', this).val()+':'+$('input:eq(2)', this).val()+'</span>')
+      }
+
+      $('i', this).removeClass('icon-ok');
+      $('i', this).addClass('icon-pencil');
+      $(this).addClass('success');
+    }
+  });
+
+  $('#events .modal h3').click(function(e) {
+    if($(e.target).hasClass('icon-pencil')){
+      openInputEvent++;
       $('span',this).replaceWith('<input type="text" value="'+$('span',this).text()+'" />')
       $('i', this).removeClass('icon-pencil');
       $('i', this).addClass('icon-ok');
     }
 
     else if($(e.target).hasClass('icon-ok')){
-      alert('Envoie AJAX !');
+      openInputEvent--;
       $('input',this).replaceWith('<span>'+$('input',this).val()+'</span>')
       $('i', this).removeClass('icon-ok');
       $('i', this).addClass('icon-pencil');
+      $(this).addClass('success');
     }
   });
+
+  /* Envoi des données modifié*/
+  $('#events .modal').click(function(e){
+    if($(e.target).hasClass('update')){
+      if(!openInputEvent){
+        var tmp = $(this).attr("id").split('-');
+        var infoEvent = {
+          'titre': $('.modal-header h3 span', this).html(),
+          'description': $('li:eq(0) span', this).html(),
+          'dateDebut': $('li:eq(2) span', this).html(),
+          'dateFin': $('li:eq(3) span', this).html(),
+          'emplacement': $('li:eq(4) span', this).html(),
+          'idEvenement': tmp[1]
+        };
+        $(e.target).html('En cours...');
+        $.post($(e.target).attr('href'), infoEvent, function(data){
+          if(data.code == 'ok'){
+            $(e.target).html('Modifications Enregistré !');
+            $('#events .modal .success').removeClass("success");
+          }
+        }, 'json');
+      }
+
+      else{
+        alert('Vous devez d\'abord valider tous les champs');
+      }
+      e.preventDefault();
+    }
+  });
+
+
 };
 
 /* Selection des Sessions */
@@ -91,7 +168,7 @@ var selectEvents = function(){
     }
   });
 
-  /* Slection via les lignes */
+  /* Selection via les lignes */
   $('#events tbody tr').click(function(e){
     if(!$(e.target).is('a')){
       if($(':checkbox', this).attr("checked")){
@@ -125,7 +202,7 @@ var selectEvents = function(){
 var showModalSessions = function(){
   $('#session .modal h3').click(function(e){
     if($(e.target).hasClass('icon-pencil')){
-      openInput++;
+      openInputSession++;
       $('span', this).replaceWith('<input type="text" value="'+$('span',this).text()+'" />');
       $('i', this).removeClass('icon-pencil');
       $('i', this).addClass('icon-ok');
@@ -136,13 +213,13 @@ var showModalSessions = function(){
       $(this).addClass("success");
       $('i', this).removeClass('icon-ok');
       $('i', this).addClass('icon-pencil');
-      openInput--;
+      openInputSession--;
     }
   });
 
   $('#session .modal li').click(function(e){
     if($(e.target).hasClass('icon-pencil')){
-      openInput++;
+      openInputSession++;
       if(!$('span', this).hasClass('date')){
         $('span',this).replaceWith('<input type="text" value="'+$('span',this).text()+'" />');
       }
@@ -162,7 +239,7 @@ var showModalSessions = function(){
       $(this).addClass("success");
       $('i', this).removeClass('icon-ok');
       $('i', this).addClass('icon-pencil');
-      openInput--;
+      openInputSession--;
     }
   });
 };
@@ -170,7 +247,7 @@ var showModalSessions = function(){
 /* Update Session */
 $('#session .modal').click(function(e){
   if($(e.target).hasClass('update')){
-    if(!openInput){
+    if(!openInputSession){
       var tmp = $(this).attr("id").split('-');
       var infoSession = {
         'nomSession': $('.modal-header h3', this).html(),
@@ -221,7 +298,7 @@ var showEvent = function(){
         $("#events tbody").empty(); // on purge la table
         idEvents.splice(0, idEvents.length); //On purge le tableau 
         for(var i=0;i<data.length;i++){ // On ajoute les ligne
-          $('<tr id="event-'+data[i]['idevenement']+'"> <td><label class="checkbox inline"><input type="checkbox"/></label></td> <td><a href="#modal-'+data[i]['idevenement']+'" data-toggle="modal">'+data[i]['nomevenement']+'</a></td> <td><a href="#">'+data[i]['nbinscrit']+'</a></td> <td> <div class="modal fade" id="modal-'+data[i]['idevenement']+'"> <div class="modal-header"> <button class="close" data-dismiss="modal">×</button> <h3>'+data[i]['nomevenement']+'</h3> </div> <div class="modal-body"> <ul> <li>Description de l\'évènement : <span>'+data[i]['descevenement']+'</span> <i class="icon-pencil"></i></li> <li>Nombre d\'inscrit : <span>'+data[i]['nbinscrit']+'</span> <i class="icon-pencil"></i></li> <li>Date du début de l\'évènement : <span>'+data[i]['datedebutevenement']+'</span> <i class="icon-pencil"></i></li> <li>Date de la fin de l\'évènement : <span>'+data[i]['datefinevenement']+'</span> <i class="icon-pencil"></i></li> <li>Emplacment : <span>'+data[i]['emplacementevenement']+'</span> <i class="icon-pencil"></i></li> </ul> </div> <div class="modal-footer"> <a href="#" class="btn" data-dismiss="modal">Close</a> </div> </div> </td></tr>').appendTo("#events tbody");
+          $('<tr id="event-'+data[i]['idevenement']+'"> <td><label class="checkbox inline"><input type="checkbox"/></label></td> <td><a href="#modal-'+data[i]['idevenement']+'" data-toggle="modal">'+data[i]['nomevenement']+'</a></td> <td><a href="#">'+data[i]['nbinscrit']+'</a></td> <td> <div class="modal fade" id="modal-'+data[i]['idevenement']+'"> <div class="modal-header"> <button class="close" data-dismiss="modal">×</button> <h3><span>'+data[i]['nomevenement']+'</span> <i class="icon-pencil"></i></h3> </div> <div class="modal-body"> <ul> <li>Description de l\'évènement : <span>'+data[i]['descevenement']+'</span> <i class="icon-pencil"></i></li> <li>Nombre d\'inscrit : <span>'+data[i]['nbinscrit']+'</span> <i class="icon-pencil"></i></li> <li>Date du début de l\'évènement : <span class="date">'+data[i]['datedebutevenement']+'</span> <i class="icon-pencil"></i></li> <li>Date de la fin de l\'évènement : <span class="date">'+data[i]['datefinevenement']+'</span> <i class="icon-pencil"></i></li> <li>Emplacement : <span>'+data[i]['emplacementevenement']+'</span> <i class="icon-pencil"></i></li> </ul> </div> <div class="modal-footer"> <a href="event-update" class="btn btn-primary update">Enregistré les modifications</a><a href="#" class="btn" data-dismiss="modal">Close</a> </div> </div> </td></tr>').appendTo("#events tbody");
         }
 
         $('#events+.progress').fadeOut('slow', function(){ // On fait disparaitre la progress-bar
@@ -235,7 +312,7 @@ var showEvent = function(){
             $('#events table').fadeIn('slow'); // On affiche le tabeau 
           }
         });
-        showModalEvents(); // On bind les modif des modos
+        updateModalEvents(); // On bind les modif des modos
         selectEvents(); // On bind les selections
         data = '';
 

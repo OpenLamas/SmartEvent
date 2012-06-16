@@ -96,14 +96,13 @@
     * @return void
     */
     public function updateEvent($data){
-      $req = $this->bdd->prepare('UPDATE EVENEMENTS SET refSession = :idSession, nomEvenement = :titre, descEvenement = :description, datedebutevenement = :dateDebut, datefinevenement = :dateFin, emplacementEvenement = :emplacement WHERE idEvenement = :idEvent');
-      $req->bindValue(':idSession', $data['idSession'], PDO::PARAM_INT);
+      $req = $this->bdd->prepare('UPDATE EVENEMENTS SET nomEvenement = :titre, descEvenement = :description, datedebutevenement = :dateDebut, datefinevenement = :dateFin, emplacementEvenement = :emplacement WHERE idEvenement = :idEvent');
       $req->bindValue(':titre', $data['titre'], PDO::PARAM_STR);
       $req->bindValue(':description', $data['description'], PDO::PARAM_STR);
       $req->bindValue(':dateDebut', $data['dateDebut'], PDO::PARAM_STR);
       $req->bindValue(':dateFin', $data['dateFin'], PDO::PARAM_STR);
       $req->bindValue(':emplacement', $data['emplacement'], PDO::PARAM_STR);
-      $req->blindValue(':idEvent', $data['idEvenement'], PDO::PARAM_INT);
+      $req->bindValue(':idEvent', $data['idEvenement'], PDO::PARAM_INT);
       $req->execute();
     }
 

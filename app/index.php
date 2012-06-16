@@ -79,6 +79,8 @@
 
   catch(Exception $e){
     //header('Location: error-500');
+    echo $e->getFile().' ';
+    echo $e->getLine().' ';
     echo $e->getMessage();
     exit;
   }

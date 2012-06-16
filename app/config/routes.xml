@@ -31,6 +31,7 @@
   <route url="/event-submit" module="event" action="EventSubmit" />
   <route url="/events-print" module="event" action="PrintLists" />
   <route url="/event-delete" module="event" action="EventDelete" />
+  <route url="/event-update" module="event" action="EventUpdate" />
 
   <!-- Error -->
   <route url="/error-403" module="error" action="Error403" />
