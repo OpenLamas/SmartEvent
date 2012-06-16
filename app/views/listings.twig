@@ -5,11 +5,11 @@
 <div class="span3 offset1">
 <a href="#" class="btn btn-inverse"><i class="icon-print icon-white"></i> Imprimer</a><br /><br />
 </div>
-{#% for event in events %#}
+{% for event in session %}
 <div class="row">
   <div class="span9 offset1 well">
-  <h1>Session / Nom de l'évènement</h1>
-  <h3>23 Juin 2013 de 10h00 à 11h00</h3>
+  <h1>{{ event.info.nomsession }} / {{ event.info.nomevenement }}</h1>
+  <h3>du {{ event.info.datedebutevenement }} au {{ event.info.datefinevenement }}</h3>
   <br />
    <table class="table table-condensed table-bordered">
     <thead>
@@ -20,15 +20,17 @@
       </tr>
     </thead>
     <tbody>
+      {% for user in event.listUser %}
       <tr>
-        <td>Jean</td>
-        <td>Jean</td>
+        <td>{{ user.nomutilisateur }}</td>
+        <td>{{ user.prenomutilisateur }}</td>
         <td></td>
       </tr>
+      {% endfor %}
     </tbody>
   </table>
   </div>
 </div>
-{#% endfor %#}
+{% endfor %}
 {% endif %}
 {% endblock %}

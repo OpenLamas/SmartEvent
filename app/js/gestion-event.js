@@ -315,6 +315,7 @@ var showEvent = function(){
         updateModalEvents(); // On bind les modif des modos
         selectEvents(); // On bind les selections
         data = '';
+        $('#events .listes').attr('href', sessionPlusId+'-print');
 
       });
       e.preventDefault();

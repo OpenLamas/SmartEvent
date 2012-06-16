@@ -72,23 +72,20 @@
     <a class="btn btn-primary" data-toggle="modal" href="#addEventModal"><i class="icon-plus-sign icon-white"></i> Ajouter un évènement</a>
     <a class="btn btn-info" data-toggle="modal" href="#uploadFile"><i class="icon-download icon-white"></i> Importer des évènements</a>
     <a class="btn btn-danger deleteEvent" href="event-delete"><i class="icon-remove-sign icon-white"></i> Supprimer</a><br /><br />    
-    <form method="POST" action="events-print">      
-      <button type="submit" class="btn btn-inverse"><i class="icon-th-list icon-white"></i> Listes d'émargement</button>
-      <a data-toggle="modal" href="#remindUsersModal" class="btn btn-inverse"><i class="icon-warning-sign icon-white"></i> "Rappels utilisateurs"</a><br /><br />
-      <h5>Cliquez sur le nom d'un évènement pour voir/modifier ses détails</h5>
-      <table class="table table-condensed well">
-        <thead>
-          <tr>
-            <th><label class="checkbox inline all"><input type="checkbox" id="checkboxAll"></label></th>
-            <th>Nom</th>
-            <th>Nombre d'inscrits</th>
-          </tr>
-        </thead>
-        <tbody>         
-        </tbody>
-      </table>
-      <input type="hidden" />
-    </form>
+    <a href="#" class="btn btn-inverse listes"><i class="icon-th-list icon-white"></i> Listes d'émargement</a>
+    <a data-toggle="modal" href="#remindUsersModal" class="btn btn-inverse"><i class="icon-warning-sign icon-white"></i> "Rappels utilisateurs"</a><br /><br />
+    <h5>Cliquez sur le nom d'un évènement pour voir/modifier ses détails</h5>
+    <table class="table table-condensed well">
+      <thead>
+        <tr>
+          <th><label class="checkbox inline all"><input type="checkbox" id="checkboxAll"></label></th>
+          <th>Nom</th>
+          <th>Nombre d'inscrits</th>
+        </tr>
+      </thead>
+      <tbody>         
+      </tbody>
+    </table>
   </div>
 </div>
 {# MODAL AJOUT SESSIONS ***************************************************************** #}

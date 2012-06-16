@@ -26,6 +26,30 @@
     }
 
     /**
+    * Methode retournant le nom et le prénom de tous les inscrits a un évènement pour une session donné
+    * @param $idSession
+    * @return array
+    */
+    public function getInfoInscritFromSession($idSession){
+      $req = $this->bdd->prepare('SELECT idEvenement, nomUtilisateur, prenomUtilisateur FROM UTILISATEURS INNER JOIN PARTICIPER ON idRefUtilisateur = idUtilisateur INNER JOIN EVENEMENTS ON idRefEvenement = idEvenement WHERE refSession = :idSession');
+      $req->bindValue(':idSession', $idSession, PDO::PARAM_INT);
+      $req->execute();
+      return $req->fetchAll();
+    }
+
+    /**
+    * Methode retournant le nom et les heures d'un event et le nom de sa session
+    * @param $idSession
+    * @return array
+    */
+    public function getEventAndNomSession($idSession){
+      $req = $this->bdd->prepare('SELECT idEvenement, nomEvenement, datedebutevenement, datefinevenement ,nomSession FROM EVENEMENTS INNER JOIN SESSIONS ON refSession = idSession WHERE idSession=:idSession');
+      $req->bindValue(':idSession', $idSession, PDO::PARAM_INT);
+      $req->execute();
+      return $req->fetchAll();
+    }
+
+    /**
     * Methode retournant tous les évènement d'une session
     * @param $idSession
     * @return array
@@ -38,7 +62,7 @@
     }
 
     /**
-    * Methode retournant tous les évènement d'une session
+    * Methode retournant la date limite d'incription a un évènement
     * @param $idSession
     * @return array
     */
@@ -50,7 +74,7 @@
     }
 
     /**
-    * Methode retournant tous les évènement d'une session et les inscrit a chaque évènement
+    * Methode retournant tous les évènement d'une session et le nombre d'inscrit à chaque évènement
     * @param $idSession
     * @return array
     */
@@ -76,18 +100,6 @@
       $req->bindValue(':emplacement', $data['emplacement'], PDO::PARAM_STR);
       $req->execute();
       return $req->fetch();
-
-      /*$req1 = $this->bdd->prepare('SELECT idEvenement FROM EVENEMENTS WHERE refSession = :idSession AND nomEvenement = :titre AND descEvenement = :description AND datedebutevenement = :dateDebut AND datefinevenement = :dateFin AND emplacementEvenement = :emplacement');
-      $req1->bindValue(':idSession', $data['idSession'], PDO::PARAM_INT);
-      $req1->bindValue(':titre', $data['titre'], PDO::PARAM_STR);
-      $req1->bindValue(':description', $data['description'], PDO::PARAM_STR);
-      $req1->bindValue(':dateDebut', $data['dateDebut'], PDO::PARAM_STR);
-      $req1->bindValue(':dateFin', $data['dateFin'], PDO::PARAM_STR);
-      $req1->bindValue(':emplacement', $data['emplacement'], PDO::PARAM_STR);
-      $req1->execute();
-      return $req1->fetch();
-      echo serialize($tmp);
-      return $tmp['idevenement'];*/
     }
 
     /**
@@ -130,7 +142,7 @@
     }
 
     /**
-    * Methode retournant le nombre d'évènement auquelle l'utilisateur est inscrit
+    * Methode retournant le nombre d'évènement auquelle l'utilisateur est inscrit et n'est pas encore passé
     * @param $idUser utilisateur a cherché
     * @return array
     */
@@ -166,7 +178,7 @@
     }
 
     /**
-    * Nombre d'évènement pour une session définie auqelle une personne est inscrite
+    * Nombre d'évènement pour une session définie auquelle une personne est inscrite
     * @param $idUser id de l'utilisateur 
     * @param $idSession id de la session
     * @return array
@@ -180,7 +192,7 @@
     }
 
     /**
-    * Est-on inscrit a un évènement
+    * Est-on inscrit a un évènement ?
     * @param $idUser id utilisateur
     * @param $idEvent id de l'évènement
     * @return array (bool 0:non ; 1:oui)
