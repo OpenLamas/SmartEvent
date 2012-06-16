@@ -594,6 +594,10 @@ h3 small {
   font-size: 14px;
 }
 
+h3.success {
+  color: #468847;
+}
+
 h4,
 h5,
 h6 {
@@ -1073,6 +1077,10 @@ select:focus {
   -webkit-box-shadow: none;
      -moz-box-shadow: none;
           box-shadow: none;
+}
+
+.input-micro {
+  width: 30px;
 }
 
 .input-mini {
