@@ -1079,6 +1079,10 @@ select:focus {
           box-shadow: none;
 }
 
+.input-micro {
+  width: 30px;
+}
+
 .input-mini {
   width: 60px;
 }
