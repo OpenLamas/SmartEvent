@@ -19,7 +19,7 @@ var updateModalEvents = function(){
         var dateInput = $('span',this).text().split(' ');
         if(dateInput.length == 2){
           var heure = dateInput[1].split(':');
-          $('span',this).replaceWith('<div class="controls"><input type="text" class="date" value="" /><div class="input-append input-prepend"><input type="text" class="input-mini" id="heureDebut"value="'+heure[0]+'"/><span class="add-on">:</span><input type="text" class="input-mini" id="minuteDebut" value="'+heure[1]+'"/></div></div>')
+          $('span',this).replaceWith('<form class="form-horizontal" ><div class="controls"><input type="text" class="date" value="" /><div class="input-append input-prepend"><input type="text" class="input-micro" id="heureDebut"value="'+heure[0]+'"/><span class="add-on">:</span><input type="text" class="input-micro" id="minuteDebut" value="'+heure[1]+'"/></div></div></form>')
           $('input.date', this).datepicker();
           $('input.date', this).datepicker('setDate', $.datepicker.parseDate('yy-mm-dd', dateInput[0]));
           $('i', this).removeClass('icon-pencil');
@@ -39,7 +39,7 @@ var updateModalEvents = function(){
       }
 
       else{
-        $('.controls', this).replaceWith('<span class="date">'+$('input.date',this).val()+' '+$('input:eq(1)', this).val()+':'+$('input:eq(2)', this).val()+'</span>')
+        $('form', this).replaceWith('<span class="date">'+$('input.date',this).val()+' '+$('input:eq(1)', this).val()+':'+$('input:eq(2)', this).val()+'</span>')
       }
 
       $('i', this).removeClass('icon-ok');
@@ -467,4 +467,17 @@ $(document).ready(function(){
     }
     e.preventDefault();
   });
+
+  /* Remplisage modal RedUser */
+  $('#events .redUser').click(function(){
+    $('span', this).html("En cours...");
+    $.post('user-red', {'idSession': currentSession}, function(data){
+      console.log(data);
+      for(var i=0;i<data.length;i++){
+        $('#remindUsersModal tbody').append('<tr><td>'+data[i]['nomutilisateur']+'</td><td>'+data[i]['prenomutilisateur']+'</td><td>'+data[i]['nbmanquante']+'</td></tr>')
+      }
+      $('#remindUsersModal').modal('show');
+    }, 'json');
+    $('span', this).html('"Rappels utilisateurs"');
+  })
 });

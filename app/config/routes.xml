@@ -9,6 +9,7 @@
   <route url="/users-manage" module="user" action="ListUsers" />
   <route url="/users-delete" module="user" action="DeleteUsers" />
   <route url="/users-promote" module="user" action="PromoteUsers" />
+  <route url="/user-red" module="user" action="GetRedUsers" />
   
   <!-- Admin -->
   <route url="/admin-config" module="admin" action="ShowConfig" />

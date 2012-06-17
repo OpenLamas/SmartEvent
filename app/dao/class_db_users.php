@@ -98,4 +98,16 @@
       $req->bindValue(':refDroit', $refDroit, PDO::PARAM_INT);
       $req->execute();
     }
+
+    /**
+    * Methode retournant le nom, le prenom et le nombre d'inscription manquante pour une session
+    * @param $idSession
+    * @return array
+    */
+    public function getRedUser($idSession){
+      $req = $this->bdd->prepare('SELECT nomUtilisateur, prenomUtilisateur, (nbminparticipationevenement-COUNT(idRefUtilisateur)) as nbManquante FROM UTILISATEURS INNER JOIN PARTICIPER ON idRefUtilisateur = idUtilisateur INNER JOIN EVENEMENTS ON idRefEvenement = idEvenement INNER JOIN SESSIONS ON refSession = idSession WHERE idSession = :idSession GROUP BY nomUtilisateur, prenomUtilisateur, nbminparticipationevenement HAVING (nbminparticipationevenement-COUNT(idRefUtilisateur)) > 0');
+      $req->bindValue(':idSession', $idSession, PDO::PARAM_INT);
+      $req->execute();
+      return $req->fetchAll();
+    }
   }
