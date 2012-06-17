@@ -9,8 +9,8 @@
       <div class="control-group">
         <label class="control-label" for="input_mailDomain">Domaines à filtrer</label>
         <div class="controls">
-          <input type="text" class="input-xlarge" id="input_mailDomain" value="" />
-          <p class="help-block">@etu.mon-univ.com par ex.</p>
+          <input type="text" class="input-xlarge" id="input_mailDomain" value="{{ domains }}" />
+          <p class="help-block">etu.mon-univ.com par ex. (séparer les domaines par un ';')</p>
         </div>
     </fieldset>
     <fieldset>
@@ -29,26 +29,26 @@
         <label class="control-label" for="input_sqlServer">Serveur SQL</label>
         <div class="controls">  
           <div class="input-append input-prepend">
-            <input type="text" class="input-medium" id="input_sqlServer" name="IPSqlServer" placeholder="Adresse IP"/><span class="add-on">:</span><input type="text" class="input-mini" name="PortSqlServer" id="input_portsqlServer" placeholder="Port"/>
+            <input type="text" class="input-medium" id="input_sqlServer" name="IPSqlServer" value="{{ hostname }}" /><span class="add-on">:</span><input type="text" class="input-mini" name="PortSqlServer" id="input_portsqlServer" value="{{ port }}" />
           </div>
         </div>
       </div>
       <div class="control-group">
         <label class="control-label" for="input_sqlUser">Utilisateur SQL</label>
         <div class="controls">
-          <input type="text" class="input-medium" id="input_sqlUser" />
+          <input type="text" class="input-medium" id="input_sqlUser" value="{{ user }}"/>
         </div>
       </div>
       <div class="control-group">
         <label class="control-label" for="input_sqlPwd">Mot de passe SQL</label>
         <div class="controls">
-          <input type="password" class="input-medium" id="input_sqlPwd" />
+          <input type="password" class="input-medium" id="input_sqlPwd" value="{{ password }}"/>
         </div>
       </div>
       <div class="control-group">
         <label class="control-label" for="input_sqlDB">Base SQL</label>
         <div class="controls">
-          <input type="text" class="input-medium" id="input_sqlDB" />
+          <input type="text" class="input-medium" id="input_sqlDB" value="dbname" />
         </div>
       </div>
       

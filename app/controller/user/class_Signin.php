@@ -16,7 +16,7 @@
           if($_POST['nomUtilisateur'] != "" && $_POST['prenomUtilisateur'] != "" && $_POST['mailUtilisateur'] != "")
           {
             $domain_mail = explode('@', $_POST['mailUtilisateur']);
-            if(in_array($domain_mail[1], $domains)){
+            if(in_array($domain_mail[1], unserialize(DOMAINS))){
               if($_POST['mdpUtilisateur'] != $_POST['mdpUtilisateur2']){
                 $state='erreurPass';
               }

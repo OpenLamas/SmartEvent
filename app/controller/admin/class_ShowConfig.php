@@ -12,8 +12,12 @@
         exit;
       }
       elseif ($_SESSION["right"]=="ADMIN") {
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+          
+        }
+        
         $template = $this->twig->loadTemplate('config.twig');
-        echo $template->render(array('cur_user' => $_SESSION));
+        echo $template->render(array('cur_user' => $_SESSION, 'hostname' => HOSTNAME, 'port' => PORT, 'dbname' => DBNAME, 'user' => DBUSER, 'password' => DBPASSWORD, 'domains' => implode(';', unserialize(DOMAINS))));
         exit;
       }
       else{        
