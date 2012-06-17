@@ -475,6 +475,9 @@ $(document).ready(function(){
       console.log(data);
       $('#remindUsersModal tbody').empty();
       for(var i=0;i<data.length;i++){
+        if(data[i]['nbmanquante'] == null){
+          data[i]['nbmanquante'] = $('#session tr#session-'+currentSession+' .modal ul li:eq(2) span').html();
+        }
         $('#remindUsersModal tbody').append('<tr><td>'+data[i]['nomutilisateur']+'</td><td>'+data[i]['prenomutilisateur']+'</td><td>'+data[i]['nbmanquante']+'</td></tr>')
       }
       $('#remindUsersModal').modal('show');
