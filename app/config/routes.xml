@@ -6,6 +6,7 @@
   
   <!-- Utilisateurs -->
   <route url="/signin" module="user" action="Signin" />
+  <route url="/signin-(.+)" module="user" action="Signin" vars="codeconfirmation" />
   <route url="/users-manage" module="user" action="ListUsers" />
   <route url="/users-delete" module="user" action="DeleteUsers" />
   <route url="/users-promote" module="user" action="PromoteUsers" />

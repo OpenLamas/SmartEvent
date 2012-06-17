@@ -16,7 +16,7 @@
       $this->mailer->setTo($dest, $dest);
       $this->mailer->addGenericHeader('X-Mailer', 'PHP/' . phpversion());
       $this->mailer->addGenericHeader('Content-Type', 'text/html; charset="utf-8"');
-      $thus->mailer->setSubject($subject);
+      $this->mailer->setSubject($subject);
       $this->mailer->setMessage($message);
       $this->mailer->setWrap(100);
       return $this->mailer->send();

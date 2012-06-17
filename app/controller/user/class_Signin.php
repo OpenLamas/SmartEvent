@@ -1,6 +1,7 @@
 <?php
   require('dao/class_db_request.php');
   require('basicClass/twigStart.php');
+  require('Classes/mailwrapper.php');
 
   class Signin extends Controller{
 
@@ -18,7 +19,11 @@
             }
             else {
               $_POST['mdpUtilisateur'] = md5($_POST['mdpUtilisateur']);
-              if(is_int($dbUsers->addUser($_POST))) {
+              $codeconfirmation = $dbUsers->addUser($_POST);
+              if($codeconfirmation != false) {
+                $maildest = $_POST['mailUtilisateur'];
+                $mailer1 = new MailWrapper("local@localhost.local");
+                //$mailer1->SendOneMail("$maildest","Confirmation de votre compte SmartEvent", "Votre code de confirmation : $codeconfirmation");
                 $state = 'ok';
               }
               else {
@@ -33,6 +38,17 @@
         else {
           $state='noData';
         }               
+      }
+      else if(isset($this->vars['codeconfirmation'])){
+        $dbUsers = new db_users();
+        if(is_int($dbUsers->confirmUser($this->vars['codeconfirmation'])))
+        {
+          $state='confirmed';
+        }
+        else
+        {
+          $state="erreur";
+        }
       }
       $template = $this->twig->loadTemplate('signin.twig');
       echo $template->render(array('cur_user' => array('login' => ''), 'state' => $state));
