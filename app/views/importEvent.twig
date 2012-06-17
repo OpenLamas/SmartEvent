@@ -5,7 +5,8 @@
   <div class="well span10">
     <h3>Session : {{ session.nomsession }}</h3>
   </div>
-  <form action="#" method="POST"> 
+  <form action="event-add-import" method="POST">
+    <input type="hidden" name="currentSession" value="{{ idSession }}"> 
     {% for event in listEvents %}
     <div class="span5 well">
       <input name="importEvent-{{ loop.index }}" type="hidden" value="{{ event[5] }}">
@@ -20,6 +21,7 @@
     {% endfor %}
     <div class="well span10">
       <button type="submit" class="btn btn-primary">Enregistrer les évènements</button>
+      <a class="btn" href="events-manage">Annuler</a>
     </div>
   </form>
 </div>

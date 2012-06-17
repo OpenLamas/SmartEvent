@@ -24,7 +24,7 @@
 
           $dbSessions = new db_sessions();
           $template = $this->twig->loadTemplate('importEvent.twig');
-          echo $template->render(array('cur_user' => $_SESSION, 'session'=> $dbSessions->getSession($_POST['idCurrentSession']),'listEvents' => $eventsFormat));
+          echo $template->render(array('cur_user' => $_SESSION, 'idSession' => $_POST['idCurrentSession'], 'session'=> $dbSessions->getSession($_POST['idCurrentSession']),'listEvents' => $eventsFormat));
           fclose($file);
           exit;
         }
