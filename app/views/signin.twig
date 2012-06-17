@@ -22,6 +22,11 @@
     <h1>Les mots de passe ne sont pas identiques</h1>
   </div>
   {% endif %}
+  {% if state == 'badDomain' %}
+  <div class="span6 offset2 alert alert-error">
+    <h1>Ce domaine n'est pas autorisé</h1>
+  </div>
+  {% endif %}
   {% if state == 'noData' %}
   <div class="span6 offset2 alert alert-error">
     <h1>Vous devez remplir tout les champs</h1>

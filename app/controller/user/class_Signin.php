@@ -6,29 +6,36 @@
   class Signin extends Controller{
 
     public function action(){
+      require('config/config.php');
       $state = '';
       if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $dbUsers = new db_users();        
         
         if (isset($_POST['nomUtilisateur']) && isset($_POST['prenomUtilisateur']) && isset($_POST['mailUtilisateur']) && isset($_POST['mdpUtilisateur']))
         {
-          if($_POST['nomUtilisateur'] != "" && $_POST['prenomUtilisateur'] != "" && $_POST['mailUtilisateur'])
+          if($_POST['nomUtilisateur'] != "" && $_POST['prenomUtilisateur'] != "" && $_POST['mailUtilisateur'] != "")
           {
-            if($_POST['mdpUtilisateur'] != $_POST['mdpUtilisateur2']){
-              $state='erreurPass';
-            }
-            else {
-              $_POST['mdpUtilisateur'] = md5($_POST['mdpUtilisateur']);
-              $codeconfirmation = $dbUsers->addUser($_POST);
-              if($codeconfirmation != false) {
-                $maildest = $_POST['mailUtilisateur'];
-                $mailer1 = new MailWrapper("local@localhost.local");
-                //$mailer1->SendOneMail("$maildest","Confirmation de votre compte SmartEvent", "Votre code de confirmation : $codeconfirmation");
-                $state = 'ok';
+            $domain_mail = explode('@', $_POST['mailUtilisateur']);
+            if(in_array($domain_mail[1], $domains)){
+              if($_POST['mdpUtilisateur'] != $_POST['mdpUtilisateur2']){
+                $state='erreurPass';
               }
               else {
-                $state = 'erreur';
-              }  
+                $_POST['mdpUtilisateur'] = md5($_POST['mdpUtilisateur']);
+                $codeconfirmation = $dbUsers->addUser($_POST);
+                if($codeconfirmation != false) {
+                  $maildest = $_POST['mailUtilisateur'];
+                  $mailer1 = new MailWrapper("local@localhost.local");
+                  //$mailer1->SendOneMail("$maildest","Confirmation de votre compte SmartEvent", "Votre code de confirmation : $codeconfirmation");
+                  $state = 'ok';
+                }
+                else {
+                  $state = 'erreur';
+                }  
+              }
+            }
+            else{
+              $state='badDomain';
             }
           }
           else {
