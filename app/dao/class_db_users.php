@@ -29,7 +29,7 @@
     * @return void
     */
     public function addUser($data){
-      $req = $this->bdd->prepare('INSERT INTO UTILISATEURS (nomUtilisateur, prenomUtilisateur, mailUtilisateur, mdputilisateur) VALUES (:nomUtilisateur, :prenomUtilisateur, :mailUtilisateur, :mdpUtilisateur) RETURNING idUtilisateur');
+      $req = $this->bdd->prepare('INSERT INTO UTILISATEURS (nomUtilisateur, prenomUtilisateur, mailUtilisateur, mdputilisateur) VALUES (:nomUtilisateur, :prenomUtilisateur, :mailUtilisateur, :mdpUtilisateur) RETURNING codeconfirmationutilisateur');
       $req->bindValue(':nomUtilisateur', $data['nomUtilisateur'], PDO::PARAM_STR);  
       $req->bindValue(':prenomUtilisateur', $data['prenomUtilisateur'], PDO::PARAM_STR);  
       $req->bindValue(':mailUtilisateur', $data['mailUtilisateur'], PDO::PARAM_STR);    
@@ -85,6 +85,18 @@
       $req->bindValue(':idUser', $idUser, PDO::PARAM_INT);
       $req->execute();
       return $req->fetch();
+    }
+
+    /**
+    * Confirme un utilisateur
+    * @param $confirmCode code de confirmation
+    * @return text
+    */
+    public function confirmUser($confirmCode){      
+      $req = $this->bdd->prepare("UPDATE UTILISATEURS SET estvalideutilisateur = 'TRUE' WHERE codeconfirmationutilisateur = :codeconfirmation RETURNING idUtilisateur");
+      $req->bindValue(':codeconfirmation', $confirmCode, PDO::PARAM_INT);
+      $req->execute();
+      return $req->fetchColumn();
     }
 
     /**

@@ -7,6 +7,11 @@
     <h1>Inscription réussie :)</h1>
     <h4>Veuillez vérifier vos emails.</h4>
   </div>
+  {% elseif state == 'confirmed' %}
+  <div class="span4 offset4 alert alert-success">
+    <h1>Confirmé ! :)</h1>
+    <h4>Vous pouvez vous connecter.</h4>
+  </div>
   {% elseif state == 'erreur' %}
   <div class="span2 offset5 alert alert-error">
     <h1>Erreur :(</h1>
