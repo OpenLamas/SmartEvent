@@ -1,7 +1,7 @@
 <?php
   require('dao/class_db_request.php');
   require('basicClass/twigStart.php');
-  require('Classes/mailwrapper.php');
+  require('basicClass/mailwrapper.php');
 
   class Signin extends Controller{
 
