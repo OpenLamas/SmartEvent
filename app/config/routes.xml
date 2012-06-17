@@ -33,6 +33,7 @@
   <route url="/event-submit" module="event" action="EventSubmit" />
   <route url="/event-delete" module="event" action="EventDelete" />
   <route url="/event-update" module="event" action="EventUpdate" />
+  <route url="/event-import" module="event" action="EventImport" />
 
   <!-- Error -->
   <route url="/error-403" module="error" action="Error403" />

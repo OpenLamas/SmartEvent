@@ -1,0 +1,27 @@
+{% extends 'body.twig' %}
+{% block content %}
+{% if cur_user.right == "GESTIONNAIRE" or cur_user.right == "ADMIN" %}
+<div class="row">
+  <div class="well span10">
+    <h3>Session : {{ session.nomsession }}</h3>
+  </div>
+  <form action="#" method="POST"> 
+    {% for event in listEvents %}
+    <div class="span5 well">
+      <input name="importEvent-{{ loop.index }}" type="hidden" value="{{ event[5] }}">
+      <ul>
+        <li>Nom évènement : {{ event[0] }}</li>
+        <li>Decription évènement : {{ event[1] }}</li>
+        <li>Date début évènement : {{ event[2] }}</li>
+        <li>Date fin évènement : {{ event[3] }}</li>
+        <li>Emplacement : {{ event[4] }}</li>
+      </ul>
+    </div>
+    {% endfor %}
+    <div class="well span10">
+      <button type="submit" class="btn btn-primary">Enregistrer les évènements</button>
+    </div>
+  </form>
+</div>
+{% endif %}
+{% endblock %}

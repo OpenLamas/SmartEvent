@@ -4,21 +4,7 @@
 {% if cur_user.right == "GESTIONNAIRE" or cur_user.right == "ADMIN" %}
 <div class="row">
 
-<style type="text/css">
-  .uploadForm{
-    width: 200px;
-    height: 100px;
-    margin: auto;
-  }
-  </style>
-
-
   {# PARTIE SESSIONS ******************************************************************** #}
-  <style type="text/css">
-  h3.success{
-    color: #468847;
-  }
-  </style>
   <div class="span6" id="session">
     <a class="btn btn-primary" data-toggle="modal" href="#addSessionModal"><i class="icon-plus-sign icon-white"></i> Ajouter une session</a>
     <a class="btn btn-danger" href="session-delete"><i class="icon-remove-sign icon-white"></i> Supprimer</a><br /><br />
@@ -214,18 +200,25 @@
     <a href="session-submit" class="btn btn-primary"><i class="icon-envelope icon-white"></i> Envoyer des mails de rappel</a>    
   </div>
 </div>
-{# MODAL UPLOAD XLS **********************************************#}
+{# MODAL UPLOAD CSV **********************************************#}
 <div class="modal fade" id="uploadFile">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">×</button>
-    <h3>Import d'évènement au format XLS</h3>
+    <h3>Import d'évènement au format CSV</h3>
   </div>
   <div class="modal-body">
-    <div class="well uploadForm">
-      <p>
-        Dropez votre fichier ici pour l'importé
-      </p>
-    </div>
+    <form  class="form-horizontal" action="event-import" method="POST" enctype="multipart/form-data">
+      <div class="control-group">
+        <label class="control-label" for="fileInput">Fichier à importer</label>
+        <div class="controls">
+          <input class="input-file" id="fileInput" type="file" name="eventsCSV">
+          <input type="hidden" name="idCurrentSession" id="idCurrentSession">
+        </div>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn">Importer</button>
+      </div>
+    </form>
   </div>
   <div class="modal-footer">
     <a href="#" class="btn" data-dismiss="modal">Fermer</a>   

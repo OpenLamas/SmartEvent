@@ -295,6 +295,7 @@ var showEvent = function(){
       var sessionPlusId = $(this).attr('id');
       $.getJSON(sessionPlusId+'-get',function(data){
         currentSession = sessionPlusId.split('-')[1];
+        $('#uploadFile #idCurrentSession').val(currentSession);
         $("#events tbody").empty(); // on purge la table
         idEvents.splice(0, idEvents.length); //On purge le tableau 
         for(var i=0;i<data.length;i++){ // On ajoute les ligne
@@ -483,5 +484,5 @@ $(document).ready(function(){
       $('#remindUsersModal').modal('show');
     }, 'json');
     $('span', this).html('"Rappels utilisateurs"');
-  })
+  });
 });
