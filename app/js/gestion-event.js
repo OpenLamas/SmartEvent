@@ -473,6 +473,7 @@ $(document).ready(function(){
     $('span', this).html("En cours...");
     $.post('user-red', {'idSession': currentSession}, function(data){
       console.log(data);
+      $('#remindUsersModal tbody').empty();
       for(var i=0;i<data.length;i++){
         $('#remindUsersModal tbody').append('<tr><td>'+data[i]['nomutilisateur']+'</td><td>'+data[i]['prenomutilisateur']+'</td><td>'+data[i]['nbmanquante']+'</td></tr>')
       }
