@@ -89,9 +89,31 @@ $(document).ready(function () {
   });
 
   /* Promotion d'utilisateurs */
-  $('#promoteModal').click(function(e){
-    if($(e.target).is('a')){
-      console.log($('#promoteModal form option:selected').html());
+  var promote = 1;
+  $('#promoteModal select').change(function(){
+    promote = $(this).val();
+  });
+
+    $('#promoteModal').click(function(e){
+    if($(e.target).hasClass('btn-primary')){
+      $(e.target).html('En cours...');
+      $.post($(e.target).attr("href"), {'rang': promote, 'tabUsers': idUsers}, function(data){
+        if(data.code == 'ok'){
+          var right = ['', 'UTILISATEUR', 'GESTIONNAIRE', 'ADMIN'];
+          for(var i=0;i<idUsers.length;i++){
+            $('#utilisateurs tbody tr#user-'+idUsers[i]+' td:eq(4)').html(right[promote]);
+          }
+          $('#promoteModal').modal('hide');
+          $(e.target).html('Promouvoir');
+        }
+
+        else if(data.code == "!right"){
+          alert('Vous n\'avez pas le droit !');
+          $('#promoteModal').modal('hide');
+          $(e.target).html('Promouvoir');
+        }
+      }, 'json');
+
       e.preventDefault();
     }
   });

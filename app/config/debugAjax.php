@@ -24,7 +24,8 @@ function rewiteDate($date, $heure, $minute){
 echo rewiteDate('Vendredi 22 Juin 2012', '12', '30');
 */ ?>
 
-<form action="http://localhost/smartevent/app/event-delete" method="POST">
-  <input type="text" name="tabEvents" />
+<form action="http://localhost/smartevent/app/users-promote" method="POST">
+  <input type="text" name="tabUsers" />
+  <input type="text" name="rang" />
   <input type="submit"/>
 </form>

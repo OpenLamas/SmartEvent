@@ -106,8 +106,9 @@
     * @return void
     */
     public function updateUserRight($idUser, $refDroit){
-      $req = $this->bdd->prepare('UPDATE UTILISATEURS SET refDroit = :refDroit');
+      $req = $this->bdd->prepare('UPDATE UTILISATEURS SET refDroit = :refDroit WHERE idUtilisateur = :idUser');
       $req->bindValue(':refDroit', $refDroit, PDO::PARAM_INT);
+      $req->bindValue(':idUser', $idUser, PDO::PARAM_INT);
       $req->execute();
     }
 
