@@ -94,7 +94,7 @@
     */
     public function confirmUser($confirmCode){      
       $req = $this->bdd->prepare("UPDATE UTILISATEURS SET estvalideutilisateur = 'TRUE' WHERE codeconfirmationutilisateur = :codeconfirmation RETURNING idUtilisateur");
-      $req->bindValue(':codeconfirmation', $confirmCode, PDO::PARAM_INT);
+      $req->bindValue(':codeconfirmation', $confirmCode, PDO::PARAM_STR);
       $req->execute();
       return $req->fetchColumn();
     }

@@ -21,7 +21,6 @@
         ->setBody($message);
 
       $result = $mailer->send($message);
-      echo $result;
     }
 
     public function SendManyMail($from, array $to, $subject, $message) {

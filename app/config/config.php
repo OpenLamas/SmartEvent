@@ -1,6 +1,6 @@
 <?php
   define("DOMAINS", serialize( array('etu.univ-savoie.fr', 'univ-savoie.fr')));
-  define("SITEROOT", "");
+  define("SITEROOT", "/SmartEvent/app");
 
   /* DATABASE */
   define("HOSTNAME", "198.245.60.178");
@@ -12,8 +12,8 @@
   /* MAIL */
   define("SERV_SMTP", "");
   define("PORT_SMTP", "");
-  define("AUTH_SMTP", "");
+  define("AUTH_SMTP", ""); // TLS ou SSL (a2enmod ssl)
   define("USERNAME_SMTP", "");
-  define("PASSWORD_SMTP", "");
+  define("PASSWORD_SMTP", '');
   define("MAIL_FROM", "");
 ?>

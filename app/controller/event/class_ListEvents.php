@@ -11,7 +11,7 @@
         echo $template->render(array('cur_user' => array('login' => ''), 'state' => 'Vous devez être connecté pour voir cette page'));
         exit;
       }
-      elseif ($_SESSION["right"]=="GESTIONNAIRE" || $_SESSION["right"]=="ADMIN") {
+      else {
         $dbEvents = new db_events();
         $dbSessions = new db_sessions();
 
@@ -23,10 +23,6 @@
           $events[$i]['estinscrit'] = $bool['count'];
         }
         echo $template->render(array('cur_user' => $_SESSION, 'session' => $dbSessions->getSession($this->vars['idSession']), 'events' => $events, 'dateactuelle' => date("dmY"), 'dateslimites' => $dateslimites));
-        exit;
-      }
-      else{        
-        throw new ForbiddenError ("Nope");
         exit;
       }
     }

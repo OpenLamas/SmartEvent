@@ -25,8 +25,7 @@
                 if($codeconfirmation != false) {
                   $maildest = $_POST['mailUtilisateur'];
                   $mailer = new MailWrapper(SERV_SMTP, PORT_SMTP, AUTH_SMTP, USERNAME_SMTP, PASSWORD_SMTP);
-                  $confirmurl = '<a href="'.SITEROOT.'/signin-'.$codeconfirmation.'">Confirmation</a>';
-                  echo $confirmurl;
+                  $confirmurl = SITEROOT.'/signin-'.$codeconfirmation;
                   $mailer->SendOneMail(MAIL_FROM, $maildest, "SmartEvent - Inscription", $confirmurl);
                   $state = 'ok';
                 }
