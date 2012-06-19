@@ -6,7 +6,6 @@
   class Signin extends Controller{
 
     public function action(){
-      require('config/config.php');
       $state = '';
       if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $dbUsers = new db_users();        
@@ -25,8 +24,10 @@
                 $codeconfirmation = $dbUsers->addUser($_POST);
                 if($codeconfirmation != false) {
                   $maildest = $_POST['mailUtilisateur'];
-                  $mailer = new MailWrapper('SERV', PORT, 'AUTH', 'USERNAME', 'PASSWORD');
-                  $mailer->SendOneMail("FROM", $maildest, "SmartEvent - Inscription", "Votre code de confirmation : $codeconfirmation");
+                  $mailer = new MailWrapper(SERV_SMTP, PORT_SMTP, AUTH_SMTP, USERNAME_SMTP, PASSWORD_SMTP);
+                  $confirmurl = '<a href="'.SITEROOT.'/signin-'.$codeconfirmation.'">Confirmation</a>';
+                  echo $confirmurl;
+                  $mailer->SendOneMail(MAIL_FROM, $maildest, "SmartEvent - Inscription", $confirmurl);
                   $state = 'ok';
                 }
                 else {

@@ -1,5 +1,5 @@
 <?php
-  require_once '../Swift/lib/swift_required.php';
+  require_once 'Swift/lib/swift_required.php';
 
   class MailWrapper {
 
