@@ -25,8 +25,8 @@
                 $codeconfirmation = $dbUsers->addUser($_POST);
                 if($codeconfirmation != false) {
                   $maildest = $_POST['mailUtilisateur'];
-                  $mailer1 = new MailWrapper("local@localhost.local");
-                  //$mailer1->SendOneMail("$maildest","Confirmation de votre compte SmartEvent", "Votre code de confirmation : $codeconfirmation");
+                  $mailer = new MailWrapper('SERV', PORT, 'AUTH', 'USERNAME', 'PASSWORD');
+                  $mailer->SendOneMail("FROM", $maildest, "SmartEvent - Inscription", "Votre code de confirmation : $codeconfirmation");
                   $state = 'ok';
                 }
                 else {
