@@ -3,30 +3,39 @@
 
   class MailWrapper {
 
-    public function __construct() {
+    protected $transport = NULL;
 
+    public function __construct($smtp, $port, $auth, $username, $password) {
+      $this->transport = Swift_SmtpTransport::newInstance($smtp, $port, $auth)
+        ->setUsername($username)
+        ->setPassword($password);
     }
 
     public function SendOneMail($from, $to, $subject, $message) {
-      $transport = Swift_SmtpTransport::newInstance('smtp.gmail.com', 465, 'ssl')
-        ->setUsername('...')
-        ->setPassword("...");
-
-      $mailer = Swift_Mailer::newInstance($transport);
+      $mailer = Swift_Mailer::newInstance($this->transport);
 
       $message = Swift_Message::newInstance()
         ->setSubject($subject)
-        ->setFrom(array("$from" => "$from"))
-        ->setTo(array("$to" => "$to"))
+        ->setFrom(array("$from"))
+        ->setTo(array("$to"))
         ->setBody($message);
 
-      echo var_dump($transport);
       $result = $mailer->send($message);
       echo $result;
     }
 
-    public function SendManyMail(array $dest, $subject, $message) {
+    public function SendManyMail($from, array $to, $subject, $message) {
+      $mailer = Swift_Mailer::newInstance($this->transport);
 
+      $message = Swift_Message::newInstance()
+        ->setSubject($subject)
+        ->setFrom(array("$from"))
+        ->setTo(array("$from"))
+        ->setBcc($to)
+        ->setBody($message);
+
+      $result = $mailer->send($message);
+      echo $result;
     }
 
   }
