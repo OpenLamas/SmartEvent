@@ -14,7 +14,7 @@ We are 3 students in Networking & Telecommunications and as a first year project
 ####
 If your server has access to Internet, run  
 `git clone git://github.com/sikado/SmartEvent.git`  
-`cd SmartEvent; git submodule update --init`
+`cd SmartEvent; composer install`
 
 ### Third-party code that we use
 * Twig (See Twig/LICENSE) => http://twig.sensiolabs.org
