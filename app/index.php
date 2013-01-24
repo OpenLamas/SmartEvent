@@ -42,8 +42,13 @@
         {
           $varsName = explode(',', $route->getAttribute('vars')); //On casse les liste des variables
           $partRegExp = explode('-', $route->getAttribute('url')); // On casse le masque
-          $foo = explode('/', $_SERVER['REQUEST_URI']); // On casse l'url
-          $partUrl = explode('-', $foo[1]); // On ne garde que le chemin depuis la racine du serveur
+          /*echo 'Dump uri : '.SITEROOT.' '.$_SERVER['REQUEST_URI'];
+          echo substr($_SERVER['REQUEST_URI'], strlen(SITEROOT)+1);*/
+          
+          // **OLD**  $foo = explode('/', $_SERVER['REQUEST_URI']); // On casse l'url
+          
+          $req = substr($_SERVER['REQUEST_URI'], strlen(SITEROOT)+1); // On ne garde que l'uri de la demande
+          $partUrl = explode('-', $req); // On ne garde que le chemin depuis la racine du serveur
           $j = 0;
           for($i=0;$i<count($partUrl);$i++){
             if($partRegExp[$i][0] == '('){ // Si le morceau de masque ou le dernier caractère du dernier morceau est une RegExp
