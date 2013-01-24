@@ -42,8 +42,6 @@
         {
           $varsName = explode(',', $route->getAttribute('vars')); //On casse les liste des variables
           $partRegExp = explode('-', $route->getAttribute('url')); // On casse le masque
-          /*echo 'Dump uri : '.SITEROOT.' '.$_SERVER['REQUEST_URI'];
-          echo substr($_SERVER['REQUEST_URI'], strlen(SITEROOT)+1);*/
           
           // **OLD**  $foo = explode('/', $_SERVER['REQUEST_URI']); // On casse l'url
           
