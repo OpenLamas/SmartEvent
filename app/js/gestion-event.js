@@ -486,7 +486,7 @@ $(document).ready(function(){
       }
       $('#remindUsersModal').modal('show');
     }, 'json');
-    $('span', this).html('Rappels utilisateurs');
+    $('span', this).html(' Rappels utilisateurs');
   });
 
   $('#uploadFile .form-actions .btn-info').popover();
