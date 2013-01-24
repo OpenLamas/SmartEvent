@@ -2,6 +2,7 @@ var idSessions = new Array();
 var idEvents = new Array();
 var openInputSession = 0;
 var openInputEvent = 0;
+var loadTrig = false;
 
 /* Modif des modals event */
 var updateModalEvents = function(){
@@ -280,7 +281,8 @@ $('#session .modal').click(function(e){
 var currentSession;
 var showEvent = function(){
  $('#session tr[id|="session"]').click(function(e){ // Si on selectionneune ligne qui à un id qui commence par session
-    if($(e.target).hasClass('voir')){ // si c'est bien le lien 'voir'
+    if($(e.target).hasClass('voir') && !loadTrig){ // si c'est bien le lien 'voir' et on a pas de chargement en cours
+      loadTrig = true;
       if(!$("#events table").hasClass('dejaVu')){ // si le tableau n'a jamais été affiché
         $('#events').after('<div class="hide progress progress-striped active span3 offset2" style="margin-top: 100px;"><div class="bar" style="width: 100%;"></div></div>');
         $('#events+.progress').fadeIn('slow'); // On affiche la progress-barre
@@ -316,6 +318,7 @@ var showEvent = function(){
         updateModalEvents(); // On bind les modif des modos
         selectEvents(); // On bind les selections
         data = '';
+        loadTrig = false;
         $('#events .listes').attr('href', sessionPlusId+'-print');
 
       });
