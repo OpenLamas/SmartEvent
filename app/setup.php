@@ -15,23 +15,19 @@
   </head>
   <body>
   <?php
-    
-    echo "<pre>";
-    print_r($_ENV);
-    echo "</pre>";
-
-  if(isset($_ENV['HEROKU_API_KEY'])){ //Si on est sur heroku avec CodeShip
+  if(isset($_ENV['HEROKU_POSTGRESQL_GOLD_URL'])){ //Si l'addon postgre est dispo
     $config   = array();
     $configDB = array();
-    extract(parse_url($_ENV["DATABASE_URL"]));
+
+    $infoCo = preg_split("#[/:@]+#", $_ENV['HEROKU_POSTGRESQL_GOLD_URL']);
 
     $config['DOMAINS']      = "etu.mon-univ.fr;";
     $config['SITEROOT']     = "/app";
-    $configDB['HOSTNAME']   = $host;
-    $configDB['PORT']       = "5432";
-    $configDB['DBUSER']     = $user;
-    $configDB['DBPASSWORD'] = $pass;
-    $configDB['DBNAME']     = substr($path, 1);
+    $configDB['HOSTNAME']   = $infoCo[3];
+    $configDB['PORT']       = $infoCo[4];
+    $configDB['DBUSER']     = $infoCo[1];
+    $configDB['DBPASSWORD'] = $infoCo[2];
+    $configDB['DBNAME']     = $infoCo[5];
 
     // On ecrit d'abord la conf
     file_put_contents('config/config.php', '<?php'."\n");
