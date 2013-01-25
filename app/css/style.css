@@ -55,6 +55,13 @@
   -o-transition: border linear 0.2s, box-shadow linear 0.2s;
   transition: border linear 0.2s, box-shadow linear 0.2s;
 }
+
+/* Fix de la recherche sur home */
+div#search.well {
+  min-height: 38px;
+  max-width: 850px;
+}
+
 .tag{
   display: inline-block;
   height: 18px;
