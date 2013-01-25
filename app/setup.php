@@ -19,6 +19,9 @@
     $config   = array();
     $configDB = array();
     extract(parse_url($_ENV["DATABASE_URL"]));
+    echo "<pre>";
+    print_r($_ENV);
+    echo "</pre>";
 
     $config['DOMAINS']      = "etu.mon-univ.fr;";
     $config['SITEROOT']     = "/app";
