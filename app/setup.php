@@ -15,13 +15,15 @@
   </head>
   <body>
   <?php
-  if($_ENV['HEROKU_API_KEY']){ //Si on est sur heroku avec CodeShip
-    $config   = array();
-    $configDB = array();
-    extract(parse_url($_ENV["DATABASE_URL"]));
+    
     echo "<pre>";
     print_r($_ENV);
     echo "</pre>";
+
+  if(isset($_ENV['HEROKU_API_KEY'])){ //Si on est sur heroku avec CodeShip
+    $config   = array();
+    $configDB = array();
+    extract(parse_url($_ENV["DATABASE_URL"]));
 
     $config['DOMAINS']      = "etu.mon-univ.fr;";
     $config['SITEROOT']     = "/app";
