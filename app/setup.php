@@ -16,21 +16,47 @@
   <body>
   <?php
   if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (!empty($_POST['userMail']) && !empty($_POST['userPass']) && !empty($_POST['mailDomain']) && !empty($_POST['siteRoot']) && !empty($_POST['sqlServer'])) {
-      // On ecrit le fichier config.php
-      file_put_contents('config/config.php', "<?php\n");
-      file_put_contents('config/config.php', 'require("db.conf.php");'."\n", FILE_APPEND);
-      file_put_contents('config/config.php', 'define("SITEROOT", "'.$_POST['siteRoot'].'");'."\n", FILE_APPEND);
+    if (!empty($_POST['userMail']) && !empty($_POST['userPass']) && !empty($_POST['mailDomain']) && !empty($_POST['siteRoot']) && !empty($_POST['sqlServer']) &&!empty($_POST['sqlPort']) && !empty($_POST['sqlUser']) && !empty($_POST['sqlPassword']) && !empty($_POST['sqlDB'])) {
+
+      $config   = array();
+      $configDB = array();
+
+      $config['DOMAINS']      = $_POST['mailDomain'];
+      $config['SITEROOT']     = $_POST['siteRoot'];
+      $configDB['HOSTNAME']   = $_POST['sqlServer'];
+      $configDB['PORT']       = $_POST['sqlPort'];
+      $configDB['DBUSER']     = $_POST['sqlUser'];
+      $configDB['DBPASSWORD'] = $_POST['sqlPassword'];
+      $configDB['DBNAME']     = $_POST['sqlDB'];
+
+      // On ecrit d'abord la conf
+
+      file_put_contents('config/config.php', '<?php'."\n");
+      foreach ($config as $key => $value) {
+        file_put_contents('config/config.php', 'define("'.$key.'", "'.$value.'");'."\n", FILE_APPEND);
+      }
       file_put_contents('config/config.php', '?>', FILE_APPEND);
-      // On ecrit le fichier db.conf.php
-      file_put_contents('config/db.conf.php', "<?php\n");
-      file_put_contents('config/db.conf.php', 'define("HOSTNAME", "'.$_POST['sqlServer'].'");'."\n", FILE_APPEND);
-      file_put_contents('config/db.conf.php', 'define("PORT", "'.$_POST['sqlPort'].'");'."\n", FILE_APPEND);
-      file_put_contents('config/db.conf.php', 'define("DBUSER", "'.$_POST['sqlUser'].'");'."\n", FILE_APPEND);
-      file_put_contents('config/db.conf.php', 'define("DBPASSWORD", "'.$_POST['sqlPassword'].'");'."\n", FILE_APPEND);
-      file_put_contents('config/db.conf.php', 'define("DBNAME","'.$_POST['sqlDB'].'");'."\n", FILE_APPEND);
+
+      file_put_contents('config/db.conf.php', '<?php'."\n");
+      foreach ($configDB as $key => $value) {
+        file_put_contents('config/db.conf.php', 'define("'.$key.'", "'.$value.'");'."\n", FILE_APPEND);
+      }
       file_put_contents('config/db.conf.php', '?>', FILE_APPEND);
-      // On redirige
+
+      // Puis on ajoute l'user
+      include('config/db.conf.php');
+      require('dao/class_db_request.php');
+
+      $user = array();
+      $user['refDroit']          = '3';
+      $user['nomUtilisateur']    = 'Admin';
+      $user['prenomUtilisateur'] = 'Admin';
+      $user['mailUtilisateur']   = $_POST['userMail'];
+      $user['mdpUtilisateur']    = md5($_POST['userPass']);
+
+      $dbUsers = new db_users();
+      $dbUsers->addUser($user);
+
       header('Location: '.$_POST['siteRoot']);
       die();
     }

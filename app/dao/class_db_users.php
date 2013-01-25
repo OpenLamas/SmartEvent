@@ -1,6 +1,6 @@
-<?php  
+<?php
   class db_users extends PostgreConnection{
-    
+
     /**
     * Methode retournant tous les utilisateurs
     * @return array Liste des utilisateurs et de leurs droits
@@ -9,7 +9,7 @@
       $req = $this->bdd->query('SELECT idUtilisateur,refDroit,nomUtilisateur,prenomUtilisateur,mailUtilisateur,mdpUtilisateur,nomDroit AS right FROM UTILISATEURS INNER JOIN DROITS ON RefDroit=IdDroit ORDER BY nomUtilisateur ASC');
       return $req->fetchAll();
     }
-    
+
     /**
     * Methode retournant un utilisateur
     * @param $idUser L'utilisateur a cherché
@@ -29,11 +29,12 @@
     * @return void
     */
     public function addUser($data){
-      $req = $this->bdd->prepare('INSERT INTO UTILISATEURS (nomUtilisateur, prenomUtilisateur, mailUtilisateur, mdputilisateur) VALUES (:nomUtilisateur, :prenomUtilisateur, :mailUtilisateur, :mdpUtilisateur) RETURNING codeconfirmationutilisateur');
-      $req->bindValue(':nomUtilisateur', $data['nomUtilisateur'], PDO::PARAM_STR);  
-      $req->bindValue(':prenomUtilisateur', $data['prenomUtilisateur'], PDO::PARAM_STR);  
-      $req->bindValue(':mailUtilisateur', $data['mailUtilisateur'], PDO::PARAM_STR);    
-      $req->bindValue(':mdpUtilisateur', $data['mdpUtilisateur'], PDO::PARAM_STR);    
+      $req = $this->bdd->prepare('INSERT INTO UTILISATEURS (refDroit, nomUtilisateur, prenomUtilisateur, mailUtilisateur, mdputilisateur) VALUES (:refDroit, :nomUtilisateur, :prenomUtilisateur, :mailUtilisateur, :mdpUtilisateur)');
+      $req->bindValue(':refDroit', $data['refDroit'], PDO::PARAM_STR);
+      $req->bindValue(':nomUtilisateur', $data['nomUtilisateur'], PDO::PARAM_STR);
+      $req->bindValue(':prenomUtilisateur', $data['prenomUtilisateur'], PDO::PARAM_STR);
+      $req->bindValue(':mailUtilisateur', $data['mailUtilisateur'], PDO::PARAM_STR);
+      $req->bindValue(':mdpUtilisateur', $data['mdpUtilisateur'], PDO::PARAM_STR);
       $req->execute();
       return $req->fetchColumn();
     }
@@ -56,10 +57,10 @@
     */
     public function updateUser($data){
       $req = $this->bdd->prepare('UPDATE UTILISATEURS SET nomUtilisateur = :nomUtilisateur, prenomUtilisateur = :prenomUtilisateur, mailUtilisateur = :mailUtilisateur WHERE idUtilisateur=:idUtilisateur');
-      $req->bindValue(':nomUtilisateur', $data['nomUtilisateur'], PDO::PARAM_STR);  
-      $req->bindValue(':prenomUtilisateur', $data['prenomUtilisateur'], PDO::PARAM_STR);  
-      $req->bindValue(':mailUtilisateur', $data['mailUtilisateur'], PDO::PARAM_STR);  
-      $req->bindValue(':idUtilisateur', $data['idUtilisateur'], PDO::PARAM_INT);  
+      $req->bindValue(':nomUtilisateur', $data['nomUtilisateur'], PDO::PARAM_STR);
+      $req->bindValue(':prenomUtilisateur', $data['prenomUtilisateur'], PDO::PARAM_STR);
+      $req->bindValue(':mailUtilisateur', $data['mailUtilisateur'], PDO::PARAM_STR);
+      $req->bindValue(':idUtilisateur', $data['idUtilisateur'], PDO::PARAM_INT);
       $req->execute();
     }
 
@@ -73,14 +74,14 @@
       $req->bindValue(':email', $email, PDO::PARAM_STR);
       $req->execute();
       return $req->fetch();
-    }   
+    }
 
     /**
     * Methode retournant les droit d'un utilisateur
     * @param $idUtilisateur l'id de l'utilisateur
     * @return array nome du droit de l'utilisateur
     */
-    public function getRight($idUser){      
+    public function getRight($idUser){
       $req = $this->bdd->prepare('SELECT nomDroit FROM DROITS INNER JOIN UTILISATEURS ON refDroit=idDroit WHERE idUtilisateur = :idUser');
       $req->bindValue(':idUser', $idUser, PDO::PARAM_INT);
       $req->execute();
@@ -92,7 +93,7 @@
     * @param $confirmCode code de confirmation
     * @return text
     */
-    public function confirmUser($confirmCode){      
+    public function confirmUser($confirmCode){
       $req = $this->bdd->prepare("UPDATE UTILISATEURS SET estvalideutilisateur = 'TRUE' WHERE codeconfirmationutilisateur = :codeconfirmation RETURNING idUtilisateur");
       $req->bindValue(':codeconfirmation', $confirmCode, PDO::PARAM_STR);
       $req->execute();
