@@ -4,12 +4,13 @@
   ini_set('display_errors', True);
 
   // On verifie si le fichier de conf existe, sinon on redirige sur setup.php
-  if (!file_exists('config/config.php')) {
+  if (!file_exists('config/config.php') || !file_exists('config/db.conf.php')) {
     header('Location: setup.php');
     die();
   }
   else {
     include('config/config.php');
+    include('config/db.conf.php');
   }
 
   try {
@@ -42,9 +43,9 @@
         {
           $varsName = explode(',', $route->getAttribute('vars')); //On casse les liste des variables
           $partRegExp = explode('-', $route->getAttribute('url')); // On casse le masque
-          
+
           // **OLD**  $foo = explode('/', $_SERVER['REQUEST_URI']); // On casse l'url
-          
+
           $req = substr($_SERVER['REQUEST_URI'], strlen(SITEROOT)+1); // On ne garde que l'uri de la demande
           $partUrl = explode('-', $req); // On ne garde que le chemin depuis la racine du serveur
           $j = 0;
