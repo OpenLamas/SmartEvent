@@ -7,6 +7,7 @@ var loadTrig = false;
 /* Modif des modals event */
 var updateModalEvents = function(){
   $('#events .modal li').click(function(e){
+    console.log('Click !')
     if($(e.target).hasClass('icon-pencil')){
       openInputEvent++;
       
@@ -172,6 +173,7 @@ var selectEvents = function(){
   /* Selection via les lignes */
   $('#events tbody tr').click(function(e){
     if(!$(e.target).is('a')){
+      console.log('Fail!!!');
       if($(':checkbox', this).attr("checked")){
         $(':checkbox', this).attr("checked", false);
         $('#events thead :checkbox').attr("checked", false);
@@ -433,7 +435,7 @@ $(document).ready(function(){
       $.post($(e.target).attr('href'), data, function(callBack){
         $('#addEventModal').modal('hide');
         if (callBack.code == 'ok') {
-          $('<tr id="'+callBack.idevent+'"> <td><label class="checkbox inline"><input type="checkbox"/></label></td> <td><a href="#modal-'+callBack.idevent+'" data-toggle="modal">'+data.titre+'</a></td> <td><a href="#">0</a></td> <td> <div class="modal fade" id="modal-'+callBack.idevent+'"> <div class="modal-header"> <button class="close" data-dismiss="modal">×</button> <h3>'+data.titre+'</h3> </div> <div class="modal-body"> <ul> <li>Description de l\'évènement : <span>'+data.description+'</span> <i class="icon-pencil"></i></li> <li>Nombre d\'inscrit : <span>0</span> <i class="icon-pencil"></i></li> <li>Date du début de l\'évènement : <span>'+data.dateDebut+'</span> <i class="icon-pencil"></i></li> <li>Date de la fin de l\'évènement : <span>'+data.dateFin+'</span> <i class="icon-pencil"></i></li> <li>Emplacment : <span>'+data.emplacement+'</span> <i class="icon-pencil"></i></li> </ul> </div> <div class="modal-footer"> <a href="#" class="btn" data-dismiss="modal">Close</a> </div> </div> </td></tr>').appendTo("#events tbody");
+          $('<tr id="event-'+callBack.idEvent[0]+'"> <td><label class="checkbox inline"><input type="checkbox"/></label></td> <td><a href="#modal-'+callBack.idevent+'" data-toggle="modal">'+data.titre+'</a></td> <td><a href="#">0</a></td> <td> <div class="modal fade" id="modal-'+callBack.idevent+'"> <div class="modal-header"> <button class="close" data-dismiss="modal">×</button> <h3>'+data.titre+'</h3> </div> <div class="modal-body"> <ul> <li>Description de l\'évènement : <span>'+data.description+'</span> <i class="icon-pencil"></i></li> <li>Nombre d\'inscrit : <span>0</span> <i class="icon-pencil"></i></li> <li>Date du début de l\'évènement : <span>'+data.dateDebut+'</span> <i class="icon-pencil"></i></li> <li>Date de la fin de l\'évènement : <span>'+data.dateFin+'</span> <i class="icon-pencil"></i></li> <li>Emplacment : <span>'+data.emplacement+'</span> <i class="icon-pencil"></i></li> </ul> </div> <div class="modal-footer"> <a href="event-update" class="btn btn-primary update">Enregistré les modifications</a><a href="#" class="btn" data-dismiss="modal">Close</a> </div> </div> </td></tr>').appendTo("#events tbody");
           selectEvents(); //On bind les checkbox
         }
 
@@ -448,6 +450,7 @@ $(document).ready(function(){
         else{
           console.log(callBack);
         }
+        updateModalEvents();
       }, 'json');
     }
   });
