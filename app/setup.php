@@ -43,10 +43,17 @@
       }
       file_put_contents('config/db.conf.php', '?>', FILE_APPEND);
 
-      // Puis on ajoute l'user
+      // On crée la DB
       include('config/db.conf.php');
-      require('dao/class_db_request.php');
+      $sql_create  = file_get_contents('sql/create.sql');
+      $sql_default = file_get_contents('sql/default.sql');
+      pg_connect('host='.HOSTNAME.' port='.PORT.' dbname='.DBNAME.' user='.DBUSER.' password='.DBPASSWORD);
+      pg_query($sql_create);
+      pg_query($sql_default);
+      pg_close();
 
+      // Puis on ajoute l'user
+      require('dao/class_db_request.php');
       $user = array();
       $user['refDroit']          = '3';
       $user['nomUtilisateur']    = 'Admin';
