@@ -94,27 +94,42 @@ $(document).ready(function () {
     promote = $(this).val();
   });
 
+  $('#utilisateurs .btn-info').click(function(e){
+    if(idUsers.length == 0){
+      $('#promoteModal .modal-footer .btn-primary').addClass('disabled');
+    }
+    else if($('#promoteModal .modal-footer .btn-primary').hasClass('disabled')){
+      $('#promoteModal .modal-footer .btn-primary').removeClass('disabled');
+    }
+  });
+
     $('#promoteModal').click(function(e){
     if($(e.target).hasClass('btn-primary')){
-      $(e.target).html('En cours...');
-      $.post($(e.target).attr("href"), {'rang': promote, 'tabUsers': idUsers}, function(data){
-        if(data.code == 'ok'){
-          var right = ['', 'UTILISATEUR', 'GESTIONNAIRE', 'ADMIN'];
-          for(var i=0;i<idUsers.length;i++){
-            $('#utilisateurs tbody tr#user-'+idUsers[i]+' td:eq(4)').html(right[promote]);
+      if(!$(e.target).hasClass('disabled')){
+        $(e.target).html('En cours...');
+        $.post($(e.target).attr("href"), {'rang': promote, 'tabUsers': idUsers}, function(data){
+          if(data.code == 'ok'){
+            var right = ['', 'UTILISATEUR', 'GESTIONNAIRE', 'ADMIN'];
+            for(var i=0;i<idUsers.length;i++){
+              $('#utilisateurs tbody tr#user-'+idUsers[i]+' td:eq(4)').html(right[promote]);
+            }
+            $('#promoteModal').modal('hide');
+            $(e.target).html('Promouvoir');
           }
-          $('#promoteModal').modal('hide');
-          $(e.target).html('Promouvoir');
-        }
 
-        else if(data.code == "!right"){
-          alert('Vous n\'avez pas le droit !');
-          $('#promoteModal').modal('hide');
-          $(e.target).html('Promouvoir');
-        }
-      }, 'json');
+          else if(data.code == "!right"){
+            alert('Vous n\'avez pas le droit !');
+            $('#promoteModal').modal('hide');
+            $(e.target).html('Promouvoir');
+          }
+        }, 'json');
 
-      e.preventDefault();
+        e.preventDefault();
+      }
+      else{
+        alert('Vous devez selectionner au moins un utilisateur');
+        e.preventDefault();
+      }
     }
   });
  
