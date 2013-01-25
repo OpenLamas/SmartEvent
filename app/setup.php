@@ -15,60 +15,90 @@
   </head>
   <body>
   <?php
-  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (!empty($_POST['userMail']) && !empty($_POST['userPass']) && !empty($_POST['mailDomain']) && !empty($_POST['siteRoot']) && !empty($_POST['sqlServer']) &&!empty($_POST['sqlPort']) && !empty($_POST['sqlUser']) && !empty($_POST['sqlPassword']) && !empty($_POST['sqlDB'])) {
+  if($_ENV['HEROKU_API_KEY']){ //Si on est sur heroku avec CodeShip
+    $config   = array();
+    $configDB = array();
+    extract(parse_url($_ENV["DATABASE_URL"]));
 
-      $config   = array();
-      $configDB = array();
+    $config['DOMAINS']      = "etu.mon-univ.fr;";
+    $config['SITEROOT']     = "/app";
+    $configDB['HOSTNAME']   = $host;
+    $configDB['PORT']       = "5432";
+    $configDB['DBUSER']     = $user;
+    $configDB['DBPASSWORD'] = $pass;
+    $configDB['DBNAME']     = substr($path, 1);
 
-      $config['DOMAINS']      = $_POST['mailDomain'];
-      $config['SITEROOT']     = $_POST['siteRoot'];
-      $configDB['HOSTNAME']   = $_POST['sqlServer'];
-      $configDB['PORT']       = $_POST['sqlPort'];
-      $configDB['DBUSER']     = $_POST['sqlUser'];
-      $configDB['DBPASSWORD'] = $_POST['sqlPassword'];
-      $configDB['DBNAME']     = $_POST['sqlDB'];
-
-      // On ecrit d'abord la conf
-
-      file_put_contents('config/config.php', '<?php'."\n");
-      foreach ($config as $key => $value) {
-        file_put_contents('config/config.php', 'define("'.$key.'", "'.$value.'");'."\n", FILE_APPEND);
-      }
-      file_put_contents('config/config.php', '?>', FILE_APPEND);
-
-      file_put_contents('config/db.conf.php', '<?php'."\n");
-      foreach ($configDB as $key => $value) {
-        file_put_contents('config/db.conf.php', 'define("'.$key.'", "'.$value.'");'."\n", FILE_APPEND);
-      }
-      file_put_contents('config/db.conf.php', '?>', FILE_APPEND);
-
-      // On crée la DB
-      include('config/db.conf.php');
-      $sql_create  = file_get_contents('sql/create.sql');
-      $sql_default = file_get_contents('sql/default.sql');
-      pg_connect('host='.HOSTNAME.' port='.PORT.' dbname='.DBNAME.' user='.DBUSER.' password='.DBPASSWORD);
-      pg_query($sql_create);
-      pg_query($sql_default);
-      pg_close();
-
-      // Puis on ajoute l'user
-      require('dao/class_db_request.php');
-      $user = array();
-      $user['refDroit']          = '3';
-      $user['nomUtilisateur']    = 'Admin';
-      $user['prenomUtilisateur'] = 'Admin';
-      $user['mailUtilisateur']   = $_POST['userMail'];
-      $user['mdpUtilisateur']    = md5($_POST['userPass']);
-
-      $dbUsers = new db_users();
-      $dbUsers->addUser($user);
-
-      header('Location: '.$_POST['siteRoot']);
-      die();
+    // On ecrit d'abord la conf
+    file_put_contents('config/config.php', '<?php'."\n");
+    foreach ($config as $key => $value) {
+      file_put_contents('config/config.php', 'define("'.$key.'", "'.$value.'");'."\n", FILE_APPEND);
     }
-    else {
-      echo('Vous devez renseigner tout les champs');
+    file_put_contents('config/config.php', '?>', FILE_APPEND);
+
+    file_put_contents('config/db.conf.php', '<?php'."\n");
+    foreach ($configDB as $key => $value) {
+      file_put_contents('config/db.conf.php', 'define("'.$key.'", "'.$value.'");'."\n", FILE_APPEND);
+    }
+    file_put_contents('config/db.conf.php', '?>', FILE_APPEND);
+    echo "Heroku config done !";
+  }
+
+  else{
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+      if (!empty($_POST['userMail']) && !empty($_POST['userPass']) && !empty($_POST['mailDomain']) && !empty($_POST['siteRoot']) && !empty($_POST['sqlServer']) &&!empty($_POST['sqlPort']) && !empty($_POST['sqlUser']) && !empty($_POST['sqlPassword']) && !empty($_POST['sqlDB'])) {
+
+        $config   = array();
+        $configDB = array();
+
+        $config['DOMAINS']      = $_POST['mailDomain'];
+        $config['SITEROOT']     = $_POST['siteRoot'];
+        $configDB['HOSTNAME']   = $_POST['sqlServer'];
+        $configDB['PORT']       = $_POST['sqlPort'];
+        $configDB['DBUSER']     = $_POST['sqlUser'];
+        $configDB['DBPASSWORD'] = $_POST['sqlPassword'];
+        $configDB['DBNAME']     = $_POST['sqlDB'];
+
+        // On ecrit d'abord la conf
+
+        file_put_contents('config/config.php', '<?php'."\n");
+        foreach ($config as $key => $value) {
+          file_put_contents('config/config.php', 'define("'.$key.'", "'.$value.'");'."\n", FILE_APPEND);
+        }
+        file_put_contents('config/config.php', '?>', FILE_APPEND);
+
+        file_put_contents('config/db.conf.php', '<?php'."\n");
+        foreach ($configDB as $key => $value) {
+          file_put_contents('config/db.conf.php', 'define("'.$key.'", "'.$value.'");'."\n", FILE_APPEND);
+        }
+        file_put_contents('config/db.conf.php', '?>', FILE_APPEND);
+
+        // On crée la DB
+        include('config/db.conf.php');
+        $sql_create  = file_get_contents('sql/create.sql');
+        $sql_default = file_get_contents('sql/default.sql');
+        pg_connect('host='.HOSTNAME.' port='.PORT.' dbname='.DBNAME.' user='.DBUSER.' password='.DBPASSWORD);
+        pg_query($sql_create);
+        pg_query($sql_default);
+        pg_close();
+
+        // Puis on ajoute l'user
+        require('dao/class_db_request.php');
+        $user = array();
+        $user['refDroit']          = '3';
+        $user['nomUtilisateur']    = 'Admin';
+        $user['prenomUtilisateur'] = 'Admin';
+        $user['mailUtilisateur']   = $_POST['userMail'];
+        $user['mdpUtilisateur']    = md5($_POST['userPass']);
+
+        $dbUsers = new db_users();
+        $dbUsers->addUser($user);
+
+        header('Location: '.$_POST['siteRoot']);
+        die();
+      }
+      else {
+        echo('Vous devez renseigner tout les champs');
+      }
     }
   }
   ?>
