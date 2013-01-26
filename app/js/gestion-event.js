@@ -7,7 +7,6 @@ var loadTrig = false;
 /* Modif des modals event */
 var updateModalEvents = function(){
   $('#events .modal li').click(function(e){
-    console.log('Click !')
     if($(e.target).hasClass('icon-pencil')){
       openInputEvent++;
       
@@ -173,7 +172,6 @@ var selectEvents = function(){
   /* Selection via les lignes */
   $('#events tbody tr').click(function(e){
     if(!$(e.target).is('a')){
-      console.log('Fail!!!');
       if($(':checkbox', this).attr("checked")){
         $(':checkbox', this).attr("checked", false);
         $('#events thead :checkbox').attr("checked", false);
@@ -459,7 +457,6 @@ $(document).ready(function(){
   $('#events .deleteEvent').click(function(e){
     if(idEvents.length != 0){
       $.post($(this).attr('href'), {'tabEvents': idEvents}, function(data){
-        console.log('ujhhh');
         if(data.code == 'ok'){
           for(var i=0;i<idEvents.length;i++){
             $('#events tbody #event-'+idEvents[i]).hide('slow');
@@ -479,7 +476,6 @@ $(document).ready(function(){
   $('#events .redUser').click(function(){
     $('span', this).html("En cours...");
     $.post('user-red', {'idSession': currentSession}, function(data){
-      console.log(data);
       $('#remindUsersModal tbody').empty();
       for(var i=0;i<data.length;i++){
         if(data[i]['nbmanquante'] == null){

@@ -25,24 +25,19 @@ $(document).ready(function() {
 
   /* Recherche des events */
   var recherche = function(e){
-    console.log($('#search form input:first').val())
       if($('#search form input:first').val() == ''){
-        console.log('pas ok');
         $('#search form div').addClass('error');
       }
 
       else{
-        console.log('ok');
         $('#search form div').removeClass('error');
         var query = $('#search form input:first').val();
         $('#search table').fadeOut('slow');
         $('#search .noResult').fadeOut('slow');
         $.post("search", { 'query': query }, function(data){
-          console.log(data);
           $('#search tbody').empty();
           if(data != ''){
             for(var i=0;i<data.length;i++){
-              console.log(data[i]);
               $('#search tbody').append('<tr><td><a href="session-'+data[i]['idsession']+'-list-'+data[i]['idevenement']+'-modal">'+data[i]['nomevenement']+'</a></td><td>'+data[i]['descevenement']+'</th><td><span class="badge badge-inverse">'+(data[i]['nbmaxinscritevenement']-data[i]['count'])+' place(s) libres</span></td><td><span class="badge badge-success">Inscrit</span></td></tr>');
             }
             $('#search table').fadeIn('slow');
