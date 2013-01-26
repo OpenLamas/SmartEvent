@@ -32,5 +32,14 @@ var checkChamps = function(reg, e){
     checkChamps(inscriptionAttendu, e);
   });
 
+  /*Verif form connection*/
+  var connectionAttendu = {
+    'ctrlEmail': /^[\w\.]+@[\w\.\-]+\.\w+$/,
+    'ctrlPassword': /^.+$/
+  };
+
+  $("#form-signin").submit(function(e){
+    checkChamps(connectionAttendu, e);
+  });
 
 });
