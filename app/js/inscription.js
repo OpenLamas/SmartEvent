@@ -43,7 +43,7 @@ $(document).ready(function() {
           if(data != ''){
             for(var i=0;i<data.length;i++){
               console.log(data[i]);
-              $('#search tbody').append('<tr><td><a href="#">'+data[i]['nomevenement']+'</a></td><td>'+data[i]['descevenement']+'</th><td><span class="badge badge-inverse">'+(data[i]['nbmaxinscritevenement']-data[i]['count'])+' place(s) libres</span></td><td><span class="badge badge-success">Inscrit</span></td></tr>');
+              $('#search tbody').append('<tr><td><a href="session-'+data[i]['idsession']+'-list-'+data[i]['idevenement']+'-modal">'+data[i]['nomevenement']+'</a></td><td>'+data[i]['descevenement']+'</th><td><span class="badge badge-inverse">'+(data[i]['nbmaxinscritevenement']-data[i]['count'])+' place(s) libres</span></td><td><span class="badge badge-success">Inscrit</span></td></tr>');
             }
             $('#search table').fadeIn('slow');
           }

@@ -22,7 +22,11 @@
           $bool = $dbEvents->getRegisteredFromEvent($_SESSION['idutilisateur'], $events[$i]['idevenement']);
           $events[$i]['estinscrit'] = $bool['count'];
         }
-        echo $template->render(array('cur_user' => $_SESSION, 'session' => $dbSessions->getSession($this->vars['idSession']), 'events' => $events, 'dateactuelle' => date("dmY"), 'dateslimites' => $dateslimites));
+        if(!isset($this->vars['idEvent'])){
+          $this->vars['idEvent'] = '';
+        }
+
+        echo $template->render(array('cur_user' => $_SESSION, 'session' => $dbSessions->getSession($this->vars['idSession']), 'activeEvent' => $this->vars['idEvent'],'events' => $events, 'dateactuelle' => date("dmY"), 'dateslimites' => $dateslimites));
         exit;
       }
     }
