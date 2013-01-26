@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="{{ site_root }}/css/style.css">
     <link rel="stylesheet" type="text/css" href="{{ site_root }}/css/fullcalendar.css">
     <link rel="stylesheet" type="text/css" href="{{ site_root }}/css/fullcalendar.print.css" media='print'>
+    <script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> 
     <!-- HTML5 shim -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -75,13 +76,13 @@
       </div>
     </div>
 {% block body %}{% endblock %}
-    <script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type='text/javascript' src="{{ site_root }}/js/bootstrap.min.js"></script>
     <script type='text/javascript' src="{{ site_root }}/js/jquery-ui.min.js"></script>
     <script type='text/javascript' src='{{ site_root }}/js/fullcalendar.min.js'></script>
     <script type='text/javascript' src="{{ site_root }}/js/inscription.js"></script>
     <script type='text/javascript' src="{{ site_root }}/js/gestion-utilisateur.js"></script>
     <script type='text/javascript' src="{{ site_root }}/js/gestion-event.js"></script>
+    <script type='text/javascript' src="{{ site_root }}/js/verifForm.js"></script>
     {% block calendarscript %}{% endblock %}
     <script type='text/javascript'>
       $('.dropdown-toggle').dropdown();

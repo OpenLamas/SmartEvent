@@ -24,27 +24,21 @@ $(document).ready(function() {
   $('input.date').datepicker();
 
   /* Recherche des events */
-  $('#search form').click(function(e){
-    if($(e.target).is('a')){
-      console.log($('input', this).val())
-      if($('input', this).val() == ''){
-        console.log('pas ok');
-        $('div', this).addClass('error');
+  var recherche = function(e){
+      if($('#search form input:first').val() == ''){
+        $('#search form div').addClass('error');
       }
 
       else{
-        console.log('ok');
-        $('div', this).removeClass('error');
-        var query = $('input', this).val();
+        $('#search form div').removeClass('error');
+        var query = $('#search form input:first').val();
         $('#search table').fadeOut('slow');
         $('#search .noResult').fadeOut('slow');
-        $.post($(e.target).attr("href"), { 'query': query }, function(data){
-          console.log(data);
+        $.post("search", { 'query': query }, function(data){
           $('#search tbody').empty();
           if(data != ''){
             for(var i=0;i<data.length;i++){
-              console.log(data[i]);
-              $('#search tbody').append('<tr><td><a href="#">'+data[i]['nomevenement']+'</a></td><td>'+data[i]['descevenement']+'</th><td><span class="badge badge-inverse">'+(data[i]['nbmaxinscritevenement']-data[i]['count'])+' place(s) libres</span></td><td><span class="badge badge-success">Inscrit</span></td></tr>');
+              $('#search tbody').append('<tr><td><a href="session-'+data[i]['idsession']+'-list-'+data[i]['idevenement']+'-modal">'+data[i]['nomevenement']+'</a></td><td>'+data[i]['descevenement']+'</th><td><span class="badge badge-inverse">'+(data[i]['nbmaxinscritevenement']-data[i]['count'])+' place(s) libres</span></td><td><span class="badge badge-success">Inscrit</span></td></tr>');
             }
             $('#search table').fadeIn('slow');
           }
@@ -55,9 +49,18 @@ $(document).ready(function() {
           
         }, 'json');
       }
+  }
+
+  $('#home-search').submit(function(e){
+    recherche(e);
+    e.preventDefault();
+  });
+
+  $('#search form').click(function(e){
+    if($(e.target).is('a')){
+      recherche();
       e.preventDefault();
     }
-
   });
 
   $("#btngroupe-listevents button").click(function(){

@@ -62,4 +62,11 @@
   </div><!--/span4 data-toggle="modal"-->
   {% endfor %}
 </div>
+{% if activeEvent|length > 0 %}
+  <script type="text/javascript">
+  $(document).ready(function() {
+    $("#modal-{{ activeEvent }}").modal('show');
+  });
+  </script>
+{% endif %}
 {% endblock %}

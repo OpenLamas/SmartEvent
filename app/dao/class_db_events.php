@@ -237,7 +237,8 @@
     * @return array
     */
     public function searchEvents($search){
-      $req = $this->bdd->prepare('SELECT NomEvenement, descEvenement, nbMaxInscritEvenement, count(idRefUtilisateur) FROM EVENEMENTS INNER JOIN PARTICIPER ON idEvenement = idRefEvenement INNER JOIN SESSIONS ON refSession = idSession WHERE lower(EVENEMENTS.nomEvenement) LIKE :search OR lower(EVENEMENTS.descEvenement) LIKE :search GROUP BY EVENEMENTS.NomEvenement, EVENEMENTS.descEvenement, SESSIONS.nbMaxInscritEvenement, dateDebutEvenement ORDER BY dateDebutEvenement');
+
+      $req = $this->bdd->prepare('SELECT NomEvenement, descEvenement, nbMaxInscritEvenement, count(idRefUtilisateur), idevenement, idSession FROM EVENEMENTS INNER JOIN PARTICIPER ON idEvenement = idRefEvenement INNER JOIN SESSIONS ON refSession = idSession WHERE lower(EVENEMENTS.nomEvenement) LIKE :search OR lower(EVENEMENTS.descEvenement) LIKE :search GROUP BY EVENEMENTS.idevenement, EVENEMENTS.NomEvenement, EVENEMENTS.descEvenement, SESSIONS.idSession, SESSIONS.nbMaxInscritEvenement, dateDebutEvenement ORDER BY dateDebutEvenement');
       $req->bindValue(':search', '%'.strtolower($search).'%', PDO::PARAM_STR);
       $req->execute();
       return $req->fetchAll();

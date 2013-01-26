@@ -14,12 +14,22 @@
     {% endif %}
   {% endif %}
   <div class="span4 offset4">
-    <form class="form-signin well" method='POST' action='login'>
-        <input type="text" name='email' class="input-block-level" placeholder="Adresse Email">
-        <input type="password" name='password' class="input-block-level" placeholder="Mot de passe">
+    <form class="form-signin well" id="form-signin"method='POST' action='login'>
+      <div id="ctrlEmail" class="control-group">
+        <div class="controls">
+          <input type="text" name='email' class="input-block-level" placeholder="Adresse Email">
+        </div>
+      </div>
+      <div id="ctrlPassword" class="control-group">
+        <div class="controls">
+          <input type="password" name='password' class="input-block-level" placeholder="Mot de passe">
+        </div>
+      </div>
+      <div class="form-actions">
         <button class="btn btn-large btn-primary" type="submit">Connexion</button>
         <a href="{{ site_root }}/signin" class='btn btn-large btn-info'>Inscription</a>
-      </form>
+      </div>
+    </form>
   </div>
   <div class="span8 offset2">
   </div>
