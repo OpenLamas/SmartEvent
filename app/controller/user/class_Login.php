@@ -25,14 +25,14 @@
             $state = 'noData';
           }
         }
-        
+
         if($state == 'success'){
-          if(!isset($_SESSION['login'])){          
+          if(!isset($_SESSION['login'])){
             throw new Exception("Error Processing Request", 1);
           }
           else{
             $tmp = $this->twig->getGlobals();
-            header('Location: '.$tmp["site_root"]);
+            header('Location: '.$_SERVER['HTTP_REFERER']);
           }
         }
         else
