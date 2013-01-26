@@ -1,42 +1,37 @@
 <?php
   require('dao/class_db_request.php');
   require('basicClass/twigStart.php');
+  require('helpers/helpers.php');
 
   class SelfEdit extends Controller {
 
     public function action(){
 
-      if(!isset($_SESSION['login'])){
-        $template = $this->twig->loadTemplate('login.twig');
-        echo $template->render(array('cur_user' => array('login' => ''), 'state' => 'Vous devez être connecté pour voir cette page'));
-        exit;
-      }
-      elseif ($_SESSION["right"]=="ADMIN" || $_SESSION["right"]=="GESTIONNAIRE" || $_SESSION["right"]=="UTILISATEUR") {
-        if($_SERVER['REQUEST_METHOD'] == 'POST'){
-          $dbUsers = new db_users();
-          if(!empty($_POST['nomUtilisateur']) && !empty($_POST['prenomUtilisateur']) && !empty($_POST['mailUtilisateur'])) {
-            $dbUsers->updateUser($_POST);
-            $_SESSION = $dbUsers->getUser($_SESSION['idutilisateur']);
-            $state = 'ok';
-            $template = $this->twig->loadTemplate('user.twig');
-            echo $template->render(array('cur_user' => $_SESSION, 'state' => $state));
-          }
-          else {
-            $state = 'noData';
-            $template = $this->twig->loadTemplate('user.twig');
-            echo $template->render(array('cur_user' => $_SESSION, 'state' => $state));
-          }
+      redirectIfNotLogged();
+      redirectIfHasNotTheRight('UTILISATEUR');
+
+      // On regarde si on vient du form
+      if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        $dbUsers = new db_users();
+        if(theseKeysExistsAndAreNotEmpty($_POST, array('idUtilisateur', 'nomUtilisateur', 'prenomUtilisateur', 'mailUtilisateur'))) {
+          $dbUsers->updateUser($_POST);
+          $_SESSION = $dbUsers->getUser($_SESSION['idutilisateur']);
+          $state = 'ok';
         }
-        else {
-          $template = $this->twig->loadTemplate('user.twig');
-          echo $template->render(array('cur_user' => $_SESSION));
-        exit;
-        }
+        // Si des champs sont vides on met à jour le statut
+        else { $state = 'noData'; }
+
+        // On réaffiche la page avec le statut
+        $template = $this->twig->loadTemplate('user.twig');
+        echo $template->render(array('cur_user' => $_SESSION, 'state' => $state));
       }
-      else{
-        throw new ForbiddenError ("Nope");
-        exit;
+
+      // Si on ne vient pas du form
+      else {
+        $template = $this->twig->loadTemplate('user.twig');
+        echo $template->render(array('cur_user' => $_SESSION));
       }
+
     }
   }
 ?>

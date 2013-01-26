@@ -77,6 +77,17 @@
     }
 
     /**
+    * Modifie le mot de passe d'un utilisateur
+    * @return void
+    */
+    public function updatePassword($idUtilisteur, $newPassword){
+      $req = $this->bdd->prepare('UPDATE UTILISATEURS SET mdpUtilisateur = :mdpUtilisateur WHERE idUtilisateur = :idUtilisateur');
+      $req->bindValue(':idUtilisateur', $idUtilisateur);
+      $req->bindValue(':mdpUtilisateur', $mdpUtilisateur);
+      $req->execute();
+    }
+
+    /**
     * Methode retournant les droit d'un utilisateur
     * @param $idUtilisateur l'id de l'utilisateur
     * @return array nome du droit de l'utilisateur

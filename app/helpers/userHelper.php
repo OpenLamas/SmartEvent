@@ -1,0 +1,39 @@
+<?php
+
+  function redirectIfNotLogged() {
+    if(!isset($_SESSION['login'])) {
+      $template = $this->twig->loadTemplate('login.twig');
+      echo $template->render(array('cur_user' => array('login' => ''), 'state' => 'Vous devez être connecté pour voir cette page'));
+      die();
+    }
+  }
+
+  function redirectIfHasNotTheRight($right) {
+    if(!hasRight($right, $_SESSION['login'])) {
+      throw new ForbiddenError('Nope');
+      die();
+    }
+  }
+
+  function hasRight($right, $user) {
+    $userRight = $user['right'];
+    switch($right) {
+      case 'ADMIN':
+        if($userright != 'ADMIN') { return false; }
+        else { return true; }
+        break;
+
+      case 'GESTIONNAIRE':
+        if($userright == 'UTILISATEUR') { return false; }
+        else { return true; }
+        break;
+
+      case 'UTILISATEUR':
+        return true;
+
+      default:
+        return false;
+    }
+  }
+
+?>
