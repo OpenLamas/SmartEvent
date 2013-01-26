@@ -1,5 +1,5 @@
 {% extends 'body.twig' %}
-    
+
 {% block content %}
 <div class="row">
   {% if state == 'ok' %}
@@ -36,11 +36,11 @@
     <form id="signinform" class="well form-horizontal" method="POST" action="signin">
       <fieldset>
         <legend>Inscription</legend>
-        
+
         <div id="ctrlNom" class="control-group">
           <label class="control-label" for="inputNom">Nom</label>
           <div class="controls">
-            <input type="text" class="input-large" name="nomUtilisateur" id="inputNom">          
+            <input type="text" class="input-large" name="nomUtilisateur" id="inputNom">
           </div>
         </div>
         <div id="ctrlPrenom" class="control-group">
@@ -60,20 +60,20 @@
           <div class="controls">
             <input type="password" name="mdpUtilisateur" id="inputPassword" class="input-large">
           </div>
-        </div>      
+        </div>
         <div id="ctrlPassword2" class="control-group">
           <label class="control-label" for="inputPassword2">Confirmer le mot de passe</label>
           <div class="controls">
             <input type="password" name="mdpUtilisateur2" id="inputPassword2" class="input-large">
           </div>
-        </div>    
+        </div>
         <div class="form-actions">
           <button type="submit" class="btn btn-primary">S'inscrire</button>
         </div>
-        
+
       </fieldset>
     </form>
   </div>
-  {% endif %}  
+  {% endif %}
 </div>
 {% endblock %}

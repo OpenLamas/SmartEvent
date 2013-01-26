@@ -1,0 +1,52 @@
+{% set cur_page = 'users' %}
+{% extends 'body.twig' %}
+{% block content %}
+<div class="row">
+{% if state is defined %}
+  {% if state == 'ok' %}
+    <div class="span4 offset4 alert alert-success">
+      <h1>Mise à jour réussie :)</h1>
+    </div>
+  {% endif %}
+  {% if state == 'noData' %}
+    <div class="span6 offset2 alert alert-error">
+      <h1>Vous devez remplir tout les champs</h1>
+    </div>
+  {% endif %}
+{% endif %}
+
+  <div class="span6 offset3">
+    <form class='well form-horizontal' method="POST" action="#">
+      <fieldset>
+        <legend>Modification de mes informations</legend>
+
+        <input type='hidden' name='idUtilisateur' value='{{ cur_user.idutilisateur }}'>
+
+        <div id="ctrlNom" class="control-group">
+          <label class="control-label" for="inputNom">Nom</label>
+          <div class="controls">
+            <input type="text" class="input-large" name="nomUtilisateur" id="inputNom" value='{{ cur_user.nomutilisateur }}'>
+          </div>
+        </div>
+        <div id="ctrlPrenom" class="control-group">
+          <label class="control-label" for="inputPrenom">Prenom</label>
+          <div class="controls">
+            <input type="text" class="input-large" name="prenomUtilisateur" id="inputPrenom" value='{{ cur_user.prenomutilisateur }}' >
+          </div>
+        </div>
+        <div id="ctrlEmail" class="control-group">
+          <label class="control-label" for="inputEmail">Email</label>
+          <div class="controls">
+            <input type="text" class="input-large" name="mailUtilisateur" id="inputEmail" value='{{ cur_user.mailutilisateur }}' >
+          </div>
+        </div>
+        <div class="form-actions">
+          <a class="btn btn-danger" href="#"><i class="icon-remove-sign icon-white"></i> Se désinscrire</a>
+          <button type="submit" class="btn btn-primary"><i class='icon-ok-sign icon-white'></i> Modifier</button>
+        </div>
+      </fieldset>
+    </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,48 +1,49 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <routes>
   <!-- Session -->
-  <route url="/login" module="user" action="Login" />
+  <route url="/login"      module="user" action="Login"      />
   <route url="/disconnect" module="user" action="Disconnect" />
-  
+
   <!-- Utilisateurs -->
-  <route url="/signin" module="user" action="Signin" />
-  <route url="/signin-(.+)" module="user" action="Signin" vars="codeconfirmation" />
-  <route url="/users-manage" module="user" action="ListUsers" />
-  <route url="/users-delete" module="user" action="DeleteUsers" />
+  <route url="/signin"        module="user" action="Signin"       />
+  <route url="/signin-(.+)"   module="user" action="Signin" vars="codeconfirmation" />
+  <route url="/user-edit"     module="user" action="SelfEdit"     />
+  <route url="/users-manage"  module="user" action="ListUsers"    />
+  <route url="/users-delete"  module="user" action="DeleteUsers"  />
   <route url="/users-promote" module="user" action="PromoteUsers" />
-  <route url="/user-red" module="user" action="GetRedUsers" />
-  
+  <route url="/user-red"      module="user" action="GetRedUsers"  />
+
   <!-- Admin -->
-  <route url="/admin-config" module="admin" action="ShowConfig" />
+  <route url="/admin-config" module="admin" action="ShowConfig"    />
   <route url="/admin-backup" module="admin" action="ManageBackups" />
-  
-  
+
+
   <!-- <route url="/event-(\d+)-detail((-ajax)?)" module="event" action="Detail" vars="idEvent,ajax" /> -->
   <!-- Sessions -->
-  <route url="/session-(\d+)-get" module="event" action="GetEvents" vars="idSession" />
-  <route url="/session-(\d+)-list" module="event" action="ListEvents" vars="idSession" />
-  <route url="/session-delete" module="event" action="SessionDelete" />
-  <route url="/session-submit" module="event" action="SessionSubmit" />
-  <route url="/session-update" module="event" action="SessionUpdate" />
+  <route url="/session-(\d+)-get"   module="event" action="GetEvents"  vars="idSession" />
+  <route url="/session-(\d+)-list"  module="event" action="ListEvents" vars="idSession" />
+  <route url="/session-delete"      module="event" action="SessionDelete" />
+  <route url="/session-submit"      module="event" action="SessionSubmit" />
+  <route url="/session-update"      module="event" action="SessionUpdate" />
   <route url="/session-(\d+)-print" module="event" action="PrintLists" vars="idSession" />
 
   <!-- Evenements -->
-  <route url="/events-participation" module="event" action="GetParticipation" />
-  <route url="/event-(\d+)-inscription" module="event" action="Inscription" vars="idEvent" />
-  <route url="/events-manage" module="event" action="ManageEvents" />
-  <route url="/next-events" module="event" action="NextEvents" vars="idSession" />
-  <route url="/event-submit" module="event" action="EventSubmit" />
-  <route url="/event-delete" module="event" action="EventDelete" />
-  <route url="/event-update" module="event" action="EventUpdate" />
-  <route url="/event-import" module="event" action="EventImport" />
-  <route url="/event-add-import" module="event" action="EventAddImport" />
+  <route url="/events-participation"    module="event" action="GetParticipation" />
+  <route url="/event-(\d+)-inscription" module="event" action="Inscription" vars="idEvent"   />
+  <route url="/events-manage"           module="event" action="ManageEvents"     />
+  <route url="/next-events"             module="event" action="NextEvents"  vars="idSession" />
+  <route url="/event-submit"            module="event" action="EventSubmit"      />
+  <route url="/event-delete"            module="event" action="EventDelete"      />
+  <route url="/event-update"            module="event" action="EventUpdate"      />
+  <route url="/event-import"            module="event" action="EventImport"      />
+  <route url="/event-add-import"        module="event" action="EventAddImport"   />
 
   <!-- Error -->
-  <route url="/error-403" module="error" action="Error403" />
-  <route url="/error-500" module="error" action="Error500" />
+  <route url="/error-403"     module="error" action="Error403"     />
+  <route url="/error-500"     module="error" action="Error500"     />
   <route url="/error-manchot" module="error" action="ErrorManchot" />
-  
+
   <!-- Index -->
   <route url="/search" module="event" action="GetSearch" />
-  <route url="/" module="home" action="ShowHome" />
+  <route url="/"       module="home"  action="ShowHome"  />
 </routes>
