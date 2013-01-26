@@ -24,21 +24,20 @@ $(document).ready(function() {
   $('input.date').datepicker();
 
   /* Recherche des events */
-  $('#search form').click(function(e){
-    if($(e.target).is('a')){
-      console.log($('input', this).val())
-      if($('input', this).val() == ''){
+  var recherche = function(e){
+    console.log($('#search form input:first').val())
+      if($('#search form input:first').val() == ''){
         console.log('pas ok');
-        $('div', this).addClass('error');
+        $('#search form div').addClass('error');
       }
 
       else{
         console.log('ok');
-        $('div', this).removeClass('error');
-        var query = $('input', this).val();
+        $('#search form div').removeClass('error');
+        var query = $('#search form input:first').val();
         $('#search table').fadeOut('slow');
         $('#search .noResult').fadeOut('slow');
-        $.post($(e.target).attr("href"), { 'query': query }, function(data){
+        $.post("search", { 'query': query }, function(data){
           console.log(data);
           $('#search tbody').empty();
           if(data != ''){
@@ -55,9 +54,18 @@ $(document).ready(function() {
           
         }, 'json');
       }
+  }
+
+  $('#home-search').submit(function(e){
+    recherche(e);
+    e.preventDefault();
+  });
+
+  $('#search form').click(function(e){
+    if($(e.target).is('a')){
+      recherche();
       e.preventDefault();
     }
-
   });
 
   $("#btngroupe-listevents button").click(function(){
