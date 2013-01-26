@@ -41,7 +41,9 @@
       file_put_contents('config/db.conf.php', 'define("'.$key.'", "'.$value.'");'."\n", FILE_APPEND);
     }
     file_put_contents('config/db.conf.php', '?>', FILE_APPEND);
-    echo "Heroku config done !";
+    
+    header('Location: '.$_POST['siteRoot']);
+    die();
   }
 
   else{
