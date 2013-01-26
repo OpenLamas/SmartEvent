@@ -9,7 +9,7 @@
   }
 
   function redirectIfHasNotTheRight($right) {
-    if(!hasRight($right, $_SESSION['login'])) {
+    if(!hasRight($right, $_SESSION)) {
       throw new ForbiddenError('Nope');
       die();
     }
@@ -19,12 +19,12 @@
     $userRight = $user['right'];
     switch($right) {
       case 'ADMIN':
-        if($userright != 'ADMIN') { return false; }
+        if($userRight != 'ADMIN') { return false; }
         else { return true; }
         break;
 
       case 'GESTIONNAIRE':
-        if($userright == 'UTILISATEUR') { return false; }
+        if($userRight == 'UTILISATEUR') { return false; }
         else { return true; }
         break;
 
