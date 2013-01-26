@@ -10,7 +10,7 @@
       if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $dbUsers = new db_users();        
         
-        if (isset($_POST['nomUtilisateur']) && isset($_POST['prenomUtilisateur']) && isset($_POST['mailUtilisateur']) && isset($_POST['mdpUtilisateur']))
+        if (isset($_POST['nomUtilisateur']) && isset($_POST['prenomUtilisateur']) && isset($_POST['mailUtilisateur']) && isset($_POST['mdpUtilisateur']) && isset($_POST['mdpUtilisateur2']))
         {
           if($_POST['nomUtilisateur'] != "" && $_POST['prenomUtilisateur'] != "" && $_POST['mailUtilisateur'] != "")
           {
