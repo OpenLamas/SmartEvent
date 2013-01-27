@@ -111,6 +111,7 @@
         <label class="control-label" for="input_siteRoot">Quel est le chemin absolu vers votre site ?</label>
         <div class="controls">
           <input type="text" id="input_siteRoot" name='siteRoot' value="/SmartEvent/app" />
+          <p class="help-block">Par exemple pour http://www.google.fr/app/monApp/ => /app/monApp</p>
         </div>
       </div>
       <div class="control-group">

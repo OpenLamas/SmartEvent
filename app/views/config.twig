@@ -9,7 +9,7 @@
       <div class="control-group">
         <label class="control-label" for="input_mailDomain">Domaines à filtrer</label>
         <div class="controls">
-          <input type="text" class="input-xlarge" id="input_mailDomain" value="{{ domains }}" />
+          <input type="text" class="input-xlarge" id="input_mailDomain" value="{{ domains }}" name="domains"/>
           <p class="help-block">etu.mon-univ.com par ex. (séparer les domaines par un ';')</p>
         </div>
     </fieldset>
@@ -18,8 +18,8 @@
       <div class="control-group">
         <label class="control-label" for="input_siteRoot">Racine du site</label>
         <div class="controls">
-          <input type="text" class="input-large" id="input_siteRoot" value="{{ site_root }}" />
-          <p class="help-block">monsite.com/events par ex. (pas de / à la fin)</p>
+          <input type="text" class="input-large" id="input_siteRoot" value="{{ site_root }}" name="site_root"/>
+          <p class="help-block">Par exemple pour http://www.google.fr/app/monApp/ => /app/monApp</p>
         </div>
       </div>
     </fieldset>
@@ -36,19 +36,19 @@
       <div class="control-group">
         <label class="control-label" for="input_sqlUser">Utilisateur SQL</label>
         <div class="controls">
-          <input type="text" class="input-medium" id="input_sqlUser" value="{{ user }}"/>
+          <input type="text" class="input-medium" id="input_sqlUser" value="{{ user }}" name="user"/>
         </div>
       </div>
       <div class="control-group">
         <label class="control-label" for="input_sqlPwd">Mot de passe SQL</label>
         <div class="controls">
-          <input type="password" class="input-medium" id="input_sqlPwd" value="{{ password }}"/>
+          <input type="password" class="input-medium" id="input_sqlPwd" value="{{ password }}" name="dbpassword"/>
         </div>
       </div>
       <div class="control-group">
         <label class="control-label" for="input_sqlDB">Base SQL</label>
         <div class="controls">
-          <input type="text" class="input-medium" id="input_sqlDB" value="dbname" />
+          <input type="text" class="input-medium" name="dbname" id="input_sqlDB" value="{{ dbname }}" />
         </div>
       </div>
       
