@@ -16,6 +16,7 @@
   }
 
   function hasRight($right, $user) {
+    if(!isset($user['right'])) { return false; }
     $userRight = $user['right'];
     switch($right) {
       case 'ADMIN':
