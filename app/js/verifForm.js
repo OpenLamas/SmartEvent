@@ -14,7 +14,7 @@ var checkChamps = function(reg, e){
     }
 
     if(!pass){
-      alert('Merci de remplire tous les champs');
+      alert('Merci de remplire correctement tous les champs');
       e.preventDefault();
     }
 };

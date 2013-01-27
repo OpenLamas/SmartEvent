@@ -20,6 +20,7 @@
               $state = 'success';
             } else {
               $state = 'wrong';
+              $email = $_POST['email'];
             }
           } else {
             $state = 'noData';
@@ -39,7 +40,7 @@
         {
           $template = $this->twig->loadTemplate('login.twig');
           if(!isset($_SESSION['login'])){
-            echo $template->render(array('cur_user' => array('login'=> ''), 'state' => $state));
+            echo $template->render(array('cur_user' => array('login'=> ''), 'email' => $email, 'state' => $state));
           }
           else{
             echo $template->render(array('cur_user' => $_SESSION, 'state' => $state));
