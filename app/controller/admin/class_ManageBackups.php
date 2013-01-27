@@ -7,7 +7,7 @@
 
     public function action(){
 
-      redirectIfNotLogged();
+      $this->redirectIfNotLogged();
       redirectIfHasNotTheRight('ADMIN');
 
       $template = $this->twig->loadTemplate('backups.twig');

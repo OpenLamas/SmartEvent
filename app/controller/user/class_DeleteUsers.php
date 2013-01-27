@@ -4,6 +4,9 @@
   class DeleteUsers{
 
     public function action(){
+      if(!isset($_SESSION['login'])) {
+        header("Location: ". SITEROOT);
+      }
       $dbUsers = new db_users();
       if($_SESSION["right"]=='ADMIN'){
         if(isset($_POST['tabUsers'])){

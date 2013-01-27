@@ -5,6 +5,7 @@
   class Inscription extends Controller{
 
     public function action(){
+      $this->redirectIfNotLogged();
       $dbEvents = new db_events(); 
       $estInscrit = $dbEvents->getRegisteredFromEvent($_SESSION['idutilisateur'], $this->vars['idEvent']);
       

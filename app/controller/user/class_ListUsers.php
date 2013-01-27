@@ -7,7 +7,7 @@
 
     public function action(){
 
-      redirectIfNotLogged();
+      $this->redirectIfNotLogged();
       redirectIfHasNotTheRight('ADMIN');
 
       $dbUsers = new db_users();

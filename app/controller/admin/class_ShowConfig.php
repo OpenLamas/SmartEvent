@@ -7,7 +7,7 @@
 
     public function action(){
 
-      redirectIfNotLogged();
+      $this->redirectIfNotLogged();
       redirectIfHasNotTheRight('ADMIN');
 
         if($_SERVER['REQUEST_METHOD'] == 'POST'){

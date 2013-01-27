@@ -7,7 +7,7 @@
 
     public function action(){
 
-      redirectIfNotLogged();
+      $this->redirectIfNotLogged();
       redirectIfHasNotTheRight('GESTIONNAIRE');
 
       if(isset($_POST['idSession'])) {

@@ -7,7 +7,7 @@
 
     public function action(){
 
-      redirectIfNotLogged();
+      $this->redirectIfNotLogged();
       redirectIfHasNotTheRight('ADMIN');
 
       if(theseKeysExistsAndAreNotEmpty($_POST, array('tabUsers', 'rang'))) {
