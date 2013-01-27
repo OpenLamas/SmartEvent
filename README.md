@@ -2,24 +2,24 @@
 ## Web-based event management
 
 ### Overview
-We are 3 students in Networking & Telecommunications and as a first year project we decided to write a web interface to manage events, especially in school context (academic defense for example).
-
-### Technology
-* HTML5/CSS/JS
-* LESS
-* PHP
-* MVC model
+We are 3 students in Networking & Telecommunications and as a first year project we decided to write a web application to manage events, especially in school context (academic defense for example).  
+The keywords for this project are : HTML5, CSS, LESS, JS, PHP, PostgreSQL, MVC model
 
 ### Setup
-####
-If your server has access to Internet, run  
-`git clone git://github.com/sikado/SmartEvent.git`  
-`cd SmartEvent; composer install`
+You just need to clone the repo :  
+`git clone git://github.com/OpenLamas/SmartEvent.git`
 
-### Third-party code that we use
-* Twig (See Twig/LICENSE) => http://twig.sensiolabs.org
-* Bootstrap (Apache License v2.0) => http://twitter.github.com/bootstrap/
-* JQuery (See jquery.org/license) => http://jquery.com/
+### Code organization
+***/app*** contains the application itself  
+***/doc*** contains data samples and some school-related things  
+***/tools*** contains random scripts we use to code
+
+### Third-party code
+* [composer/composer](//github.com/composer/composer)
+* [fabpot/Twig](//github.com/fabpot/Twig)
+* [swiftmailer/swiftmailer](//github.com/swiftmailer/swiftmailer)
+* [twitter/bootstrap](//github.com/twitter/bootstrap)
+* [jquery/jquery](//github.com/jquery/jquery)
 
 ### Contributors
-Maxime Mouchet, Florent G, Julien Brun
+[Maxime Mouchet](//github.com/maxmouchet), [Julien Brun](//github.com/sikado), [Florent G.](//github.com/kode4me)
