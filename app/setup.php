@@ -23,7 +23,7 @@
 
     $infoCo = preg_split("#[/:@]+#", $_ENV['HEROKU_POSTGRESQL_GOLD_URL']);
 
-    $config['DOMAINS']      = "etu.mon-univ.fr;";
+    $config['DOMAINS']      = "etu.mon-univ.fr;univ-mon.fr";
     $config['SITEROOT']     = "/app";
     $configDB['HOSTNAME']   = $infoCo[3];
     $configDB['PORT']       = $infoCo[4];
