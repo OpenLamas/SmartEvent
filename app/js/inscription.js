@@ -80,7 +80,27 @@ $(document).ready(function() {
     }
   });
 
-  $("#btngroupe-listevents button").click(function(){
-    $('.span9').fadeToggle('slow');
+  $('#btngroupe-listevents #buttonList').click(function(){
+    if(!$('#listCalendar').hasClass('visible')){
+      $('#calendar').fadeOut(function(){
+        $('#listCalendar').fadeIn();
+        $('#listCalendar').addClass('visible');
+        $('#calendar').removeClass('visible');
+      });
+    }
   });
+
+  $('#btngroupe-listevents #buttonCalendar').click(function(){
+    if(!$('#calendar').hasClass('visible')){
+      $('#listCalendar').fadeOut(function(){
+        $('#calendar').fadeIn();
+        $('#calendar').addClass('visible');
+        $('#listCalendar').removeClass('visible');
+      });
+    }
+  });
+
+  /*$("#btngroupe-listevents button").click(function(){
+    $('.span9').fadeToggle('slow');
+  });*/
 });

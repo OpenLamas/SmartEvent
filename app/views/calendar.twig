@@ -7,9 +7,9 @@
     <button class="btn" id="buttonList">Liste</button>
   </div>
   {# Calendrier #}
-  <div class="well span9" id='calendar'>&nbsp;</div>
+  <div class="well span9 visible" id='calendar'>&nbsp;</div>
   {# Liste #}
-  <div class="span9 hide">
+  <div class="span9" id="listCalendar" style="display: none;">
     <ul class="unstyled">
     {% for event in events %}
     <li><a href="#">{{ event.datedebutevenement|truncate(11,true)|date("d M")|replace({'Feb': 'Fev', 'Apr': 'Avr', 'May': 'Mai', 'Jun': 'Juin', 'Jul': 'Juil', 'Aug': 'Août'}) }} - {{ event.nomevenement }}</a></li>
