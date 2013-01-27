@@ -379,9 +379,7 @@ $(document).ready(function(){
         idCreateur: ''
       };
 
-      /* CallBack bizare */
       $.post($(e.target).attr("href"), data, function(callBack){
-        console.log(callBack);
         if (callBack.code == 'ok'){
           $('#addSessionModal').modal('hide');
           $('<tr id="session-'+callBack.idSession.idsession+'"><td><label class="checkbox inline"><input type="checkbox"/></label></td><td><a href="#modal-session-'+callBack.idSession.idsession+'" data-toggle="modal">'+data.nomSession+'</a></td><td><a href="#" class="voir">Voir &raquo;</a></td><td><div class="modal fade" id="modal-session-'+callBack.idSession.idsession+'"><div class="modal-header"><button class="close" data-dismiss="modal">×</button><h3>'+data.nomSession+'</h3></div><div class="modal-body"> <ul><li>Créé par '+'Toi'+'</li><li>Nombre max d\'inscrit : <span>'+data.maxInscrit+'</span> <i class="icon-pencil"></i></li><li>Nombre d\'event mini : <span>'+data.minParticipation+'</span> <i class="icon-pencil"></i></li><li>Date limite d\'inscription : <span>'+data.dateLimite+'</span> <i class="icon-pencil"></i></li><li>Date rappel mail : <span>'+data.dateRappel+'</span> <i class="icon-pencil"></i></li></ul></div><div class="modal-footer"><a href="#" class="btn" data-dismiss="modal">Close</a></div></div></td></tr>').appendTo("#session tbody");
@@ -400,6 +398,9 @@ $(document).ready(function(){
 
   /* Envoie des sessions a delete */
   $('#session .btn-danger').click(function(e){
+    for(var i=0;i<idSessions.length;i++){
+      $('#session tr#session-'+idSessions[i]).css("opacity", 0.3);
+    }
     $.post($(this).attr('href'), {'tabSessions': idSessions}, function(data){
       if(data.code == 'ok'){
         for(var i=0;i<idSessions.length;i++){
