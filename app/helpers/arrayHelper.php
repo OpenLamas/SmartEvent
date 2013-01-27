@@ -5,11 +5,12 @@
   * @param $array le tableau à vérifier
   */
   function thisArrayIsNotEmpty($array) {
-    foreach($array as $key => $value) {
-      if(empty($key)) { return false; }
+      if(empty($array)) { return false; }
+      foreach($array as $key => $value) {
+        if(empty($key)) { return false; }
+      }
+      return true;
     }
-    return true;
-  }
 
   /**
   * Verifie que les clés spécifiées existent et que leur valeur ne soient pas
@@ -18,11 +19,12 @@
   * @param $keys les clés à vérifier
   */
   function theseKeysExistsAndAreNotEmpty($array, $keys) {
-    foreach($keys as $key) {
-      if(!isset($array[$key])) { return false; }
-      else { if(empty($array[$key])) { return false; } }
+      if(empty($array) || empty($keys)) { return false; }
+      foreach($keys as $key) {
+        if(!isset($array[$key])) { return false; }
+        else { if(empty($array[$key])) { return false; } }
+      }
+      return true;
     }
-    return true;
-  }
 
 ?>

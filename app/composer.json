@@ -1,6 +1,7 @@
 {
   "require": {
     "twig/twig": "1.*",
-    "swiftmailer/swiftmailer": "4.*"
+    "swiftmailer/swiftmailer": "4.*",
+    "phpunit/phpunit": "3.7.*"
   }
 }
