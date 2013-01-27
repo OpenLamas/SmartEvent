@@ -37,8 +37,25 @@ $(document).ready(function() {
         $.post("search", { 'query': query }, function(data){
           $('#search tbody').empty();
           if(data != ''){
+            var badgeInscit = '';
+            var placesLibreTxt = ''
             for(var i=0;i<data.length;i++){
-              $('#search tbody').append('<tr><td><a href="session-'+data[i]['idsession']+'-list-'+data[i]['idevenement']+'-modal">'+data[i]['nomevenement']+'</a></td><td>'+data[i]['descevenement']+'</th><td><span class="badge badge-inverse">'+(data[i]['nbmaxinscritevenement']-data[i]['count'])+' place(s) libres</span></td><td><span class="badge badge-success">Inscrit</span></td></tr>');
+              console.log(data[i]['count']);
+              if(data[i]["inscrit"]){
+                badgeInscit = '<span class="badge badge-success">Inscrit</span>';
+              }
+              else{
+                badgeInscit = '<span class="badge badge-info">Non inscrit</span>';
+              }
+
+              var placeLibre = data[i]['nbmaxinscritevenement']-data[i]['count'];
+              if(placeLibre > 1){
+                placesLibreTxt = placeLibre+' places libres';
+              }
+              else{
+                placesLibreTxt = placeLibre+' place libre';
+              }
+              $('#search tbody').append('<tr><td><a href="session-'+data[i]['idsession']+'-list-'+data[i]['idevenement']+'-modal">'+data[i]['nomevenement']+'</a></td><td>'+data[i]['descevenement']+'</th><td><span class="badge badge-inverse">'+placesLibreTxt+'</span></td><td>'+badgeInscit+'</td></tr>');
             }
             $('#search table').fadeIn('slow');
           }

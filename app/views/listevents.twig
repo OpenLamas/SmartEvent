@@ -48,6 +48,7 @@
       </div>
       <div class="modal-footer">
         <a href="#" class="btn" data-dismiss="modal">Close</a>
+        {% if dateslimites.datelimiteinscription|date("dmY") <= dateactuelle %}
           {% if event.estinscrit == 1 %}
             <a href="#" class="btn btn-primary inscrire">Se désinscrire</a>  
           {% else %}

@@ -247,10 +247,10 @@
     /**
     * Methode retournant tous les events auquel un user a participé ou est inscrit
     * @param $user id de l'utilisateur
-    * @return array
+    * @return [nomEvenement, nomSession, dateDebutEvenement]
     */
     public function getParticipation($user){
-      $req = $this->bdd->prepare('SELECT nomEvenement, nomSession, dateDebutEvenement FROM PARTICIPER INNER JOIN EVENEMENTS ON idRefEvenement = idEvenement INNER JOIN SESSIONS ON refSession = idSession WHERE idRefUtilisateur = :user');
+      $req = $this->bdd->prepare('SELECT nomEvenement, nomSession, dateDebutEvenement, idEvenement FROM PARTICIPER INNER JOIN EVENEMENTS ON idRefEvenement = idEvenement INNER JOIN SESSIONS ON refSession = idSession WHERE idRefUtilisateur = :user');
       $req->bindValue(':user', $user, PDO::PARAM_STR);
       $req->execute();
       return $req->fetchAll();
