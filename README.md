@@ -1,6 +1,8 @@
 # SmartEvent
 ## Web-based event management
 
+[![Build Status](https://travis-ci.org/OpenLamas/SmartEvent.png)](https://travis-ci.org/OpenLamas/SmartEvent)
+
 ### Overview
 We are 3 students in Networking & Telecommunications and as a first year project we decided to write a web application to manage events, especially in school context (academic defense for example).  
 The keywords for this project are : HTML5, CSS, LESS, JS, PHP, PostgreSQL, MVC model
