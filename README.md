@@ -2,6 +2,7 @@
 ## Web-based event management
 
 [![Build Status](https://travis-ci.org/OpenLamas/SmartEvent.png)](https://travis-ci.org/OpenLamas/SmartEvent)
+[ ![Codeship Status for OpenLamas/SmartEvent](https://www.codeship.io/projects/96716cb0-4952-0130-9d1f-22000a8c0085/status?branch=master)](https://www.codeship.io/projects/1268)
 
 ### Overview
 We are 3 students in Networking & Telecommunications and as a first year project we decided to write a web application to manage events, especially in school context (academic defense for example).  
