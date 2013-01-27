@@ -82,16 +82,16 @@
     * @return void
     */
     public function addSession($data){
-      $req = $this->bdd->prepare('INSERT INTO SESSIONS(refCreateur, nomSession, nbMaxInscritEvenement, nbMinParticipationEvenement, dateLimiteInscription, dateRappelMail) VALUES (:idUser , :nomSession , :maxInscrit, :minParticipation , :dateLimite , :dateRappel) RETURNING idSession');
+      $req = $this->bdd->prepare('INSERT INTO SESSIONS(refCreateur, nomSession, nbMaxInscritEvenement, nbMinParticipationEvenement, dateLimiteInscription, dateRappelMail) VALUES (:idUser , :nomSession , :maxInscrit, :minParticipation , :dateLimite , :dateRappel)');
       $req->bindValue(':idUser', $data['idCreateur'], PDO::PARAM_INT);
       $req->bindValue(':nomSession', $data['nomSession'], PDO::PARAM_STR);
       $req->bindValue(':maxInscrit', $data['maxInscrit'], PDO::PARAM_INT);
       $req->bindValue(':minParticipation', $data['minParticipation'], PDO::PARAM_INT);
       $req->bindValue(':dateLimite', $data['dateLimite'], PDO::PARAM_STR);
       $req->bindValue(':dateRappel', $data['dateRappel'], PDO::PARAM_STR);
-      return $req->execute();
+      $req->execute();
 
-      /*$req1 = $this->bdd->prepare('SELECT idSession FROM SESSIONS WHERE refCreateur = :idUser AND nomSession = :nomSession AND nbMaxInscritEvenement = :maxInscrit AND nbMinParticipationEvenement = :minParticipation AND dateLimiteInscription = :dateLimite AND dateRappelMail = :dateRappel');
+      $req1 = $this->bdd->prepare('SELECT idSession FROM SESSIONS WHERE refCreateur = :idUser AND nomSession = :nomSession AND nbMaxInscritEvenement = :maxInscrit AND nbMinParticipationEvenement = :minParticipation AND dateLimiteInscription = :dateLimite AND dateRappelMail = :dateRappel');
       $req1->bindValue(':idUser', $data['idCreateur'], PDO::PARAM_INT);
       $req1->bindValue(':nomSession', $data['nomSession'], PDO::PARAM_STR);
       $req1->bindValue(':maxInscrit', $data['maxInscrit'], PDO::PARAM_INT);
@@ -99,7 +99,7 @@
       $req1->bindValue(':dateLimite', $data['dateLimite'], PDO::PARAM_STR);
       $req1->bindValue(':dateRappel', $data['dateRappel'], PDO::PARAM_STR);
       $req1->execute();
-      return $req1->fetch();*/
+      return $req1->fetch();
     }
 
     /**
