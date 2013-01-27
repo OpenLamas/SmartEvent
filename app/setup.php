@@ -15,6 +15,8 @@
   </head>
   <body>
   <?php
+  require('helpers/configHelper.php');
+
   if(isset($_ENV['HEROKU_POSTGRESQL_GOLD_URL'])){ //Si l'addon postgre est dispo
     $config   = array();
     $configDB = array();
@@ -29,19 +31,9 @@
     $configDB['DBPASSWORD'] = $infoCo[2];
     $configDB['DBNAME']     = $infoCo[5];
 
-    // On ecrit d'abord la conf
-    file_put_contents('config/config.php', '<?php'."\n");
-    foreach ($config as $key => $value) {
-      file_put_contents('config/config.php', 'define("'.$key.'", "'.$value.'");'."\n", FILE_APPEND);
-    }
-    file_put_contents('config/config.php', '?>', FILE_APPEND);
+    writeConfArrayToFile($config, 'config/config.php');
+    writeConfArrayToFile($configDB, 'config/db.conf.php');
 
-    file_put_contents('config/db.conf.php', '<?php'."\n");
-    foreach ($configDB as $key => $value) {
-      file_put_contents('config/db.conf.php', 'define("'.$key.'", "'.$value.'");'."\n", FILE_APPEND);
-    }
-    file_put_contents('config/db.conf.php', '?>', FILE_APPEND);
-    
     header('Location: '.$_POST['siteRoot']);
     die();
   }
@@ -61,19 +53,8 @@
         $configDB['DBPASSWORD'] = $_POST['sqlPassword'];
         $configDB['DBNAME']     = $_POST['sqlDB'];
 
-        // On ecrit d'abord la conf
-
-        file_put_contents('config/config.php', '<?php'."\n");
-        foreach ($config as $key => $value) {
-          file_put_contents('config/config.php', 'define("'.$key.'", "'.$value.'");'."\n", FILE_APPEND);
-        }
-        file_put_contents('config/config.php', '?>', FILE_APPEND);
-
-        file_put_contents('config/db.conf.php', '<?php'."\n");
-        foreach ($configDB as $key => $value) {
-          file_put_contents('config/db.conf.php', 'define("'.$key.'", "'.$value.'");'."\n", FILE_APPEND);
-        }
-        file_put_contents('config/db.conf.php', '?>', FILE_APPEND);
+        writeConfArrayToFile($config, 'config/config.php');
+        writeConfArrayToFile($configDB, 'config/db.conf.php');
 
         // On crée la DB
         include('config/db.conf.php');
