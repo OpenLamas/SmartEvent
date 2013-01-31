@@ -1,15 +1,14 @@
 <?php
   require('dao/class_db_request.php');
   require('basicClass/twigStart.php');
-  require('basicClass/mailwrapper.php');
 
   class Signin extends Controller{
 
     public function action(){
       $state = '';
       if($_SERVER['REQUEST_METHOD'] == 'POST'){
-        $dbUsers = new db_users();        
-        
+        $dbUsers = new db_users();
+
         if (isset($_POST['nomUtilisateur']) && isset($_POST['prenomUtilisateur']) && isset($_POST['mailUtilisateur']) && isset($_POST['mdpUtilisateur']) && isset($_POST['mdpUtilisateur2']))
         {
           if($_POST['nomUtilisateur'] != "" && $_POST['prenomUtilisateur'] != "" && $_POST['mailUtilisateur'] != "")
@@ -21,17 +20,11 @@
               }
               else {
                 $_POST['mdpUtilisateur'] = md5($_POST['mdpUtilisateur']);
+                $_POST['refDroit'] = '1';
                 $codeconfirmation = $dbUsers->addUser($_POST);
-                if($codeconfirmation != false) {
-                  $maildest = $_POST['mailUtilisateur'];
-                  $mailer = new MailWrapper(SERV_SMTP, PORT_SMTP, AUTH_SMTP, USERNAME_SMTP, PASSWORD_SMTP);
-                  $confirmurl = SITEROOT.'/signin-'.$codeconfirmation;
-                  $mailer->SendOneMail(MAIL_FROM, $maildest, "SmartEvent - Inscription", $confirmurl);
-                  $state = 'ok';
-                }
-                else {
-                  $state = 'erreur';
-                }  
+                $template = $this->twig->loadTemplate('login.twig');
+                echo $template->render(array('cur_user' => array('login' => ''), 'state' => ''));
+                die();
               }
             }
             else{
@@ -40,11 +33,11 @@
           }
           else {
             $state='noData';
-          }   
+          }
         }
         else {
           $state='noData';
-        }               
+        }
       }
       else if(isset($this->vars['codeconfirmation'])){
         $dbUsers = new db_users();
