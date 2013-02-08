@@ -23,13 +23,14 @@
 
     $infoCo = preg_split("#[/:@]+#", $_ENV['HEROKU_POSTGRESQL_GOLD_URL']);
 
-    $config['DOMAINS']      = "etu.mon-univ.fr;univ-mon.fr";
-    $config['SITEROOT']     = "/app";
-    $configDB['HOSTNAME']   = $infoCo[3];
-    $configDB['PORT']       = $infoCo[4];
-    $configDB['DBUSER']     = $infoCo[1];
-    $configDB['DBPASSWORD'] = $infoCo[2];
-    $configDB['DBNAME']     = $infoCo[5];
+    $config['DOMAINS']          = "etu.mon-univ.fr;univ-mon.fr";
+    $config['SITEROOT']         = "/app";
+    $configDB['HOSTNAME']       = $infoCo[3];
+    $configDB['PORT']           = $infoCo[4];
+    $configDB['DBUSER']         = $infoCo[1];
+    $configDB['DBPASSWORD']     = $infoCo[2];
+    $configDB['DBNAME']         = $infoCo[5];
+    $configDB['CONNECT_METHOD'] = "DB";
 
     writeConfArrayToFile($config, 'config/config.php');
     writeConfArrayToFile($configDB, 'config/db.conf.php');
@@ -52,6 +53,7 @@
         $configDB['DBUSER']     = $_POST['sqlUser'];
         $configDB['DBPASSWORD'] = $_POST['sqlPassword'];
         $configDB['DBNAME']     = $_POST['sqlDB'];
+        $configDB['CONNECT_METHOD'] = "DB";
 
         writeConfArrayToFile($config, 'config/config.php');
         writeConfArrayToFile($configDB, 'config/db.conf.php');

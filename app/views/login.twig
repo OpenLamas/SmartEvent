@@ -14,13 +14,13 @@
     {% endif %}
   {% endif %}
   <div class="span4 offset4">
-    <form class="form-signin well" id="form-signin"method='POST' action='login'>
+    <form class="form-signin well" id="form-signin" method='POST' action='login'>
       <div id="ctrlEmail" class="control-group">
         <div class="controls">
           {% if email is not defined or email|length == 0 %}
           <input type="text" name='email' class="input-block-level" placeholder="Adresse Email">
           {% else %}
-          <input type="text" name='email' class="input-block-level" value="{{ email }}" placeholder="Adresse Email">
+          <input type="text" name='email' class="input-block-level" value="{{ email }}" placeholder="Adresse Email ou Login">
           {% endif %}
         </div>
       </div>
@@ -31,7 +31,9 @@
       </div>
       <div class="form-actions">
         <button class="btn btn-large btn-primary" type="submit">Connexion</button>
+        {% if auth != 'LDAP'%}
         <a href="{{ site_root }}/signin" class='btn btn-large btn-info'>Inscription</a>
+        {% endif %}
       </div>
     </form>
   </div>

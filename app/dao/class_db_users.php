@@ -24,17 +24,30 @@
     }
 
     /**
+    * Methode retournant un utilisateur grace à son login
+    * @param $login Login de l'utilisateur
+    * @return array les info de l'utilisateur et son status (utilisateur, gestionnaire, admin)
+    */
+    public function getUserByLogin($login){
+      $req = $this->bdd->prepare('SELECT idUtilisateur,nomUtilisateur,prenomUtilisateur,mailUtilisateur,mailUtilisateur AS login,nomDroit AS right FROM UTILISATEURS INNER JOIN DROITS ON RefDroit=IdDroit WHERE login = :login');
+      $req->bindValue(':login', $login, PDO::PARAM_INT);
+      $req->execute();
+      return $req->fetch();
+    }
+
+    /**
     * Ajoute un utilisateur
     * @param $data array des info du l'utilisateur
     * @return void
     */
     public function addUser($data){
-      $req = $this->bdd->prepare('INSERT INTO UTILISATEURS (refDroit, nomUtilisateur, prenomUtilisateur, mailUtilisateur, mdputilisateur) VALUES (:refDroit, :nomUtilisateur, :prenomUtilisateur, :mailUtilisateur, :mdpUtilisateur)');
+      $req = $this->bdd->prepare('INSERT INTO UTILISATEURS (refDroit, nomUtilisateur, prenomUtilisateur, mailUtilisateur, mdputilisateur, login) VALUES (:refDroit, :nomUtilisateur, :prenomUtilisateur, :mailUtilisateur, :mdpUtilisateur, :login)');
       $req->bindValue(':refDroit', $data['refDroit'], PDO::PARAM_STR);
       $req->bindValue(':nomUtilisateur', $data['nomUtilisateur'], PDO::PARAM_STR);
       $req->bindValue(':prenomUtilisateur', $data['prenomUtilisateur'], PDO::PARAM_STR);
       $req->bindValue(':mailUtilisateur', $data['mailUtilisateur'], PDO::PARAM_STR);
       $req->bindValue(':mdpUtilisateur', $data['mdpUtilisateur'], PDO::PARAM_STR);
+      $req->bindValue(':login', $data['login'], PDO::PARAM_STR);
       $req->execute();
       return $req->fetchColumn();
     }

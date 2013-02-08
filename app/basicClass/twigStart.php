@@ -35,7 +35,7 @@
     public function redirectIfNotLogged() {
       if(!isset($_SESSION['login'])) {
         $template = $this->twig->loadTemplate('login.twig');
-        echo $template->render(array('cur_user' => array('login' => ''), 'state' => 'Vous devez être connecté pour voir cette page'));
+        echo $template->render(array('cur_user' => array('login' => ''), 'state' => 'Vous devez être connecté pour voir cette page', 'auth' => CONNECT_METHOD));
         die();
       }
     }

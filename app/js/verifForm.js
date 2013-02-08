@@ -19,10 +19,10 @@ var checkChamps = function(reg, e){
     }
 };
 
-  /*Verif form inscription*/
+  //Verif form inscription
   var inscriptionAttendu = {
-    'ctrlNom': /\w+/,
-    'ctrlPrenom': /\w+/,
+    'ctrlNom': /^\w+$/,
+    'ctrlPrenom': /^\w+$/,
     'ctrlEmail': /^[\w\.]+@[\w\.\-]+\.\w+$/,
     'ctrlPassword': /^.{6,}$/,
     'ctrlPassword2': /^.{6,}$/
@@ -32,9 +32,9 @@ var checkChamps = function(reg, e){
     checkChamps(inscriptionAttendu, e);
   });
 
-  /*Verif form connection*/
+  //Verif form connection
   var connectionAttendu = {
-    'ctrlEmail': /^[\w\.]+@[\w\.\-]+\.\w+$/,
+    'ctrlEmail': /^.+$/,
     'ctrlPassword': /^.+$/
   };
 
