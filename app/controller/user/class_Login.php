@@ -59,8 +59,15 @@
         $passwd=$_POST['password'];
 
         if (!($ldap->ouverture($dn,$passwd))) { // Si le ldap refuse la connection
-          $this->state = "wrong";
-          $this->email = $_POST['email'];
+          if(CONNECT_METHOD_FALLBACK == "DB"){
+            $tmpSession = $this->loginDefault();
+            return $tmpSession;
+          }
+
+          else{
+            $this->state = "wrong";
+            $this->email = $_POST['email'];
+          }
         }
         else {
           $tmpSession = $dbUsers->getUserByLogin($_POST['email']);
