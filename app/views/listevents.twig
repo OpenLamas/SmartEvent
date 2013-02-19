@@ -18,10 +18,10 @@
       <h2>{{ event.nomevenement }}</h2>
       {% if event.estinscrit == 1 %}
       <h4><span class="badge badge-inverse">{{ session.nbmaxinscritevenement - event.nbinscrit }} places libres</span> <span class="badge badge-success">Inscrit</span></h4>
-      {% elseif (session.nbmaxinscritevenement - event.nbinscrit) > niveauAlert %}
-      <h4><span class="badge badge-inverse">{{ session.nbmaxinscritevenement - event.nbinscrit }} places libres</span></h4>
       {% else %}
-      <h4><span class="badge badge-alert">0 places libres</span></h4>
+      <h4><span class="badge badge-inverse">{{ session.nbmaxinscritevenement - event.nbinscrit }} places libres</span></h4>
+      {# else %}
+      <h4><span class="badge badge-alert">0 places libres</span></h4>#}
       {% endif %}
     </div>
     <dl>
