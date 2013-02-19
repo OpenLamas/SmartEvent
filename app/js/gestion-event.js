@@ -479,13 +479,14 @@ $(document).ready(function(){
   /* Remplisage modal RedUser */
   $('#events .redUser').click(function(){
     $('span', this).html("En cours...");
+    $('#remindUsersModal .modal-footer a:eq(1)').attr('href', 'mail-reminders-'+currentSession);
     $.post('user-red', {'idSession': currentSession}, function(data){
       $('#remindUsersModal tbody').empty();
       for(var i=0;i<data.length;i++){
         if(data[i]['nbmanquante'] == null){
           data[i]['nbmanquante'] = $('#session tr#session-'+currentSession+' .modal ul li:eq(2) span').html();
         }
-        $('#remindUsersModal tbody').append('<tr><td>'+data[i]['nomutilisateur']+'</td><td>'+data[i]['prenomutilisateur']+'</td><td>'+data[i]['nbmanquante']+'</td></tr>')
+        $('#remindUsersModal tbody').append('<tr><td>'+data[i]['nomutilisateur']+'</td><td>'+data[i]['prenomutilisateur']+'</td></tr>'); //<td>'+data[i]['nbmanquante']+'</td>
       }
       $('#remindUsersModal').modal('show');
     }, 'json');
