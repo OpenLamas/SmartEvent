@@ -143,7 +143,7 @@
     * @return array
     */
     public function getRedUser($idSession){
-      $req = $this->bdd->prepare('SELECT nomUtilisateur, prenomUtilisateur, nbminparticipationevenement-COUNT(idRefUtilisateur) as nbmanquante FROM UTILISATEURS LEFT OUTER JOIN PARTICIPER ON idRefUtilisateur = idUtilisateur  LEFT OUTER JOIN EVENEMENTS ON idRefEvenement = idEvenement LEFT OUTER JOIN SESSIONS ON refSession = idSession WHERE refSession = :idSession OR idUtilisateur NOT IN  (SELECT idRefUtilisateur FROM PARTICIPER  INNER JOIN EVENEMENTS ON idRefEvenement = idEvenement WHERE refSession = :idSession GROUP BY idRefUtilisateur) GROUP BY nomUtilisateur, prenomUtilisateur, nbminparticipationevenement HAVING (COUNT(idRefUtilisateur)-nbminparticipationevenement) < 0 OR COUNT(idRefUtilisateur) = 0 ORDER BY nomUtilisateur');
+      $req = $this->bdd->prepare('SELECT idUtilisateur, nomUtilisateur, prenomUtilisateur, COUNT(idRefUtilisateur) as usercount FROM UTILISATEURS LEFT OUTER JOIN PARTICIPER ON idRefUtilisateur = idUtilisateur  LEFT OUTER JOIN EVENEMENTS ON idRefEvenement = idEvenement LEFT OUTER JOIN SESSIONS ON refSession = idSession WHERE refSession = :idSession OR idUtilisateur NOT IN  (SELECT idRefUtilisateur FROM PARTICIPER  INNER JOIN EVENEMENTS ON idRefEvenement = idEvenement WHERE refSession = :idSession GROUP BY idRefUtilisateur) GROUP BY idUtilisateur, nomUtilisateur, prenomUtilisateur, nbminparticipationevenement HAVING (COUNT(idRefUtilisateur)-nbminparticipationevenement) < 0 OR COUNT(idRefUtilisateur) = 0 ORDER BY nomUtilisateur');
       $req->bindValue(':idSession', $idSession, PDO::PARAM_INT);
       $req->execute();
       return $req->fetchAll();

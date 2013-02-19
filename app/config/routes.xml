@@ -7,15 +7,15 @@
   <!-- Utilisateurs -->
   <route url="/signin"        module="user" action="Signin"       />
   <route url="/signin-(.+)"   module="user" action="Signin" vars="codeconfirmation" />
-  <route url="/user-edit"     module="user" action="SelfEdit"     />
+  <!-- <route url="/user-edit"     module="user" action="SelfEdit"     /> -->
   <route url="/users-manage"  module="user" action="ListUsers"    />
   <route url="/users-delete"  module="user" action="DeleteUsers"  />
   <route url="/users-promote" module="user" action="PromoteUsers" />
   <route url="/user-red"      module="user" action="GetRedUsers"  />
 
   <!-- Admin -->
-  <route url="/admin-config" module="admin" action="ShowConfig"    />
-  <route url="/admin-backup" module="admin" action="ManageBackups" />
+  <!-- <route url="/admin-config" module="admin" action="ShowConfig"    /> -->
+  <!-- <route url="/admin-backup" module="admin" action="ManageBackups" /> -->
 
 
   <!-- <route url="/event-(\d+)-detail((-ajax)?)" module="event" action="Detail" vars="idEvent,ajax" /> -->
@@ -38,6 +38,9 @@
   <route url="/event-update"            module="event" action="EventUpdate"      />
   <route url="/event-import"            module="event" action="EventImport"      />
   <route url="/event-add-import"        module="event" action="EventAddImport"   />
+
+  <!-- Mails -->
+  <route url="/mail-reminders-(\d+)"  module="mail" action="SendReminders" vars="idSession" />
 
   <!-- Error -->
   <route url="/error-403"     module="error" action="Error403"     />

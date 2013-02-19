@@ -1,5 +1,6 @@
 <?php
-  require_once 'vendors/swiftmailer/swiftmailer/lib/swift_required.php';
+  require_once 'vendor/swiftmailer/swiftmailer/lib/swift_required.php';
+  require_once 'config/mail.conf.php';
 
   class MailHelper {
 
@@ -38,4 +39,19 @@
     }
 
   }
+
+  $mailer = new MailHelper(SMTP_HOST, SMTP_PORT, SMTP_AUTH, SMTP_USER, SMTP_PASS);
+
+  function SendOneMail($to, $subject, $message) {
+    global $mailer;
+    $mailer->SendOneMail(MAIL_FROM, $to, $subject, $message);
+  }
+
+  function SendManyMail(array $to, $subject, $message) {
+    global $mailer;
+    $mailer->SendManyMail(MAIL_FROM, $to, $subject, $message);
+  }
+
+  
+
 ?>
