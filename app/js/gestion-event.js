@@ -347,12 +347,12 @@ $(document).ready(function(){
       var modal = $(this);
       $('.inscrire', modal).html('En cours...');
       $.getJSON('event-'+Tevent[1]+'-inscription',function(data){
-          if(data.ok){
+          if(data.ok != 'no' && data.ok){
             $('.modal-header', modal).append('<span class="badge badge-success">Inscrit</span>');
             $('.inscrire', modal).html('Se déinscrire');
             $('.event-header h4', thisSpan).append('<span class="badge badge-success">Inscrit</span>');
           }
-          else{
+          else if(data.ok != 'no'){
             $('.modal-header .badge', modal).hide(function(){
               $(this).remove;
             });
@@ -360,6 +360,9 @@ $(document).ready(function(){
             $('.event-header .badge-success', thisSpan).hide(function(){
               $(this).remove;
             });
+          }
+          else{
+            alert("Il n'y a plus de place pour cet évènement");
           }
       });
     }

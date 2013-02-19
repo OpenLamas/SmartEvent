@@ -48,14 +48,18 @@
       </div>
       <div class="modal-footer">
         <a href="#" class="btn" data-dismiss="modal">Close</a>
-        {% if dateslimites.datelimiteinscription|date("dmY") <= dateactuelle %}
-          {% if event.estinscrit == 1 %}
-            <a href="#" class="btn btn-primary inscrire">Se désinscrire</a>  
-          {% else %}
-            <a href="#" class="btn btn-primary inscrire">S'inscrire</a>
-          {% endif %}
+        {% if  session.nbmaxinscritevenement - event.nbinscrit < 1 %}
+          <a href="#" class="btn btn-danger disabled">Il n'y a plus de places</a>
         {% else %}
-          <a href="#" class="btn btn-danger disabled">Inscriptions closes</a>
+          {% if dateslimites.datelimiteinscription|date("dmY") <= dateactuelle %}
+            {% if event.estinscrit == 1 %}
+              <a href="#" class="btn btn-primary inscrire">Se désinscrire</a>  
+            {% else %}
+              <a href="#" class="btn btn-primary inscrire">S'inscrire</a>
+            {% endif %}
+          {% else %}
+            <a href="#" class="btn btn-danger disabled">Inscriptions closes</a>
+          {% endif %}
         {% endif %}
       </div>
     </div>
