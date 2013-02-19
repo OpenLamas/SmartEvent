@@ -16,7 +16,7 @@
 
           else{
             $tabEvent = unserialize($event);
-            $dbEvents->addEvent(array('idSession' => $session, 'titre' => $tabEvent[0], 'description' => $tabEvent[1], 'dateDebut' => self::parseDate($tabEvent[2]), 'dateFin' => self::parseDate($tabEvent[3]), 'emplacement' => $tabEvent[4]));
+            $dbEvents->addEvent(array('idSession' => $session, 'titre' => trim(preg_replace('/\s\s+/', ' ', $tabEvent[0])), 'description' => $tabEvent[1], 'dateDebut' => self::parseDate($tabEvent[2]), 'dateFin' => self::parseDate($tabEvent[3]), 'emplacement' => $tabEvent[4]));
           }         
         }
 
