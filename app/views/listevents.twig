@@ -39,11 +39,12 @@
       </div>
       <div class="modal-body">
         {% if event.datedebutevenement|truncate(11,true)|date("dmy") == event.datefinevenement|truncate(11,true)|date("dmy") %}
-        <p>Le {{ event.datedebutevenement|truncate(11,true)|date("d/m/y") }}, de {{ event.datedebutevenement|truncate(11,true)|date("H\\hi") }} à {{ event.datefinevenement|truncate(11,true)|date("H\\hi") }}</p>
+        <p>Le {{ event.datedebutevenement|truncate(11,true)|date("d/m/y") }}, de {{ event.datedebutevenement|date("H\\hi") }} à {{ event.datefinevenement|date("H\\hi") }}</p>
         {% else %}
-        <p>Du {{ event.datedebutevenement|truncate(11,true)|date("d/m/y \\à H\\hi") }} au {{ event.datefinevenement|truncate(11,true)|date("d/m/y \\à H\\hi") }}
+        <p>Du {{ event.datedebutevenement|date("d/m/y \\à H\\hi") }} au {{ event.datefinevenement|date("d/m/y \\à H\\hi") }}
         {% endif %}
-        <p>{{ event.descevenement }}<br />
+        <p>En {{ event.emplacementevenement }}<br /><br />
+        {{ event.descevenement }}<br />
         Il ne reste plus que {{ session.nbmaxinscritevenement - event.nbinscrit }} place(s) pour cette évènement</p>
       </div>
       <div class="modal-footer">
