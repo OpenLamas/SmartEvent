@@ -251,7 +251,7 @@ $('#session .modal').click(function(e){
     if(!openInputSession){
       var tmp = $(this).attr("id").split('-');
       var infoSession = {
-        'nomSession': $('.modal-header h3', this).html(),
+        'nomSession': $('.modal-header h3 span', this).html(),
         'maxInscrit': $('li:eq(1) span', this).html(),
         'minParticipation': $('li:eq(2) span', this).html(),
         'dateLimite': $('li:eq(3) span', this).html(),
