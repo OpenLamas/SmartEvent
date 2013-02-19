@@ -345,8 +345,10 @@ $(document).ready(function(){
     if($(e.target).hasClass('inscrire')){
       var Tevent = $(this).attr('id').split('-');
       var modal = $(this);
+      var idSession = $('.span12 h1').attr("id").split('-');
+      //alert(idSession[0]);
       $('.inscrire', modal).html('En cours...');
-      $.getJSON('event-'+Tevent[1]+'-inscription',function(data){
+      $.getJSON('event-'+Tevent[1]+'-'+idSession[1]+'-inscription',function(data){
           if(data.ok != 'no' && data.ok){
             $('.modal-header', modal).append('<span class="badge badge-success">Inscrit</span>');
             $('.inscrire', modal).html('Se déinscrire');

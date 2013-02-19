@@ -26,7 +26,10 @@
           $this->vars['idEvent'] = '';
         }
 
-        echo $template->render(array('cur_user' => $_SESSION, 'session' => $dbSessions->getSession($this->vars['idSession']), 'activeEvent' => $this->vars['idEvent'],'events' => $events, 'dateactuelle' => date("dmY"), 'dateslimites' => $dateslimites));
+        $session = $dbSessions->getSession($this->vars['idSession']);
+        $session['id'] = $this->vars['idSession'];
+        
+        echo $template->render(array('cur_user' => $_SESSION, 'session' => $session, 'activeEvent' => $this->vars['idEvent'],'events' => $events, 'dateactuelle' => date("dmY"), 'dateslimites' => $dateslimites));
         exit;
       }
     }
