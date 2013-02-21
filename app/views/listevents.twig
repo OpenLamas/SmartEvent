@@ -49,7 +49,7 @@
       </div>
       <div class="modal-footer">
         <a href="#" class="btn" data-dismiss="modal">Close</a>
-        {% if  session.nbmaxinscritevenement - event.nbinscrit < 1 %}
+        {% if  session.nbmaxinscritevenement - event.nbinscrit < 1  and event.estinscrit != 1 %}
           <a href="#" class="btn btn-danger disabled">Il n'y a plus de places</a>
         {% else %}
           {% if dateslimites.datelimiteinscription|date("dmY") <= dateactuelle %}
