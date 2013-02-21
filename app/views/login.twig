@@ -18,9 +18,9 @@
       <div id="ctrlEmail" class="control-group">
         <div class="controls">
           {% if email is not defined or email|length == 0 %}
-          <input type="text" name='email' class="input-block-level" placeholder="Adresse Email">
+          <input type="text" name='email' class="input-block-level" placeholder="Login">
           {% else %}
-          <input type="text" name='email' class="input-block-level" value="{{ email }}" placeholder="Adresse Email ou Login">
+          <input type="text" name='email' class="input-block-level" value="{{ email }}" placeholder="Login">
           {% endif %}
         </div>
       </div>

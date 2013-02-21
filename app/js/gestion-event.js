@@ -341,18 +341,21 @@ $(document).ready(function(){
   });
 
   /* Inscription a un event*/
-  $('#session .modal').click(function(e){
+  $('#session .span3').click(function(e){
     if($(e.target).hasClass('inscrire')){
-      var Tevent = $(this).attr('id').split('-');
-      var modal = $(this);
+      var Tevent = $('.modal',this).attr('id').split('-');
+      var modal = $('.modal',this);
+      var that = this;
       var idSession = $('.span12 h1').attr("id").split('-');
-      //alert(idSession[0]);
+      var attrPlaceLibre = $('h2',this)
+      var placeLibre = $(attrPlaceLibre).attr('data-place-libre');
       $('.inscrire', modal).html('En cours...');
       $.getJSON('event-'+Tevent[1]+'-'+idSession[1]+'-inscription',function(data){
           if(data.ok != 'no' && data.ok){
             $('.modal-header', modal).append(' <span class="badge badge-success">Inscrit</span>');
             $('.inscrire', modal).html('Se déinscrire');
             $('.event-header h4', thisSpan).append(' <span class="badge badge-success">Inscrit</span>');
+            placeLibre--;
           }
           else if(data.ok != 'no'){
             $('.modal-header .badge', modal).hide(function(){
@@ -362,10 +365,14 @@ $(document).ready(function(){
             $('.event-header .badge-success', thisSpan).hide(function(){
               $(this).remove;
             });
+            placeLibre++;
           }
           else{
             alert("Il n'y a plus de place pour cet évènement");
           }
+        $(".event-header .badge-inverse",that).html(placeLibre+" places libres");
+        $(attrPlaceLibre).attr('data-place-libre',placeLibre);
+        $('.placeLibre',modal).html("Il ne reste plus que "+placeLibre+" place(s) pour cette évènement");
       });
     }
     e.preventDefault();
