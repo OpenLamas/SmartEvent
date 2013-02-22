@@ -15,7 +15,7 @@
   {% endif %}
   <div class="span3 well inverse">
     <div class="event-header">
-      <h2>{{ event.nomevenement }}</h2>
+      <h2 data-place-libre="{{ session.nbmaxinscritevenement - event.nbinscrit }}">{{ event.nomevenement }}</h2>
       {% if event.estinscrit == 1 %}
       <h4><span class="badge badge-inverse">{{ session.nbmaxinscritevenement - event.nbinscrit }} places libres</span> <span class="badge badge-success">Inscrit</span></h4>
       {% else %}
@@ -45,7 +45,7 @@
         {% endif %}
         <p>En {{ event.emplacementevenement }}<br /><br />
         {{ event.descevenement }}<br />
-        Il ne reste plus que {{ session.nbmaxinscritevenement - event.nbinscrit }} place(s) pour cette évènement</p>
+        <span class="placeLibre">Il ne reste plus que {{ session.nbmaxinscritevenement - event.nbinscrit }} place(s) pour cette évènement<span></p>
       </div>
       <div class="modal-footer">
         <a href="#" class="btn" data-dismiss="modal">Close</a>
