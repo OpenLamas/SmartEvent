@@ -32,10 +32,15 @@
       $this->vars = $vars;
     }
 
-    public function redirectIfNotLogged() {
+    public function redirectIfNotLogged($message=true) {
       if(!isset($_SESSION['login'])) {
         $template = $this->twig->loadTemplate('login.twig');
-        echo $template->render(array('cur_user' => array('login' => ''), 'state' => 'Vous devez être connecté pour voir cette page', 'auth' => CONNECT_METHOD));
+        if($message){
+          echo $template->render(array('cur_user' => array('login' => ''), 'state' => 'Vous devez être connecté pour voir cette page', 'auth' => CONNECT_METHOD));
+        }
+        else{
+          echo $template->render(array('cur_user' => array('login' => ''), 'state' => '', 'auth' => CONNECT_METHOD));
+        }
         die();
       }
     }

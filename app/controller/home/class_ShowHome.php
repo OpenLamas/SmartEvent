@@ -7,7 +7,7 @@
 
     public function action(){
 
-      $this->redirectIfNotLogged();
+      $this->redirectIfNotLogged(false);
       redirectIfHasNotTheRight('UTILISATEUR');
 
       $dbEvents = new db_events();
