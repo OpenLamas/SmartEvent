@@ -29,7 +29,7 @@
         $session = $dbSessions->getSession($this->vars['idSession']);
         $session['id'] = $this->vars['idSession'];
         
-        echo $template->render(array('cur_user' => $_SESSION, 'session' => $session, 'activeEvent' => $this->vars['idEvent'], 'events' => $events, 'dateactuelle' => date("dmY"), 'dateslimites' => $dateslimites));
+        echo $template->render(array('cur_user' => $_SESSION, 'session' => $session, 'activeEvent' => $this->vars['idEvent'], 'events' => $events, 'dateactuelle' => date("Ymd"), 'dateslimites' => $dateslimites));
         exit;
       }
     }

@@ -52,7 +52,7 @@
         {% if  session.nbmaxinscritevenement - event.nbinscrit < 1  and event.estinscrit != 1 %}
           <a href="#" class="btn btn-danger disabled">Il n'y a plus de places</a>
         {% else %}
-          {% if dateslimites.datelimiteinscription|date("dmY") <= dateactuelle %}
+          {% if dateslimites.datelimiteinscription|date("Ymd") >= dateactuelle %}
             {% if event.estinscrit == 1 %}
               <a href="#" class="btn btn-primary inscrire">Se désinscrire</a>  
             {% else %}
