@@ -9,10 +9,7 @@
 <div id="session">
   <div class="row">
   {% for event in events %}
-  {% if loop.index % 4 == 0 and loop.index0 != 0 and not loop.last %}
-  </div>
-  <div class="row">
-  {% endif %}
+  
   <div class="span3 well inverse">
     <div class="event-header">
       <h2 data-place-libre="{{ session.nbmaxinscritevenement - event.nbinscrit }}">{{ event.nomevenement }}</h2>

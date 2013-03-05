@@ -86,17 +86,19 @@
     * @return array SESSION si login OK
     */
     public function autoInscription($ldap, $post){
-      echo 'New USER !!!';
       $dbUsers = new db_users();
       $info = $ldap->readEntry("uid=".$_POST['email'].",".LDAP_STRING, "(objectclass=*)", array("mail", "seeAlso", "givenName", "sn"));
       /*echo '<pre>';
       print_r($info);
       echo "nom: ".$info[0]['lastname'][0];
       echo'</pre>';*/
+      if($info[0]['seealso'][2] == RESTRICTED_GROUP){
+        echo '<h1>CRETINUS ERRARE</h1>';
+        exit();
+      }
       $infoNewUser = array('refDroit' => '1', 'nomUtilisateur' => $info[0]['sn'][0], 'prenomUtilisateur' => $info[0]['givenname'][0], 'mailUtilisateur' => $info[0]['mail'][0], 'mdpUtilisateur' => 'x', 'login' => $_POST['email']);
       $dbUsers->addUser($infoNewUser);
       return $dbUsers->getUserByLogin($_POST['email']);
-      //echo 'Groupe: '+$info['seealso'][3];
     }
 
     /**
