@@ -35,7 +35,7 @@
     writeConfArrayToFile($config, 'config/config.php');
     writeConfArrayToFile($configDB, 'config/db.conf.php');
 
-    header('Location: '.$_POST['siteRoot']);
+    header('Location: '.$config['SITEROOT']);
     die();
   }
 
