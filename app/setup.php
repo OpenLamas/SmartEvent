@@ -60,12 +60,16 @@
 
         // On crée la DB
         include('config/db.conf.php');
-        $sql_create  = file_get_contents('sql/create.sql');
-        $sql_default = file_get_contents('sql/default.sql');
-        pg_connect('host='.HOSTNAME.' port='.PORT.' dbname='.DBNAME.' user='.DBUSER.' password='.DBPASSWORD);
-        pg_query($sql_create);
-        pg_query($sql_default);
-        pg_close();
+
+        // Si on veux recréé la base
+        if (!isset($_POST['dont_drop'])){
+          $sql_create  = file_get_contents('sql/create.sql');
+          $sql_default = file_get_contents('sql/default.sql');
+          pg_connect('host='.HOSTNAME.' port='.PORT.' dbname='.DBNAME.' user='.DBUSER.' password='.DBPASSWORD);
+          pg_query($sql_create);
+          pg_query($sql_default);
+          pg_close();
+        }
 
         // Puis on ajoute l'user
         require('dao/class_db_request.php');
@@ -144,6 +148,12 @@
         <label class="control-label" for="input_sqlDB">BDD</label>
         <div class="controls">
           <input type="text" id="input_sqlDB" name='sqlDB' value="smartevent" />
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="input_sqlDB">Grader la base en l'état</label>
+        <div class="controls">
+          <input type="checkbox" id="dont_drop" name='dont_drop' />
         </div>
       </div>
     <div class="form-actions">
