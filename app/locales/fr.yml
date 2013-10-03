@@ -1,0 +1,34 @@
+layout:
+  menu:
+    global_view: Vue globale
+    events_managment: Gestion des évènements
+    admin: Administration
+    users: Utilisateurs
+    disconnect: Déconnexion
+home:
+  hero-unit:
+    title: Bienvenue,
+    text: Actuellement vous êtes inscrit à %{totalRegisteredCount} évènements.
+  search:
+    placeholder: Réseaux, Wi-Fi, Informatique, RT1,...
+    button: Rechercher des évènements &raquo;
+    table_results: 
+      name: Nom
+      desc: Description
+      free_room: Places libres
+      state: Etat
+    no_result: Votre recherche n'a pas donné de résultat
+  sessions:
+    title: Sessions
+    none: Aucune session.
+  nextEvents:
+    title: Prochains évènements
+    full_view: Voir tout &raquo;
+    none: Vous n'êtes inscrit à aucun évènement.
+login:
+  error_login: Email/Mot de passe incorect
+  success_login: Identification réussie
+  error_missing: Vous devez renseigner tous les champs
+  placeholder_pass: Mot de passe
+  connection: Connexion
+  sign-in: Inscription
