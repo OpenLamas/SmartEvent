@@ -7,11 +7,11 @@ layout:
     disconnect: Déconnexion
 home:
   hero-unit:
-    title: Bienvenue,
-    text: Actuellement vous êtes inscrit à %{totalRegisteredCount} évènements.
+    title: "Bienvenue,"
+    text: "Actuellement vous êtes inscrit à {{totalRegisteredCount}} évènements."
   search:
-    placeholder: Réseaux, Wi-Fi, Informatique, RT1,...
-    button: Rechercher des évènements &raquo;
+    placeholder: "Réseaux, WiFi, Informatique, RT1,..."
+    button: "Rechercher des évènements &raquo;"
     table_results: 
       name: Nom
       desc: Description
@@ -23,7 +23,7 @@ home:
     none: Aucune session.
   nextEvents:
     title: Prochains évènements
-    full_view: Voir tout &raquo;
+    full_view: "Voir tout &raquo;"
     none: Vous n'êtes inscrit à aucun évènement.
 login:
   error_login: Email/Mot de passe incorect
@@ -31,4 +31,154 @@ login:
   error_missing: Vous devez renseigner tous les champs
   placeholder_pass: Mot de passe
   connection: Connexion
-  sign-in: Inscription
+  sign_in: Inscription
+desconnect:
+  msg: Vous avez été déconnecté avec succés. Vous allez être redirigé dans 5 secondes.
+  no_waiting: Cliquez ici pour ne pas attendre
+calendar:
+  calendar: Calendrier
+  list: Liste
+detail:
+  text: "Il ne reste plus que {{ event.placeLibre }} place(s) pour cette évènement"
+  modal:
+    close: Fermer
+    sing_up: S'inscrire
+events:
+  sessions:
+    add: Ajouter une session
+    del: Supprimer
+    help: Cliquez sur le nom d'une session pour voir/modifier ses détails
+    table:
+      name: Nom
+      events: Evenements
+      see: "Voir &raquo;"
+      created_by: Créé par
+      max: Nombre max d'inscrit :
+      min: Nombre d'event mini :
+      limit: Date limite d'inscription :
+      mail: Date rappel mail :
+      save: Enregistrer les modifications
+      close: Fermer
+  events:
+    title: Ajouter un évènement
+    import: Importer des évènements
+    del: Supprimer
+    list: Listes d'émargement
+    rappel: Rappels utilisateurs
+    help: Cliquez sur le nom d'un évènement pour voir/modifier ses détails
+    name: Nom
+    how_many: Nombre d'inscrits
+  add_session:
+    title: Ajouter une session
+    name: Nom de la session
+    to_who: Destinataires
+    more: Options supplémentaires
+    max: Maximum d'inscrits par évènements
+    min: Minimum d'inscriptions
+    limit_date: Date limite d'inscription
+    rappel: Date du rappel par mail
+    reset: Annuler
+    save: Ajouter
+  add_event:
+    title: Ajouter un évènement
+    name: Nom de l'évènement :
+    desc: Description de l'évènement :
+    begining: Date du début de l'évènement :
+    end: Date de la fin de l'évènement :
+    where: Emplacement :
+    reset: Annuler
+    save: Ajouter
+  rappel_users:
+    title: Liste des utilisateurs qui ne sont pas inscrits au nombre requis d'évènements
+    Lname: Nom
+    Fname: Prenom
+    close: Fermer
+    send: Envoyer des mails de rappel
+  import_CSV:
+    title: Import d'évènement au format CSV
+    file: Fichier à importer
+    save: Importer
+    help:
+      title: Aide
+      text: "Vous devez selectionner un fichier en .csv Il doit n'avoir que les colonnes suivante Nom, Description, dateDebut, dateFin, Emplacement. La date doit être au format DD/MM/YYYY hh:mm (ex: 22/04/2012 12:30)"
+    close: Fermer
+import_event:
+  session: Session :
+  name: "Nom évènement : {{ event[0] }}"
+  desc: "Decription évènement : {{ event[1] }}"
+  begining: "Date début évènement : {{ event[2] }}"
+  end: "Date fin évènement : {{ event[3] }}"
+  where: "Emplacement : {{ event[4] }}"
+  save: Enregistrer les évènements
+  reset: "Annuler"
+import_succes:
+  title: Importé avec succès !
+  return: Retourner à la gestion des évènements
+list_events:
+  title: "Vous devez vous inscrire à {{ session.nbminparticipationevenement }} évènements au minimum."
+  seat_left: "{{ session.nbmaxinscritevenement - event.nbinscrit }} places libres"
+  inscrit: Inscrit
+  desc_title: Description
+  modal:
+    link: "Détails &raquo;"
+    inscrit: Inscrit
+    date_same_day: 'Le {{ event.datedebutevenement|truncate(11,true)|date("d/m/y") }}, de {{ event.datedebutevenement|date("H\\hi") }} à {{ event.datefinevenement|date("H\\hi") }}'
+    date_many_day: 'Du {{ event.datedebutevenement|date("d/m/y \\à H\\hi") }} au {{ event.datefinevenement|date("d/m/y \\à H\\hi") }}'
+    where: "En {{ event.emplacementevenement }}"
+    seat_left: "Il ne reste plus que {{ session.nbmaxinscritevenement - event.nbinscrit }} place(s) pour cette évènement"
+    close: Close
+    no_seat_left: Il n'y a plus de places
+    be_in: S'inscrire
+    be_out: Se désinscrire
+    no_be_left: Inscriptions closes
+listings:
+  print: Imprimer
+  date: "du {{ event.info.datedebutevenement }} au {{ event.info.datefinevenement }}"
+  Lname: Nom
+  Fname: Prenom
+  is_here: Présence ?
+mail_reminders:
+  title: Les mails ont été envoyés avec succès !
+  home: Retour à la page d'accueil
+sing_in:
+  inscrit_ok:
+    title: Inscription réussie :)
+    sub: Veuillez vérifier vos emails.
+  mail_ok:
+    title: Confirmé ! :)
+    sub: 
+  error: Erreur :(
+  error_password: Les mots de passe ne sont pas identiques
+  error_domain: Ce domaine n'est pas autorisé
+  error_fields: Vous devez remplir tout les champs
+  form:
+    title: Inscription
+    Lname: Nom
+    Fname: Prenom
+    mail: Email
+    password: Mot de passe
+    password_again: Confirmer le mot de passe
+    submit: S'inscrire
+users:
+  upgrade: Promouvoir
+  del: Supprimer
+  Lname: Nom
+  Fname: Prenom
+  mail: Courriel
+  right: Droit
+  participation: Participation
+  see: "Voir &raquo;"
+  modal_promote:
+    title: Promouvoir des utilisateurs
+    new_right: Nouveau droit
+    user: Utilisateur
+    gest: Gestionnaire
+    admin: Administrateur
+    reset: Annuler
+    submit: Promouvoir
+  modal_participation:
+    title: PARTICIPATION
+    name: Nom de l'évènement
+    date: Date de l'évènement
+    session: Session
+    close: Fermer
